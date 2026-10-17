@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "case_count": 100,
+  "document_count": 50,
+  "categories": {
+    "answerable_shared_terms": {
+      "case_count": 50,
+      "answerable_count": 50,
+      "queries_with_leakage": 0,
+      "correct_unanswerable_refusals": 0,
+      "unanswerable_count": 0
+    },
+    "cross_tenant_denied": {
+      "case_count": 20,
+      "answerable_count": 0,
+      "queries_with_leakage": 0,
+      "correct_unanswerable_refusals": 20,
+      "unanswerable_count": 20
+    },
+    "no_match": {
+      "case_count": 10,
+      "answerable_count": 0,
+      "queries_with_leakage": 0,
+      "correct_unanswerable_refusals": 10,
+      "unanswerable_count": 10
+    },
+    "role_denied_anchor": {
+      "case_count": 10,
+      "answerable_count": 0,
+      "queries_with_leakage": 0,
+      "correct_unanswerable_refusals": 10,
+      "unanswerable_count": 10
+    },
+    "role_denied_shared_terms": {
+      "case_count": 10,
+      "answerable_count": 0,
+      "queries_with_leakage": 0,
+      "correct_unanswerable_refusals": 0,
+      "unanswerable_count": 10
+    }
+  },
+  "metrics": {
+    "retrieval_hit_rate_answerable": {
+      "numerator": 50,
+      "denominator": 50,
+      "value": 1.0,
+      "wilson_95": [
+        0.9286524008666414,
+        1.0
+      ]
+    },
+    "macro_recall_answerable": {
+      "value": 1.0,
+      "denominator": 50
+    },
+    "query_leakage_rate": {
+      "numerator": 0,
+      "denominator": 100,
+      "value": 0.0,
+      "wilson_95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ]
+    },
+    "returned_reference_leakage_rate": {
+      "numerator": 0,
+      "denominator": 160,
+      "value": 0.0,
+      "wilson_95": [
+        0.0,
+        0.02344619517150519
+      ]
+    },
+    "refusal_accuracy_unanswerable": {
+      "numerator": 40,
+      "denominator": 50,
+      "value": 0.8,
+      "wilson_95": [
+        0.6696289406777459,
+        0.887562499842239
+      ]
+    },
+    "abstention_classification_accuracy": {
+      "numerator": 90,
+      "denominator": 100,
+      "value": 0.9,
+      "wilson_95": [
+        0.8256343384950865,
+        0.9447708629393249
+      ]
+    }
+  },
+  "limitations": [
+    "Packaged synthetic, repeated-template fixture; no real customer or deployment evidence.",
+    "Wilson intervals are descriptive binomial calculations only; sampling independence is not established, including within-query document references.",
+    "Retrieval and abstention only; no generated answer quality is measured.",
+    "ACL fields are supplied inputs; identity authentication is out of scope.",
+    "Correlated synthetic templates do not support confidence or generalization claims."
+  ],
+  "definitions": {
+    "answerable": "At least one authorized relevant_doc_id in the fixture.",
+    "query_leakage_rate": "Queries returning >=1 unauthorized ID / all queries; empty retrieval counts as no leak.",
+    "returned_reference_leakage_rate": "Unauthorized returned IDs / all returned IDs; null if none returned.",
+    "refusal_accuracy_unanswerable": "refused=true / cases with no authorized relevant document.",
+    "retrieval_hit_rate_answerable": "Answerable cases retrieving >=1 relevant ID / answerable cases.",
+    "macro_recall_answerable": "Mean per-answerable-case fraction of relevant IDs retrieved."
+  },
+  "experiment": {
+    "label": "acl_prefilter",
+    "seed": 42,
+    "k": 3
+  },
+  "dataset_provenance": "packaged_synthetic_fixture"
+}

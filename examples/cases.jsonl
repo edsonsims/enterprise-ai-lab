@@ -1,0 +1,2 @@
+{"id":"accessible-cafe","tenant_id":"alder","roles":["employee"],"query":"café accessibility","relevant_doc_ids":["alder-cafe"]}
+{"id":"denied-payroll","tenant_id":"alder","roles":["employee"],"query":"payroll corrections","relevant_doc_ids":[]}

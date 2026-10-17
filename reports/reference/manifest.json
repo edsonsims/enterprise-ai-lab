@@ -1,0 +1,10 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "report.json": "1bcd222e51d4adc612fada9af7ce9a8a7281d152d8fa1f16af137dd3e6b57e2a",
+    "documents.jsonl": "208b5b6ac4c6105892ea78327c2ae901d1db109d16a0ba422cf0fef98ee2a665",
+    "cases.jsonl": "fd0cbef5193d44f06e05692b3fa2ee035746dba4f1d589be5b0975aa27ec82ed",
+    "predictions.jsonl": "d4610fbcd595856feea89924ea1140b97697515eedd8d7ab1fa7778b787c1009",
+    "results.jsonl": "9cfe62a22a9550dd67966913ce45104f0bb2d5e24314d6e1f09112a831ee7f51"
+  }
+}

@@ -1,0 +1,100 @@
+{"category": "answerable_shared_terms", "id": "answer-ginkgo-vpn", "query": "Ginkgo vpn access setup", "relevant_doc_ids": ["ginkgo-vpn"], "roles": ["employee"], "tenant_id": "ginkgo"}
+{"category": "role_denied_anchor", "id": "denied-cedar-incident", "query": "ref8fadc1a606cb0fb3", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "cedar"}
+{"category": "answerable_shared_terms", "id": "answer-birch-payroll", "query": "Birch payroll correction deadline", "relevant_doc_ids": ["birch-payroll"], "roles": ["finance"], "tenant_id": "birch"}
+{"category": "no_match", "id": "empty-ginkgo", "query": "unlisted6 星雲6", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "ginkgo"}
+{"category": "answerable_shared_terms", "id": "answer-cedar-payroll", "query": "Cedar payroll correction deadline", "relevant_doc_ids": ["cedar-payroll"], "roles": ["finance"], "tenant_id": "cedar"}
+{"category": "cross_tenant_denied", "id": "cross-alder-vpn", "query": "refbd9c66b3ad3c2d6d", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "alder"}
+{"category": "role_denied_anchor", "id": "denied-birch-incident", "query": "ref972a846916419f82", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "birch"}
+{"category": "answerable_shared_terms", "id": "answer-alder-incident", "query": "Alder incident escalation procedure", "relevant_doc_ids": ["alder-incident"], "roles": ["ops"], "tenant_id": "alder"}
+{"category": "answerable_shared_terms", "id": "answer-elm-incident", "query": "Elm incident escalation procedure", "relevant_doc_ids": ["elm-incident"], "roles": ["ops"], "tenant_id": "elm"}
+{"category": "no_match", "id": "empty-cedar", "query": "unlisted2 星雲2", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "cedar"}
+{"category": "answerable_shared_terms", "id": "answer-cedar-incident", "query": "Cedar incident escalation procedure", "relevant_doc_ids": ["cedar-incident"], "roles": ["ops"], "tenant_id": "cedar"}
+{"category": "answerable_shared_terms", "id": "answer-hazel-cafe", "query": "Hazel café accessibility réservation", "relevant_doc_ids": ["hazel-cafe"], "roles": ["employee"], "tenant_id": "hazel"}
+{"category": "cross_tenant_denied", "id": "cross-elm-cafe", "query": "ref43b7a3a69a8dca03", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "elm"}
+{"category": "answerable_shared_terms", "id": "answer-alder-payroll", "query": "Alder payroll correction deadline", "relevant_doc_ids": ["alder-payroll"], "roles": ["finance"], "tenant_id": "alder"}
+{"category": "role_denied_shared_terms", "id": "denied-dogwood-payroll", "query": "When is Dogwood payroll correction deadline?", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "dogwood"}
+{"category": "answerable_shared_terms", "id": "answer-dogwood-cafe", "query": "Dogwood café accessibility réservation", "relevant_doc_ids": ["dogwood-cafe"], "roles": ["employee"], "tenant_id": "dogwood"}
+{"category": "cross_tenant_denied", "id": "cross-juniper-vpn", "query": "ref1c80317fa3b1799d", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "juniper"}
+{"category": "cross_tenant_denied", "id": "cross-ginkgo-cafe", "query": "ref3139d32c93cd59bf", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "ginkgo"}
+{"category": "role_denied_anchor", "id": "denied-dogwood-incident", "query": "ref4737819096da1dac", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "dogwood"}
+{"category": "answerable_shared_terms", "id": "answer-juniper-payroll", "query": "Juniper payroll correction deadline", "relevant_doc_ids": ["juniper-payroll"], "roles": ["finance"], "tenant_id": "juniper"}
+{"category": "answerable_shared_terms", "id": "answer-cedar-travel", "query": "Cedar travel reimbursement receipt", "relevant_doc_ids": ["cedar-travel"], "roles": ["employee"], "tenant_id": "cedar"}
+{"category": "answerable_shared_terms", "id": "answer-iris-travel", "query": "Iris travel reimbursement receipt", "relevant_doc_ids": ["iris-travel"], "roles": ["employee"], "tenant_id": "iris"}
+{"category": "cross_tenant_denied", "id": "cross-juniper-cafe", "query": "ref1a3d1fa7bc8960a9", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "juniper"}
+{"category": "cross_tenant_denied", "id": "cross-fir-cafe", "query": "ref142c3fe860e7a113", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "fir"}
+{"category": "role_denied_anchor", "id": "denied-juniper-incident", "query": "ref7412b29347294739", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "juniper"}
+{"category": "answerable_shared_terms", "id": "answer-iris-incident", "query": "Iris incident escalation procedure", "relevant_doc_ids": ["iris-incident"], "roles": ["ops"], "tenant_id": "iris"}
+{"category": "answerable_shared_terms", "id": "answer-juniper-cafe", "query": "Juniper café accessibility réservation", "relevant_doc_ids": ["juniper-cafe"], "roles": ["employee"], "tenant_id": "juniper"}
+{"category": "answerable_shared_terms", "id": "answer-hazel-payroll", "query": "Hazel payroll correction deadline", "relevant_doc_ids": ["hazel-payroll"], "roles": ["finance"], "tenant_id": "hazel"}
+{"category": "answerable_shared_terms", "id": "answer-dogwood-incident", "query": "Dogwood incident escalation procedure", "relevant_doc_ids": ["dogwood-incident"], "roles": ["ops"], "tenant_id": "dogwood"}
+{"category": "no_match", "id": "empty-fir", "query": "unlisted5 星雲5", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "fir"}
+{"category": "cross_tenant_denied", "id": "cross-hazel-cafe", "query": "refdaf61a26146d3f31", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "hazel"}
+{"category": "answerable_shared_terms", "id": "answer-iris-cafe", "query": "Iris café accessibility réservation", "relevant_doc_ids": ["iris-cafe"], "roles": ["employee"], "tenant_id": "iris"}
+{"category": "answerable_shared_terms", "id": "answer-alder-vpn", "query": "Alder vpn access setup", "relevant_doc_ids": ["alder-vpn"], "roles": ["employee"], "tenant_id": "alder"}
+{"category": "cross_tenant_denied", "id": "cross-birch-vpn", "query": "ref3b8faa1837f8a88b", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "birch"}
+{"category": "cross_tenant_denied", "id": "cross-dogwood-vpn", "query": "ref28df6ec4ce4a2bbd", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "dogwood"}
+{"category": "role_denied_anchor", "id": "denied-fir-incident", "query": "ref5be6128e18c26797", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "fir"}
+{"category": "cross_tenant_denied", "id": "cross-alder-cafe", "query": "ref17fc695a07a0ca6e", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "alder"}
+{"category": "answerable_shared_terms", "id": "answer-elm-cafe", "query": "Elm café accessibility réservation", "relevant_doc_ids": ["elm-cafe"], "roles": ["employee"], "tenant_id": "elm"}
+{"category": "role_denied_shared_terms", "id": "denied-fir-payroll", "query": "When is Fir payroll correction deadline?", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "fir"}
+{"category": "answerable_shared_terms", "id": "answer-hazel-travel", "query": "Hazel travel reimbursement receipt", "relevant_doc_ids": ["hazel-travel"], "roles": ["employee"], "tenant_id": "hazel"}
+{"category": "no_match", "id": "empty-alder", "query": "unlisted0 星雲0", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "alder"}
+{"category": "answerable_shared_terms", "id": "answer-cedar-vpn", "query": "Cedar vpn access setup", "relevant_doc_ids": ["cedar-vpn"], "roles": ["employee"], "tenant_id": "cedar"}
+{"category": "no_match", "id": "empty-dogwood", "query": "unlisted3 星雲3", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "dogwood"}
+{"category": "role_denied_anchor", "id": "denied-iris-incident", "query": "refc5e7ce8a3a578a8e", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "iris"}
+{"category": "role_denied_shared_terms", "id": "denied-iris-payroll", "query": "When is Iris payroll correction deadline?", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "iris"}
+{"category": "answerable_shared_terms", "id": "answer-alder-travel", "query": "Alder travel reimbursement receipt", "relevant_doc_ids": ["alder-travel"], "roles": ["employee"], "tenant_id": "alder"}
+{"category": "answerable_shared_terms", "id": "answer-birch-vpn", "query": "Birch vpn access setup", "relevant_doc_ids": ["birch-vpn"], "roles": ["employee"], "tenant_id": "birch"}
+{"category": "role_denied_anchor", "id": "denied-hazel-incident", "query": "refe2acf72f9e574f7a", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "hazel"}
+{"category": "answerable_shared_terms", "id": "answer-ginkgo-incident", "query": "Ginkgo incident escalation procedure", "relevant_doc_ids": ["ginkgo-incident"], "roles": ["ops"], "tenant_id": "ginkgo"}
+{"category": "cross_tenant_denied", "id": "cross-cedar-vpn", "query": "ref6b65a6a48b8148f6", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "cedar"}
+{"category": "answerable_shared_terms", "id": "answer-cedar-cafe", "query": "Cedar café accessibility réservation", "relevant_doc_ids": ["cedar-cafe"], "roles": ["employee"], "tenant_id": "cedar"}
+{"category": "answerable_shared_terms", "id": "answer-elm-travel", "query": "Elm travel reimbursement receipt", "relevant_doc_ids": ["elm-travel"], "roles": ["employee"], "tenant_id": "elm"}
+{"category": "answerable_shared_terms", "id": "answer-fir-vpn", "query": "Fir vpn access setup", "relevant_doc_ids": ["fir-vpn"], "roles": ["employee"], "tenant_id": "fir"}
+{"category": "role_denied_shared_terms", "id": "denied-birch-payroll", "query": "When is Birch payroll correction deadline?", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "birch"}
+{"category": "cross_tenant_denied", "id": "cross-iris-cafe", "query": "ref29a3b2e95d65a441", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "iris"}
+{"category": "answerable_shared_terms", "id": "answer-hazel-incident", "query": "Hazel incident escalation procedure", "relevant_doc_ids": ["hazel-incident"], "roles": ["ops"], "tenant_id": "hazel"}
+{"category": "role_denied_shared_terms", "id": "denied-cedar-payroll", "query": "When is Cedar payroll correction deadline?", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "cedar"}
+{"category": "answerable_shared_terms", "id": "answer-dogwood-payroll", "query": "Dogwood payroll correction deadline", "relevant_doc_ids": ["dogwood-payroll"], "roles": ["finance"], "tenant_id": "dogwood"}
+{"category": "cross_tenant_denied", "id": "cross-elm-vpn", "query": "ref1a2a73ed562b0f79", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "elm"}
+{"category": "answerable_shared_terms", "id": "answer-hazel-vpn", "query": "Hazel vpn access setup", "relevant_doc_ids": ["hazel-vpn"], "roles": ["employee"], "tenant_id": "hazel"}
+{"category": "no_match", "id": "empty-juniper", "query": "unlisted9 星雲9", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "juniper"}
+{"category": "answerable_shared_terms", "id": "answer-dogwood-vpn", "query": "Dogwood vpn access setup", "relevant_doc_ids": ["dogwood-vpn"], "roles": ["employee"], "tenant_id": "dogwood"}
+{"category": "role_denied_shared_terms", "id": "denied-ginkgo-payroll", "query": "When is Ginkgo payroll correction deadline?", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "ginkgo"}
+{"category": "answerable_shared_terms", "id": "answer-ginkgo-travel", "query": "Ginkgo travel reimbursement receipt", "relevant_doc_ids": ["ginkgo-travel"], "roles": ["employee"], "tenant_id": "ginkgo"}
+{"category": "answerable_shared_terms", "id": "answer-dogwood-travel", "query": "Dogwood travel reimbursement receipt", "relevant_doc_ids": ["dogwood-travel"], "roles": ["employee"], "tenant_id": "dogwood"}
+{"category": "cross_tenant_denied", "id": "cross-birch-cafe", "query": "refb38a088ca65ed389", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "birch"}
+{"category": "role_denied_shared_terms", "id": "denied-alder-payroll", "query": "When is Alder payroll correction deadline?", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "alder"}
+{"category": "cross_tenant_denied", "id": "cross-cedar-cafe", "query": "refc241330b01a9e71f", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "cedar"}
+{"category": "role_denied_shared_terms", "id": "denied-elm-payroll", "query": "When is Elm payroll correction deadline?", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "elm"}
+{"category": "no_match", "id": "empty-elm", "query": "unlisted4 星雲4", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "elm"}
+{"category": "answerable_shared_terms", "id": "answer-fir-incident", "query": "Fir incident escalation procedure", "relevant_doc_ids": ["fir-incident"], "roles": ["ops"], "tenant_id": "fir"}
+{"category": "answerable_shared_terms", "id": "answer-birch-travel", "query": "Birch travel reimbursement receipt", "relevant_doc_ids": ["birch-travel"], "roles": ["employee"], "tenant_id": "birch"}
+{"category": "cross_tenant_denied", "id": "cross-iris-vpn", "query": "refddd1dfb23b982ef8", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "iris"}
+{"category": "role_denied_anchor", "id": "denied-alder-incident", "query": "ref3eb13b9046685257", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "alder"}
+{"category": "answerable_shared_terms", "id": "answer-iris-vpn", "query": "Iris vpn access setup", "relevant_doc_ids": ["iris-vpn"], "roles": ["employee"], "tenant_id": "iris"}
+{"category": "answerable_shared_terms", "id": "answer-alder-cafe", "query": "Alder café accessibility réservation", "relevant_doc_ids": ["alder-cafe"], "roles": ["employee"], "tenant_id": "alder"}
+{"category": "answerable_shared_terms", "id": "answer-fir-cafe", "query": "Fir café accessibility réservation", "relevant_doc_ids": ["fir-cafe"], "roles": ["employee"], "tenant_id": "fir"}
+{"category": "answerable_shared_terms", "id": "answer-birch-incident", "query": "Birch incident escalation procedure", "relevant_doc_ids": ["birch-incident"], "roles": ["ops"], "tenant_id": "birch"}
+{"category": "answerable_shared_terms", "id": "answer-iris-payroll", "query": "Iris payroll correction deadline", "relevant_doc_ids": ["iris-payroll"], "roles": ["finance"], "tenant_id": "iris"}
+{"category": "answerable_shared_terms", "id": "answer-fir-travel", "query": "Fir travel reimbursement receipt", "relevant_doc_ids": ["fir-travel"], "roles": ["employee"], "tenant_id": "fir"}
+{"category": "role_denied_anchor", "id": "denied-elm-incident", "query": "ref47229389571aa876", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "elm"}
+{"category": "no_match", "id": "empty-iris", "query": "unlisted8 星雲8", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "iris"}
+{"category": "role_denied_shared_terms", "id": "denied-juniper-payroll", "query": "When is Juniper payroll correction deadline?", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "juniper"}
+{"category": "answerable_shared_terms", "id": "answer-juniper-travel", "query": "Juniper travel reimbursement receipt", "relevant_doc_ids": ["juniper-travel"], "roles": ["employee"], "tenant_id": "juniper"}
+{"category": "no_match", "id": "empty-birch", "query": "unlisted1 星雲1", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "birch"}
+{"category": "answerable_shared_terms", "id": "answer-elm-vpn", "query": "Elm vpn access setup", "relevant_doc_ids": ["elm-vpn"], "roles": ["employee"], "tenant_id": "elm"}
+{"category": "answerable_shared_terms", "id": "answer-ginkgo-payroll", "query": "Ginkgo payroll correction deadline", "relevant_doc_ids": ["ginkgo-payroll"], "roles": ["finance"], "tenant_id": "ginkgo"}
+{"category": "cross_tenant_denied", "id": "cross-dogwood-cafe", "query": "refc37459eef50bea63", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "dogwood"}
+{"category": "answerable_shared_terms", "id": "answer-elm-payroll", "query": "Elm payroll correction deadline", "relevant_doc_ids": ["elm-payroll"], "roles": ["finance"], "tenant_id": "elm"}
+{"category": "role_denied_anchor", "id": "denied-ginkgo-incident", "query": "ref1ff49b7889463e85", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "ginkgo"}
+{"category": "cross_tenant_denied", "id": "cross-fir-vpn", "query": "ref0b1f9163ce9ff57f", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "fir"}
+{"category": "answerable_shared_terms", "id": "answer-birch-cafe", "query": "Birch café accessibility réservation", "relevant_doc_ids": ["birch-cafe"], "roles": ["employee"], "tenant_id": "birch"}
+{"category": "cross_tenant_denied", "id": "cross-ginkgo-vpn", "query": "ref4b0dbb418d5288f1", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "ginkgo"}
+{"category": "cross_tenant_denied", "id": "cross-hazel-vpn", "query": "ref11ce5dd2b45ed1f0", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "hazel"}
+{"category": "no_match", "id": "empty-hazel", "query": "unlisted7 星雲7", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "hazel"}
+{"category": "answerable_shared_terms", "id": "answer-ginkgo-cafe", "query": "Ginkgo café accessibility réservation", "relevant_doc_ids": ["ginkgo-cafe"], "roles": ["employee"], "tenant_id": "ginkgo"}
+{"category": "role_denied_shared_terms", "id": "denied-hazel-payroll", "query": "When is Hazel payroll correction deadline?", "relevant_doc_ids": [], "roles": ["employee"], "tenant_id": "hazel"}
+{"category": "answerable_shared_terms", "id": "answer-fir-payroll", "query": "Fir payroll correction deadline", "relevant_doc_ids": ["fir-payroll"], "roles": ["finance"], "tenant_id": "fir"}
+{"category": "answerable_shared_terms", "id": "answer-juniper-vpn", "query": "Juniper vpn access setup", "relevant_doc_ids": ["juniper-vpn"], "roles": ["employee"], "tenant_id": "juniper"}
+{"category": "answerable_shared_terms", "id": "answer-juniper-incident", "query": "Juniper incident escalation procedure", "relevant_doc_ids": ["juniper-incident"], "roles": ["ops"], "tenant_id": "juniper"}

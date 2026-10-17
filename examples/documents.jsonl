@@ -1,0 +1,3 @@
+{"id":"alder-cafe","tenant_id":"alder","allowed_roles":["employee"],"text":"Café accessibility: request accessible seating in the staff portal."}
+{"id":"birch-cafe","tenant_id":"birch","allowed_roles":["employee"],"text":"Café accessibility: contact the building host."}
+{"id":"alder-payroll","tenant_id":"alder","allowed_roles":["finance"],"text":"Payroll corrections close on the monthly cutoff."}

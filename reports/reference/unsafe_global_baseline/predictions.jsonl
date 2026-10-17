@@ -1,0 +1,100 @@
+{"case_id": "answer-ginkgo-vpn", "refused": false, "retrieved_doc_ids": ["ginkgo-vpn", "alder-vpn", "birch-vpn"], "scores": [5, 4, 4]}
+{"case_id": "denied-cedar-incident", "refused": false, "retrieved_doc_ids": ["cedar-incident"], "scores": [1]}
+{"case_id": "answer-birch-payroll", "refused": false, "retrieved_doc_ids": ["birch-payroll", "alder-payroll", "cedar-payroll"], "scores": [5, 4, 4]}
+{"case_id": "empty-ginkgo", "refused": true, "retrieved_doc_ids": [], "scores": []}
+{"case_id": "answer-cedar-payroll", "refused": false, "retrieved_doc_ids": ["cedar-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "cross-alder-vpn", "refused": false, "retrieved_doc_ids": ["birch-vpn"], "scores": [1]}
+{"case_id": "denied-birch-incident", "refused": false, "retrieved_doc_ids": ["birch-incident"], "scores": [1]}
+{"case_id": "answer-alder-incident", "refused": false, "retrieved_doc_ids": ["alder-incident", "birch-incident", "cedar-incident"], "scores": [5, 4, 4]}
+{"case_id": "answer-elm-incident", "refused": false, "retrieved_doc_ids": ["elm-incident", "alder-incident", "birch-incident"], "scores": [5, 4, 4]}
+{"case_id": "empty-cedar", "refused": true, "retrieved_doc_ids": [], "scores": []}
+{"case_id": "answer-cedar-incident", "refused": false, "retrieved_doc_ids": ["cedar-incident", "alder-incident", "birch-incident"], "scores": [5, 4, 4]}
+{"case_id": "answer-hazel-cafe", "refused": false, "retrieved_doc_ids": ["hazel-cafe", "alder-cafe", "birch-cafe"], "scores": [6, 5, 5]}
+{"case_id": "cross-elm-cafe", "refused": false, "retrieved_doc_ids": ["fir-cafe"], "scores": [1]}
+{"case_id": "answer-alder-payroll", "refused": false, "retrieved_doc_ids": ["alder-payroll", "birch-payroll", "cedar-payroll"], "scores": [5, 4, 4]}
+{"case_id": "denied-dogwood-payroll", "refused": false, "retrieved_doc_ids": ["dogwood-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "answer-dogwood-cafe", "refused": false, "retrieved_doc_ids": ["dogwood-cafe", "alder-cafe", "birch-cafe"], "scores": [6, 5, 5]}
+{"case_id": "cross-juniper-vpn", "refused": false, "retrieved_doc_ids": ["alder-vpn"], "scores": [1]}
+{"case_id": "cross-ginkgo-cafe", "refused": false, "retrieved_doc_ids": ["hazel-cafe"], "scores": [1]}
+{"case_id": "denied-dogwood-incident", "refused": false, "retrieved_doc_ids": ["dogwood-incident"], "scores": [1]}
+{"case_id": "answer-juniper-payroll", "refused": false, "retrieved_doc_ids": ["juniper-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "answer-cedar-travel", "refused": false, "retrieved_doc_ids": ["cedar-travel", "alder-travel", "birch-travel"], "scores": [6, 5, 5]}
+{"case_id": "answer-iris-travel", "refused": false, "retrieved_doc_ids": ["iris-travel", "alder-travel", "birch-travel"], "scores": [6, 5, 5]}
+{"case_id": "cross-juniper-cafe", "refused": false, "retrieved_doc_ids": ["alder-cafe"], "scores": [1]}
+{"case_id": "cross-fir-cafe", "refused": false, "retrieved_doc_ids": ["ginkgo-cafe"], "scores": [1]}
+{"case_id": "denied-juniper-incident", "refused": false, "retrieved_doc_ids": ["juniper-incident"], "scores": [1]}
+{"case_id": "answer-iris-incident", "refused": false, "retrieved_doc_ids": ["iris-incident", "alder-incident", "birch-incident"], "scores": [5, 4, 4]}
+{"case_id": "answer-juniper-cafe", "refused": false, "retrieved_doc_ids": ["juniper-cafe", "alder-cafe", "birch-cafe"], "scores": [6, 5, 5]}
+{"case_id": "answer-hazel-payroll", "refused": false, "retrieved_doc_ids": ["hazel-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "answer-dogwood-incident", "refused": false, "retrieved_doc_ids": ["dogwood-incident", "alder-incident", "birch-incident"], "scores": [5, 4, 4]}
+{"case_id": "empty-fir", "refused": true, "retrieved_doc_ids": [], "scores": []}
+{"case_id": "cross-hazel-cafe", "refused": false, "retrieved_doc_ids": ["iris-cafe"], "scores": [1]}
+{"case_id": "answer-iris-cafe", "refused": false, "retrieved_doc_ids": ["iris-cafe", "alder-cafe", "birch-cafe"], "scores": [6, 5, 5]}
+{"case_id": "answer-alder-vpn", "refused": false, "retrieved_doc_ids": ["alder-vpn", "birch-vpn", "cedar-vpn"], "scores": [5, 4, 4]}
+{"case_id": "cross-birch-vpn", "refused": false, "retrieved_doc_ids": ["cedar-vpn"], "scores": [1]}
+{"case_id": "cross-dogwood-vpn", "refused": false, "retrieved_doc_ids": ["elm-vpn"], "scores": [1]}
+{"case_id": "denied-fir-incident", "refused": false, "retrieved_doc_ids": ["fir-incident"], "scores": [1]}
+{"case_id": "cross-alder-cafe", "refused": false, "retrieved_doc_ids": ["birch-cafe"], "scores": [1]}
+{"case_id": "answer-elm-cafe", "refused": false, "retrieved_doc_ids": ["elm-cafe", "alder-cafe", "birch-cafe"], "scores": [6, 5, 5]}
+{"case_id": "denied-fir-payroll", "refused": false, "retrieved_doc_ids": ["fir-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "answer-hazel-travel", "refused": false, "retrieved_doc_ids": ["hazel-travel", "alder-travel", "birch-travel"], "scores": [6, 5, 5]}
+{"case_id": "empty-alder", "refused": true, "retrieved_doc_ids": [], "scores": []}
+{"case_id": "answer-cedar-vpn", "refused": false, "retrieved_doc_ids": ["cedar-vpn", "alder-vpn", "birch-vpn"], "scores": [5, 4, 4]}
+{"case_id": "empty-dogwood", "refused": true, "retrieved_doc_ids": [], "scores": []}
+{"case_id": "denied-iris-incident", "refused": false, "retrieved_doc_ids": ["iris-incident"], "scores": [1]}
+{"case_id": "denied-iris-payroll", "refused": false, "retrieved_doc_ids": ["iris-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "answer-alder-travel", "refused": false, "retrieved_doc_ids": ["alder-travel", "birch-travel", "cedar-travel"], "scores": [6, 5, 5]}
+{"case_id": "answer-birch-vpn", "refused": false, "retrieved_doc_ids": ["birch-vpn", "alder-vpn", "cedar-vpn"], "scores": [5, 4, 4]}
+{"case_id": "denied-hazel-incident", "refused": false, "retrieved_doc_ids": ["hazel-incident"], "scores": [1]}
+{"case_id": "answer-ginkgo-incident", "refused": false, "retrieved_doc_ids": ["ginkgo-incident", "alder-incident", "birch-incident"], "scores": [5, 4, 4]}
+{"case_id": "cross-cedar-vpn", "refused": false, "retrieved_doc_ids": ["dogwood-vpn"], "scores": [1]}
+{"case_id": "answer-cedar-cafe", "refused": false, "retrieved_doc_ids": ["cedar-cafe", "alder-cafe", "birch-cafe"], "scores": [6, 5, 5]}
+{"case_id": "answer-elm-travel", "refused": false, "retrieved_doc_ids": ["elm-travel", "alder-travel", "birch-travel"], "scores": [6, 5, 5]}
+{"case_id": "answer-fir-vpn", "refused": false, "retrieved_doc_ids": ["fir-vpn", "alder-vpn", "birch-vpn"], "scores": [5, 4, 4]}
+{"case_id": "denied-birch-payroll", "refused": false, "retrieved_doc_ids": ["birch-payroll", "alder-payroll", "cedar-payroll"], "scores": [5, 4, 4]}
+{"case_id": "cross-iris-cafe", "refused": false, "retrieved_doc_ids": ["juniper-cafe"], "scores": [1]}
+{"case_id": "answer-hazel-incident", "refused": false, "retrieved_doc_ids": ["hazel-incident", "alder-incident", "birch-incident"], "scores": [5, 4, 4]}
+{"case_id": "denied-cedar-payroll", "refused": false, "retrieved_doc_ids": ["cedar-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "answer-dogwood-payroll", "refused": false, "retrieved_doc_ids": ["dogwood-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "cross-elm-vpn", "refused": false, "retrieved_doc_ids": ["fir-vpn"], "scores": [1]}
+{"case_id": "answer-hazel-vpn", "refused": false, "retrieved_doc_ids": ["hazel-vpn", "alder-vpn", "birch-vpn"], "scores": [5, 4, 4]}
+{"case_id": "empty-juniper", "refused": true, "retrieved_doc_ids": [], "scores": []}
+{"case_id": "answer-dogwood-vpn", "refused": false, "retrieved_doc_ids": ["dogwood-vpn", "alder-vpn", "birch-vpn"], "scores": [5, 4, 4]}
+{"case_id": "denied-ginkgo-payroll", "refused": false, "retrieved_doc_ids": ["ginkgo-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "answer-ginkgo-travel", "refused": false, "retrieved_doc_ids": ["ginkgo-travel", "alder-travel", "birch-travel"], "scores": [6, 5, 5]}
+{"case_id": "answer-dogwood-travel", "refused": false, "retrieved_doc_ids": ["dogwood-travel", "alder-travel", "birch-travel"], "scores": [6, 5, 5]}
+{"case_id": "cross-birch-cafe", "refused": false, "retrieved_doc_ids": ["cedar-cafe"], "scores": [1]}
+{"case_id": "denied-alder-payroll", "refused": false, "retrieved_doc_ids": ["alder-payroll", "birch-payroll", "cedar-payroll"], "scores": [5, 4, 4]}
+{"case_id": "cross-cedar-cafe", "refused": false, "retrieved_doc_ids": ["dogwood-cafe"], "scores": [1]}
+{"case_id": "denied-elm-payroll", "refused": false, "retrieved_doc_ids": ["elm-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "empty-elm", "refused": true, "retrieved_doc_ids": [], "scores": []}
+{"case_id": "answer-fir-incident", "refused": false, "retrieved_doc_ids": ["fir-incident", "alder-incident", "birch-incident"], "scores": [5, 4, 4]}
+{"case_id": "answer-birch-travel", "refused": false, "retrieved_doc_ids": ["birch-travel", "alder-travel", "cedar-travel"], "scores": [6, 5, 5]}
+{"case_id": "cross-iris-vpn", "refused": false, "retrieved_doc_ids": ["juniper-vpn"], "scores": [1]}
+{"case_id": "denied-alder-incident", "refused": false, "retrieved_doc_ids": ["alder-incident"], "scores": [1]}
+{"case_id": "answer-iris-vpn", "refused": false, "retrieved_doc_ids": ["iris-vpn", "alder-vpn", "birch-vpn"], "scores": [5, 4, 4]}
+{"case_id": "answer-alder-cafe", "refused": false, "retrieved_doc_ids": ["alder-cafe", "birch-cafe", "cedar-cafe"], "scores": [6, 5, 5]}
+{"case_id": "answer-fir-cafe", "refused": false, "retrieved_doc_ids": ["fir-cafe", "alder-cafe", "birch-cafe"], "scores": [6, 5, 5]}
+{"case_id": "answer-birch-incident", "refused": false, "retrieved_doc_ids": ["birch-incident", "alder-incident", "cedar-incident"], "scores": [5, 4, 4]}
+{"case_id": "answer-iris-payroll", "refused": false, "retrieved_doc_ids": ["iris-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "answer-fir-travel", "refused": false, "retrieved_doc_ids": ["fir-travel", "alder-travel", "birch-travel"], "scores": [6, 5, 5]}
+{"case_id": "denied-elm-incident", "refused": false, "retrieved_doc_ids": ["elm-incident"], "scores": [1]}
+{"case_id": "empty-iris", "refused": true, "retrieved_doc_ids": [], "scores": []}
+{"case_id": "denied-juniper-payroll", "refused": false, "retrieved_doc_ids": ["juniper-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "answer-juniper-travel", "refused": false, "retrieved_doc_ids": ["juniper-travel", "alder-travel", "birch-travel"], "scores": [6, 5, 5]}
+{"case_id": "empty-birch", "refused": true, "retrieved_doc_ids": [], "scores": []}
+{"case_id": "answer-elm-vpn", "refused": false, "retrieved_doc_ids": ["elm-vpn", "alder-vpn", "birch-vpn"], "scores": [5, 4, 4]}
+{"case_id": "answer-ginkgo-payroll", "refused": false, "retrieved_doc_ids": ["ginkgo-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "cross-dogwood-cafe", "refused": false, "retrieved_doc_ids": ["elm-cafe"], "scores": [1]}
+{"case_id": "answer-elm-payroll", "refused": false, "retrieved_doc_ids": ["elm-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "denied-ginkgo-incident", "refused": false, "retrieved_doc_ids": ["ginkgo-incident"], "scores": [1]}
+{"case_id": "cross-fir-vpn", "refused": false, "retrieved_doc_ids": ["ginkgo-vpn"], "scores": [1]}
+{"case_id": "answer-birch-cafe", "refused": false, "retrieved_doc_ids": ["birch-cafe", "alder-cafe", "cedar-cafe"], "scores": [6, 5, 5]}
+{"case_id": "cross-ginkgo-vpn", "refused": false, "retrieved_doc_ids": ["hazel-vpn"], "scores": [1]}
+{"case_id": "cross-hazel-vpn", "refused": false, "retrieved_doc_ids": ["iris-vpn"], "scores": [1]}
+{"case_id": "empty-hazel", "refused": true, "retrieved_doc_ids": [], "scores": []}
+{"case_id": "answer-ginkgo-cafe", "refused": false, "retrieved_doc_ids": ["ginkgo-cafe", "alder-cafe", "birch-cafe"], "scores": [6, 5, 5]}
+{"case_id": "denied-hazel-payroll", "refused": false, "retrieved_doc_ids": ["hazel-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "answer-fir-payroll", "refused": false, "retrieved_doc_ids": ["fir-payroll", "alder-payroll", "birch-payroll"], "scores": [5, 4, 4]}
+{"case_id": "answer-juniper-vpn", "refused": false, "retrieved_doc_ids": ["juniper-vpn", "alder-vpn", "birch-vpn"], "scores": [5, 4, 4]}
+{"case_id": "answer-juniper-incident", "refused": false, "retrieved_doc_ids": ["juniper-incident", "alder-incident", "birch-incident"], "scores": [5, 4, 4]}

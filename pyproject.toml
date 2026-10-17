@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "enterprise-ai-lab"
+version = "0.1.0"
+description = "Reproducible synthetic experiments in permission-aware retrieval evaluation"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+readme = "README.md"
+authors = [{name = "Edson Henrique"}]
+keywords = ["retrieval", "evaluation", "access-control", "research"]
+classifiers = ["Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License"]
+
+[project.scripts]
+enterprise-ai-lab = "enterprise_ai_lab.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
