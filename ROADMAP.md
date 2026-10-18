@@ -5,7 +5,7 @@ operations. It adapts the 15 project prompts in [Suraj Sharma's October 17, 2026
 post](https://x.com/suraj_sharma14/status/2111427008295301488). These are study
 directions, not evidence of employability, enterprise adoption, or research novelty.
 
-Work advances by one substantive milestone per daily session. A project may need
+Scheduled work advances by at most one substantive milestone per day. A project may need
 several sessions. A finished milestone needs runnable code, relevant tests, a clear
 explanation, and evidence of what was actually tested. Integrations remain planned
 until exercised against the real dependency. The three eventual case studies share
@@ -14,8 +14,8 @@ these components; separate repositories are useful only when a module stands alo
 | Order | Study (source item) | Required evidence before completion | Status |
 | --- | --- | --- | --- |
 | 1 | Customer data evaluation harness (10) | Strict dataset/prediction contract, baseline comparison, per-case results, reproducibility and limitations | Offline synthetic milestone implemented 2026-10-17; real-data validation pending |
-| 2 | Technical discovery to SOW translator (11) | Fictional brief, explicit assumptions, acceptance criteria, scope and architecture; no invented client | Planned |
-| 3 | Enterprise SSO and RBAC bridge (1) | Local standards-based identity provider, token validation, revocation/role tests; SAML and SCIM tracked separately | Planned |
+| 2 | Technical discovery to SOW translator (11) | Fictional brief, explicit assumptions, acceptance criteria, scope and architecture; no invented client | [BriefTrace](https://github.com/edsonsims/brieftrace): source-linked compiler, open questions, proposed criteria, dependency layers and transactional SQLite revision API implemented 2026-10-17. Model extraction, architecture recommendation and commercial SOW approval remain unimplemented. |
+| 3 | Enterprise SSO and RBAC bridge (1) | Local standards-based identity provider, token validation, revocation/role tests; SAML and SCIM tracked separately | [Identity Boundary Lab](https://github.com/edsonsims/identity-boundary-lab): real local OAuth client credentials, JWKS, audience/tenant/RBAC/scope checks and paired-token revocation experiment implemented 2026-10-17. Browser SSO, PKCE, SAML, SCIM, persistence and key rotation remain planned. |
 | 4 | Permission-filtered RAG engine (4) | Authenticated identity to query filter, vector backend, tenant/role isolation and retrieval-quality tests | Lexical fixture baseline included in study 1; full integration planned |
 | 5 | Legacy ETL and OCR ingestor (3) | Licensed scanned fixtures, provenance, idempotency, OCR error analysis and permission propagation | Planned |
 | 6 | Durable human approval gate (7) | Temporal restart/replay tests, expiry, idempotency, forged approval rejection; local notifier first | Planned |

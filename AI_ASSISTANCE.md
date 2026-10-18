@@ -14,3 +14,5 @@ Upstream projects set their own contribution policies. This repository's permiss
 to use AI does not override those policies. AI-assisted upstream submissions should
 disclose material assistance and include commands and results that another reviewer
 can reproduce.
+
+The README visual refresh and original SVG illustrations were also drafted with Codex. The artwork is illustrative, not a screenshot or live system. Runnable README examples and their selected output fields were checked against local CLI/HTTP runs; they do not imply owner review, production use or new model-quality evidence.

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="310" viewBox="0 0 600 310" role="img" aria-labelledby="title description">
+<title id="title">Enterprise AI Lab</title><desc id="description">A reproducible offline experiment in tenant-and-role-aware retrieval. Abstract vector illustration, not a live interface.</desc>
+<defs><clipPath id="edge"><rect width="600" height="310" rx="22"/></clipPath><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#ad91ce" opacity=".2"/></pattern></defs>
+<style>@keyframes travel{to{stroke-dashoffset:-28}}@media(prefers-reduced-motion:no-preference){.trail{animation:travel 9s linear infinite}}</style>
+<g clip-path="url(#edge)"><rect width="600" height="310" fill="#211a34"/><rect x="348.0" width="252.0" height="310" fill="url(#dots)"/>
+<circle cx="580" cy="60" r="180" fill="none" stroke="#423257"/><circle cx="580" cy="60" r="150" fill="none" stroke="#423257"/>
+<text x="30" y="46" fill="#bca7dc" font-family="ui-monospace,'Courier New',monospace" font-size="14" letter-spacing="1">RETRIEVAL + ACCESS</text>
+<text x="26" y="129" fill="#fff8ed" font-family="'Arial Black',Arial,sans-serif" font-size="55" font-weight="900" letter-spacing="-3">Enterprise</text>
+<text x="26" y="195" fill="#fff8ed" font-family="'Arial Black',Arial,sans-serif" font-size="55" font-weight="900" letter-spacing="-3">AI Lab<tspan fill="#ff9a83">.</tspan></text>
+<g transform="translate(100 70) scale(.43)"><g stroke="#171326" stroke-width="3" stroke-linejoin="round"><path d="m804 60 71 41-71 41-71-41z" fill="#c6b3f2"/><path d="m733 101 71 41v98l-71-41z" fill="#977ac8"/><path d="m804 142 71-41v98l-71 41z" fill="#7154a5"/>
+<path d="m963 47 71 41-71 41-71-41z" fill="#fff4df"/><path d="m892 88 71 41v98l-71-41z" fill="#dbcfbd"/><path d="m963 129 71-41v98l-71 41z" fill="#aaa18e"/></g>
+<path d="m753 147 33 19m-33 0 33 19m126-52 33 19m-33 0 33 19" stroke="#eee5f8" stroke-width="3" stroke-linecap="round"/>
+<circle cx="1042" cy="213" r="54" fill="#b9f0d4" stroke="#171326" stroke-width="3"/><path d="m1019 213 15 15 28-31" stroke="#365f4c" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1082 49c65 38 76 154 17 211" fill="none" stroke="#bea7e9" stroke-width="2" stroke-dasharray="4 10" class="trail"/></g><path d="m555 28 4 11 11 4-11 4-4 11-4-11-11-4 11-4z" fill="#ff9a83"/>
+</g></svg>
