@@ -66,7 +66,8 @@ The final suite was run on Python 3.10.6 and 3.13.1 on macOS.
 
 An independent automated review reproduced the demo and verified byte-identical
 bundles on Python 3.10.6 and 3.12.14. The GitHub workflow additionally targets
-Linux with Python 3.10, 3.12, and 3.13; its actual run status is shown by the badge.
+Linux with Python 3.10, 3.12, and 3.13; actual runs are visible in
+[GitHub Actions](https://github.com/edsonsims/enterprise-ai-lab/actions).
 These checks do not establish physical infrastructure or live model behavior.
 
 ## Limits and next experiment
