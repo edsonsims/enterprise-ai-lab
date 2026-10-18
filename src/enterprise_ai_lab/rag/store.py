@@ -134,7 +134,14 @@ class VectorStore:
         finally:
             os.close(directory)
 
-    def index(self, documents) -> int:
+    @contextmanager
+    def _prepared_index(self, documents):
+        """Prepare all embeddings before an outer publication journal commits.
+
+        The single-use closure keeps prepared points private to this locked
+        context. Callers cannot supply a forged batch or apply it after the lock
+        has been released. The original guarded mutation remains unchanged.
+        """
         documents = list(documents)
         if not documents or len(documents) > 1000 or any(not isinstance(row, Document) for row in documents):
             raise ValueError("index needs 1 to 1000 validated documents")
@@ -150,13 +157,30 @@ class VectorStore:
             vectors = self.embedder.embed([chunk["text"] for chunk in chunks])
             points = [models.PointStruct(id=str(uuid5(NAMESPACE_URL, chunk["chunk_id"])),
                        vector=vector, payload=chunk) for chunk, vector in zip(chunks, vectors)]
-            with self._mutation():
-                # Delete old ACL-bearing chunks first. A failed delete/upsert
-                # leaves the durable marker, so even a restart cannot serve stale ACLs.
-                self.client.delete(self.collection_name, models.FilterSelector(filter=models.Filter(must=[
-                    models.FieldCondition(key="document_id", match=models.MatchAny(any=[row.document_id for row in documents]))])), wait=True)
-                self.client.upsert(self.collection_name, points=points, wait=True)
-            return len(points)
+            active, applied = True, False
+
+            def apply():
+                nonlocal applied
+                if not active or applied:
+                    raise RuntimeError("prepared index mutation is no longer available")
+                applied = True
+                self._open()
+                with self._mutation():
+                    # Delete old ACL-bearing chunks first. A failed delete/upsert
+                    # leaves the durable marker, so even a restart cannot serve stale ACLs.
+                    self.client.delete(self.collection_name, models.FilterSelector(filter=models.Filter(must=[
+                        models.FieldCondition(key="document_id", match=models.MatchAny(any=[row.document_id for row in documents]))])), wait=True)
+                    self.client.upsert(self.collection_name, points=points, wait=True)
+                return len(points)
+
+            try:
+                yield apply
+            finally:
+                active = False
+
+    def index(self, documents) -> int:
+        with self._prepared_index(documents) as apply:
+            return apply()
 
     def search(self, question: str, principal: RagPrincipal, top_k: int = 3) -> list[RetrievedChunk]:
         if not isinstance(principal, RagPrincipal):

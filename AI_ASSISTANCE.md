@@ -102,3 +102,52 @@ async Temporal test could not run. The verification lock now includes the exact
 passed. Original reference files remain byte-identical. Identity Boundary Lab
 separately passed 89 Node 24.19.0 tests; its approval scopes are role-bounded
 provider grants, and the resource still checks role and scope independently.
+
+The connected approval-to-RAG publication extension was also developed with
+Codex at the owner's direct request on 2026-10-18. Separate automated agents
+implemented the immutable publication contract/workflow/API and the staging,
+revision/effect ledger and vector-owner boundary. An independent automated
+review examined provenance, tenant/role isolation, stale revision handling,
+redelivery and partial-write recovery. Automated review is not human approval.
+
+This extension reuses the actual public native/OCR PDFs, local OAuth issuer,
+Temporal runtime, MiniLM ONNX embeddings and Qdrant local store. A candidate's
+hash covers complete text, ACLs and source provenance; the workflow binds that
+candidate to the requested publication and expected revision. Its scripted
+client-credentials approver is not a logged-in person and does not establish
+that the owner read or approved the source document. The extractive answer
+baseline adds no new neural model-quality claim.
+
+The [connected publication guide](docs/approved-publication.md) and
+[versioned run evidence](reports/publication-v1) distinguish the enforced
+resource path from standalone trusted ingestion, controlled fault injection
+from actual service calls, and accepted decisions from completed publication.
+Original lexical, RAG, PDF/OCR and local-note approval reports remain separate
+and unchanged. No owner human review, study completion, production deployment
+or customer outcome is claimed.
+
+Independent automated review also found that a character-bounded CJK candidate
+could exceed the actual embedding token limit after the publication journal was
+created. This caused an availability failure before any vector mutation. The
+publication path now prepares every embedding before that journal and applies
+the prepared batch once under the owner lock; an actual MiniLM regression checks
+that the previously approved corpus stays readable after rejection. The original
+vector pending marker remains in force for incomplete writes. This repair is
+separate from the process demo's deliberately lost acknowledgement after a
+successful commit.
+
+Review also identified that a query could wait behind a long publication after
+its short-lived JWT had been checked. The shared query/publisher lock now admits
+queries without waiting; a busy resource returns a sanitized 503 for an explicit
+retry. This keeps publication work from introducing a queue that outlives the
+authenticated query's admission check.
+
+Final combined local verification on Python 3.13.1/macOS arm64 passed **354 tests
+and 247 subtests**, with all RAG/PDF, local-note approval and document-publication
+integrations enabled. The 65 new publication tests include actual MiniLM token
+limit rejection and the real Temporal/OAuth/HTTP/OCR/vector process demo. Other
+cases use controlled vector outputs, gateway doubles and fault injection, as
+labelled in their modules. The frozen public run retains 48 HTTP observations,
+three publication receipts, six exported/replayed histories and an actual
+pre-approval Qdrant inventory of zero points, ending at 28. Original reference
+reports and all prior versioned reports are unchanged.

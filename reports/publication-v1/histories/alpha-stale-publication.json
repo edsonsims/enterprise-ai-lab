@@ -1,0 +1,389 @@
+{
+  "events": [
+    {
+      "eventId": "1",
+      "eventTime": "2026-10-18T14:41:07.208045Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+      "taskId": "3145852",
+      "workflowExecutionStartedEventAttributes": {
+        "workflowType": {
+          "name": "DocumentPublicationWorkflow"
+        },
+        "taskQueue": {
+          "name": "publication-demo-v1",
+          "kind": "TASK_QUEUE_KIND_NORMAL"
+        },
+        "input": {
+          "payloads": [
+            {
+              "metadata": {
+                "encoding": "anNvbi9wbGFpbg=="
+              },
+              "data": "eyJjYW5kaWRhdGVfc2hhMjU2IjoiZWJiNzJiMWUyMzIzY2ZkYjg1NTNjYjEyMjRjZmRjZGMwY2QxOTA5M2FjZjA5Y2ZhNGIwYThjNDI1YjAxNTY0NSIsImV4cGVjdGVkX3JldmlzaW9uIjowLCJleHBpcmVzX2F0IjoiMjAyNi0xMC0xOFQxNDo0NjowN1oiLCJyZXF1ZXN0X2lkIjoic3RhbGUtcHVibGljYXRpb24iLCJyZXF1ZXN0ZWRfYnkiOiJyZXF1ZXN0ZXItYWxwaGEiLCJzbmFwc2hvdF9zaGEyNTYiOiIxODYwMzk0NjE3ZmVhMzUyMjBlMDZjZTg1MWMzNWJkYjE5YWFiOTcxMzBjYmZiNmU2OGY5ZTg4ZmMyZDU0YWYwIiwidGVuYW50X2lkIjoiYWxwaGEifQ=="
+            }
+          ]
+        },
+        "workflowExecutionTimeout": "172800s",
+        "workflowRunTimeout": "172800s",
+        "workflowTaskTimeout": "10s",
+        "originalExecutionRunId": "01a14f75-9088-70ab-880a-e15f1ffc0632",
+        "identity": "publication-local-edge",
+        "firstExecutionRunId": "01a14f75-9088-70ab-880a-e15f1ffc0632",
+        "attempt": 1,
+        "workflowExecutionExpirationTime": "2026-10-20T14:41:07.208Z",
+        "firstWorkflowTaskBackoff": "0s",
+        "workflowId": "publication-ab79d84dfefcdec6a53c8e1a27d17636a53f40bc74aa4dfb196b9b051ee5fbd0",
+        "priority": {}
+      }
+    },
+    {
+      "eventId": "2",
+      "eventTime": "2026-10-18T14:41:07.208105Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+      "taskId": "3145853",
+      "workflowTaskScheduledEventAttributes": {
+        "taskQueue": {
+          "name": "publication-demo-v1",
+          "kind": "TASK_QUEUE_KIND_NORMAL"
+        },
+        "startToCloseTimeout": "10s",
+        "attempt": 1
+      }
+    },
+    {
+      "eventId": "3",
+      "eventTime": "2026-10-18T14:41:07.210335Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+      "taskId": "3145859",
+      "workflowTaskStartedEventAttributes": {
+        "scheduledEventId": "2",
+        "identity": "publication-local-resource",
+        "requestId": "021ff81f-e169-46c9-9139-288fe2f9d850",
+        "historySizeBytes": "709",
+        "workerVersion": {
+          "buildId": "a4f9da57c9db0fb1877cf2cc7ff760c4"
+        }
+      }
+    },
+    {
+      "eventId": "4",
+      "eventTime": "2026-10-18T14:41:07.215459Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+      "taskId": "3145863",
+      "workflowTaskCompletedEventAttributes": {
+        "scheduledEventId": "2",
+        "startedEventId": "3",
+        "identity": "publication-local-resource",
+        "workerVersion": {
+          "buildId": "a4f9da57c9db0fb1877cf2cc7ff760c4"
+        },
+        "sdkMetadata": {
+          "coreUsedFlags": [
+            3,
+            1,
+            2
+          ],
+          "sdkName": "temporal-python",
+          "sdkVersion": "1.34.0"
+        },
+        "meteringMetadata": {}
+      }
+    },
+    {
+      "eventId": "5",
+      "eventTime": "2026-10-18T14:41:07.215485Z",
+      "eventType": "EVENT_TYPE_TIMER_STARTED",
+      "taskId": "3145864",
+      "timerStartedEventAttributes": {
+        "timerId": "1",
+        "startToFireTimeout": "299.790s",
+        "workflowTaskCompletedEventId": "4"
+      }
+    },
+    {
+      "eventId": "6",
+      "eventTime": "2026-10-18T14:41:07.231038Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+      "taskId": "3145873",
+      "workflowTaskScheduledEventAttributes": {
+        "taskQueue": {
+          "name": "publication-local-resource-39e9e69c751c4bae8b06f88c9ca5ad85",
+          "kind": "TASK_QUEUE_KIND_STICKY",
+          "normalName": "publication-demo-v1"
+        },
+        "startToCloseTimeout": "10s",
+        "attempt": 1
+      }
+    },
+    {
+      "eventId": "7",
+      "eventTime": "2026-10-18T14:41:07.231374Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+      "taskId": "3145874",
+      "workflowTaskStartedEventAttributes": {
+        "scheduledEventId": "6",
+        "identity": "publication-local-resource",
+        "requestId": "4797630e-8642-47b4-9bcd-6d9d1c783622",
+        "historySizeBytes": "1014",
+        "workerVersion": {
+          "buildId": "a4f9da57c9db0fb1877cf2cc7ff760c4"
+        }
+      }
+    },
+    {
+      "eventId": "8",
+      "eventTime": "2026-10-18T14:41:07.234036Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+      "taskId": "3145875",
+      "workflowTaskCompletedEventAttributes": {
+        "scheduledEventId": "6",
+        "startedEventId": "7",
+        "identity": "publication-local-resource",
+        "workerVersion": {
+          "buildId": "a4f9da57c9db0fb1877cf2cc7ff760c4"
+        },
+        "sdkMetadata": {},
+        "meteringMetadata": {}
+      }
+    },
+    {
+      "eventId": "9",
+      "eventTime": "2026-10-18T14:41:07.234082Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+      "taskId": "3145876",
+      "workflowExecutionUpdateAcceptedEventAttributes": {
+        "protocolInstanceId": "dc4c190cde2a1abc61603094ab0025ace591ee74c1f1d18ec8ab2b39e1602933",
+        "acceptedRequestMessageId": "dc4c190cde2a1abc61603094ab0025ace591ee74c1f1d18ec8ab2b39e1602933/request",
+        "acceptedRequestSequencingEventId": "6",
+        "acceptedRequest": {
+          "meta": {
+            "updateId": "dc4c190cde2a1abc61603094ab0025ace591ee74c1f1d18ec8ab2b39e1602933",
+            "identity": "publication-local-edge"
+          },
+          "input": {
+            "name": "decide",
+            "args": {
+              "payloads": [
+                {
+                  "metadata": {
+                    "encoding": "anNvbi9wbGFpbg=="
+                  },
+                  "data": "eyJhY3Rvcl9pZCI6ImFwcHJvdmVyLWFscGhhIiwiYWN0b3Jfcm9sZXMiOlsiYXBwcm92ZXIiXSwiY29tbWFuZF9pZCI6InJldmlldy0xIiwiZGVjaXNpb24iOiJhcHByb3ZlIiwic25hcHNob3Rfc2hhMjU2IjoiMTg2MDM5NDYxN2ZlYTM1MjIwZTA2Y2U4NTFjMzViZGIxOWFhYjk3MTMwY2JmYjZlNjhmOWU4OGZjMmQ1NGFmMCIsInRlbmFudF9pZCI6ImFscGhhIn0="
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "eventId": "10",
+      "eventTime": "2026-10-18T14:41:07.234095Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+      "taskId": "3145877",
+      "workflowExecutionUpdateCompletedEventAttributes": {
+        "meta": {
+          "updateId": "dc4c190cde2a1abc61603094ab0025ace591ee74c1f1d18ec8ab2b39e1602933",
+          "identity": "publication-local-edge"
+        },
+        "outcome": {
+          "success": {
+            "payloads": [
+              {
+                "metadata": {
+                  "encoding": "anNvbi9wbGFpbg=="
+                },
+                "data": "eyJhY2NlcHRlZF9hdCI6IjIwMjYtMTAtMThUMTQ6NDE6MDdaIiwiY29tbWFuZCI6eyJhY3Rvcl9pZCI6ImFwcHJvdmVyLWFscGhhIiwiYWN0b3Jfcm9sZXMiOlsiYXBwcm92ZXIiXSwiY29tbWFuZF9pZCI6InJldmlldy0xIiwiZGVjaXNpb24iOiJhcHByb3ZlIiwic25hcHNob3Rfc2hhMjU2IjoiMTg2MDM5NDYxN2ZlYTM1MjIwZTA2Y2U4NTFjMzViZGIxOWFhYjk3MTMwY2JmYjZlNjhmOWU4OGZjMmQ1NGFmMCIsInRlbmFudF9pZCI6ImFscGhhIn19"
+              }
+            ]
+          }
+        },
+        "acceptedEventId": "9"
+      }
+    },
+    {
+      "eventId": "11",
+      "eventTime": "2026-10-18T14:41:07.234107Z",
+      "eventType": "EVENT_TYPE_TIMER_CANCELED",
+      "taskId": "3145878",
+      "timerCanceledEventAttributes": {
+        "timerId": "1",
+        "startedEventId": "5",
+        "workflowTaskCompletedEventId": "8",
+        "identity": "publication-local-resource"
+      }
+    },
+    {
+      "eventId": "12",
+      "eventTime": "2026-10-18T14:41:07.234116Z",
+      "eventType": "EVENT_TYPE_ACTIVITY_TASK_SCHEDULED",
+      "taskId": "3145879",
+      "activityTaskScheduledEventAttributes": {
+        "activityId": "1",
+        "activityType": {
+          "name": "publish_approved_documents"
+        },
+        "taskQueue": {
+          "name": "publication-demo-v1",
+          "kind": "TASK_QUEUE_KIND_NORMAL"
+        },
+        "header": {},
+        "input": {
+          "payloads": [
+            {
+              "metadata": {
+                "encoding": "anNvbi9wbGFpbg=="
+              },
+              "data": "eyJyZWNlaXB0Ijp7ImFjY2VwdGVkX2F0IjoiMjAyNi0xMC0xOFQxNDo0MTowN1oiLCJjb21tYW5kIjp7ImFjdG9yX2lkIjoiYXBwcm92ZXItYWxwaGEiLCJhY3Rvcl9yb2xlcyI6WyJhcHByb3ZlciJdLCJjb21tYW5kX2lkIjoicmV2aWV3LTEiLCJkZWNpc2lvbiI6ImFwcHJvdmUiLCJzbmFwc2hvdF9zaGEyNTYiOiIxODYwMzk0NjE3ZmVhMzUyMjBlMDZjZTg1MWMzNWJkYjE5YWFiOTcxMzBjYmZiNmU2OGY5ZTg4ZmMyZDU0YWYwIiwidGVuYW50X2lkIjoiYWxwaGEifX0sInJlcXVlc3QiOnsiY2FuZGlkYXRlX3NoYTI1NiI6ImViYjcyYjFlMjMyM2NmZGI4NTUzY2IxMjI0Y2ZkY2RjMGNkMTkwOTNhY2YwOWNmYTRiMGE4YzQyNWIwMTU2NDUiLCJleHBlY3RlZF9yZXZpc2lvbiI6MCwiZXhwaXJlc19hdCI6IjIwMjYtMTAtMThUMTQ6NDY6MDdaIiwicmVxdWVzdF9pZCI6InN0YWxlLXB1YmxpY2F0aW9uIiwicmVxdWVzdGVkX2J5IjoicmVxdWVzdGVyLWFscGhhIiwic25hcHNob3Rfc2hhMjU2IjoiMTg2MDM5NDYxN2ZlYTM1MjIwZTA2Y2U4NTFjMzViZGIxOWFhYjk3MTMwY2JmYjZlNjhmOWU4OGZjMmQ1NGFmMCIsInRlbmFudF9pZCI6ImFscGhhIn19"
+            }
+          ]
+        },
+        "scheduleToCloseTimeout": "120s",
+        "scheduleToStartTimeout": "120s",
+        "startToCloseTimeout": "30s",
+        "heartbeatTimeout": "0s",
+        "workflowTaskCompletedEventId": "8",
+        "retryPolicy": {
+          "initialInterval": "1s",
+          "backoffCoefficient": 2.0,
+          "maximumInterval": "5s",
+          "maximumAttempts": 5,
+          "nonRetryableErrorTypes": [
+            "ApprovalValidationError",
+            "PublicationValidationError",
+            "CandidateConflict",
+            "PublicationConflict"
+          ]
+        },
+        "useWorkflowBuildId": true,
+        "priority": {}
+      }
+    },
+    {
+      "eventId": "13",
+      "eventTime": "2026-10-18T14:41:07.234125Z",
+      "eventType": "EVENT_TYPE_ACTIVITY_TASK_STARTED",
+      "taskId": "3145883",
+      "activityTaskStartedEventAttributes": {
+        "scheduledEventId": "12",
+        "identity": "publication-local-resource",
+        "requestId": "6b1b9962-cdde-4fa4-a0ed-181123aae1cd",
+        "attempt": 1,
+        "workerVersion": {
+          "buildId": "a4f9da57c9db0fb1877cf2cc7ff760c4"
+        }
+      }
+    },
+    {
+      "eventId": "14",
+      "eventTime": "2026-10-18T14:41:07.243132Z",
+      "eventType": "EVENT_TYPE_ACTIVITY_TASK_FAILED",
+      "taskId": "3145884",
+      "activityTaskFailedEventAttributes": {
+        "failure": {
+          "message": "publication conflicts with current revision or immutable content",
+          "stackTrace": "  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/work/ingestion-runtime/lib/python3.13/site-packages/temporalio/worker/_activity.py\", line 351, in _handle_start_activity_task\n    result = await self._execute_activity(\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        start, running_activity, task_token, data_converter\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n\n  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/work/ingestion-runtime/lib/python3.13/site-packages/temporalio/worker/_activity.py\", line 681, in _execute_activity\n    return await impl.execute_activity(input)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/work/ingestion-runtime/lib/python3.13/site-packages/temporalio/worker/_activity.py\", line 884, in execute_activity\n    return await loop.run_in_executor(input.executor, func, *args)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n  File \"/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n\n  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/work/ingestion-runtime/lib/python3.13/site-packages/temporalio/worker/_activity.py\", line 951, in _execute_sync_activity\n    return fn(*args)\n\n  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/outputs/enterprise-ai-lab/src/enterprise_ai_lab/publication/activities.py\", line 204, in publish_approved_documents\n    raise ApplicationError(\"publication conflicts with current revision or immutable content\",\n                           type=\"PublicationConflict\", non_retryable=True) from exc\n",
+          "cause": {
+            "message": "tenant revision changed since approval request",
+            "stackTrace": "  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/outputs/enterprise-ai-lab/src/enterprise_ai_lab/publication/activities.py\", line 202, in publish_approved_documents\n    return self._publish(value, documents)\n           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n\n  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/outputs/enterprise-ai-lab/src/enterprise_ai_lab/publication/activities.py\", line 240, in _publish\n    raise PublicationConflict(\"tenant revision changed since approval request\")\n",
+            "applicationFailureInfo": {
+              "type": "PublicationConflict"
+            }
+          },
+          "applicationFailureInfo": {
+            "type": "PublicationConflict",
+            "nonRetryable": true
+          }
+        },
+        "scheduledEventId": "12",
+        "startedEventId": "13",
+        "identity": "publication-local-resource",
+        "retryState": "RETRY_STATE_NON_RETRYABLE_FAILURE"
+      }
+    },
+    {
+      "eventId": "15",
+      "eventTime": "2026-10-18T14:41:07.243151Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+      "taskId": "3145885",
+      "workflowTaskScheduledEventAttributes": {
+        "taskQueue": {
+          "name": "publication-local-resource-39e9e69c751c4bae8b06f88c9ca5ad85",
+          "kind": "TASK_QUEUE_KIND_STICKY",
+          "normalName": "publication-demo-v1"
+        },
+        "startToCloseTimeout": "10s",
+        "attempt": 1
+      }
+    },
+    {
+      "eventId": "16",
+      "eventTime": "2026-10-18T14:41:07.244835Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+      "taskId": "3145889",
+      "workflowTaskStartedEventAttributes": {
+        "scheduledEventId": "15",
+        "identity": "publication-local-resource",
+        "requestId": "3911dbe3-8276-48c9-8f27-dc909635f579",
+        "historySizeBytes": "5945",
+        "workerVersion": {
+          "buildId": "a4f9da57c9db0fb1877cf2cc7ff760c4"
+        }
+      }
+    },
+    {
+      "eventId": "17",
+      "eventTime": "2026-10-18T14:41:07.247562Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+      "taskId": "3145893",
+      "workflowTaskCompletedEventAttributes": {
+        "scheduledEventId": "15",
+        "startedEventId": "16",
+        "identity": "publication-local-resource",
+        "workerVersion": {
+          "buildId": "a4f9da57c9db0fb1877cf2cc7ff760c4"
+        },
+        "sdkMetadata": {},
+        "meteringMetadata": {}
+      }
+    },
+    {
+      "eventId": "18",
+      "eventTime": "2026-10-18T14:41:07.247616Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_EXECUTION_FAILED",
+      "taskId": "3145894",
+      "workflowExecutionFailedEventAttributes": {
+        "failure": {
+          "message": "Activity task failed",
+          "cause": {
+            "message": "publication conflicts with current revision or immutable content",
+            "stackTrace": "  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/work/ingestion-runtime/lib/python3.13/site-packages/temporalio/worker/_activity.py\", line 351, in _handle_start_activity_task\n    result = await self._execute_activity(\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        start, running_activity, task_token, data_converter\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n\n  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/work/ingestion-runtime/lib/python3.13/site-packages/temporalio/worker/_activity.py\", line 681, in _execute_activity\n    return await impl.execute_activity(input)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/work/ingestion-runtime/lib/python3.13/site-packages/temporalio/worker/_activity.py\", line 884, in execute_activity\n    return await loop.run_in_executor(input.executor, func, *args)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n  File \"/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n\n  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/work/ingestion-runtime/lib/python3.13/site-packages/temporalio/worker/_activity.py\", line 951, in _execute_sync_activity\n    return fn(*args)\n\n  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/outputs/enterprise-ai-lab/src/enterprise_ai_lab/publication/activities.py\", line 204, in publish_approved_documents\n    raise ApplicationError(\"publication conflicts with current revision or immutable content\",\n                           type=\"PublicationConflict\", non_retryable=True) from exc\n",
+            "cause": {
+              "message": "tenant revision changed since approval request",
+              "stackTrace": "  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/outputs/enterprise-ai-lab/src/enterprise_ai_lab/publication/activities.py\", line 202, in publish_approved_documents\n    return self._publish(value, documents)\n           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n\n  File \"/Users/edsonhenrique/Documents/Codex/2026-10-17/i-wa/outputs/enterprise-ai-lab/src/enterprise_ai_lab/publication/activities.py\", line 240, in _publish\n    raise PublicationConflict(\"tenant revision changed since approval request\")\n",
+              "applicationFailureInfo": {
+                "type": "PublicationConflict"
+              }
+            },
+            "applicationFailureInfo": {
+              "type": "PublicationConflict",
+              "nonRetryable": true
+            }
+          },
+          "activityFailureInfo": {
+            "scheduledEventId": "12",
+            "startedEventId": "13",
+            "identity": "publication-local-resource",
+            "activityType": {
+              "name": "publish_approved_documents"
+            },
+            "activityId": "1",
+            "retryState": "RETRY_STATE_NON_RETRYABLE_FAILURE"
+          }
+        },
+        "retryState": "RETRY_STATE_RETRY_POLICY_NOT_SET",
+        "workflowTaskCompletedEventId": "17"
+      }
+    }
+  ]
+}

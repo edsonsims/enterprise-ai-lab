@@ -148,3 +148,72 @@ trusts developer/admin callers; HTTP JWT validation does not protect that path.
 Human review UI, production authorization, history/version migrations, retention
 and external actions remain planned. No owner study or live customer use is
 claimed.
+
+## 2026-10-18: approve the same content that retrieval will serve
+
+**Question.** Can the durable decision gate publish actual native/OCR documents
+without losing their tenant, role grants or source spans, and without a delayed
+approval restoring an obsolete revision?
+
+**Decision.** Add a separately versioned document-publication workflow rather
+than changing the replay behavior of the local-note workflow. Stage immutable
+candidate documents outside search. Hash their complete text, title, IDs, ACLs
+and provenance, then bind that digest to the authenticated requester, tenant,
+deadline, action and expected published revision. Keep the approval and RAG JWT
+audiences separate. Only an independent accepted approval schedules publication.
+
+**Storage ownership.** One resource process owns the embedded Qdrant store and
+shares its lock between queries and publication activities. A SQLite ledger
+keeps tenant revision state, complete effect identity and a durable pending
+journal. Do not open the same Qdrant local directory in a separate worker.
+Startup binds ledger/index ownership; every query checks live vector payloads
+against the committed inventory and its immutable approved candidates. This is
+more local integrity work than a remote database
+transaction, but keeps the runnable experiment offline and inspectable.
+
+**Redelivery and concurrency.** Check an exact already committed effect before
+the revision comparison. It returns its saved receipt without writing vectors,
+even if a later approval has changed the live revision. New publications compare
+their expected tenant corpus revision under the owner lock; stale approvals
+conflict. This conservative CAS serializes unrelated concurrent batches in one
+tenant, while other tenants keep separate revisions. A batch replaces named
+documents and retains omitted pages. A
+pending replacement does not hide or mutate existing approved content. An
+approved decision and a successfully published effect remain distinct states.
+
+**Partial failure.** Commit the pending journal before changing vectors and
+finish the effect ledger afterward. Validate and embed the entire batch before
+creating that journal: character bounds alone do not establish that a document
+fits MiniLM's tokenizer. A preparation error must leave the previous approved
+corpus readable. Apply the already prepared batch once under the owner lock.
+Preserve the existing vector mutation
+marker. An unfinished journal blocks reads; only its exact operation can resume
+when the vector inventory is either the old committed view or the complete
+approved next view and no vector mutation marker exists. A partial or unexplained
+mutation requires a fresh deployment from trusted approved inputs instead of
+deleting the fence. This
+trades availability for refusing ambiguous content/ACLs. It is not an atomic
+transaction across Temporal, SQLite and Qdrant or an exactly-once external
+delivery guarantee.
+
+**Scope.** The authenticated gate applies to the connected publication resource,
+which exposes no direct ingest/ACL management endpoint. The standalone trusted
+`rag ingest` command remains a separate study and does not acquire approval
+semantics. Local administrators and the unauthenticated development Temporal
+gRPC endpoint remain trusted; this is not production administration security.
+
+**Evidence and limits.** The connected public fixture reuses the unchanged NIST
+native page and labelled raster OCR page with four authored tenant/page grants.
+Citation metadata preserves both original and processed artifacts, physical
+pages, canonical text hashes, exact Unicode spans and OCR word geometry. The
+reviewer is scripted, the answer step extractive, and controlled failures are
+separate from actual service/model/OCR calls. Human review, owner study, difficult
+scan accuracy and independent answer-quality measurements remain unclaimed.
+
+**Review finding.** An initially accepted 400-character CJK candidate could
+exceed the real embedding model's 256-token limit after the outer journal had
+already been created. No vector write had occurred, but the previous approved
+corpus became unnecessarily fenced. Batch preparation now happens before the
+journal, with a regression using the actual pinned tokenizer/model. The existing
+vector mutation marker still guards the later write phase; no marker is cleared
+to repair a failed publication.

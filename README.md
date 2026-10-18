@@ -6,7 +6,9 @@
 A question should reach the right documents before it reaches a model. This lab
 connects a real local OAuth issuer to dense vector retrieval, tenant/role filters
 and cited answers. Public PDFs now enter through native extraction or actual
-OCR, with page-level source spans and explicit permissions. The original
+OCR, with page-level source spans and explicit permissions. A connected
+publication path keeps proposed documents outside search until their exact
+content and access policy receive a durable approval. The original
 synthetic experiments remain available; HTTP, cryptography, embeddings and
 persistence are real implementations.
 
@@ -16,6 +18,7 @@ separate controlled experiment, with its original reports preserved.
 [PDF/OCR demo](#ingest-public-pdfs-and-scans) · [Identity → RAG design](docs/identity-rag.md) ·
 [Recorded public run](reports/pdf-v1/demo.json) · [Connected synthetic demo](reports/rag-v1) ·
 [Durable approval demo](#wait-for-approval-survive-a-restart) ·
+[Approve → publish → query](#approve-a-document-before-it-enters-search) ·
 [Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
 
 ## Run the connected RAG demo
@@ -214,6 +217,46 @@ notification is local; no external message is sent. The development Temporal
 endpoint trusts local administrators, so HTTP authentication is not a production
 security boundary for gRPC. Read the [protocol, tradeoffs and exercises](docs/durable-approval.md)
 and [recorded process run](reports/approval-v1/demo.json).
+
+## Approve a document before it enters search
+
+The [connected publication demo](docs/approved-publication.md) joins those
+studies: stage a public native/OCR page outside the index, request review, then
+publish only after an independent OAuth reviewer accepts its immutable
+snapshot. The approved content includes the tenant, roles, text and full source
+provenance. RAG queries keep the existing tenant AND role prefilter and cited
+extractive answer.
+
+Use the pinned model and Temporal CLI from the setups above, **Tesseract 5 with
+English data**, and all three compatible locks in one Python 3.12+ environment:
+
+```sh
+.venv/bin/python -m pip install \
+  -r requirements-rag.lock -r requirements-ingestion.lock -r requirements-approval.lock
+
+.venv/bin/python -m enterprise_ai_lab.publication demo \
+  --temporal-cli .local/temporal-bin/temporal \
+  --identity-dir ../identity-boundary-lab --node node \
+  --model-dir .local/models/minilm \
+  --manifest public-data/pdf-v1/ingestion.json \
+  --work-dir .local/publication-demo \
+  --out reports/local/publication-demo.json
+```
+
+Pending, rejected and expired candidates remain outside search. A replacement
+waits for its own approval while the previously approved content stays live.
+Revision checks reject stale publications; an exact activity redelivery returns
+the saved effect without restoring an older document or ACL. A pending journal
+blocks reads while an exact retry can finish a recognized write gap. A partial
+vector mutation keeps its original marker and requires a fresh store rebuild.
+
+The [recorded process evidence](reports/publication-v1) distinguishes actual
+OAuth, Temporal, native extraction/OCR, embeddings and persisted vectors from
+controlled failures and authored policy. The reviewer remains a **scripted
+service identity**, not a person's review. This gate applies to the connected
+publication resource; the standalone trusted `rag ingest` study still has its
+own direct operator path. Production administration, human sign-in and live
+permission synchronization remain future work.
 
 ## Run the first experiment
 

@@ -27,6 +27,8 @@ jobs:
         python: ['3.12', '3.13']
     env:
       RUN_RAG_INTEGRATION: '1'
+      RUN_PUBLICATION_INTEGRATION: '1'
+      TEMPORAL_CLI: ${{ github.workspace }}/.local/temporal-bin/temporal
       RAG_MODEL_DIR: ${{ github.workspace }}/.local/models/minilm
       IDENTITY_LAB_DIR: ${{ github.workspace }}/.local/identity-boundary-lab
       NODE_BINARY: node
@@ -51,9 +53,10 @@ jobs:
           cache-dependency-path: |
             requirements-rag.lock
             requirements-ingestion.lock
+            requirements-approval.lock
       - name: Real local OCR engine and English language data
         run: sudo apt-get update && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
-      - run: python -m pip install -r requirements-rag.lock -r requirements-ingestion.lock
+      - run: python -m pip install -r requirements-rag.lock -r requirements-ingestion.lock -r requirements-approval.lock
       - run: python -m pip install --no-deps -e .
       - working-directory: .local/identity-boundary-lab
         run: |
@@ -61,8 +64,10 @@ jobs:
           npm run build
       - name: Explicit pinned public model bootstrap
         run: python -m enterprise_ai_lab.rag.models bootstrap --model-dir "$RAG_MODEL_DIR"
+      - name: Explicit pinned Temporal bootstrap for connected publication
+        run: python -m enterprise_ai_lab.approval.bootstrap bootstrap --directory .local/temporal-bin
       - name: Real issuer, HTTP, ONNX and persisted-vector tests
-        run: python -m pytest tests/rag tests/ingestion -q
+        run: python -m pytest tests/rag tests/ingestion tests/publication -q
       - name: Reproduce the connected extractive story
         run: >-
           python -m enterprise_ai_lab.rag demo
