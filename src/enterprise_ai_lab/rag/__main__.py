@@ -28,8 +28,38 @@ def main(argv=None):
     demo.add_argument('--node', default=os.environ.get('NODE_BINARY', 'node'))
     demo.add_argument('--generator', choices=('extractive', 'qwen'), default='extractive')
     demo.add_argument('--generator-model-dir')
+    ingest = commands.add_parser('ingest', help='index trusted local PDF grants, including actual OCR')
+    pdf_demo = commands.add_parser('pdf-demo', help='exercise public PDF/OCR citations over actual OAuth and HTTP')
+    for command in (ingest, pdf_demo):
+        command.add_argument('--manifest', required=True)
+        command.add_argument('--model-dir', required=True)
+        command.add_argument('--store', required=True)
+        command.add_argument('--out', default='reports/local/pdf-demo.json' if command is pdf_demo else 'reports/local/pdf-ingestion.json')
+    pdf_demo.add_argument('--identity-dir', required=True)
+    pdf_demo.add_argument('--node', default=os.environ.get('NODE_BINARY', 'node'))
     args = parser.parse_args(argv)
     try:
+        if args.command == 'pdf-demo':
+            from .pdf_demo import run_pdf_demo
+            result = run_pdf_demo(manifest_path=Path(args.manifest), identity_dir=Path(args.identity_dir),
+                model_dir=Path(args.model_dir), store_path=Path(args.store), out=Path(args.out), node=args.node)
+            print(json.dumps({'output': args.out, 'completed': True, 'cases': len(result['cases']),
+                'page_grants': result['ingestion']['page_grants']}))
+            return 0
+        if args.command == 'ingest':
+            from .models import LocalEmbedder
+            from .store import VectorStore
+            from .pdf_corpus import ingest_pdf_manifest
+            store = VectorStore(Path(args.store), LocalEmbedder(Path(args.model_dir)))
+            try:
+                result = ingest_pdf_manifest(Path(args.manifest), store)
+            finally:
+                store.close()
+            output = Path(args.out)
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(json.dumps(result, indent=2, ensure_ascii=False, allow_nan=False) + '\n')
+            print(json.dumps({'output': args.out, 'page_grants': result['page_grants'], 'chunks_indexed': result['chunks_indexed']}))
+            return 0
         if args.command == 'demo':
             from .integration import run_demo
             result = run_demo(identity_dir=Path(args.identity_dir), model_dir=Path(args.model_dir),

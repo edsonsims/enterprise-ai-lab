@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "source_id": "nist-zero-trust",
+      "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+      "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+      "source_path": "nist-sp-800-207.pdf",
+      "artifact_path": "nist-sp-800-207.pdf",
+      "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+      "pages": [
+        {
+          "artifact_page": 15,
+          "source_page": 15
+        }
+      ],
+      "ocr_pages": [],
+      "tenant_id": "alpha",
+      "allowed_roles": [
+        "reader"
+      ],
+      "title": "Zero Trust Architecture"
+    },
+    {
+      "source_id": "nist-ai-rmf",
+      "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+      "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+      "source_path": "nist-ai-100-1.pdf",
+      "artifact_path": "nist-ai-100-1-page25-raster.pdf",
+      "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+      "pages": [
+        {
+          "artifact_page": 1,
+          "source_page": 25
+        }
+      ],
+      "ocr_pages": [],
+      "tenant_id": "alpha",
+      "allowed_roles": [
+        "analyst"
+      ],
+      "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)"
+    },
+    {
+      "source_id": "nist-zero-trust",
+      "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+      "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+      "source_path": "nist-sp-800-207.pdf",
+      "artifact_path": "nist-sp-800-207.pdf",
+      "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+      "pages": [
+        {
+          "artifact_page": 15,
+          "source_page": 15
+        }
+      ],
+      "ocr_pages": [],
+      "tenant_id": "beta",
+      "allowed_roles": [
+        "reader"
+      ],
+      "title": "Zero Trust Architecture"
+    },
+    {
+      "source_id": "nist-ai-rmf",
+      "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+      "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+      "source_path": "nist-ai-100-1.pdf",
+      "artifact_path": "nist-ai-100-1-page25-raster.pdf",
+      "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+      "pages": [
+        {
+          "artifact_page": 1,
+          "source_page": 25
+        }
+      ],
+      "ocr_pages": [],
+      "tenant_id": "beta",
+      "allowed_roles": [
+        "reader"
+      ],
+      "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)"
+    }
+  ]
+}

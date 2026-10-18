@@ -1,0 +1,2 @@
+# Preserve pinned PDF bytes, including image-only fixtures with ASCII streams.
+*.pdf binary

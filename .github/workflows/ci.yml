@@ -48,8 +48,12 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
           cache: pip
-          cache-dependency-path: requirements-rag.lock
-      - run: python -m pip install -r requirements-rag.lock
+          cache-dependency-path: |
+            requirements-rag.lock
+            requirements-ingestion.lock
+      - name: Real local OCR engine and English language data
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
+      - run: python -m pip install -r requirements-rag.lock -r requirements-ingestion.lock
       - run: python -m pip install --no-deps -e .
       - working-directory: .local/identity-boundary-lab
         run: |
@@ -58,7 +62,7 @@ jobs:
       - name: Explicit pinned public model bootstrap
         run: python -m enterprise_ai_lab.rag.models bootstrap --model-dir "$RAG_MODEL_DIR"
       - name: Real issuer, HTTP, ONNX and persisted-vector tests
-        run: python -m pytest tests/rag -q
+        run: python -m pytest tests/rag tests/ingestion -q
       - name: Reproduce the connected extractive story
         run: >-
           python -m enterprise_ai_lab.rag demo
@@ -66,3 +70,9 @@ jobs:
           --store .local/ci-rag-store --out reports/local/ci-rag-demo.json
       - name: Check observed permissions and persisted content
         run: python scripts/check_rag_demo.py reports/local/ci-rag-demo.json
+      - name: Public native PDF and actual OCR through the authenticated RAG
+        run: >-
+          python -m enterprise_ai_lab.rag pdf-demo
+          --manifest public-data/pdf-v1/ingestion.json
+          --identity-dir "$IDENTITY_LAB_DIR" --model-dir "$RAG_MODEL_DIR"
+          --store .local/ci-pdf-store --out reports/local/ci-pdf-demo.json

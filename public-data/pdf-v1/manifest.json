@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "dataset_id": "public-pdf-v1",
+  "purpose": "Small public-document ingestion and citation demo, not an OCR accuracy benchmark.",
+  "retrieved_on": "2026-10-18",
+  "retrieved_on_timezone": "UTC",
+  "rights": {
+    "id": "LicenseRef-NIST-Technical-Series",
+    "policy_url": "https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications",
+    "summary": "NIST employee works are not copyright-protected in the United States. NIST Technical Series policy grants worldwide royalty-free republication and derivative rights to the extent NIST may assert foreign rights; third-party material can have separate rights.",
+    "attribution": "Republished courtesy of the National Institute of Standards and Technology.",
+    "repository_license_does_not_replace_source_rights": true,
+    "nist_endorsement": false
+  },
+  "artifacts": [
+    {
+      "artifact_id": "nist-sp-800-207-original",
+      "path": "nist-sp-800-207.pdf",
+      "sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+      "bytes": 966908,
+      "pages": 59,
+      "kind": "unchanged_original",
+      "title": "Zero Trust Architecture",
+      "authors": ["Scott Rose", "Oliver Borchert", "Stu Mitchell", "Sean Connelly"],
+      "publisher": "National Institute of Standards and Technology",
+      "publication_id": "NIST SP 800-207",
+      "publication_year": 2020,
+      "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+      "persistent_url": "https://doi.org/10.6028/NIST.SP.800-207",
+      "selected_pages": [{"artifact_page": 15, "original_page": 15, "printed_page_label": "6"}],
+      "intended_extraction": "native_text",
+      "note": "The full original is retained byte-for-byte. The demo ingests only physical PDF page 15. The publication itself states that it is not subject to copyright in the United States."
+    },
+    {
+      "artifact_id": "nist-ai-100-1-original",
+      "path": "nist-ai-100-1.pdf",
+      "sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+      "bytes": 1946127,
+      "pages": 48,
+      "kind": "unchanged_original",
+      "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+      "authors": ["National Institute of Standards and Technology"],
+      "publisher": "National Institute of Standards and Technology",
+      "publication_id": "NIST AI 100-1",
+      "publication_year": 2023,
+      "source_url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+      "persistent_url": "https://doi.org/10.6028/NIST.AI.100-1",
+      "selected_pages": [{"artifact_page": 25, "original_page": 25, "printed_page_label": "20"}],
+      "intended_extraction": "derivation_source",
+      "note": "The full original is retained byte-for-byte. Its selected page is rendered into the separate image-only artifact; the original is not a scanned PDF."
+    },
+    {
+      "artifact_id": "nist-ai-100-1-page25-raster",
+      "path": "nist-ai-100-1-page25-raster.pdf",
+      "sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+      "bytes": 368640,
+      "pages": 1,
+      "kind": "image_only_derivative",
+      "title": "AI RMF Core, rasterized OCR fixture from NIST AI 100-1",
+      "source_url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+      "persistent_url": "https://doi.org/10.6028/NIST.AI.100-1",
+      "parent_artifact_id": "nist-ai-100-1-original",
+      "parent_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+      "selected_pages": [{"artifact_page": 1, "original_page": 25, "printed_page_label": "20"}],
+      "intended_extraction": "ocr",
+      "modified_on": "2026-10-18",
+      "modification": "Physical original PDF page 25 rendered at 200 dpi, converted to RGB, and placed as the only image on a one-page letter-size PDF with no text layer. This is a lab-created scan-like derivative, not an authentic historical scan. The visible source page was not rewritten or cropped.",
+      "derivation": {
+        "script": "../../scripts/build-public-pdf-fixture.py",
+        "source_page": 25,
+        "target_page": 1,
+        "dpi": 200,
+        "image_pixels": [1700, 2200],
+        "pdf_page_points": [612, 792],
+        "poppler_version": "26.05.0",
+        "reportlab_version": "4.4.9",
+        "pillow_version": "12.3.0",
+        "pypdf_validation_version": "6.10.0",
+        "fixed_pdf_metadata_timestamp": "2026-10-18T02:25:46+00:00"
+      }
+    }
+  ],
+  "limitations": [
+    "Only two selected English pages are exercised; this is not a representative document dataset or OCR evaluation.",
+    "The OCR input is a clean rasterized derivative. It does not model skew, handwriting, damaged scans or difficult layout.",
+    "Public source availability does not bypass the demo's artificial tenant and role grants.",
+    "A cited public document does not establish NIST endorsement, compliance or certification."
+  ]
+}

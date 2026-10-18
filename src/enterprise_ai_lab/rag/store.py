@@ -12,6 +12,7 @@ from threading import RLock
 from uuid import NAMESPACE_URL, uuid5
 
 from qdrant_client import QdrantClient, models
+from .provenance import SourceSpan
 from .contracts import Document, EmbeddingLimitError, QueryLimitError, RagPrincipal, RetrievedChunk, valid_identifier
 
 
@@ -22,21 +23,40 @@ class UnsafePayloadError(RuntimeError):
 def chunk_document(document: Document) -> list[dict]:
     """Paragraph boundaries, then <=500-character pieces; chunks never cross documents."""
     pieces = []
-    for paragraph in re.split(r"\n\s*\n", document.text):
-        rest = paragraph.strip()
-        while rest:
-            end = min(500, len(rest))
-            if end < len(rest):
-                boundary = rest.rfind(" ", 0, end)
-                if boundary > 0:
+    boundaries = [0]
+    for separator in re.finditer(r"\n\s*\n", document.text):
+        boundaries.extend((separator.start(), separator.end()))
+    boundaries.append(len(document.text))
+    for begin, finish in zip(boundaries[::2], boundaries[1::2]):
+        while begin < finish and document.text[begin].isspace():
+            begin += 1
+        while finish > begin and document.text[finish - 1].isspace():
+            finish -= 1
+        while begin < finish:
+            end = min(begin + 500, finish)
+            if end < finish:
+                # Keep complete evidence sentences when possible without
+                # changing canonical text or the original synthetic study.
+                sentences = list(re.finditer(r"[.!?](?=\s)", document.text[begin:end])) if document.provenance else []
+                boundary = begin + sentences[-1].end() if sentences and sentences[-1].end() >= 100 else document.text.rfind(" ", begin, end)
+                if boundary > begin:
                     end = boundary
-            pieces.append(rest[:end])
-            rest = rest[end:].lstrip()
-    return [{"document_id": document.document_id,
-             "chunk_id": f"{document.document_id}:{index:03d}:{hashlib.sha256(text.encode()).hexdigest()[:12]}",
-             "tenant_id": document.tenant_id, "allowed_roles": list(document.allowed_roles),
-             "title": document.title, "text": text}
-            for index, text in enumerate(pieces)]
+            pieces.append((begin, end))
+            begin = end
+            while begin < finish and document.text[begin].isspace():
+                begin += 1
+    chunks = []
+    for index, (begin, end) in enumerate(pieces):
+        text = document.text[begin:end]
+        chunk = {"document_id": document.document_id,
+                 "chunk_id": f"{document.document_id}:{index:03d}:{hashlib.sha256(text.encode()).hexdigest()[:12]}",
+                 "tenant_id": document.tenant_id, "allowed_roles": list(document.allowed_roles),
+                 "title": document.title, "text": text}
+        if document.provenance is not None:
+            chunk["provenance"] = document.provenance.slice(
+                document.provenance.start + begin, document.provenance.start + end).as_dict()
+        chunks.append(chunk)
+    return chunks
 
 
 class VectorStore:
@@ -57,9 +77,10 @@ class VectorStore:
         self.collection_name = collection_name
         self.lock = RLock()
         self._closed = False
-        fingerprint = {"schema_version": 1, "collection": collection_name,
+        fingerprint = {"schema_version": 2, "collection": collection_name,
                        "model_sha256": embedder.fingerprint,
-                       "dimensions": embedder.dimensions, "distance": "Cosine", "chunk_chars": 500}
+                       "dimensions": embedder.dimensions, "distance": "Cosine", "chunk_chars": 500,
+                       "pdf_chunking": "sentence-boundary-v1"}
         manifest_path = self.path / "rag-index.json"
         if manifest_path.exists():
             try:
@@ -162,7 +183,8 @@ class VectorStore:
             for point in points:
                 payload = point.payload or {}
                 try:
-                    valid = (set(payload) == {"document_id", "chunk_id", "tenant_id", "allowed_roles", "title", "text"}
+                    valid = (set(payload) in ({"document_id", "chunk_id", "tenant_id", "allowed_roles", "title", "text"},
+                            {"document_id", "chunk_id", "tenant_id", "allowed_roles", "title", "text", "provenance"})
                         and valid_identifier(payload["document_id"])
                         and isinstance(payload["chunk_id"], str) and 1 <= len(payload["chunk_id"]) <= 140
                         and payload["tenant_id"] == principal.tenant_id
@@ -173,14 +195,18 @@ class VectorStore:
                         and isinstance(payload["text"], str) and 1 <= len(payload["text"]) <= 500
                         and isinstance(payload["title"], str) and 1 <= len(payload["title"]) <= 200
                         and type(point.score) in (int, float) and math.isfinite(point.score))
+                    provenance = None
                     if valid:
                         payload["text"].encode("utf-8")
-                except (KeyError, TypeError, UnicodeError):
+                        if "provenance" in payload:
+                            provenance = SourceSpan.from_dict(payload["provenance"])
+                            provenance.validate_text(payload["text"])
+                except (KeyError, TypeError, ValueError, UnicodeError):
                     valid = False
                 if not valid:
                     raise UnsafePayloadError("vector result failed authorization or schema checks")
                 chunks.append(RetrievedChunk(payload["document_id"], payload["chunk_id"], payload["text"],
-                    float(point.score), payload["tenant_id"], tuple(payload["allowed_roles"])))
+                    float(point.score), payload["tenant_id"], tuple(payload["allowed_roles"]), provenance))
             return chunks
 
     def update_acl(self, document_id, tenant_id, allowed_roles):

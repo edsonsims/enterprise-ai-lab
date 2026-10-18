@@ -1,0 +1,2577 @@
+{
+  "schema_version": 1,
+  "runtime": {
+    "python": "3.13.1",
+    "platform": "Darwin",
+    "pypdf": "6.21.1",
+    "pypdfium2": "5.14.0",
+    "pillow": "12.3.0",
+    "tesseract": "tesseract 5.5.1",
+    "english_traineddata_sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+    "ocr_language": "eng",
+    "ocr_dpi": 180,
+    "ocr_psm": 3
+  },
+  "comparison": "Native PDF text layer versus actual OCR of a clean raster derivative",
+  "ground_truth": false,
+  "human_transcription_performed": false,
+  "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+  "source_page": 25,
+  "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+  "artifact_page": 1,
+  "native": {
+    "source_id": "nist-ai-rmf",
+    "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+    "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+    "page": 25,
+    "method": "native",
+    "text": "NIST AI 100-1 AI RMF 1.0\nPart 2: Core and Profiles\n5. AI RMF Core\nThe AI RMF Core provides outcomes and actions that enable dialogue, understanding, and\nactivities to manage AI risks and responsibly develop trustworthy AI systems. As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN , MAP, MEASURE ,\nand MANAGE . Each of these high-level functions is broken down into categories and sub-\ncategories. Categories and subcategories are subdivided into specific actions and outcomes.\nActions do not constitute a checklist, nor are they necessarily an ordered set of steps.\nFig. 5. Functions organize AI risk management activities at their highest level to govern, map,\nmeasure, and manage AI risks. Governance is designed to be a cross-cutting function to inform\nand be infused throughout the other three functions.\nRisk management should be continuous, timely, and performed throughout the AI system\nlifecycle dimensions. AI RMF Core functions should be carried out in a way that reflects\ndiverse and multidisciplinary perspectives, potentially including the views of AI actors out-\nside the organization. Having a diverse team contributes to more open sharing of ideas and\nassumptions about purposes and functions of the technology being designed, developed,\nPage 20",
+    "page_text_sha256": "a5502dc76e7466864aa937481a4a693bfd9547455693431fd6229d20e1c85304",
+    "ocr_words": [],
+    "render_dpi": null,
+    "width_px": null,
+    "height_px": null
+  },
+  "ocr": {
+    "source_id": "nist-ai-rmf",
+    "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+    "source_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+    "page": 1,
+    "method": "ocr",
+    "text": "NIST AI 100-1 AI RMF 1.0\nPart 2: Core and Profiles\n5. AIRMF Core\nThe AI RMF Core provides outcomes and actions that enable dialogue, understanding, and\nactivities to manage AI risks and responsibly develop trustworthy AI systems. As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE. Each of these high-level functions is broken down into categories and sub-\ncategories. Categories and subcategories are subdivided into specific actions and outcomes.\nActions do not constitute a checklist, nor are they necessarily an ordered set of steps.\nMap Measure\nContext is\nrecognized and risks\nrelated to context\nare identified\nIdentified risks\nare assessed,\nanalyzed, or\ntracked\nGovern\nA culture of risk\nmanagement is\ncultivated and\npresent\nManage\nRisks are prioritized\nand acted upon\nbased ona\nprojected impact\nFig. 5. Functions organize AI risk management activities at their highest level to govern, map,\nmeasure, and manage AI risks. Governance is designed to be a cross-cutting function to inform\nand be infused throughout the other three functions.\nRisk management should be continuous, timely, and performed throughout the AI system\nlifecycle dimensions. AI RMF Core functions should be carried out in a way that reflects\ndiverse and multidisciplinary perspectives, potentially including the views of AI actors out-\nside the organization. Having a diverse team contributes to more open sharing of ideas and\nassumptions about purposes and functions of the technology being designed, developed,\nPage 20",
+    "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd",
+    "ocr_words": [
+      {
+        "text": "NIST",
+        "start": 0,
+        "end": 4,
+        "left": 225,
+        "top": 98,
+        "width": 55,
+        "height": 18,
+        "confidence": 96.183708
+      },
+      {
+        "text": "AI",
+        "start": 5,
+        "end": 7,
+        "left": 287,
+        "top": 98,
+        "width": 25,
+        "height": 17,
+        "confidence": 90.766289
+      },
+      {
+        "text": "100-1",
+        "start": 8,
+        "end": 13,
+        "left": 322,
+        "top": 98,
+        "width": 52,
+        "height": 18,
+        "confidence": 90.766289
+      },
+      {
+        "text": "AI",
+        "start": 14,
+        "end": 16,
+        "left": 1158,
+        "top": 95,
+        "width": 31,
+        "height": 20,
+        "confidence": 93.494537
+      },
+      {
+        "text": "RMF",
+        "start": 17,
+        "end": 20,
+        "left": 1198,
+        "top": 95,
+        "width": 62,
+        "height": 20,
+        "confidence": 95.481117
+      },
+      {
+        "text": "1.0",
+        "start": 21,
+        "end": 24,
+        "left": 1271,
+        "top": 95,
+        "width": 33,
+        "height": 21,
+        "confidence": 96.804146
+      },
+      {
+        "text": "Part",
+        "start": 25,
+        "end": 29,
+        "left": 226,
+        "top": 178,
+        "width": 79,
+        "height": 30,
+        "confidence": 96.435951
+      },
+      {
+        "text": "2:",
+        "start": 30,
+        "end": 32,
+        "left": 316,
+        "top": 177,
+        "width": 32,
+        "height": 31,
+        "confidence": 96.533226
+      },
+      {
+        "text": "Core",
+        "start": 33,
+        "end": 37,
+        "left": 367,
+        "top": 177,
+        "width": 88,
+        "height": 31,
+        "confidence": 96.359772
+      },
+      {
+        "text": "and",
+        "start": 38,
+        "end": 41,
+        "left": 467,
+        "top": 178,
+        "width": 67,
+        "height": 30,
+        "confidence": 96.394798
+      },
+      {
+        "text": "Profiles",
+        "start": 42,
+        "end": 50,
+        "left": 547,
+        "top": 177,
+        "width": 136,
+        "height": 31,
+        "confidence": 96.68158
+      },
+      {
+        "text": "5.",
+        "start": 51,
+        "end": 53,
+        "left": 226,
+        "top": 284,
+        "width": 24,
+        "height": 25,
+        "confidence": 84.871208
+      },
+      {
+        "text": "AIRMF",
+        "start": 54,
+        "end": 59,
+        "left": 287,
+        "top": 284,
+        "width": 130,
+        "height": 25,
+        "confidence": 84.871208
+      },
+      {
+        "text": "Core",
+        "start": 60,
+        "end": 64,
+        "left": 428,
+        "top": 284,
+        "width": 73,
+        "height": 26,
+        "confidence": 96.487427
+      },
+      {
+        "text": "The",
+        "start": 65,
+        "end": 68,
+        "left": 225,
+        "top": 349,
+        "width": 46,
+        "height": 20,
+        "confidence": 96.424179
+      },
+      {
+        "text": "AI",
+        "start": 69,
+        "end": 71,
+        "left": 279,
+        "top": 349,
+        "width": 30,
+        "height": 20,
+        "confidence": 96.424179
+      },
+      {
+        "text": "RMF",
+        "start": 72,
+        "end": 75,
+        "left": 317,
+        "top": 349,
+        "width": 63,
+        "height": 20,
+        "confidence": 96.6315
+      },
+      {
+        "text": "Core",
+        "start": 76,
+        "end": 80,
+        "left": 387,
+        "top": 348,
+        "width": 57,
+        "height": 22,
+        "confidence": 96.193291
+      },
+      {
+        "text": "provides",
+        "start": 81,
+        "end": 89,
+        "left": 452,
+        "top": 348,
+        "width": 101,
+        "height": 28,
+        "confidence": 96.906387
+      },
+      {
+        "text": "outcomes",
+        "start": 90,
+        "end": 98,
+        "left": 561,
+        "top": 352,
+        "width": 114,
+        "height": 17,
+        "confidence": 96.707855
+      },
+      {
+        "text": "and",
+        "start": 99,
+        "end": 102,
+        "left": 683,
+        "top": 349,
+        "width": 42,
+        "height": 20,
+        "confidence": 96.934387
+      },
+      {
+        "text": "actions",
+        "start": 103,
+        "end": 110,
+        "left": 733,
+        "top": 348,
+        "width": 83,
+        "height": 21,
+        "confidence": 96.408012
+      },
+      {
+        "text": "that",
+        "start": 111,
+        "end": 115,
+        "left": 825,
+        "top": 348,
+        "width": 44,
+        "height": 21,
+        "confidence": 96.408012
+      },
+      {
+        "text": "enable",
+        "start": 116,
+        "end": 122,
+        "left": 876,
+        "top": 349,
+        "width": 77,
+        "height": 20,
+        "confidence": 96.990234
+      },
+      {
+        "text": "dialogue,",
+        "start": 123,
+        "end": 132,
+        "left": 961,
+        "top": 348,
+        "width": 108,
+        "height": 28,
+        "confidence": 96.60247
+      },
+      {
+        "text": "understanding,",
+        "start": 133,
+        "end": 147,
+        "left": 1079,
+        "top": 348,
+        "width": 174,
+        "height": 28,
+        "confidence": 97.015495
+      },
+      {
+        "text": "and",
+        "start": 148,
+        "end": 151,
+        "left": 1263,
+        "top": 349,
+        "width": 42,
+        "height": 20,
+        "confidence": 96.912674
+      },
+      {
+        "text": "activities",
+        "start": 152,
+        "end": 162,
+        "left": 226,
+        "top": 385,
+        "width": 105,
+        "height": 21,
+        "confidence": 96.874504
+      },
+      {
+        "text": "to",
+        "start": 163,
+        "end": 165,
+        "left": 343,
+        "top": 389,
+        "width": 22,
+        "height": 17,
+        "confidence": 96.895515
+      },
+      {
+        "text": "manage",
+        "start": 166,
+        "end": 172,
+        "left": 376,
+        "top": 392,
+        "width": 92,
+        "height": 21,
+        "confidence": 96.101097
+      },
+      {
+        "text": "AI",
+        "start": 173,
+        "end": 175,
+        "left": 479,
+        "top": 386,
+        "width": 31,
+        "height": 20,
+        "confidence": 89.516129
+      },
+      {
+        "text": "risks",
+        "start": 176,
+        "end": 181,
+        "left": 520,
+        "top": 385,
+        "width": 56,
+        "height": 21,
+        "confidence": 95.18219
+      },
+      {
+        "text": "and",
+        "start": 182,
+        "end": 185,
+        "left": 588,
+        "top": 386,
+        "width": 42,
+        "height": 20,
+        "confidence": 96.914818
+      },
+      {
+        "text": "responsibly",
+        "start": 186,
+        "end": 197,
+        "left": 640,
+        "top": 385,
+        "width": 137,
+        "height": 28,
+        "confidence": 96.025536
+      },
+      {
+        "text": "develop",
+        "start": 198,
+        "end": 205,
+        "left": 789,
+        "top": 385,
+        "width": 92,
+        "height": 28,
+        "confidence": 96.442383
+      },
+      {
+        "text": "trustworthy",
+        "start": 206,
+        "end": 217,
+        "left": 892,
+        "top": 386,
+        "width": 136,
+        "height": 27,
+        "confidence": 96.464409
+      },
+      {
+        "text": "AI",
+        "start": 218,
+        "end": 220,
+        "left": 1039,
+        "top": 386,
+        "width": 31,
+        "height": 20,
+        "confidence": 95.870033
+      },
+      {
+        "text": "systems.",
+        "start": 221,
+        "end": 229,
+        "left": 1082,
+        "top": 389,
+        "width": 99,
+        "height": 24,
+        "confidence": 96.319504
+      },
+      {
+        "text": "As",
+        "start": 230,
+        "end": 232,
+        "left": 1201,
+        "top": 386,
+        "width": 31,
+        "height": 20,
+        "confidence": 92.795105
+      },
+      {
+        "text": "illus-",
+        "start": 233,
+        "end": 239,
+        "left": 1244,
+        "top": 385,
+        "width": 60,
+        "height": 21,
+        "confidence": 92.795105
+      },
+      {
+        "text": "trated",
+        "start": 240,
+        "end": 246,
+        "left": 226,
+        "top": 421,
+        "width": 67,
+        "height": 21,
+        "confidence": 96.98922
+      },
+      {
+        "text": "in",
+        "start": 247,
+        "end": 249,
+        "left": 303,
+        "top": 421,
+        "width": 22,
+        "height": 21,
+        "confidence": 97.011566
+      },
+      {
+        "text": "Figure",
+        "start": 250,
+        "end": 256,
+        "left": 336,
+        "top": 421,
+        "width": 77,
+        "height": 28,
+        "confidence": 97.013145
+      },
+      {
+        "text": "5,",
+        "start": 257,
+        "end": 259,
+        "left": 424,
+        "top": 422,
+        "width": 20,
+        "height": 24,
+        "confidence": 96.057472
+      },
+      {
+        "text": "the",
+        "start": 260,
+        "end": 263,
+        "left": 457,
+        "top": 421,
+        "width": 35,
+        "height": 21,
+        "confidence": 96.956993
+      },
+      {
+        "text": "Core",
+        "start": 264,
+        "end": 268,
+        "left": 503,
+        "top": 421,
+        "width": 57,
+        "height": 22,
+        "confidence": 96.871681
+      },
+      {
+        "text": "is",
+        "start": 269,
+        "end": 271,
+        "left": 571,
+        "top": 421,
+        "width": 18,
+        "height": 21,
+        "confidence": 96.123863
+      },
+      {
+        "text": "composed",
+        "start": 272,
+        "end": 280,
+        "left": 601,
+        "top": 421,
+        "width": 120,
+        "height": 28,
+        "confidence": 96.465256
+      },
+      {
+        "text": "of",
+        "start": 281,
+        "end": 283,
+        "left": 731,
+        "top": 421,
+        "width": 26,
+        "height": 21,
+        "confidence": 96.770096
+      },
+      {
+        "text": "four",
+        "start": 284,
+        "end": 288,
+        "left": 766,
+        "top": 421,
+        "width": 49,
+        "height": 21,
+        "confidence": 96.669456
+      },
+      {
+        "text": "functions:",
+        "start": 289,
+        "end": 299,
+        "left": 826,
+        "top": 421,
+        "width": 116,
+        "height": 21,
+        "confidence": 95.350555
+      },
+      {
+        "text": "GOVERN,",
+        "start": 300,
+        "end": 307,
+        "left": 960,
+        "top": 425,
+        "width": 119,
+        "height": 22,
+        "confidence": 96.122749
+      },
+      {
+        "text": "MAP,",
+        "start": 308,
+        "end": 312,
+        "left": 1091,
+        "top": 425,
+        "width": 63,
+        "height": 22,
+        "confidence": 95.803741
+      },
+      {
+        "text": "MEASURE,",
+        "start": 313,
+        "end": 321,
+        "left": 1167,
+        "top": 425,
+        "width": 136,
+        "height": 22,
+        "confidence": 95.803741
+      },
+      {
+        "text": "and",
+        "start": 322,
+        "end": 325,
+        "left": 226,
+        "top": 458,
+        "width": 42,
+        "height": 20,
+        "confidence": 97.013153
+      },
+      {
+        "text": "MANAGE.",
+        "start": 326,
+        "end": 333,
+        "left": 277,
+        "top": 461,
+        "width": 121,
+        "height": 18,
+        "confidence": 96.107216
+      },
+      {
+        "text": "Each",
+        "start": 334,
+        "end": 338,
+        "left": 410,
+        "top": 457,
+        "width": 59,
+        "height": 21,
+        "confidence": 96.710976
+      },
+      {
+        "text": "of",
+        "start": 339,
+        "end": 341,
+        "left": 478,
+        "top": 457,
+        "width": 26,
+        "height": 21,
+        "confidence": 96.477615
+      },
+      {
+        "text": "these",
+        "start": 342,
+        "end": 347,
+        "left": 511,
+        "top": 458,
+        "width": 60,
+        "height": 20,
+        "confidence": 96.988579
+      },
+      {
+        "text": "high-level",
+        "start": 348,
+        "end": 358,
+        "left": 580,
+        "top": 457,
+        "width": 119,
+        "height": 28,
+        "confidence": 96.596519
+      },
+      {
+        "text": "functions",
+        "start": 359,
+        "end": 368,
+        "left": 708,
+        "top": 457,
+        "width": 110,
+        "height": 21,
+        "confidence": 96.993507
+      },
+      {
+        "text": "is",
+        "start": 369,
+        "end": 371,
+        "left": 828,
+        "top": 457,
+        "width": 18,
+        "height": 21,
+        "confidence": 96.993507
+      },
+      {
+        "text": "broken",
+        "start": 372,
+        "end": 378,
+        "left": 855,
+        "top": 457,
+        "width": 82,
+        "height": 21,
+        "confidence": 96.336182
+      },
+      {
+        "text": "down",
+        "start": 379,
+        "end": 383,
+        "left": 946,
+        "top": 457,
+        "width": 65,
+        "height": 21,
+        "confidence": 96.607193
+      },
+      {
+        "text": "into",
+        "start": 384,
+        "end": 388,
+        "left": 1020,
+        "top": 457,
+        "width": 45,
+        "height": 21,
+        "confidence": 96.94976
+      },
+      {
+        "text": "categories",
+        "start": 389,
+        "end": 399,
+        "left": 1074,
+        "top": 457,
+        "width": 119,
+        "height": 28,
+        "confidence": 96.584755
+      },
+      {
+        "text": "and",
+        "start": 400,
+        "end": 403,
+        "left": 1203,
+        "top": 457,
+        "width": 42,
+        "height": 21,
+        "confidence": 93.247475
+      },
+      {
+        "text": "sub-",
+        "start": 404,
+        "end": 408,
+        "left": 1255,
+        "top": 458,
+        "width": 49,
+        "height": 20,
+        "confidence": 91.2388
+      },
+      {
+        "text": "categories.",
+        "start": 409,
+        "end": 420,
+        "left": 226,
+        "top": 493,
+        "width": 125,
+        "height": 28,
+        "confidence": 96.865349
+      },
+      {
+        "text": "Categories",
+        "start": 421,
+        "end": 431,
+        "left": 363,
+        "top": 493,
+        "width": 125,
+        "height": 28,
+        "confidence": 96.772247
+      },
+      {
+        "text": "and",
+        "start": 432,
+        "end": 435,
+        "left": 496,
+        "top": 493,
+        "width": 42,
+        "height": 21,
+        "confidence": 96.679756
+      },
+      {
+        "text": "subcategories",
+        "start": 436,
+        "end": 449,
+        "left": 546,
+        "top": 493,
+        "width": 160,
+        "height": 28,
+        "confidence": 96.720444
+      },
+      {
+        "text": "are",
+        "start": 450,
+        "end": 453,
+        "left": 714,
+        "top": 500,
+        "width": 35,
+        "height": 14,
+        "confidence": 96.953423
+      },
+      {
+        "text": "subdivided",
+        "start": 454,
+        "end": 464,
+        "left": 757,
+        "top": 493,
+        "width": 129,
+        "height": 21,
+        "confidence": 96.978279
+      },
+      {
+        "text": "into",
+        "start": 465,
+        "end": 469,
+        "left": 893,
+        "top": 493,
+        "width": 45,
+        "height": 21,
+        "confidence": 96.130081
+      },
+      {
+        "text": "specific",
+        "start": 470,
+        "end": 478,
+        "left": 947,
+        "top": 493,
+        "width": 88,
+        "height": 28,
+        "confidence": 96.130081
+      },
+      {
+        "text": "actions",
+        "start": 479,
+        "end": 486,
+        "left": 1044,
+        "top": 493,
+        "width": 82,
+        "height": 21,
+        "confidence": 96.29393
+      },
+      {
+        "text": "and",
+        "start": 487,
+        "end": 490,
+        "left": 1135,
+        "top": 493,
+        "width": 41,
+        "height": 21,
+        "confidence": 96.243546
+      },
+      {
+        "text": "outcomes.",
+        "start": 491,
+        "end": 500,
+        "left": 1183,
+        "top": 497,
+        "width": 120,
+        "height": 17,
+        "confidence": 96.189995
+      },
+      {
+        "text": "Actions",
+        "start": 501,
+        "end": 508,
+        "left": 225,
+        "top": 529,
+        "width": 92,
+        "height": 21,
+        "confidence": 96.658829
+      },
+      {
+        "text": "do",
+        "start": 509,
+        "end": 511,
+        "left": 326,
+        "top": 529,
+        "width": 29,
+        "height": 21,
+        "confidence": 97.009796
+      },
+      {
+        "text": "not",
+        "start": 512,
+        "end": 515,
+        "left": 363,
+        "top": 533,
+        "width": 38,
+        "height": 17,
+        "confidence": 97.011597
+      },
+      {
+        "text": "constitute",
+        "start": 516,
+        "end": 526,
+        "left": 409,
+        "top": 529,
+        "width": 115,
+        "height": 21,
+        "confidence": 96.837143
+      },
+      {
+        "text": "a",
+        "start": 527,
+        "end": 528,
+        "left": 533,
+        "top": 536,
+        "width": 12,
+        "height": 14,
+        "confidence": 96.837143
+      },
+      {
+        "text": "checklist,",
+        "start": 529,
+        "end": 539,
+        "left": 553,
+        "top": 529,
+        "width": 112,
+        "height": 25,
+        "confidence": 96.870094
+      },
+      {
+        "text": "nor",
+        "start": 540,
+        "end": 543,
+        "left": 675,
+        "top": 536,
+        "width": 39,
+        "height": 14,
+        "confidence": 96.869621
+      },
+      {
+        "text": "are",
+        "start": 544,
+        "end": 547,
+        "left": 722,
+        "top": 536,
+        "width": 35,
+        "height": 14,
+        "confidence": 96.869621
+      },
+      {
+        "text": "they",
+        "start": 548,
+        "end": 552,
+        "left": 766,
+        "top": 529,
+        "width": 49,
+        "height": 28,
+        "confidence": 96.940552
+      },
+      {
+        "text": "necessarily",
+        "start": 553,
+        "end": 564,
+        "left": 824,
+        "top": 529,
+        "width": 132,
+        "height": 28,
+        "confidence": 96.834755
+      },
+      {
+        "text": "an",
+        "start": 565,
+        "end": 567,
+        "left": 965,
+        "top": 536,
+        "width": 27,
+        "height": 14,
+        "confidence": 96.931282
+      },
+      {
+        "text": "ordered",
+        "start": 568,
+        "end": 575,
+        "left": 1000,
+        "top": 529,
+        "width": 91,
+        "height": 21,
+        "confidence": 96.604622
+      },
+      {
+        "text": "set",
+        "start": 576,
+        "end": 579,
+        "left": 1100,
+        "top": 533,
+        "width": 32,
+        "height": 17,
+        "confidence": 96.703316
+      },
+      {
+        "text": "of",
+        "start": 580,
+        "end": 582,
+        "left": 1140,
+        "top": 529,
+        "width": 26,
+        "height": 21,
+        "confidence": 96.703316
+      },
+      {
+        "text": "steps.",
+        "start": 583,
+        "end": 589,
+        "left": 1173,
+        "top": 533,
+        "width": 64,
+        "height": 24,
+        "confidence": 96.748047
+      },
+      {
+        "text": "Map",
+        "start": 590,
+        "end": 593,
+        "left": 507,
+        "top": 703,
+        "width": 48,
+        "height": 21,
+        "confidence": 96.734428
+      },
+      {
+        "text": "Measure",
+        "start": 594,
+        "end": 601,
+        "left": 1064,
+        "top": 701,
+        "width": 101,
+        "height": 18,
+        "confidence": 96.873619
+      },
+      {
+        "text": "Context",
+        "start": 602,
+        "end": 609,
+        "left": 482,
+        "top": 733,
+        "width": 77,
+        "height": 15,
+        "confidence": 96.281044
+      },
+      {
+        "text": "is",
+        "start": 610,
+        "end": 612,
+        "left": 568,
+        "top": 733,
+        "width": 13,
+        "height": 15,
+        "confidence": 96.837708
+      },
+      {
+        "text": "recognized",
+        "start": 613,
+        "end": 623,
+        "left": 430,
+        "top": 757,
+        "width": 109,
+        "height": 18,
+        "confidence": 96.763962
+      },
+      {
+        "text": "and",
+        "start": 624,
+        "end": 627,
+        "left": 547,
+        "top": 757,
+        "width": 35,
+        "height": 15,
+        "confidence": 96.611221
+      },
+      {
+        "text": "risks",
+        "start": 628,
+        "end": 633,
+        "left": 591,
+        "top": 757,
+        "width": 42,
+        "height": 15,
+        "confidence": 96.611221
+      },
+      {
+        "text": "related",
+        "start": 634,
+        "end": 641,
+        "left": 443,
+        "top": 781,
+        "width": 67,
+        "height": 15,
+        "confidence": 96.561417
+      },
+      {
+        "text": "to",
+        "start": 642,
+        "end": 644,
+        "left": 519,
+        "top": 782,
+        "width": 19,
+        "height": 14,
+        "confidence": 96.974396
+      },
+      {
+        "text": "context",
+        "start": 645,
+        "end": 652,
+        "left": 546,
+        "top": 782,
+        "width": 74,
+        "height": 14,
+        "confidence": 96.464806
+      },
+      {
+        "text": "are",
+        "start": 653,
+        "end": 656,
+        "left": 467,
+        "top": 809,
+        "width": 29,
+        "height": 11,
+        "confidence": 96.601105
+      },
+      {
+        "text": "identified",
+        "start": 657,
+        "end": 667,
+        "left": 504,
+        "top": 805,
+        "width": 91,
+        "height": 15,
+        "confidence": 96.601105
+      },
+      {
+        "text": "Identified",
+        "start": 668,
+        "end": 678,
+        "left": 1049,
+        "top": 736,
+        "width": 91,
+        "height": 15,
+        "confidence": 80.462868
+      },
+      {
+        "text": "risks",
+        "start": 679,
+        "end": 684,
+        "left": 1149,
+        "top": 736,
+        "width": 42,
+        "height": 15,
+        "confidence": 95.908173
+      },
+      {
+        "text": "are",
+        "start": 685,
+        "end": 688,
+        "left": 1056,
+        "top": 764,
+        "width": 29,
+        "height": 11,
+        "confidence": 95.731888
+      },
+      {
+        "text": "assessed,",
+        "start": 689,
+        "end": 698,
+        "left": 1092,
+        "top": 760,
+        "width": 92,
+        "height": 17,
+        "confidence": 96.060509
+      },
+      {
+        "text": "analyzed,",
+        "start": 699,
+        "end": 708,
+        "left": 1060,
+        "top": 784,
+        "width": 92,
+        "height": 19,
+        "confidence": 96.414993
+      },
+      {
+        "text": "or",
+        "start": 709,
+        "end": 711,
+        "left": 1160,
+        "top": 788,
+        "width": 20,
+        "height": 11,
+        "confidence": 95.843086
+      },
+      {
+        "text": "tracked",
+        "start": 712,
+        "end": 719,
+        "left": 1085,
+        "top": 808,
+        "width": 74,
+        "height": 15,
+        "confidence": 96.095497
+      },
+      {
+        "text": "Govern",
+        "start": 720,
+        "end": 726,
+        "left": 778,
+        "top": 870,
+        "width": 88,
+        "height": 18,
+        "confidence": 96.525131
+      },
+      {
+        "text": "A",
+        "start": 727,
+        "end": 728,
+        "left": 745,
+        "top": 905,
+        "width": 13,
+        "height": 14,
+        "confidence": 96.591209
+      },
+      {
+        "text": "culture",
+        "start": 729,
+        "end": 736,
+        "left": 766,
+        "top": 904,
+        "width": 67,
+        "height": 15,
+        "confidence": 96.914154
+      },
+      {
+        "text": "of",
+        "start": 737,
+        "end": 739,
+        "left": 841,
+        "top": 904,
+        "width": 19,
+        "height": 15,
+        "confidence": 96.970535
+      },
+      {
+        "text": "risk",
+        "start": 740,
+        "end": 744,
+        "left": 868,
+        "top": 904,
+        "width": 32,
+        "height": 15,
+        "confidence": 96.583046
+      },
+      {
+        "text": "management",
+        "start": 745,
+        "end": 755,
+        "left": 747,
+        "top": 929,
+        "width": 129,
+        "height": 17,
+        "confidence": 96.111748
+      },
+      {
+        "text": "is",
+        "start": 756,
+        "end": 758,
+        "left": 885,
+        "top": 932,
+        "width": 12,
+        "height": 11,
+        "confidence": 96.465942
+      },
+      {
+        "text": "cultivated",
+        "start": 759,
+        "end": 769,
+        "left": 752,
+        "top": 952,
+        "width": 96,
+        "height": 15,
+        "confidence": 95.832748
+      },
+      {
+        "text": "and",
+        "start": 770,
+        "end": 773,
+        "left": 857,
+        "top": 952,
+        "width": 34,
+        "height": 16,
+        "confidence": 96.855751
+      },
+      {
+        "text": "present",
+        "start": 774,
+        "end": 781,
+        "left": 786,
+        "top": 977,
+        "width": 72,
+        "height": 18,
+        "confidence": 96.527512
+      },
+      {
+        "text": "Manage",
+        "start": 782,
+        "end": 788,
+        "left": 787,
+        "top": 1185,
+        "width": 94,
+        "height": 21,
+        "confidence": 96.516464
+      },
+      {
+        "text": "Risks",
+        "start": 789,
+        "end": 794,
+        "left": 750,
+        "top": 1214,
+        "width": 49,
+        "height": 16,
+        "confidence": 96.750694
+      },
+      {
+        "text": "are",
+        "start": 795,
+        "end": 798,
+        "left": 807,
+        "top": 1218,
+        "width": 29,
+        "height": 12,
+        "confidence": 96.998703
+      },
+      {
+        "text": "prioritized",
+        "start": 799,
+        "end": 810,
+        "left": 844,
+        "top": 1214,
+        "width": 100,
+        "height": 19,
+        "confidence": 96.419785
+      },
+      {
+        "text": "and",
+        "start": 811,
+        "end": 814,
+        "left": 770,
+        "top": 1239,
+        "width": 35,
+        "height": 15,
+        "confidence": 96.404327
+      },
+      {
+        "text": "acted",
+        "start": 815,
+        "end": 820,
+        "left": 813,
+        "top": 1238,
+        "width": 54,
+        "height": 16,
+        "confidence": 96.597778
+      },
+      {
+        "text": "upon",
+        "start": 821,
+        "end": 825,
+        "left": 876,
+        "top": 1242,
+        "width": 48,
+        "height": 15,
+        "confidence": 95.802605
+      },
+      {
+        "text": "based",
+        "start": 826,
+        "end": 831,
+        "left": 794,
+        "top": 1263,
+        "width": 57,
+        "height": 15,
+        "confidence": 96.436417
+      },
+      {
+        "text": "ona",
+        "start": 832,
+        "end": 835,
+        "left": 859,
+        "top": 1266,
+        "width": 41,
+        "height": 12,
+        "confidence": 96.075211
+      },
+      {
+        "text": "projected",
+        "start": 836,
+        "end": 845,
+        "left": 763,
+        "top": 1287,
+        "width": 93,
+        "height": 18,
+        "confidence": 96.462196
+      },
+      {
+        "text": "impact",
+        "start": 846,
+        "end": 852,
+        "left": 865,
+        "top": 1287,
+        "width": 66,
+        "height": 18,
+        "confidence": 96.75116
+      },
+      {
+        "text": "Fig.",
+        "start": 853,
+        "end": 857,
+        "left": 226,
+        "top": 1372,
+        "width": 42,
+        "height": 25,
+        "confidence": 95.032433
+      },
+      {
+        "text": "5.",
+        "start": 858,
+        "end": 860,
+        "left": 276,
+        "top": 1373,
+        "width": 19,
+        "height": 19,
+        "confidence": 96.341362
+      },
+      {
+        "text": "Functions",
+        "start": 861,
+        "end": 870,
+        "left": 305,
+        "top": 1373,
+        "width": 106,
+        "height": 19,
+        "confidence": 96.650116
+      },
+      {
+        "text": "organize",
+        "start": 871,
+        "end": 879,
+        "left": 420,
+        "top": 1373,
+        "width": 92,
+        "height": 25,
+        "confidence": 96.640717
+      },
+      {
+        "text": "AI",
+        "start": 880,
+        "end": 882,
+        "left": 520,
+        "top": 1373,
+        "width": 27,
+        "height": 19,
+        "confidence": 96.17527
+      },
+      {
+        "text": "risk",
+        "start": 883,
+        "end": 887,
+        "left": 556,
+        "top": 1373,
+        "width": 40,
+        "height": 19,
+        "confidence": 96.768562
+      },
+      {
+        "text": "management",
+        "start": 888,
+        "end": 898,
+        "left": 604,
+        "top": 1376,
+        "width": 138,
+        "height": 22,
+        "confidence": 96.535782
+      },
+      {
+        "text": "activities",
+        "start": 899,
+        "end": 909,
+        "left": 750,
+        "top": 1373,
+        "width": 96,
+        "height": 19,
+        "confidence": 96.877007
+      },
+      {
+        "text": "at",
+        "start": 910,
+        "end": 912,
+        "left": 854,
+        "top": 1376,
+        "width": 19,
+        "height": 16,
+        "confidence": 96.883018
+      },
+      {
+        "text": "their",
+        "start": 913,
+        "end": 918,
+        "left": 881,
+        "top": 1373,
+        "width": 49,
+        "height": 19,
+        "confidence": 96.563011
+      },
+      {
+        "text": "highest",
+        "start": 919,
+        "end": 926,
+        "left": 938,
+        "top": 1373,
+        "width": 77,
+        "height": 25,
+        "confidence": 96.563011
+      },
+      {
+        "text": "level",
+        "start": 927,
+        "end": 932,
+        "left": 1024,
+        "top": 1373,
+        "width": 49,
+        "height": 19,
+        "confidence": 96.874092
+      },
+      {
+        "text": "to",
+        "start": 933,
+        "end": 935,
+        "left": 1082,
+        "top": 1376,
+        "width": 20,
+        "height": 16,
+        "confidence": 96.952164
+      },
+      {
+        "text": "govern,",
+        "start": 936,
+        "end": 943,
+        "left": 1110,
+        "top": 1379,
+        "width": 80,
+        "height": 19,
+        "confidence": 96.85437
+      },
+      {
+        "text": "map,",
+        "start": 944,
+        "end": 948,
+        "left": 1199,
+        "top": 1379,
+        "width": 51,
+        "height": 19,
+        "confidence": 96.927383
+      },
+      {
+        "text": "measure,",
+        "start": 949,
+        "end": 957,
+        "left": 226,
+        "top": 1413,
+        "width": 95,
+        "height": 16,
+        "confidence": 96.692169
+      },
+      {
+        "text": "and",
+        "start": 958,
+        "end": 961,
+        "left": 330,
+        "top": 1407,
+        "width": 38,
+        "height": 19,
+        "confidence": 96.819611
+      },
+      {
+        "text": "manage",
+        "start": 962,
+        "end": 968,
+        "left": 376,
+        "top": 1413,
+        "width": 84,
+        "height": 19,
+        "confidence": 96.518829
+      },
+      {
+        "text": "AI",
+        "start": 969,
+        "end": 971,
+        "left": 468,
+        "top": 1407,
+        "width": 27,
+        "height": 19,
+        "confidence": 94.181839
+      },
+      {
+        "text": "risks.",
+        "start": 972,
+        "end": 978,
+        "left": 503,
+        "top": 1407,
+        "width": 57,
+        "height": 19,
+        "confidence": 96.289955
+      },
+      {
+        "text": "Governance",
+        "start": 979,
+        "end": 989,
+        "left": 570,
+        "top": 1407,
+        "width": 130,
+        "height": 19,
+        "confidence": 96.862427
+      },
+      {
+        "text": "is",
+        "start": 990,
+        "end": 992,
+        "left": 708,
+        "top": 1407,
+        "width": 17,
+        "height": 19,
+        "confidence": 96.963898
+      },
+      {
+        "text": "designed",
+        "start": 993,
+        "end": 1001,
+        "left": 733,
+        "top": 1407,
+        "width": 96,
+        "height": 25,
+        "confidence": 96.601326
+      },
+      {
+        "text": "to",
+        "start": 1002,
+        "end": 1004,
+        "left": 837,
+        "top": 1410,
+        "width": 20,
+        "height": 16,
+        "confidence": 97.011284
+      },
+      {
+        "text": "be",
+        "start": 1005,
+        "end": 1007,
+        "left": 865,
+        "top": 1407,
+        "width": 24,
+        "height": 19,
+        "confidence": 96.678963
+      },
+      {
+        "text": "a",
+        "start": 1008,
+        "end": 1009,
+        "left": 898,
+        "top": 1413,
+        "width": 11,
+        "height": 13,
+        "confidence": 96.678963
+      },
+      {
+        "text": "cross-cutting",
+        "start": 1010,
+        "end": 1023,
+        "left": 916,
+        "top": 1407,
+        "width": 140,
+        "height": 25,
+        "confidence": 96.702248
+      },
+      {
+        "text": "function",
+        "start": 1024,
+        "end": 1032,
+        "left": 1064,
+        "top": 1407,
+        "width": 90,
+        "height": 19,
+        "confidence": 96.783066
+      },
+      {
+        "text": "to",
+        "start": 1033,
+        "end": 1035,
+        "left": 1162,
+        "top": 1410,
+        "width": 20,
+        "height": 16,
+        "confidence": 96.990379
+      },
+      {
+        "text": "inform",
+        "start": 1036,
+        "end": 1042,
+        "left": 1190,
+        "top": 1407,
+        "width": 73,
+        "height": 19,
+        "confidence": 96.689491
+      },
+      {
+        "text": "and",
+        "start": 1043,
+        "end": 1046,
+        "left": 226,
+        "top": 1441,
+        "width": 38,
+        "height": 19,
+        "confidence": 96.244949
+      },
+      {
+        "text": "be",
+        "start": 1047,
+        "end": 1049,
+        "left": 271,
+        "top": 1441,
+        "width": 25,
+        "height": 19,
+        "confidence": 96.244949
+      },
+      {
+        "text": "infused",
+        "start": 1050,
+        "end": 1057,
+        "left": 304,
+        "top": 1441,
+        "width": 80,
+        "height": 19,
+        "confidence": 96.963486
+      },
+      {
+        "text": "throughout",
+        "start": 1058,
+        "end": 1068,
+        "left": 391,
+        "top": 1441,
+        "width": 119,
+        "height": 25,
+        "confidence": 96.339439
+      },
+      {
+        "text": "the",
+        "start": 1069,
+        "end": 1072,
+        "left": 518,
+        "top": 1441,
+        "width": 32,
+        "height": 19,
+        "confidence": 96.864799
+      },
+      {
+        "text": "other",
+        "start": 1073,
+        "end": 1078,
+        "left": 558,
+        "top": 1441,
+        "width": 56,
+        "height": 19,
+        "confidence": 96.513016
+      },
+      {
+        "text": "three",
+        "start": 1079,
+        "end": 1084,
+        "left": 621,
+        "top": 1441,
+        "width": 53,
+        "height": 19,
+        "confidence": 96.346992
+      },
+      {
+        "text": "functions.",
+        "start": 1085,
+        "end": 1095,
+        "left": 682,
+        "top": 1441,
+        "width": 106,
+        "height": 19,
+        "confidence": 96.847336
+      },
+      {
+        "text": "Risk",
+        "start": 1096,
+        "end": 1100,
+        "left": 226,
+        "top": 1542,
+        "width": 53,
+        "height": 21,
+        "confidence": 96.88298
+      },
+      {
+        "text": "management",
+        "start": 1101,
+        "end": 1111,
+        "left": 289,
+        "top": 1546,
+        "width": 152,
+        "height": 23,
+        "confidence": 96.490921
+      },
+      {
+        "text": "should",
+        "start": 1112,
+        "end": 1118,
+        "left": 451,
+        "top": 1542,
+        "width": 77,
+        "height": 21,
+        "confidence": 96.614677
+      },
+      {
+        "text": "be",
+        "start": 1119,
+        "end": 1121,
+        "left": 538,
+        "top": 1542,
+        "width": 27,
+        "height": 21,
+        "confidence": 96.77182
+      },
+      {
+        "text": "continuous,",
+        "start": 1122,
+        "end": 1133,
+        "left": 575,
+        "top": 1542,
+        "width": 137,
+        "height": 24,
+        "confidence": 96.633965
+      },
+      {
+        "text": "timely,",
+        "start": 1134,
+        "end": 1141,
+        "left": 722,
+        "top": 1542,
+        "width": 80,
+        "height": 27,
+        "confidence": 96.810471
+      },
+      {
+        "text": "and",
+        "start": 1142,
+        "end": 1145,
+        "left": 813,
+        "top": 1542,
+        "width": 42,
+        "height": 21,
+        "confidence": 96.430679
+      },
+      {
+        "text": "performed",
+        "start": 1146,
+        "end": 1155,
+        "left": 865,
+        "top": 1542,
+        "width": 123,
+        "height": 27,
+        "confidence": 96.610336
+      },
+      {
+        "text": "throughout",
+        "start": 1156,
+        "end": 1166,
+        "left": 998,
+        "top": 1542,
+        "width": 130,
+        "height": 27,
+        "confidence": 96.583893
+      },
+      {
+        "text": "the",
+        "start": 1167,
+        "end": 1170,
+        "left": 1137,
+        "top": 1542,
+        "width": 36,
+        "height": 21,
+        "confidence": 96.860748
+      },
+      {
+        "text": "AI",
+        "start": 1171,
+        "end": 1173,
+        "left": 1183,
+        "top": 1542,
+        "width": 29,
+        "height": 21,
+        "confidence": 95.92688
+      },
+      {
+        "text": "system",
+        "start": 1174,
+        "end": 1180,
+        "left": 1223,
+        "top": 1546,
+        "width": 81,
+        "height": 23,
+        "confidence": 96.891983
+      },
+      {
+        "text": "lifecycle",
+        "start": 1181,
+        "end": 1190,
+        "left": 226,
+        "top": 1578,
+        "width": 101,
+        "height": 27,
+        "confidence": 96.537231
+      },
+      {
+        "text": "dimensions.",
+        "start": 1191,
+        "end": 1202,
+        "left": 336,
+        "top": 1578,
+        "width": 141,
+        "height": 21,
+        "confidence": 96.499405
+      },
+      {
+        "text": "AI",
+        "start": 1203,
+        "end": 1205,
+        "left": 493,
+        "top": 1578,
+        "width": 30,
+        "height": 21,
+        "confidence": 96.180695
+      },
+      {
+        "text": "RMF",
+        "start": 1206,
+        "end": 1209,
+        "left": 533,
+        "top": 1578,
+        "width": 62,
+        "height": 21,
+        "confidence": 96.329865
+      },
+      {
+        "text": "Core",
+        "start": 1210,
+        "end": 1214,
+        "left": 604,
+        "top": 1578,
+        "width": 57,
+        "height": 21,
+        "confidence": 96.329865
+      },
+      {
+        "text": "functions",
+        "start": 1215,
+        "end": 1224,
+        "left": 671,
+        "top": 1578,
+        "width": 110,
+        "height": 21,
+        "confidence": 96.481201
+      },
+      {
+        "text": "should",
+        "start": 1225,
+        "end": 1231,
+        "left": 792,
+        "top": 1578,
+        "width": 77,
+        "height": 21,
+        "confidence": 96.953445
+      },
+      {
+        "text": "be",
+        "start": 1232,
+        "end": 1234,
+        "left": 879,
+        "top": 1578,
+        "width": 27,
+        "height": 21,
+        "confidence": 97.005806
+      },
+      {
+        "text": "carried",
+        "start": 1235,
+        "end": 1242,
+        "left": 916,
+        "top": 1578,
+        "width": 82,
+        "height": 21,
+        "confidence": 96.970886
+      },
+      {
+        "text": "out",
+        "start": 1243,
+        "end": 1246,
+        "left": 1008,
+        "top": 1581,
+        "width": 37,
+        "height": 18,
+        "confidence": 96.7976
+      },
+      {
+        "text": "in",
+        "start": 1247,
+        "end": 1249,
+        "left": 1054,
+        "top": 1578,
+        "width": 22,
+        "height": 21,
+        "confidence": 96.684517
+      },
+      {
+        "text": "a",
+        "start": 1250,
+        "end": 1251,
+        "left": 1086,
+        "top": 1585,
+        "width": 13,
+        "height": 14,
+        "confidence": 96.684517
+      },
+      {
+        "text": "way",
+        "start": 1252,
+        "end": 1255,
+        "left": 1108,
+        "top": 1585,
+        "width": 48,
+        "height": 20,
+        "confidence": 96.7444
+      },
+      {
+        "text": "that",
+        "start": 1256,
+        "end": 1260,
+        "left": 1166,
+        "top": 1578,
+        "width": 44,
+        "height": 21,
+        "confidence": 96.842003
+      },
+      {
+        "text": "reflects",
+        "start": 1261,
+        "end": 1269,
+        "left": 1219,
+        "top": 1578,
+        "width": 85,
+        "height": 21,
+        "confidence": 96.809799
+      },
+      {
+        "text": "diverse",
+        "start": 1270,
+        "end": 1277,
+        "left": 226,
+        "top": 1614,
+        "width": 83,
+        "height": 21,
+        "confidence": 96.626411
+      },
+      {
+        "text": "and",
+        "start": 1278,
+        "end": 1281,
+        "left": 318,
+        "top": 1614,
+        "width": 41,
+        "height": 21,
+        "confidence": 93.267281
+      },
+      {
+        "text": "multidisciplinary",
+        "start": 1282,
+        "end": 1299,
+        "left": 367,
+        "top": 1614,
+        "width": 202,
+        "height": 27,
+        "confidence": 92.908943
+      },
+      {
+        "text": "perspectives,",
+        "start": 1300,
+        "end": 1313,
+        "left": 577,
+        "top": 1614,
+        "width": 152,
+        "height": 27,
+        "confidence": 96.973129
+      },
+      {
+        "text": "potentially",
+        "start": 1314,
+        "end": 1325,
+        "left": 738,
+        "top": 1614,
+        "width": 126,
+        "height": 27,
+        "confidence": 96.944885
+      },
+      {
+        "text": "including",
+        "start": 1326,
+        "end": 1335,
+        "left": 873,
+        "top": 1614,
+        "width": 111,
+        "height": 27,
+        "confidence": 96.967415
+      },
+      {
+        "text": "the",
+        "start": 1336,
+        "end": 1339,
+        "left": 992,
+        "top": 1614,
+        "width": 35,
+        "height": 21,
+        "confidence": 97.014557
+      },
+      {
+        "text": "views",
+        "start": 1340,
+        "end": 1345,
+        "left": 1035,
+        "top": 1614,
+        "width": 67,
+        "height": 21,
+        "confidence": 96.995232
+      },
+      {
+        "text": "of",
+        "start": 1346,
+        "end": 1348,
+        "left": 1110,
+        "top": 1614,
+        "width": 26,
+        "height": 21,
+        "confidence": 97.009438
+      },
+      {
+        "text": "AI",
+        "start": 1349,
+        "end": 1351,
+        "left": 1142,
+        "top": 1614,
+        "width": 30,
+        "height": 21,
+        "confidence": 91.669037
+      },
+      {
+        "text": "actors",
+        "start": 1352,
+        "end": 1358,
+        "left": 1180,
+        "top": 1618,
+        "width": 69,
+        "height": 17,
+        "confidence": 93.19117
+      },
+      {
+        "text": "out-",
+        "start": 1359,
+        "end": 1363,
+        "left": 1257,
+        "top": 1618,
+        "width": 47,
+        "height": 17,
+        "confidence": 92.131432
+      },
+      {
+        "text": "side",
+        "start": 1364,
+        "end": 1368,
+        "left": 226,
+        "top": 1650,
+        "width": 46,
+        "height": 21,
+        "confidence": 97.003143
+      },
+      {
+        "text": "the",
+        "start": 1369,
+        "end": 1372,
+        "left": 281,
+        "top": 1650,
+        "width": 35,
+        "height": 21,
+        "confidence": 97.01358
+      },
+      {
+        "text": "organization.",
+        "start": 1373,
+        "end": 1386,
+        "left": 325,
+        "top": 1650,
+        "width": 153,
+        "height": 27,
+        "confidence": 96.848183
+      },
+      {
+        "text": "Having",
+        "start": 1387,
+        "end": 1393,
+        "left": 490,
+        "top": 1650,
+        "width": 86,
+        "height": 27,
+        "confidence": 96.819542
+      },
+      {
+        "text": "a",
+        "start": 1394,
+        "end": 1395,
+        "left": 585,
+        "top": 1657,
+        "width": 12,
+        "height": 14,
+        "confidence": 96.904999
+      },
+      {
+        "text": "diverse",
+        "start": 1396,
+        "end": 1403,
+        "left": 605,
+        "top": 1650,
+        "width": 84,
+        "height": 21,
+        "confidence": 96.64888
+      },
+      {
+        "text": "team",
+        "start": 1404,
+        "end": 1408,
+        "left": 697,
+        "top": 1654,
+        "width": 57,
+        "height": 17,
+        "confidence": 96.64888
+      },
+      {
+        "text": "contributes",
+        "start": 1409,
+        "end": 1420,
+        "left": 763,
+        "top": 1650,
+        "width": 130,
+        "height": 21,
+        "confidence": 96.595009
+      },
+      {
+        "text": "to",
+        "start": 1421,
+        "end": 1423,
+        "left": 902,
+        "top": 1653,
+        "width": 22,
+        "height": 18,
+        "confidence": 96.804245
+      },
+      {
+        "text": "more",
+        "start": 1424,
+        "end": 1428,
+        "left": 933,
+        "top": 1656,
+        "width": 60,
+        "height": 15,
+        "confidence": 96.687302
+      },
+      {
+        "text": "open",
+        "start": 1429,
+        "end": 1433,
+        "left": 1001,
+        "top": 1656,
+        "width": 57,
+        "height": 21,
+        "confidence": 96.582809
+      },
+      {
+        "text": "sharing",
+        "start": 1434,
+        "end": 1441,
+        "left": 1067,
+        "top": 1650,
+        "width": 86,
+        "height": 27,
+        "confidence": 96.783524
+      },
+      {
+        "text": "of",
+        "start": 1442,
+        "end": 1444,
+        "left": 1162,
+        "top": 1650,
+        "width": 25,
+        "height": 21,
+        "confidence": 96.929161
+      },
+      {
+        "text": "ideas",
+        "start": 1445,
+        "end": 1450,
+        "left": 1194,
+        "top": 1650,
+        "width": 60,
+        "height": 21,
+        "confidence": 96.694931
+      },
+      {
+        "text": "and",
+        "start": 1451,
+        "end": 1454,
+        "left": 1263,
+        "top": 1650,
+        "width": 41,
+        "height": 21,
+        "confidence": 96.919342
+      },
+      {
+        "text": "assumptions",
+        "start": 1455,
+        "end": 1466,
+        "left": 226,
+        "top": 1686,
+        "width": 146,
+        "height": 27,
+        "confidence": 96.368103
+      },
+      {
+        "text": "about",
+        "start": 1467,
+        "end": 1472,
+        "left": 384,
+        "top": 1686,
+        "width": 65,
+        "height": 21,
+        "confidence": 96.368103
+      },
+      {
+        "text": "purposes",
+        "start": 1473,
+        "end": 1481,
+        "left": 460,
+        "top": 1692,
+        "width": 105,
+        "height": 21,
+        "confidence": 96.785789
+      },
+      {
+        "text": "and",
+        "start": 1482,
+        "end": 1485,
+        "left": 577,
+        "top": 1686,
+        "width": 41,
+        "height": 21,
+        "confidence": 96.820816
+      },
+      {
+        "text": "functions",
+        "start": 1486,
+        "end": 1495,
+        "left": 629,
+        "top": 1686,
+        "width": 110,
+        "height": 21,
+        "confidence": 96.634972
+      },
+      {
+        "text": "of",
+        "start": 1496,
+        "end": 1498,
+        "left": 751,
+        "top": 1686,
+        "width": 26,
+        "height": 21,
+        "confidence": 96.84922
+      },
+      {
+        "text": "the",
+        "start": 1499,
+        "end": 1502,
+        "left": 786,
+        "top": 1686,
+        "width": 35,
+        "height": 21,
+        "confidence": 96.909393
+      },
+      {
+        "text": "technology",
+        "start": 1503,
+        "end": 1513,
+        "left": 832,
+        "top": 1686,
+        "width": 132,
+        "height": 27,
+        "confidence": 96.340034
+      },
+      {
+        "text": "being",
+        "start": 1514,
+        "end": 1519,
+        "left": 975,
+        "top": 1686,
+        "width": 65,
+        "height": 27,
+        "confidence": 96.956367
+      },
+      {
+        "text": "designed,",
+        "start": 1520,
+        "end": 1529,
+        "left": 1052,
+        "top": 1686,
+        "width": 112,
+        "height": 27,
+        "confidence": 96.239655
+      },
+      {
+        "text": "developed,",
+        "start": 1530,
+        "end": 1540,
+        "left": 1176,
+        "top": 1686,
+        "width": 127,
+        "height": 27,
+        "confidence": 96.624123
+      },
+      {
+        "text": "Page",
+        "start": 1541,
+        "end": 1545,
+        "left": 1226,
+        "top": 1764,
+        "width": 47,
+        "height": 23,
+        "confidence": 96.839592
+      },
+      {
+        "text": "20",
+        "start": 1546,
+        "end": 1548,
+        "left": 1281,
+        "top": 1764,
+        "width": 23,
+        "height": 18,
+        "confidence": 96.895927
+      }
+    ],
+    "render_dpi": 180,
+    "width_px": 1530,
+    "height_px": 1980
+  },
+  "diagnostics": {
+    "native_tokens": 203,
+    "ocr_tokens": 239,
+    "sequence_matcher_ratio": 0.8823529411764706,
+    "differences": [
+      {
+        "operation": "replace",
+        "native_token_span": [
+          12,
+          14
+        ],
+        "ocr_token_span": [
+          12,
+          13
+        ],
+        "native_tokens": [
+          "ai",
+          "rmf"
+        ],
+        "ocr_tokens": [
+          "airmf"
+        ]
+      },
+      {
+        "operation": "replace",
+        "native_token_span": [
+          52,
+          54
+        ],
+        "ocr_token_span": [
+          51,
+          52
+        ],
+        "native_tokens": [
+          "govern",
+          ","
+        ],
+        "ocr_tokens": [
+          "govern,"
+        ]
+      },
+      {
+        "operation": "replace",
+        "native_token_span": [
+          55,
+          57
+        ],
+        "ocr_token_span": [
+          53,
+          54
+        ],
+        "native_tokens": [
+          "measure",
+          ","
+        ],
+        "ocr_tokens": [
+          "measure,"
+        ]
+      },
+      {
+        "operation": "replace",
+        "native_token_span": [
+          58,
+          60
+        ],
+        "ocr_token_span": [
+          55,
+          56
+        ],
+        "native_tokens": [
+          "manage",
+          "."
+        ],
+        "ocr_tokens": [
+          "manage."
+        ]
+      },
+      {
+        "operation": "insert",
+        "native_token_span": [
+          98,
+          98
+        ],
+        "ocr_token_span": [
+          94,
+          134
+        ],
+        "native_tokens": [],
+        "ocr_tokens": [
+          "map",
+          "measure",
+          "context",
+          "is",
+          "recognized",
+          "and",
+          "risks",
+          "related",
+          "to",
+          "context",
+          "are",
+          "identified",
+          "identified",
+          "risks",
+          "are",
+          "assessed,",
+          "analyzed,",
+          "or",
+          "tracked",
+          "govern",
+          "a",
+          "culture",
+          "of",
+          "risk",
+          "management",
+          "is",
+          "cultivated",
+          "and",
+          "present",
+          "manage",
+          "risks",
+          "are",
+          "prioritized",
+          "and",
+          "acted",
+          "upon",
+          "based",
+          "ona",
+          "projected",
+          "impact"
+        ]
+      }
+    ]
+  },
+  "limitations": [
+    "Alignment ratio is not OCR accuracy; the native layer also loses layout.",
+    "Case-folded whitespace tokens preserve hyphenation and punctuation differences.",
+    "A single clean English page does not represent scanned-document quality."
+  ]
+}

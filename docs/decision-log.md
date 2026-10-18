@@ -62,3 +62,48 @@ negative cases also use controlled signed fixtures and fault injection. Offline
 JWTs retain roles until expiry and use a startup key snapshot. Corpus permissions
 are trusted authored metadata; live permission synchronization and production
 identity lifecycle remain outside this milestone. Owner study is not claimed.
+
+## 2026-10-17: keep PDF evidence and permissions together
+
+**Question.** Can public PDF pages enter the existing authenticated RAG without
+losing their origin or turning document contents into permission metadata?
+
+**Decision.** Use native `pypdf` text when it is present. Render empty native
+pages with PDFium and execute Tesseract; allow an explicit per-page OCR override
+for unsuitable embedded text. Always OCR would add time and recognition errors
+to text that already exists. Native extraction can still have poor reading order
+or incomplete text, so neither path is a layout-fidelity guarantee.
+
+**Provenance.** Keep unchanged public originals and a labelled image-only
+derivative as separate artifacts. Retain original and processed file hashes,
+their physical page numbers, the extraction method, the full canonical page-text
+hash and exact chunk spans. OCR adds word spans, rendered-pixel boxes and raw
+confidence diagnostics. Verify original page bounds; identical original/artifact
+hashes cannot claim different page numbers. A derivative's source-page mapping
+is a trusted operator assertion with a recorded build procedure, not an OCR
+inference. Exact quoting establishes a location, not semantic answer quality.
+
+**Permissions and identity.** A trusted local manifest supplies tenant and role
+grants. PDF metadata, text, links and model output cannot grant access. Stable
+document IDs include tenant, public source ID and original page, so re-ingestion
+replaces the same tenant's content/ACLs while identical bytes in another tenant
+have a distinct ID. Omitting a page is not a deletion request. The query still
+derives identity only from a verified JWT and filters tenant AND role before
+vector top-k.
+
+**Failure tradeoff.** Extract all selected pages before a single guarded write;
+bound file size, pages, decoded content, pixels, words and process time. Preserve
+the existing pending marker that refuses queries/reopen after an interrupted
+index mutation. A fresh schema-2 index is required for source-bearing payloads;
+rebuilding is more explicit than guessing how to migrate partially trusted
+payloads. The operator pays a rebuild/availability cost rather than receiving
+silently incomplete permissions or citations. This is local process isolation
+and fail-closed recovery, not an upload sandbox or distributed transaction.
+
+**Evidence/limits.** The public demo selects one native NIST page and one clean
+rasterized NIST page, reused with authored grants in two tenants. It runs the
+actual issuer, HTTP resource, OCR, MiniLM embeddings and persisted Qdrant with an
+extractive answer baseline. Negative PDFs, controlled vectors and injected
+failures remain identified as test fixtures. Difficult-scan accuracy, broad OCR
+error analysis, live entitlement synchronization and owner human review remain
+outside this milestone.

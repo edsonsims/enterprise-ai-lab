@@ -5,13 +5,16 @@
 
 A question should reach the right documents before it reaches a model. This lab
 connects a real local OAuth issuer to dense vector retrieval, tenant/role filters
-and cited answers. Its documents are **synthetic**; the HTTP, cryptography,
-embeddings and persistence are real implementations.
+and cited answers. Public PDFs now enter through native extraction or actual
+OCR, with page-level source spans and explicit permissions. The original
+synthetic experiments remain available; HTTP, cryptography, embeddings and
+persistence are real implementations.
 
 The original lexical retrieval evaluator is still available below. It is a
 separate controlled experiment, with its original reports preserved.
 
-[Identity → RAG design](docs/identity-rag.md) · [Recorded connected demo](reports/rag-v1) ·
+[PDF/OCR demo](#ingest-public-pdfs-and-scans) · [Identity → RAG design](docs/identity-rag.md) ·
+[Recorded public run](reports/pdf-v1/demo.json) · [Connected synthetic demo](reports/rag-v1) ·
 [Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
 
 ## Run the connected RAG demo
@@ -120,6 +123,68 @@ incomplete permission update over serving stale access metadata.
 [Protocol, HTTP errors and study exercises](docs/identity-rag.md) ·
 [Model/fixture provenance](src/enterprise_ai_lab/rag/data/PROVENANCE.md)
 
+## Ingest public PDFs and scans
+
+The new demo uses two selected pages from public NIST publications. One is
+native text; the other is a labelled image-only derivative that must pass through
+**PDFium and Tesseract**. The unchanged originals, derivative, hashes, page mapping
+and [source rights](public-data/pdf-v1/README.md) are checked in.
+
+Use the connected setup above, **Tesseract 5 with English data**, and install
+both compatible lockfiles together:
+
+```sh
+.venv/bin/python -m pip install -r requirements-rag.lock -r requirements-ingestion.lock
+
+.venv/bin/python -m enterprise_ai_lab.rag pdf-demo \
+  --manifest public-data/pdf-v1/ingestion.json \
+  --identity-dir ../identity-boundary-lab \
+  --model-dir .local/models/minilm --store .local/pdf-demo \
+  --out reports/local/pdf-demo.json
+```
+
+Use a fresh store: the provenance-bearing index is **schema 2**, and old index
+fingerprints are deliberately rejected. The [complete PDF guide](docs/pdf-ingestion.md)
+also includes standalone setup and an `ingest` command without the HTTP demo.
+
+| Material | Recorded origin | Authored local access |
+| --- | --- | --- |
+| *Zero Trust Architecture* | Original PDF page 15 · native text | Alpha reader; Beta reader |
+| *AI RMF Core* | Raster page 1 → original PDF page 25 · actual OCR | Alpha analyst; Beta reader |
+
+Ask **“How is access to individual enterprise resources granted?”** or
+**“What functions is the Core composed of?”**. The demo uses actual issuer/resource HTTP,
+signed tokens, MiniLM vectors and persisted Qdrant with the extractive answer
+baseline. The [complete recorded responses](reports/pdf-v1/demo.json) keep the
+permission controls and the sources behind each quoted answer.
+
+The recorded generic question “What are the four functions?” abstains despite
+the analyst's permitted source. That failure remains in the report: permission
+filtering does not fix question wording or retrieval/answer relevance.
+
+Each chunk carries the original URL, original and processed PDF hashes/pages,
+extraction method, canonical page-text hash and exact character span. OCR adds
+word spans, pixel boxes and uncalibrated confidence diagnostics. Tenant and role
+grants come from the trusted local manifest; PDF metadata cannot grant access.
+The same prefilter protects retrieval, generator context and citations.
+
+Re-ingestion replaces that tenant/source/page's content and ACLs. It extracts
+the whole incoming batch before writing; an incomplete index mutation refuses
+reads and restart until rebuilt. Omitted pages **are not deletions**. There is no
+public upload endpoint or live entitlement synchronization.
+
+```sh
+RUN_RAG_INTEGRATION=1 \
+RAG_MODEL_DIR="$PWD/.local/models/minilm" \
+IDENTITY_LAB_DIR="$PWD/../identity-boundary-lab" \
+.venv/bin/python -m pytest tests/rag tests/ingestion -q
+```
+
+This is a two-page integration fixture, with one clean raster OCR page. It does
+not establish OCR accuracy on damaged scans, handwriting, difficult layouts or
+other languages. Native reading order and OCR text can lose layout; literal
+citations still require interpretation and human review.
+
 ## Run the first experiment
 
 Python **3.10+**, with no runtime dependencies, credentials, model download or API
@@ -225,15 +290,16 @@ Owner study and human review remain unclaimed until recorded.
 
 ## What these numbers establish
 
-This is a controlled engineering experiment with repeated synthetic templates.
-Its scores do not establish production security, model accuracy, generalization,
+The original lexical study is a controlled engineering experiment with repeated
+synthetic templates. Its scores do not establish production security, model accuracy, generalization,
 compliance or customer ROI. The Wilson values in JSON are descriptive binomial
 calculations; the correlated templates do not support population confidence claims.
 
 In the original lexical experiment, identities and ACLs remain trusted fixture
 inputs. The connected RAG study above adds actual token validation, dense-vector
-retrieval and an optional local generator as a separate path. Permission
-synchronization, OCR and live enterprise systems remain future work. The unsafe
+retrieval and an optional local generator as a separate path. The PDF/OCR path
+adds real public sources and source spans; live entitlement synchronization and
+enterprise-system connectors remain future work. The unsafe
 global baseline is confined to the offline evaluator.
 
 Security filtering is an established pattern. Microsoft's

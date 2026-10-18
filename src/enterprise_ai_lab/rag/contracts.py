@@ -2,8 +2,10 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+import hashlib
 import re
 from typing import Mapping, Protocol, Sequence
+from .provenance import SourceSpan
 
 IDENTIFIER = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}\Z")
 
@@ -42,6 +44,7 @@ class Document:
     allowed_roles: tuple[str, ...]
     title: str
     text: str
+    provenance: SourceSpan | None = None
 
     def __post_init__(self):
         if not valid_identifier(self.document_id) or not valid_identifier(self.tenant_id):
@@ -59,6 +62,13 @@ class Document:
             self.text.encode("utf-8"); self.title.encode("utf-8")
         except UnicodeEncodeError as exc:
             raise ValueError("invalid document Unicode") from exc
+        if self.provenance is not None:
+            if not isinstance(self.provenance, SourceSpan):
+                raise ValueError("invalid document provenance")
+            self.provenance.validate_text(self.text)
+            if (self.provenance.start != 0 or hashlib.sha256(self.text.encode()).hexdigest()
+                    != self.provenance.page_text_sha256):
+                raise ValueError("document must preserve the complete canonical page text hash")
 
 
 @dataclass(frozen=True)
@@ -69,10 +79,15 @@ class RetrievedChunk:
     score: float
     tenant_id: str
     allowed_roles: tuple[str, ...]
+    provenance: SourceSpan | None = None
 
     def as_dict(self) -> dict:
         value = asdict(self)
         value["allowed_roles"] = list(self.allowed_roles)
+        if self.provenance is None:
+            value.pop("provenance")
+        else:
+            value["provenance"] = self.provenance.as_dict()
         return value
 
 
