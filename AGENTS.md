@@ -3,6 +3,7 @@
 Build a balanced portfolio of applied AI experiments and senior software engineering.
 Use ROADMAP.md for scope and docs/decision-log.md for decisions. Preserve human edits.
 
+- Prefer Python and TypeScript/Node.js for new work. Choose another language when the study benefits from it; do not make C# the focus without a new owner request.
 - Keep all dates accurate. Never backdate, create empty activity, rewrite history to fill a graph, or manufacture engagement.
 - Finish a useful, runnable milestone before marking it complete. Favor one coherent system and reusable modules over many unfinished repositories.
 - For experiments, record the question, baseline, data provenance, method, raw results, reproduction command, and limitations. Synthetic data must always be labeled.
