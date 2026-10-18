@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Review room · Enterprise AI Lab</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to workspace</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Review room home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36" focusable="false"><path d="M7 7h16l6 6v16H7z"/><path d="M23 7v7h6M12 19l4 4 8-8"/></svg></span>
+      <span>Review room<span class="brand-caption">Enterprise AI Lab</span></span>
+    </a>
+    <div class="header-session" id="header-session" hidden>
+      <span id="session-identity" data-testid="session-identity"></span>
+      <button class="button button-quiet" id="logout-button" data-testid="logout-button" type="button">Sign out <span aria-hidden="true">↗</span></button>
+    </div>
+    <span class="local-label" id="local-label">LOCAL STUDY / 01</span>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="landing" id="landing" aria-labelledby="landing-heading" hidden>
+      <div class="landing-copy">
+        <p class="eyebrow"><span class="signal-dot"></span> BEFORE IT ENTERS SEARCH</p>
+        <h1 id="landing-heading">A second pair<br>of <span class="handwritten">eyes.</span></h1>
+        <p class="landing-intro">Open the source. Check the extracted words and who can see them. Then decide whether this exact document belongs in the RAG.</p>
+        <a href="/login" class="button button-primary login-button" id="login-link" data-testid="login-link">Sign in to review <span aria-hidden="true">↗</span></a>
+        <p class="landing-footnote">Local OpenID Connect login. Your tenant and roles follow your session.</p>
+      </div>
+      <div class="review-illustration" aria-hidden="true">
+        <div class="illustration-orbit"></div>
+        <div class="paper paper-back"><span>source.pdf</span><i></i><i></i><i></i><i></i></div>
+        <div class="paper paper-front"><span>REVIEW COPY</span><strong>Words.<br>Origin.<br>Access.</strong><div class="paper-lines"><i></i><i></i><i></i></div></div>
+        <div class="illustration-check">✓</div>
+        <div class="illustration-star">✳</div>
+        <span class="illustration-note">check before publish</span>
+      </div>
+      <ol class="landing-steps" aria-label="Review process">
+        <li><span>01</span><div><strong>Look at the source</strong><p>Original PDFs, extracted pages and precise chunk spans.</p></div></li>
+        <li><span>02</span><div><strong>Check the boundary</strong><p>The tenant, roles and content are fixed in the request.</p></div></li>
+        <li><span>03</span><div><strong>Leave a decision</strong><p>A durable receipt and local audit record, with publication tracked separately.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="workspace" id="workspace" aria-label="Document review workspace" hidden>
+      <div class="workspace-topline">
+        <div><p class="eyebrow">THE REVIEW DESK</p><h1>Read first. Decide second<span class="coral">.</span></h1></div>
+        <p class="scope-note" id="scope-note"></p>
+      </div>
+      <div class="workspace-tabs" role="tablist" aria-label="Workspace views">
+        <button id="reviews-tab" role="tab" aria-selected="true" aria-controls="reviews-panel" type="button">Reviews <span id="review-count" class="tab-count">0</span></button>
+        <button id="audit-tab" role="tab" aria-selected="false" aria-controls="audit-panel" tabindex="-1" type="button">Audit trail</button>
+      </div>
+
+      <section id="reviews-panel" role="tabpanel" aria-labelledby="reviews-tab" class="reviews-layout">
+        <aside class="queue" aria-labelledby="queue-heading">
+          <div class="section-title"><h2 id="queue-heading">Your queue</h2><button id="reviews-refresh" data-testid="reviews-refresh" class="text-button" type="button">Refresh <span aria-hidden="true">↻</span></button></div>
+          <p class="queue-note">Only reviews available to your signed-in identity.</p>
+          <div id="review-list" data-testid="review-list" class="review-list"></div>
+        </aside>
+        <div id="review-detail" class="review-detail">
+          <div class="empty-state" id="review-empty"><span class="empty-mark" aria-hidden="true">⌁</span><h2>A source worth a closer look.</h2><p>Choose a request from your queue to compare the PDF, extracted text and access rules.</p></div>
+        </div>
+      </section>
+
+      <section id="audit-panel" role="tabpanel" aria-labelledby="audit-tab" hidden>
+        <div class="audit-header"><div><h2>A record of the boundary.</h2><p>Tenant-scoped local events. A valid chain detects changes within this log; it is not an independent security attestation.</p></div><button class="button button-secondary" id="audit-refresh" data-testid="audit-refresh" type="button">Refresh audit <span aria-hidden="true">↻</span></button></div>
+        <div id="audit-integrity" class="audit-integrity"></div>
+        <div id="audit-list" data-testid="audit-list" class="audit-list"></div>
+      </section>
+    </section>
+    <div id="app-message" class="app-message" role="status" aria-live="polite" hidden></div>
+    <noscript><p class="noscript-message">Enable JavaScript to use the review workspace. It keeps the server session in an HttpOnly cookie; tokens are not stored in the browser application.</p></noscript>
+  </main>
+  <footer class="site-footer"><span>Enterprise AI Lab <span aria-hidden="true">/</span> Review room</span><span>Public documents. Local services. Explicit decisions.</span></footer>
+</body>
+</html>

@@ -40,7 +40,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: edsonsims/identity-boundary-lab
-          ref: 26215ef9cdf01162b168d4031c7929400ee4c96c
+          ref: 70e663c69ad96997c394581fa9df33487d2e3390
           path: .local/identity-boundary-lab
           persist-credentials: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
@@ -99,7 +99,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: edsonsims/identity-boundary-lab
-          ref: 26215ef9cdf01162b168d4031c7929400ee4c96c
+          ref: 70e663c69ad96997c394581fa9df33487d2e3390
           path: .local/identity-boundary-lab
           persist-credentials: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
@@ -120,3 +120,53 @@ jobs:
         run: python -m enterprise_ai_lab.approval.bootstrap bootstrap --directory .local/temporal-bin
       - name: Real persistent Temporal, signed OAuth HTTP, crash, timer and replay tests
         run: python -m pytest tests/approval -q
+
+  human-review:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.12', '3.13']
+    env:
+      RUN_REVIEW_INTEGRATION: '1'
+      RUN_REVIEW_BROWSER: '1'
+      TEMPORAL_CLI: ${{ github.workspace }}/.local/temporal-bin/temporal
+      RAG_MODEL_DIR: ${{ github.workspace }}/.local/models/minilm
+      IDENTITY_LAB_DIR: ${{ github.workspace }}/.local/identity-boundary-lab
+      NODE_BINARY: node
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      PLAYWRIGHT_SKIP_BROWSER_GC: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: edsonsims/identity-boundary-lab
+          ref: 70e663c69ad96997c394581fa9df33487d2e3390
+          path: .local/identity-boundary-lab
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: |
+            requirements-rag.lock
+            requirements-ingestion.lock
+            requirements-approval.lock
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
+      - run: python -m pip install -r requirements-rag.lock -r requirements-ingestion.lock -r requirements-approval.lock
+      - run: python -m pip install --no-deps -e .
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - working-directory: .local/identity-boundary-lab
+        run: |
+          npm ci --ignore-scripts
+          npm run build
+      - run: python -m enterprise_ai_lab.rag.models bootstrap --model-dir "$RAG_MODEL_DIR"
+      - run: python -m enterprise_ai_lab.approval.bootstrap bootstrap --directory .local/temporal-bin
+      - name: Actual browser login, permitted PDF pages, decisions, audit and published RAG
+        run: python -m pytest tests/review -q

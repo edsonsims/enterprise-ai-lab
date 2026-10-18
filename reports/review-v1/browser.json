@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-18T15:17:58.331Z",
+  "experiment": "Actual Chromium browser review over local OIDC, Temporal and approved RAG publication",
+  "identities": "Generated local fixture accounts; all browser actions are automated, not owner human review.",
+  "limitations": [
+    "This run checks the actual browser and local services, not production identity or accessibility certification.",
+    "PDF page-count headers are checked here; Python integration tests independently parse the returned single-page PDFs.",
+    "No neural answer-quality or human reading/comprehension claim is made."
+  ],
+  "checks": [
+    {
+      "name": "Reader-scoped reviewer sees one native page, cannot inspect OCR or decide an unreadable batch",
+      "passed": true,
+      "permitted_pdf_http": 200,
+      "forbidden_ocr_pdf_http": 404,
+      "preview_header_page_count": 1,
+      "actual_page_preview": {
+        "pdf_bytes": 184815,
+        "png_bytes": 329757,
+        "decoded_width": 918,
+        "decoded_height": 1188
+      }
+    },
+    {
+      "name": "HttpOnly opaque session; no tokens in session JSON, JavaScript cookies or browser storage",
+      "passed": true
+    },
+    {
+      "name": "Logout clears protected UI and invalidates the previous server session",
+      "passed": true,
+      "session_http": 401,
+      "old_cookie_replay_http": 401
+    },
+    {
+      "name": "Analyst reviewer sees actual PDFium PNG page pixels, native/OCR PDF bytes, source hashes and exact chunk spans",
+      "passed": true,
+      "authorized_documents": 2,
+      "native_preview": {
+        "pdf_bytes": 184815,
+        "png_bytes": 329757,
+        "decoded_width": 918,
+        "decoded_height": 1188
+      },
+      "ocr_preview": {
+        "pdf_bytes": 368210,
+        "png_bytes": 259531,
+        "decoded_width": 918,
+        "decoded_height": 1188
+      }
+    },
+    {
+      "name": "A mutation without the session CSRF token is refused",
+      "passed": true,
+      "http": 403
+    },
+    {
+      "name": "Approval through the actual UI produces a durable receipt and a separate completed publication",
+      "passed": true
+    },
+    {
+      "name": "Rejection through the actual UI records a terminal rejection without authorizing publication",
+      "passed": true
+    },
+    {
+      "name": "Audit UI distinguishes an accepted decision from an observed publication and verifies the local chain",
+      "passed": true
+    },
+    {
+      "name": "Beta reviewer sees and approves only the Beta queue; direct Alpha review access is denied",
+      "passed": true,
+      "alpha_detail_http": 404
+    },
+    {
+      "name": "Review desk remains within a 390-pixel viewport",
+      "passed": true,
+      "viewport_width": 390
+    },
+    {
+      "name": "No uncaught browser application errors",
+      "passed": true
+    }
+  ],
+  "browser": {
+    "name": "Chromium",
+    "version": "151.0.7922.34",
+    "playwright": "1.62.1"
+  },
+  "passed": true,
+  "screenshots": [
+    "browser-review.png",
+    "browser-review-mobile.png"
+  ]
+}

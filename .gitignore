@@ -12,3 +12,4 @@ reports/local/
 .env.*
 
 .local/
+node_modules/

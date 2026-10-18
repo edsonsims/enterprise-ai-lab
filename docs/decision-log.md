@@ -217,3 +217,56 @@ corpus became unnecessarily fenced. Batch preparation now happens before the
 journal, with a regression using the actual pinned tokenizer/model. The existing
 vector mutation marker still guards the later write phase; no marker is cleared
 to repair a failed publication.
+
+
+## 2026-10-18: a signed-in account can inspect the exact publication candidate
+
+**Question.** Can a person inspect the public source and extracted words, decide
+the immutable publication request, and later trace its durable acceptance without
+turning an approver role into unrestricted document access?
+
+**Identity decision.** Add a separate local `oidc-provider` browser issuer using
+Authorization Code + mandatory PKCE S256. Keep client-credentials service
+experiments unchanged. The review token has its own audience and user-kind claim;
+the signed account subject, not the shared `review-portal` client ID, becomes the
+workflow actor. Bind the callback to state, browser cookie, verifier, nonce,
+signatures, audience and recent ID-token authentication time. Store bearer tokens
+in portal memory behind opaque HttpOnly cookies, revalidate each protected
+request and require same-origin JSON plus session CSRF on mutations. Tokens
+default to five minutes and are bounded to ten; restart or expiry requires login.
+This is a local fixture, not external federation or production password storage.
+
+**Document decision.** Reuse the immutable candidate and existing publication
+workflow. Derive the tenant only from the verified user. Show only documents
+whose allowed roles intersect that account's roles; withhold even titles, URLs,
+PDF hashes and OCR geometry for unreadable pages. Require complete-batch reading
+permission before either approval or rejection. Keep self-approval prohibited.
+An independent analyst reviewer can decide a mixed reader/analyst batch; a
+reader-only approver can inspect its native page but cannot decide blindly.
+
+**Preview decision.** Serve one individually authorized page as a labelled PDF
+derivative, never the whole original as a convenience download. Verify both
+original and processed source snapshots against the trusted manifest and
+immutable candidate on each preview. Keep preview, original and artifact hashes
+distinct. Display canonical text, exact Unicode chunk spans, source URLs/pages
+and ACLs beside the page. This is extra local rendering/storage work and a
+bounded public-fixture viewer, not a hostile-upload sandbox.
+
+**Audit decision.** Append small local SQLite events without passwords, tokens
+or document bodies. Hash-link and validate the complete chain before filtering
+its permitted tenant/document view. Persist request/decision intents before
+Temporal calls, then reconcile accepted immutable receipts on later reads after
+a process gap. Unknown service-side decisions stay labelled `service_or_unknown`.
+Do not claim an atomic transaction across audit, workflow, publication ledger and
+vectors. The host administrator can replace the database and all hashes; the
+chain is not external tamper-proof evidence. Approval and publication remain
+separate events.
+
+**Evidence and limits.** Controlled tests isolate negative claims, callback/CSRF
+checks, audit corruption and receipt gaps. The process demo uses actual local
+OIDC forms/cookies, public PDF extraction/OCR, Temporal, MiniLM and Qdrant; optional
+Chromium performs rendered UI actions separately. Scripted fixture accounts do
+not establish that the owner or any person read or approved a source. The local
+Temporal gRPC administrator, source files and trusted grants remain outside the
+browser authorization boundary. No production identity, generalized OCR
+accuracy, answer-quality improvement or customer outcome is claimed.

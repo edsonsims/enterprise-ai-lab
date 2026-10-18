@@ -151,3 +151,65 @@ labelled in their modules. The frozen public run retains 48 HTTP observations,
 three publication receipts, six exported/replayed histories and an actual
 pre-approval Qdrant inventory of zero points, ending at 28. Original reference
 reports and all prior versioned reports are unchanged.
+
+
+The browser-review extension was developed with Codex assistance at the owner's
+direct request on 2026-10-18. Separate automated agents implemented the real local
+OIDC user-account issuer, portal UI and browser checks, and account-scoped review,
+source previews and audit boundaries. Root integration connects that portal to
+the existing Temporal publication workflow and actual RAG services. The browser
+uses Authorization Code + PKCE S256; its bearer tokens stay in portal memory,
+behind opaque HttpOnly session cookies. The user subject is distinct from the
+shared OAuth application client ID, preserving independent-account review.
+
+Identity Boundary Lab commit `70e663c69ad96997c394581fa9df33487d2e3390` passed
+100 tests and its original demo on Node 22 and 24 in an actual
+[CI run](https://github.com/edsonsims/identity-boundary-lab/actions/runs/39139597620).
+Its browser identities use generated private local fixture passwords and a
+separate review audience. This does not implement an external identity provider,
+production password management, MFA or persistent issuer storage.
+
+The portal checks the signed tenant and each document's reading roles before
+returning PDF pages, canonical text/chunks or audit events. Both approval and
+rejection require a fully readable immutable batch. Page previews are labelled
+single-page derivatives, with their own hashes separate from the unchanged
+public NIST originals and the existing raster OCR artifact. Their source rights
+and prior experiment reports remain unchanged. The local hash-linked audit
+records intents and reconciles durable receipts; it is not a transaction across
+all stores or an externally anchored, administrator-proof audit service.
+
+The [review guide](docs/human-review.md) and [versioned evidence](reports/review-v1)
+distinguish controlled exchange/gateway/signing fixtures, actual HTTP sign-in and
+process integration, and rendered Chromium actions. The completed local process
+run records 37 HTTP observations, four one-page previews, four publication
+effects, six replayed histories and 85 audit events; Chromium 151.0.7922.34 with
+Playwright 1.62.1 passes 11 browser checks. Final combined local verification on
+Python 3.13.1/macOS arm64 passed **439 tests and 247 subtests**, including all
+actual RAG/PDF, approval, publication and browser-review integrations. The 85 new
+review tests include 75 focused boundaries and ten actual process cases. Automated logins/clicks are not proof of owner review, human
+approval, personal study or source comprehension. The interface can be used by a
+person separately; no such action is claimed here. Production HTTPS, external
+SSO, key rotation, live permission synchronization and production gRPC
+administration remain unimplemented. No new OCR or answer-quality claim is made.
+
+
+Actual rendered-browser testing found two login failures that the successful
+direct HTTP form test missed. The initial no-referrer policy caused Chromium to
+submit `Origin: null`; its self-only CSP form-action also blocked the registered
+portal redirect. The separate issuer now uses same-origin referrer policy and
+permits only self plus the one statically registered portal origin for that
+redirect chain. Exact callback, PKCE, Origin and CSRF checks remain intact; null
+Origin is still forbidden. Node regressions assert the policies and refusal, and
+the subsequent real Chromium pass verifies login, account-scoped PDF/snippet
+review, UI approval/rejection, audit, logout, tenant isolation and a narrow
+viewport. This is automated browser evidence, not owner or human approval.
+
+
+The visual preview uses actual PDFium PNG rendering of the individually permitted
+page, with a separately authorized single-page PDF link. Chromium checks decoded
+pixels and dimensions; it does not infer visible PDF contents from a successful
+download. Independent automated review retained pre-allocation dimension/pixel
+bounds, serialized native rendering and cleanup regressions. The original
+14-test dependency-free study and byte-identical reference demo still pass; a
+local wheel includes the review modules, static UI assets and Temporal pin.
+The wheel was built for packaging verification, not uploaded to a registry.

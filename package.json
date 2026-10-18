@@ -1,0 +1,10 @@
+{
+  "name": "enterprise-ai-lab-browser-checks",
+  "private": true,
+  "version": "0.6.0",
+  "description": "Actual browser verification for the local human review portal",
+  "type": "module",
+  "engines": {"node": ">=22.16"},
+  "scripts": {"test:browser": "node tests/review/browser.mjs"},
+  "devDependencies": {"playwright": "1.62.1"}
+}

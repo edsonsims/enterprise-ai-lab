@@ -19,6 +19,7 @@ separate controlled experiment, with its original reports preserved.
 [Recorded public run](reports/pdf-v1/demo.json) · [Connected synthetic demo](reports/rag-v1) ·
 [Durable approval demo](#wait-for-approval-survive-a-restart) ·
 [Approve → publish → query](#approve-a-document-before-it-enters-search) ·
+[Browser review room](#open-the-source-and-leave-a-decision) ·
 [Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
 
 ## Run the connected RAG demo
@@ -255,8 +256,53 @@ OAuth, Temporal, native extraction/OCR, embeddings and persisted vectors from
 controlled failures and authored policy. The reviewer remains a **scripted
 service identity**, not a person's review. This gate applies to the connected
 publication resource; the standalone trusted `rag ingest` study still has its
-own direct operator path. Production administration, human sign-in and live
-permission synchronization remain future work.
+own direct operator path. That recorded service-identity study keeps its original
+scope. The browser review extension below adds local user sign-in; production administration and
+live permission synchronization remain future work.
+
+## Open the source and leave a decision
+
+The [review room](docs/human-review.md) adds a real local browser login and a
+place to compare permitted PDF pages with their extracted words, chunk spans
+and access rules. A reviewer can approve or reject the exact snapshot; the UI
+then shows durable acceptance and completed RAG publication separately.
+
+The account's tenant and roles protect the queue, text, PDF previews and audit.
+An approver who can read the native page but lacks the OCR page's analyst grant
+cannot decide the mixed batch. The independent analyst reviewer can inspect
+both. Previews contain **one permitted page**, including an original-page view
+for comparison with the OCR derivative.
+
+Use the combined Python/Node/Tesseract setup above and the pinned browser issuer
+from the [complete guide](docs/human-review.md):
+
+```sh
+.venv/bin/python -m enterprise_ai_lab.review demo \
+  --temporal-cli .local/temporal-bin/temporal \
+  --identity-dir ../identity-boundary-lab --node node \
+  --model-dir .local/models/minilm \
+  --manifest public-data/pdf-v1/ingestion.json \
+  --work-dir .local/review-demo \
+  --out reports/local/review-demo.json
+```
+
+For a rendered Chromium check, explicitly run `npm ci --ignore-scripts` and
+`npx playwright install chromium`, then add `--browser-test` with a fresh work
+directory. Add `--stay-open` to leave the interface running for manual use;
+the local command prints its URL and the private generated account-file path.
+Do not publish that file or reuse a real password.
+
+The portal uses Code + PKCE and short-lived user tokens stored in server memory,
+behind an opaque HttpOnly browser cookie. It checks CSRF and origin on decisions.
+The local audit links intents to durable receipts and observed publication;
+portal restart requires login again but preserves workflow/audit state.
+[Design and exercises](docs/human-review.md) · [Run evidence](reports/review-v1) ·
+[Browser protocol](tests/review/browser-protocol.md)
+
+Automated fixture logins and clicks are **not a person's review or owner study**.
+The audit is local, not externally tamper-proof, and the development Temporal
+administration endpoint remains trusted. External SSO, production HTTPS, key
+rotation and live entitlement synchronization remain planned.
 
 ## Run the first experiment
 
@@ -344,7 +390,7 @@ outputs.
 | Study | Runnable companion | Boundary to examine |
 | --- | --- | --- |
 | 2 · Discovery to scope | [BriefTrace](https://github.com/edsonsims/brieftrace#run-the-story): Python compiler, exact source spans, SQLite revisions and a local HTTP API | Missing facts stay questions; proposed criteria require review. No model extraction or commercial approval is implied. |
-| 3 · Identity and authorization | [Identity Boundary Lab](https://github.com/edsonsims/identity-boundary-lab#run-the-experiment): TypeScript, actual OAuth issuer, JWT verification and opaque-token introspection | Compare revocation, issuer availability and tenant/role checks. Browser SSO, SAML and SCIM remain planned. |
+| 3 · Identity and authorization | [Identity Boundary Lab](https://github.com/edsonsims/identity-boundary-lab#run-the-experiment): TypeScript, actual OAuth issuer, JWT verification and opaque-token introspection | Compare revocation, issuer availability and tenant/role checks. A separate local Code + PKCE issuer now supplies browser review accounts; external SSO, SAML and SCIM remain planned. |
 
 Identity Boundary Lab now supplies the issuer for the connected RAG experiment
 above. BriefTrace remains a separate discovery/compiler study. Each repository
