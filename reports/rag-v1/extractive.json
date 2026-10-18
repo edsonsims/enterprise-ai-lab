@@ -1,0 +1,325 @@
+{
+  "experiment": "actual local OAuth JWT to authenticated persistent vector RAG",
+  "data": "authored synthetic tenant documents; no customer or employer data",
+  "transport": "real loopback HTTP between separate Node issuer and Python resource processes",
+  "identity": {
+    "audience": "urn:identity-boundary:rag",
+    "scope": "rag:query",
+    "validation": "offline RS256/at+jwt using startup discovery and JWKS snapshot",
+    "token_revocation": "JWT remains usable until expiry; opaque reports demo is separate"
+  },
+  "embedding": {
+    "repository": "Qdrant/all-MiniLM-L6-v2-onnx",
+    "revision": "d13954661f83248295ba75c1ed411eef3b7b936e",
+    "dimensions": 384,
+    "verified_files": 7,
+    "model_sha256": "bbd7b466f6d58e646fdc2bd5fd67b2f5e93c0b687011bd4548c420f7bd46f0c5"
+  },
+  "corpus_sha256": "cd9e9c30cab6a3125ced02a761d130bdbed374a86af44cfe2eaf4e2b0cbceeef",
+  "runtime": {
+    "python": "3.13.1",
+    "fastembed": "0.9.0",
+    "onnxruntime": "1.31.0",
+    "qdrant-client": "1.19.1",
+    "httpx": "0.28.1"
+  },
+  "vector_search": {
+    "backend": "Qdrant embedded local mode",
+    "distance": "Cosine",
+    "authorization_filter": "tenant equality AND any allowed role, before top-k search"
+  },
+  "generator": "extractive",
+  "language_model_invoked": false,
+  "observations": [
+    {
+      "case": "reader_general_documents",
+      "http_status": 200,
+      "response": {
+        "answer": "Alpha's document processing limit is 20 documents per processing batch.",
+        "abstained": false,
+        "citations": [
+          {
+            "document_id": "alpha-onboarding",
+            "chunk_id": "alpha-onboarding:000:38ec3d7379ef",
+            "text": "Alpha's document processing limit is 20 documents per processing batch. Alpha accepts up to 20 documents per processing batch.",
+            "score": 0.6663520028555912,
+            "tenant_id": "alpha",
+            "allowed_roles": [
+              "reader",
+              "analyst"
+            ],
+            "quote": "Alpha's document processing limit is 20 documents per processing batch."
+          }
+        ],
+        "evidence": [
+          {
+            "chunk_id": "alpha-onboarding:000:38ec3d7379ef",
+            "quote": "Alpha's document processing limit is 20 documents per processing batch."
+          }
+        ],
+        "generator": "extractive-v1",
+        "generation_performed": true,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "analyst_private_documents",
+      "http_status": 200,
+      "response": {
+        "answer": "Alpha's reserve buffer is 18 percent.",
+        "abstained": false,
+        "citations": [
+          {
+            "document_id": "alpha-reserve",
+            "chunk_id": "alpha-reserve:000:5326c18935d3",
+            "text": "Alpha's reserve buffer is 18 percent. Alpha keeps a reserve buffer of 18 percent. Internal fixture marker: ALPHA_INTERNAL_RESERVE_18.",
+            "score": 0.6765647254175909,
+            "tenant_id": "alpha",
+            "allowed_roles": [
+              "analyst"
+            ],
+            "quote": "Alpha's reserve buffer is 18 percent."
+          }
+        ],
+        "evidence": [
+          {
+            "chunk_id": "alpha-reserve:000:5326c18935d3",
+            "quote": "Alpha's reserve buffer is 18 percent."
+          }
+        ],
+        "generator": "extractive-v1",
+        "generation_performed": true,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "analyst-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "cross_tenant_denied",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "This principal cannot query the requested tenant."
+        }
+      }
+    },
+    {
+      "case": "observer_role_denied",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "This principal cannot query the requested tenant."
+        }
+      }
+    },
+    {
+      "case": "no_token_denied",
+      "http_status": 401,
+      "response": {
+        "error": {
+          "code": "invalid_token",
+          "message": "A bounded Bearer token is required."
+        }
+      }
+    },
+    {
+      "case": "reports_audience_denied",
+      "http_status": 401,
+      "response": {
+        "error": {
+          "code": "invalid_token",
+          "message": "The token is invalid for this resource."
+        }
+      }
+    },
+    {
+      "case": "missing_scope_denied",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "This principal cannot query the requested tenant."
+        }
+      }
+    },
+    {
+      "case": "identity_header_spoof_denied",
+      "http_status": 400,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Identity override headers are not accepted."
+        }
+      }
+    },
+    {
+      "case": "identity_body_spoof_denied",
+      "http_status": 422,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Expected only a bounded query and integer top_k from 1 to 5."
+        }
+      }
+    },
+    {
+      "case": "reader_cannot_retrieve_private_document",
+      "http_status": 200,
+      "response": {
+        "answer": "I could not find an authorized passage that answers this question.",
+        "abstained": true,
+        "citations": [],
+        "evidence": [],
+        "generator": "extractive-v1",
+        "generation_performed": false,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "unanswerable_query",
+      "http_status": 200,
+      "response": {
+        "answer": "I could not find an authorized passage that answers this question.",
+        "abstained": true,
+        "citations": [],
+        "evidence": [],
+        "generator": "extractive-v1",
+        "generation_performed": false,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "persistent_store_after_restart",
+      "http_status": 200,
+      "response": {
+        "answer": "Alpha's document processing limit is 20 documents per processing batch.",
+        "abstained": false,
+        "citations": [
+          {
+            "document_id": "alpha-onboarding",
+            "chunk_id": "alpha-onboarding:000:38ec3d7379ef",
+            "text": "Alpha's document processing limit is 20 documents per processing batch. Alpha accepts up to 20 documents per processing batch.",
+            "score": 0.6663520015331854,
+            "tenant_id": "alpha",
+            "allowed_roles": [
+              "reader",
+              "analyst"
+            ],
+            "quote": "Alpha's document processing limit is 20 documents per processing batch."
+          }
+        ],
+        "evidence": [
+          {
+            "chunk_id": "alpha-onboarding:000:38ec3d7379ef",
+            "quote": "Alpha's document processing limit is 20 documents per processing batch."
+          }
+        ],
+        "generator": "extractive-v1",
+        "generation_performed": true,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    }
+  ],
+  "persistence": {
+    "resource_restarted": true,
+    "seed_fixture_replayed": false,
+    "answer_and_cited_content_preserved": true,
+    "maximum_cosine_score_delta": 1.3224057404670475e-09,
+    "score_absolute_tolerance": 1e-06,
+    "before": {
+      "answer": "Alpha's document processing limit is 20 documents per processing batch.",
+      "abstained": false,
+      "citations": [
+        {
+          "document_id": "alpha-onboarding",
+          "chunk_id": "alpha-onboarding:000:38ec3d7379ef",
+          "text": "Alpha's document processing limit is 20 documents per processing batch. Alpha accepts up to 20 documents per processing batch.",
+          "score": 0.6663520028555912,
+          "tenant_id": "alpha",
+          "allowed_roles": [
+            "reader",
+            "analyst"
+          ],
+          "quote": "Alpha's document processing limit is 20 documents per processing batch."
+        }
+      ],
+      "evidence": [
+        {
+          "chunk_id": "alpha-onboarding:000:38ec3d7379ef",
+          "quote": "Alpha's document processing limit is 20 documents per processing batch."
+        }
+      ],
+      "generator": "extractive-v1",
+      "generation_performed": true,
+      "identity": {
+        "tenant_id": "alpha",
+        "client_id": "reader-alpha"
+      },
+      "human_review_required": true,
+      "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+    },
+    "after": {
+      "answer": "Alpha's document processing limit is 20 documents per processing batch.",
+      "abstained": false,
+      "citations": [
+        {
+          "document_id": "alpha-onboarding",
+          "chunk_id": "alpha-onboarding:000:38ec3d7379ef",
+          "text": "Alpha's document processing limit is 20 documents per processing batch. Alpha accepts up to 20 documents per processing batch.",
+          "score": 0.6663520015331854,
+          "tenant_id": "alpha",
+          "allowed_roles": [
+            "reader",
+            "analyst"
+          ],
+          "quote": "Alpha's document processing limit is 20 documents per processing batch."
+        }
+      ],
+      "evidence": [
+        {
+          "chunk_id": "alpha-onboarding:000:38ec3d7379ef",
+          "quote": "Alpha's document processing limit is 20 documents per processing batch."
+        }
+      ],
+      "generator": "extractive-v1",
+      "generation_performed": true,
+      "identity": {
+        "tenant_id": "alpha",
+        "client_id": "reader-alpha"
+      },
+      "human_review_required": true,
+      "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+    }
+  },
+  "limitations": [
+    "synthetic fixture, not a production security review",
+    "retrieval and exact citations do not establish semantic answer correctness",
+    "embedding similarity and configured threshold do not guarantee answerability",
+    "browser sign-in, key rotation and production IAM remain outside this demo"
+  ]
+}

@@ -19,3 +19,50 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - run: python -m enterprise_ai_lab demo --output reports/reference --seed 42
       - run: git diff --exit-code -- reports/reference
+
+  authenticated-rag:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.12', '3.13']
+    env:
+      RUN_RAG_INTEGRATION: '1'
+      RAG_MODEL_DIR: ${{ github.workspace }}/.local/models/minilm
+      IDENTITY_LAB_DIR: ${{ github.workspace }}/.local/identity-boundary-lab
+      NODE_BINARY: node
+      HF_HUB_DISABLE_TELEMETRY: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: edsonsims/identity-boundary-lab
+          ref: 773615f75142f9dca5b019e4a73edc0553754c61
+          path: .local/identity-boundary-lab
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: requirements-rag.lock
+      - run: python -m pip install -r requirements-rag.lock
+      - run: python -m pip install --no-deps -e .
+      - working-directory: .local/identity-boundary-lab
+        run: |
+          npm ci --ignore-scripts
+          npm run build
+      - name: Explicit pinned public model bootstrap
+        run: python -m enterprise_ai_lab.rag.models bootstrap --model-dir "$RAG_MODEL_DIR"
+      - name: Real issuer, HTTP, ONNX and persisted-vector tests
+        run: python -m pytest tests/rag -q
+      - name: Reproduce the connected extractive story
+        run: >-
+          python -m enterprise_ai_lab.rag demo
+          --identity-dir "$IDENTITY_LAB_DIR" --model-dir "$RAG_MODEL_DIR"
+          --store .local/ci-rag-store --out reports/local/ci-rag-demo.json
+      - name: Check observed permissions and persisted content
+        run: python scripts/check_rag_demo.py reports/local/ci-rag-demo.json

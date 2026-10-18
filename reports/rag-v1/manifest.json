@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "data": "authored synthetic documents; no customer or employer data",
+  "identity_source_commit": "773615f75142f9dca5b019e4a73edc0553754c61",
+  "files": {
+    "extractive.json": "4d694f9ca78a85903b8dd45089d181588e7876d6b0c2ac731f8b9f04f30720ce",
+    "qwen-demo.json": "c372c0eb39516cc73f1785c33407283718afb35921b303f05f599f2e7904f8c7",
+    "qwen-strict-observations.json": "69e5a52304310bc1d1c64537e41d071339cd4669b61248d34186aaa708edd825"
+  },
+  "interpretation": "Distinct recorded prompts and observations, not a model-quality benchmark; failures retained; original lexical reference is separate"
+}

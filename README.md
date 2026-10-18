@@ -3,18 +3,122 @@
   <img src="assets/readme-header.svg" alt="Enterprise AI Lab — replayable experiments in permission-aware retrieval" width="1200">
 </picture>
 
-Can a retrieval system return useful context while respecting tenant and role
-boundaries? This lab compares a permission prefilter with an intentionally unsafe
-global ranker, then measures both against the same **synthetic** cases.
+A question should reach the right documents before it reaches a model. This lab
+connects a real local OAuth issuer to dense vector retrieval, tenant/role filters
+and cited answers. Its documents are **synthetic**; the HTTP, cryptography,
+embeddings and persistence are real implementations.
 
-**Available here:** the offline retrieval evaluator and first access-control study.
-[BriefTrace](https://github.com/edsonsims/brieftrace) and
-[Identity Boundary Lab](https://github.com/edsonsims/identity-boundary-lab) continue
-the sequence as standalone projects. The [roadmap](ROADMAP.md) separates each
-implemented milestone from its remaining integrations.
+The original lexical retrieval evaluator is still available below. It is a
+separate controlled experiment, with its original reports preserved.
 
-[Study & counterexample](docs/study-01.md) · [Data contract](docs/data-contract.md) ·
-[Design decisions](docs/decision-log.md) · [Assistance & ownership](AI_ASSISTANCE.md)
+[Identity → RAG design](docs/identity-rag.md) · [Recorded connected demo](reports/rag-v1) ·
+[Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
+
+## Run the connected RAG demo
+
+Use **Python 3.12+** (3.13 for the recorded run) and **Node.js 24**. The locked RAG
+runtime is optional; the original evaluator keeps its dependency-free setup.
+From this repository:
+
+```sh
+python3.13 -m venv .venv
+.venv/bin/python -m pip install -r requirements-rag.lock
+.venv/bin/python -m pip install --no-deps -e .
+
+# Use a sibling checkout; skip cloning if it already exists.
+git clone https://github.com/edsonsims/identity-boundary-lab ../identity-boundary-lab
+(cd ../identity-boundary-lab && npm ci --ignore-scripts && npm run build)
+
+# Explicit one-time download of pinned public embedding assets, about 91 MB.
+.venv/bin/python -m enterprise_ai_lab.rag.models bootstrap --model-dir .local/models/minilm
+
+.venv/bin/python -m enterprise_ai_lab.rag demo \
+  --identity-dir ../identity-boundary-lab \
+  --model-dir .local/models/minilm --store .local/rag-demo \
+  --out reports/local/rag-demo.json
+```
+
+The command owns two separate local processes: Identity Boundary Lab's actual
+`oidc-provider` issuer and this Python resource API. Tokens move through a private
+child-process pipe and HTTP Authorization headers; they are not saved in reports.
+The resource verifies the signature, issuer, **RAG audience**, expiry and scope
+before constructing the vector filter from signed tenant/role claims.
+
+Observed outcomes from the extractive demo:
+
+| Request | Result |
+| --- | --- |
+| Alpha reader asks the processing limit | 200 · **20 documents** · cites `alpha-onboarding` |
+| Alpha analyst asks the reserve buffer | 200 · **18 percent** · cites `alpha-reserve` |
+| Alpha reader asks for the restricted reserve | 200 · abstains · no citations |
+| Token requests another tenant, lacks the access role or lacks `rag:query` | 403 |
+| Missing token or token for the reports audience | 401 |
+| Caller tries to override tenant/roles in headers or JSON | 400 / 422 |
+| Python resource restarts without re-seeding | Same persisted answer and cited content |
+
+The store contains six authored documents split into eight chunks. Retrieval uses
+**384-dimensional MiniLM ONNX embeddings and persistent Qdrant local mode**.
+The Qdrant query applies `tenant AND any allowed role` before top-k; a second
+payload check rejects unexpected results. No globally retrieved context is used
+as a fallback.
+
+The default answer step is an explicit **extractive baseline**, not a neural
+language model. It copies a matching authorized sentence or abstains. The
+[recorded output](reports/rag-v1/extractive.json) includes the complete responses.
+Cosine scores may change slightly after restart; tests preserve exact IDs, text,
+ACLs and answers with a `1e-6` score tolerance.
+
+### Run actual local generation
+
+The optional Qwen adapter performs real CPU generation from those same filtered
+chunks. Install its recorded runtime and explicitly download the pinned public
+checkpoint:
+
+```sh
+.venv/bin/python -m pip install -r requirements-generator.lock
+.venv/bin/python -m enterprise_ai_lab.rag.neural bootstrap --cache-dir .local/models/qwen
+```
+
+That command prints a verified `model_dir`. Pass that path to a new demo run:
+
+```sh
+.venv/bin/python -m enterprise_ai_lab.rag demo \
+  --identity-dir ../identity-boundary-lab --model-dir .local/models/minilm \
+  --store .local/rag-qwen --out reports/local/rag-qwen.json \
+  --generator qwen --generator-model-dir /path/printed/by/bootstrap
+```
+
+Model files stay outside Git. Serving loads verified local files and performs no
+model download. A failed or malformed generation returns an error, with no silent
+extractive fallback. Empty authorized context skips generation entirely.
+
+Generated evidence must name an authorized retrieved chunk and quote it exactly.
+That checks literal provenance, **not semantic faithfulness**. Answers still
+require human review. Read the [actual neural observations](reports/rag-v1) and
+[design limits](docs/identity-rag.md) before interpreting this small fixture.
+
+### Exercise the integration boundaries
+
+```sh
+RUN_RAG_INTEGRATION=1 \
+RAG_MODEL_DIR="$PWD/.local/models/minilm" \
+IDENTITY_LAB_DIR="$PWD/../identity-boundary-lab" \
+.venv/bin/python -m pytest tests/rag -q
+```
+
+These tests exercise actual issuer/resource HTTP, signatures, model embeddings,
+vector filtering, role restrictions, expiry, issuer outage and store restart.
+Other focused tests inject faults into real local persistence, verify admission
+failures never call retrieval, and check malformed generated citations. They are
+identified separately from actual model-generation observations.
+
+Every local index mutation writes a pending marker first. A failed or interrupted
+update makes the running process and a restarted process refuse that store,
+until it is rebuilt from trusted source documents. That favors refusing an
+incomplete permission update over serving stale access metadata.
+
+[Protocol, HTTP errors and study exercises](docs/identity-rag.md) ·
+[Model/fixture provenance](src/enterprise_ai_lab/rag/data/PROVENANCE.md)
 
 ## Run the first experiment
 
@@ -104,9 +208,9 @@ outputs.
 | 2 · Discovery to scope | [BriefTrace](https://github.com/edsonsims/brieftrace#run-the-story): Python compiler, exact source spans, SQLite revisions and a local HTTP API | Missing facts stay questions; proposed criteria require review. No model extraction or commercial approval is implied. |
 | 3 · Identity and authorization | [Identity Boundary Lab](https://github.com/edsonsims/identity-boundary-lab#run-the-experiment): TypeScript, actual OAuth issuer, JWT verification and opaque-token introspection | Compare revocation, issuer availability and tenant/role checks. Browser SSO, SAML and SCIM remain planned. |
 
-Each repository includes its own setup, executable demo, HTTP examples, tests and
-design decisions. They are separate local experiments; they are not yet wired
-into this retrieval pipeline.
+Identity Boundary Lab now supplies the issuer for the connected RAG experiment
+above. BriefTrace remains a separate discovery/compiler study. Each repository
+keeps its own setup, demo, tests and design decisions.
 
 ## Test and study it
 
@@ -126,10 +230,11 @@ Its scores do not establish production security, model accuracy, generalization,
 compliance or customer ROI. The Wilson values in JSON are descriptive binomial
 calculations; the correlated templates do not support population confidence claims.
 
-Identities and ACLs are trusted fixture inputs. Authentication, permission
-synchronization, vector search, generated answers, OCR and live enterprise
-systems are future integrations. The unsafe baseline is only for this offline
-lab; no public service is started.
+In the original lexical experiment, identities and ACLs remain trusted fixture
+inputs. The connected RAG study above adds actual token validation, dense-vector
+retrieval and an optional local generator as a separate path. Permission
+synchronization, OCR and live enterprise systems remain future work. The unsafe
+global baseline is confined to the offline evaluator.
 
 Security filtering is an established pattern. Microsoft's
 [security trimming documentation](https://learn.microsoft.com/en-us/azure/search/search-security-trimming-for-azure-search)

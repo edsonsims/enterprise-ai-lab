@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "enterprise-ai-lab"
-version = "0.1.0"
-description = "Reproducible synthetic experiments in permission-aware retrieval evaluation"
+version = "0.2.0"
+description = "Authenticated local vector RAG and reproducible permission-aware retrieval experiments"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 readme = "README.md"
@@ -18,3 +18,9 @@ enterprise-ai-lab = "enterprise_ai_lab.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[project.optional-dependencies]
+rag = ["numpy==2.5.4", "onnxruntime==1.31.0", "qdrant-client==1.19.1", "fastembed==0.9.0", "fastapi==0.143.3", "pydantic==2.14.1", "uvicorn==0.54.0", "httpx==0.28.1", "PyJWT[crypto]==2.15.1", "cryptography==50.0.2"]
+
+[tool.setuptools.package-data]
+enterprise_ai_lab = ["rag/*.json", "rag/data/*.jsonl", "rag/data/*.md"]

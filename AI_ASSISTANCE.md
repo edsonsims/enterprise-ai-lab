@@ -16,3 +16,23 @@ disclose material assistance and include commands and results that another revie
 can reproduce.
 
 The README visual refresh and original SVG illustrations were also drafted with Codex. The artwork is illustrative, not a screenshot or live system. Runnable README examples and their selected output fields were checked against local CLI/HTTP runs; they do not imply owner review, production use or new model-quality evidence.
+
+
+The connected RAG milestone was also developed and reviewed with Codex. It uses
+an actual Node OAuth issuer, Python JWT verification, local MiniLM ONNX embeddings,
+persistent Qdrant local mode and an optional actual Qwen CPU generator. Separate
+automated agents reviewed authentication/admission and vector/persistence behavior,
+including partial ACL writes and generator context boundaries.
+
+Local Python3.13.1/macOS arm64 verification passes **112 tests and94 subtests**
+with actual embedding and cross-repository integration enabled. Identity Boundary
+Lab separately passes81 Node24.19.0 tests. Controlled negative fixtures/fault
+injection are distinguished from actual provider/model calls. The original14-test
+dependency-free experiment and reports remain separate and reproducible.
+
+The actual optional Qwen observations retain malformed-output rejections and an
+answer whose literal quote does not supply a useful explanation. They are small
+synthetic observations, not an answer-quality benchmark or semantic safety claim.
+No owner human review/study, production deployment or customer validation is
+claimed. Model files and private bearer-token IPC are excluded from Git; published
+prompts/results contain only the authored synthetic corpus.
