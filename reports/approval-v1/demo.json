@@ -1,0 +1,742 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-18T14:15:09.635089+00:00",
+  "experiment": "Actual persistent Temporal approval, verified OAuth service identities, HTTP and local SQLite effects",
+  "runtime": {
+    "python": "3.12.14",
+    "platform": "Darwin",
+    "temporalio": "1.34.0",
+    "cli": {
+      "cli_version": "1.9.1",
+      "server_version": "1.32.0",
+      "platform": "darwin-arm64",
+      "sha256": "33c298d41f6eefebf01a28a3511f444480e939e21d3518cb0c12a4abad467c4b",
+      "bytes": 150806194
+    },
+    "node": "v24.19.0",
+    "identity_bridge_sha256": "33a37045aa34ded9d9e8221bd2a12d43741d21a36accc628036205dbfd7e4102"
+  },
+  "observations": [
+    {
+      "case": "request-created",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-study-note",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:19:33Z",
+          "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null
+      }
+    },
+    {
+      "case": "exact-create-replay",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-study-note",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:19:33Z",
+          "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null
+      }
+    },
+    {
+      "case": "changed-create-conflict",
+      "http_status": 409,
+      "response": {
+        "error": {
+          "code": "approval_conflict",
+          "message": "Request or decision conflicts, is expired, or has a stale snapshot."
+        }
+      }
+    },
+    {
+      "case": "forged-token-denied",
+      "http_status": 401,
+      "response": {
+        "error": {
+          "code": "invalid_token",
+          "message": "Token invalid for the approval resource."
+        }
+      }
+    },
+    {
+      "case": "rag-audience-denied",
+      "http_status": 401,
+      "response": {
+        "error": {
+          "code": "invalid_token",
+          "message": "Token invalid for the approval resource."
+        }
+      }
+    },
+    {
+      "case": "cross-tenant-denied",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "This principal cannot perform that tenant's approval operation."
+        }
+      }
+    },
+    {
+      "case": "wrong-role-denied",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "This principal cannot perform that tenant's approval operation."
+        }
+      }
+    },
+    {
+      "case": "missing-scope-denied",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "This principal cannot perform that tenant's approval operation."
+        }
+      }
+    },
+    {
+      "case": "tampered-snapshot-denied",
+      "http_status": 409,
+      "response": {
+        "error": {
+          "code": "approval_conflict",
+          "message": "Request or decision conflicts, is expired, or has a stale snapshot."
+        }
+      }
+    },
+    {
+      "case": "body-actor-spoof-denied",
+      "http_status": 422,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Only the bounded approval request fields are accepted."
+        }
+      }
+    },
+    {
+      "case": "unknown-request",
+      "http_status": 404,
+      "response": {
+        "error": {
+          "code": "not_found",
+          "message": "No approval request exists in this tenant scope."
+        }
+      }
+    },
+    {
+      "case": "dual-role-request-created",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "self-review",
+          "tenant_id": "alpha",
+          "requested_by": "dual-alpha",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:19:33Z",
+          "snapshot_sha256": "e25f43119decbae29d66531953ac098c4733596d3fab2b5c55df6c9a524708a1"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null
+      }
+    },
+    {
+      "case": "self-approval-denied",
+      "http_status": 409,
+      "response": {
+        "error": {
+          "code": "approval_conflict",
+          "message": "Request or decision conflicts, is expired, or has a stale snapshot."
+        }
+      }
+    },
+    {
+      "case": "pending-after-server-worker-edge-restart",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-study-note",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:19:33Z",
+          "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null
+      }
+    },
+    {
+      "case": "approve-before-effect-ack",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-study-note",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:19:33Z",
+          "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc"
+        },
+        "status": "approved",
+        "publication_status": "pending",
+        "receipt": {
+          "command": {
+            "command_id": "review-1",
+            "tenant_id": "alpha",
+            "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc",
+            "decision": "approve",
+            "actor_id": "approver-alpha",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-18T14:14:34Z"
+        },
+        "effect": null
+      }
+    },
+    {
+      "case": "published-once-after-worker-kill-and-server-restart",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-study-note",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:19:33Z",
+          "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc"
+        },
+        "status": "approved",
+        "publication_status": "published",
+        "receipt": {
+          "command": {
+            "command_id": "review-1",
+            "tenant_id": "alpha",
+            "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc",
+            "decision": "approve",
+            "actor_id": "approver-alpha",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-18T14:14:34Z"
+        },
+        "effect": {
+          "effect_key": "approval/alpha/publish-study-note",
+          "tenant_id": "alpha",
+          "request_id": "publish-study-note",
+          "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc",
+          "note_sha256": "da484c32cfbb10a55722356e2a1a4e06012b9571004703a3afb43c6e3dd6ff54"
+        }
+      }
+    },
+    {
+      "case": "exact-decision-replay",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-study-note",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:19:33Z",
+          "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc"
+        },
+        "status": "approved",
+        "publication_status": "published",
+        "receipt": {
+          "command": {
+            "command_id": "review-1",
+            "tenant_id": "alpha",
+            "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc",
+            "decision": "approve",
+            "actor_id": "approver-alpha",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-18T14:14:34Z"
+        },
+        "effect": {
+          "effect_key": "approval/alpha/publish-study-note",
+          "tenant_id": "alpha",
+          "request_id": "publish-study-note",
+          "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc",
+          "note_sha256": "da484c32cfbb10a55722356e2a1a4e06012b9571004703a3afb43c6e3dd6ff54"
+        }
+      }
+    },
+    {
+      "case": "changed-command-id-payload-conflict",
+      "http_status": 409,
+      "response": {
+        "error": {
+          "code": "approval_conflict",
+          "message": "Request or decision conflicts, is expired, or has a stale snapshot."
+        }
+      }
+    },
+    {
+      "case": "changed-actor-same-command-conflict",
+      "http_status": 409,
+      "response": {
+        "error": {
+          "code": "approval_conflict",
+          "message": "Request or decision conflicts, is expired, or has a stale snapshot."
+        }
+      }
+    },
+    {
+      "case": "changed-digest-same-command-conflict",
+      "http_status": 409,
+      "response": {
+        "error": {
+          "code": "approval_conflict",
+          "message": "Request or decision conflicts, is expired, or has a stale snapshot."
+        }
+      }
+    },
+    {
+      "case": "same-request-id-other-tenant",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-study-note",
+          "tenant_id": "beta",
+          "requested_by": "requester-beta",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:19:33Z",
+          "snapshot_sha256": "5d7166ee263a922cafddc2ca928b535e100af3a00d96840c0f4b91b4dde9744b"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null
+      }
+    },
+    {
+      "case": "beta-approved",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-study-note",
+          "tenant_id": "beta",
+          "requested_by": "requester-beta",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:19:33Z",
+          "snapshot_sha256": "5d7166ee263a922cafddc2ca928b535e100af3a00d96840c0f4b91b4dde9744b"
+        },
+        "status": "approved",
+        "publication_status": "pending",
+        "receipt": {
+          "command": {
+            "command_id": "review-1",
+            "tenant_id": "beta",
+            "snapshot_sha256": "5d7166ee263a922cafddc2ca928b535e100af3a00d96840c0f4b91b4dde9744b",
+            "decision": "approve",
+            "actor_id": "approver-beta",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-18T14:14:55Z"
+        },
+        "effect": null
+      }
+    },
+    {
+      "case": "rejection-request-created",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "reject-study-note",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:19:33Z",
+          "snapshot_sha256": "df249a15441b2417750664bf3beccf549dddd7d4f51198eea13c8f12282fca35"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null
+      }
+    },
+    {
+      "case": "rejected",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "reject-study-note",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:19:33Z",
+          "snapshot_sha256": "df249a15441b2417750664bf3beccf549dddd7d4f51198eea13c8f12282fca35"
+        },
+        "status": "rejected",
+        "publication_status": "not_applicable",
+        "receipt": {
+          "command": {
+            "command_id": "reject-1",
+            "tenant_id": "alpha",
+            "snapshot_sha256": "df249a15441b2417750664bf3beccf549dddd7d4f51198eea13c8f12282fca35",
+            "decision": "reject",
+            "actor_id": "approver-alpha",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-18T14:14:55Z"
+        },
+        "effect": null
+      }
+    },
+    {
+      "case": "independent-reviewer-rejects-self-request",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "self-review",
+          "tenant_id": "alpha",
+          "requested_by": "dual-alpha",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:19:33Z",
+          "snapshot_sha256": "e25f43119decbae29d66531953ac098c4733596d3fab2b5c55df6c9a524708a1"
+        },
+        "status": "rejected",
+        "publication_status": "not_applicable",
+        "receipt": {
+          "command": {
+            "command_id": "dual-reject",
+            "tenant_id": "alpha",
+            "snapshot_sha256": "e25f43119decbae29d66531953ac098c4733596d3fab2b5c55df6c9a524708a1",
+            "decision": "reject",
+            "actor_id": "approver-alpha",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-18T14:14:55Z"
+        },
+        "effect": null
+      }
+    },
+    {
+      "case": "expiry-request-created",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "expire-study-note",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:14:59Z",
+          "snapshot_sha256": "f9d714607e298b5635839bfd8d36d4f5a423eb279b527677bc810475e2f8d7ee"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null
+      }
+    },
+    {
+      "case": "expired-while-worker-absent",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "expire-study-note",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:14:59Z",
+          "snapshot_sha256": "f9d714607e298b5635839bfd8d36d4f5a423eb279b527677bc810475e2f8d7ee"
+        },
+        "status": "expired",
+        "publication_status": "not_applicable",
+        "receipt": null,
+        "effect": null
+      }
+    },
+    {
+      "case": "late-decision-denied",
+      "http_status": 409,
+      "response": {
+        "error": {
+          "code": "approval_conflict",
+          "message": "Request or decision conflicts, is expired, or has a stale snapshot."
+        }
+      }
+    },
+    {
+      "case": "published-after-edge-restart",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-study-note",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "payload": {
+            "title": "Synthetic study note",
+            "body": "Publish this fixture only to the local SQLite notifier."
+          },
+          "expires_at": "2026-10-18T14:19:33Z",
+          "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc"
+        },
+        "status": "approved",
+        "publication_status": "published",
+        "receipt": {
+          "command": {
+            "command_id": "review-1",
+            "tenant_id": "alpha",
+            "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc",
+            "decision": "approve",
+            "actor_id": "approver-alpha",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-18T14:14:34Z"
+        },
+        "effect": {
+          "effect_key": "approval/alpha/publish-study-note",
+          "tenant_id": "alpha",
+          "request_id": "publish-study-note",
+          "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc",
+          "note_sha256": "da484c32cfbb10a55722356e2a1a4e06012b9571004703a3afb43c6e3dd6ff54"
+        }
+      }
+    }
+  ],
+  "histories": [
+    {
+      "request_id": "publish-study-note",
+      "tenant_id": "alpha",
+      "filename": "histories/alpha-publish-study-note.json",
+      "sha256": "622055b68d050340a363f2c8a8a8ce14304ce0e0e45c87a9277cf17520d25be0",
+      "event_count": 18,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+        "EVENT_TYPE_TIMER_CANCELED",
+        "EVENT_TYPE_ACTIVITY_TASK_SCHEDULED",
+        "EVENT_TYPE_ACTIVITY_TASK_STARTED",
+        "EVENT_TYPE_ACTIVITY_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    },
+    {
+      "request_id": "publish-study-note",
+      "tenant_id": "beta",
+      "filename": "histories/beta-publish-study-note.json",
+      "sha256": "2ba91d129a9d3f8e66024e3a79a57d7548e5151892752cba8fd5eaa00e74c55f",
+      "event_count": 18,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+        "EVENT_TYPE_TIMER_CANCELED",
+        "EVENT_TYPE_ACTIVITY_TASK_SCHEDULED",
+        "EVENT_TYPE_ACTIVITY_TASK_STARTED",
+        "EVENT_TYPE_ACTIVITY_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    },
+    {
+      "request_id": "reject-study-note",
+      "tenant_id": "alpha",
+      "filename": "histories/alpha-reject-study-note.json",
+      "sha256": "326d1eedabde51e42dee713836567100a49a6a8a8e9785597b8ba9354368f4a5",
+      "event_count": 12,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+        "EVENT_TYPE_TIMER_CANCELED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    },
+    {
+      "request_id": "self-review",
+      "tenant_id": "alpha",
+      "filename": "histories/alpha-self-review.json",
+      "sha256": "cc61d62fa64c09e3f91fd27a28ffad36ecb21b26f15deb0169ce251fc6ccd8bb",
+      "event_count": 12,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+        "EVENT_TYPE_TIMER_CANCELED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    },
+    {
+      "request_id": "expire-study-note",
+      "tenant_id": "alpha",
+      "filename": "histories/alpha-expire-study-note.json",
+      "sha256": "3d0b2dfcb7d12dc0284e7afb3f7a544759a4ae2591da136e483219827926211b",
+      "event_count": 12,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_TIMER_FIRED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_TIMED_OUT",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    }
+  ],
+  "durability": {
+    "worker_killed_after_commit": true,
+    "server_restarted": true,
+    "edge_restarted": true,
+    "notification_rows_for_primary": 1,
+    "total_notifications": 2,
+    "pending_request_preserved": true,
+    "expiry_while_worker_absent": true,
+    "before_crash_activity_completed": false
+  },
+  "local_notifications": [
+    {
+      "effect_key": "approval/alpha/publish-study-note",
+      "tenant_id": "alpha",
+      "request_id": "publish-study-note",
+      "snapshot_sha256": "469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc",
+      "note_sha256": "da484c32cfbb10a55722356e2a1a4e06012b9571004703a3afb43c6e3dd6ff54",
+      "note_json": "{\"body\":\"Publish this fixture only to the local SQLite notifier.\",\"title\":\"Synthetic study note\"}",
+      "receipt_json": "{\"accepted_at\":\"2026-10-18T14:14:34Z\",\"command\":{\"actor_id\":\"approver-alpha\",\"actor_roles\":[\"approver\"],\"command_id\":\"review-1\",\"decision\":\"approve\",\"snapshot_sha256\":\"469c46915fd71403f515f7a9213874df970baf2912d7071328b014c2d45bf1bc\",\"tenant_id\":\"alpha\"}}",
+      "published_at": "2026-10-18T14:14:34Z"
+    },
+    {
+      "effect_key": "approval/beta/publish-study-note",
+      "tenant_id": "beta",
+      "request_id": "publish-study-note",
+      "snapshot_sha256": "5d7166ee263a922cafddc2ca928b535e100af3a00d96840c0f4b91b4dde9744b",
+      "note_sha256": "da484c32cfbb10a55722356e2a1a4e06012b9571004703a3afb43c6e3dd6ff54",
+      "note_json": "{\"body\":\"Publish this fixture only to the local SQLite notifier.\",\"title\":\"Synthetic study note\"}",
+      "receipt_json": "{\"accepted_at\":\"2026-10-18T14:14:55Z\",\"command\":{\"actor_id\":\"approver-beta\",\"actor_roles\":[\"approver\"],\"command_id\":\"review-1\",\"decision\":\"approve\",\"snapshot_sha256\":\"5d7166ee263a922cafddc2ca928b535e100af3a00d96840c0f4b91b4dde9744b\",\"tenant_id\":\"beta\"}}",
+      "published_at": "2026-10-18T14:14:55Z"
+    }
+  ],
+  "replay": {
+    "histories": 5,
+    "all_passed": true,
+    "no_new_local_effects": true
+  },
+  "human_review_performed": false,
+  "limitations": [
+    "Client-credentials fixture identities simulate a reviewer; no human login or owner approval is recorded.",
+    "The Temporal development gRPC endpoint is trusted local administration and bypasses HTTP authorization.",
+    "The only effect is a synthetic local SQLite row; no email, deployment or external action.",
+    "Effect deduplication requires the preserved local database; Temporal update/request deduplication is bounded by retained history.",
+    "This development server, offline key snapshot and workflow code have no production operations/version-migration validation."
+  ]
+}

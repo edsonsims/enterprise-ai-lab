@@ -15,6 +15,7 @@ separate controlled experiment, with its original reports preserved.
 
 [PDF/OCR demo](#ingest-public-pdfs-and-scans) · [Identity → RAG design](docs/identity-rag.md) ·
 [Recorded public run](reports/pdf-v1/demo.json) · [Connected synthetic demo](reports/rag-v1) ·
+[Durable approval demo](#wait-for-approval-survive-a-restart) ·
 [Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
 
 ## Run the connected RAG demo
@@ -184,6 +185,35 @@ This is a two-page integration fixture, with one clean raster OCR page. It does
 not establish OCR accuracy on damaged scans, handwriting, difficult layouts or
 other languages. Native reading order and OCR text can lose layout; literal
 citations still require interpretation and human review.
+
+## Wait for approval, survive a restart
+
+The next study adds a durable gate for one small action: publish a local note.
+It uses actual **Temporal**, a verified OAuth reviewer identity and a separate
+SQLite sink. The approval binds the exact note, tenant, requester and deadline.
+A rejected or expired request cannot run the note activity.
+
+The process demo restarts the persistent server and HTTP API, then kills a
+worker after the note commits but before its acknowledgement. Recovery checks
+that the matching local effect stays a single row. Captured histories also run
+through the SDK Replayer. Approval and successful publication are separate states.
+
+Use Python 3.12+, Node 24, and the [approval setup](docs/durable-approval.md),
+including `requirements-approval.lock` and the explicit pinned CLI bootstrap:
+
+```sh
+.venv-approval/bin/python -m enterprise_ai_lab.approval demo \
+  --temporal-cli .local/temporal-bin/temporal \
+  --identity-dir ../identity-boundary-lab --node node \
+  --work-dir .local/approval-demo \
+  --out reports/local/approval-demo.json
+```
+
+The reviewer is a **scripted service identity**, not a logged-in person. The
+notification is local; no external message is sent. The development Temporal
+endpoint trusts local administrators, so HTTP authentication is not a production
+security boundary for gRPC. Read the [protocol, tradeoffs and exercises](docs/durable-approval.md)
+and [recorded process run](reports/approval-v1/demo.json).
 
 ## Run the first experiment
 

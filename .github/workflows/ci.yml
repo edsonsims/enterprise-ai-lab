@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: edsonsims/identity-boundary-lab
-          ref: 773615f75142f9dca5b019e4a73edc0553754c61
+          ref: 26215ef9cdf01162b168d4031c7929400ee4c96c
           path: .local/identity-boundary-lab
           persist-credentials: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
@@ -76,3 +76,42 @@ jobs:
           --manifest public-data/pdf-v1/ingestion.json
           --identity-dir "$IDENTITY_LAB_DIR" --model-dir "$RAG_MODEL_DIR"
           --store .local/ci-pdf-store --out reports/local/ci-pdf-demo.json
+
+  durable-approval:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.12', '3.13']
+    env:
+      RUN_APPROVAL_INTEGRATION: '1'
+      TEMPORAL_CLI: ${{ github.workspace }}/.local/temporal-bin/temporal
+      IDENTITY_LAB_DIR: ${{ github.workspace }}/.local/identity-boundary-lab
+      NODE_BINARY: node
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: edsonsims/identity-boundary-lab
+          ref: 26215ef9cdf01162b168d4031c7929400ee4c96c
+          path: .local/identity-boundary-lab
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: requirements-approval.lock
+      - run: python -m pip install -r requirements-approval.lock
+      - run: python -m pip install --no-deps -e .
+      - working-directory: .local/identity-boundary-lab
+        run: |
+          npm ci --ignore-scripts
+          npm run build
+      - name: Explicit anonymous hash-verified official Temporal bootstrap
+        run: python -m enterprise_ai_lab.approval.bootstrap bootstrap --directory .local/temporal-bin
+      - name: Real persistent Temporal, signed OAuth HTTP, crash, timer and replay tests
+        run: python -m pytest tests/approval -q

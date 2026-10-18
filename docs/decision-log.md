@@ -107,3 +107,44 @@ extractive answer baseline. Negative PDFs, controlled vectors and injected
 failures remain identified as test fixtures. Difficult-scan accuracy, broad OCR
 error analysis, live entitlement synchronization and owner human review remain
 outside this milestone.
+
+## 2026-10-18: bind a durable decision to the action being reviewed
+
+**Question.** Can an approval wait survive process failure without losing the
+reviewed payload or duplicating the resulting action?
+
+**Decision.** Use an actual Temporal workflow with a bounded, immutable snapshot.
+Hash the fixed local-note action, full payload, tenant, requester, request ID and
+deadline together. Derive decision actors from a dedicated verified OAuth
+audience; require an independent approver. Use a validated synchronous Update so
+the caller receives a durable decision receipt. A workflow timer limits decision
+acceptance, while an already approved activity may finish after that deadline.
+
+**Effect boundary.** Publish only to a local SQLite note sink. The activity
+commits a unique tenant/request key with the full snapshot/decision content and
+checks exact equality on redelivery. A killed worker can lose the acknowledgement
+after commit; a retry then returns the same local effect receipt. This handles a
+specific at-least-once delivery gap without claiming a distributed transaction
+or exactly-once external messaging. Approval remains distinct from publication.
+
+**Idempotency finding.** Temporal deduplicates an Update ID before invoking its
+validator. Hash the entire server-derived decision command into the Update ID
+and check the returned receipt against that command. A command ID alone could
+return an old acceptance when the caller supplies altered content. Identical
+retries retain their receipt; altered requests and terminal decisions conflict.
+
+**Alternatives and cost.** A SQLite-only queue would need less runtime setup,
+but would leave durable waits, timers and replay semantics to this repository.
+Temporal provides those mechanisms and a stronger recovery experiment, with an
+additional server, SDK and code-versioning burden. The pinned native development
+server keeps the demo local and offline after explicit bootstrap; it does not
+exercise a distributed cluster or production operations.
+
+**Evidence and limits.** Actual server/API restart, a separate worker killed
+after sink commit and captured-history replay are distinct checks. Controlled
+negative inputs and fault hooks remain labelled. The reviewer is a scripted
+service identity, not a logged-in human. The local unauthenticated gRPC endpoint
+trusts developer/admin callers; HTTP JWT validation does not protect that path.
+Human review UI, production authorization, history/version migrations, retention
+and external actions remain planned. No owner study or live customer use is
+claimed.

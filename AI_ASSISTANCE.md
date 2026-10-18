@@ -67,3 +67,38 @@ handling, sentence-boundary splits, equal-byte aliases with false source-page
 mappings, original-source replacement between hash verification and extraction,
 non-regular manifest inputs and malformed stored provenance. These are tested
 engineering boundaries, not a general security audit or human review.
+
+The durable approval extension was developed with Codex on 2026-10-18. Automated
+agents separately implemented the Temporal core/bootstrap and reviewed the
+OAuth/HTTP boundary. Core verification used real Temporal Updates, durable timers,
+activity retries and SDK history replay; the process demo separately exercises
+persistent server/API restart and a worker killed after a local effect commits.
+Controlled archive fixtures, forged credentials/claims and injected failures are
+identified separately from actual issuer/server calls.
+
+The request and review accounts are authored client-credentials fixtures. A
+scripted reviewer accepting a note is **not a person's approval**, owner review,
+browser sign-in or completion of the study. The note is an authored local demo
+artifact; nothing is sent to an external service. The approved snapshot and
+effect receipt describe this bounded local operation, not customer acceptance,
+business impact or production authorization.
+
+The [recorded approval run](reports/approval-v1/demo.json) and
+[approval design](docs/durable-approval.md) retain process/fault observations,
+idempotency limits and the trusted development gRPC boundary. Raw JWTs are not
+included in workflow history, notification rows or public reports. No new model
+evaluation or human study is claimed by this milestone.
+
+Final combined local verification on Python 3.13.1/macOS arm64 passed **289 tests
+and 167 subtests** with RAG/PDF and approval integrations enabled. This includes
+81 approval tests and their 73 subtests. The recorded approval process demo used
+Python 3.12.14 and retains 29 HTTP observations, five actual exported/replayed
+histories, a worker kill after local commit before acknowledgement, and the
+subsequent Temporal activity attempt 2 with one completed Alpha effect.
+
+The initial combined test setup omitted the pytest asyncio plugin, so the actual
+async Temporal test could not run. The verification lock now includes the exact
+`pytest-asyncio==1.4.0` dependency; the complete combined suite subsequently
+passed. Original reference files remain byte-identical. Identity Boundary Lab
+separately passed 89 Node 24.19.0 tests; its approval scopes are role-bounded
+provider grants, and the resource still checks role and scope independently.

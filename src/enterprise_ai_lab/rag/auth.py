@@ -13,6 +13,7 @@ import jwt
 
 RAG_AUDIENCE = 'urn:identity-boundary:rag'
 RAG_SCOPE = 'rag:query'
+APPROVAL_AUDIENCE = 'urn:identity-boundary:approval'
 _NAME = re.compile(r'[a-z][a-z0-9:_-]{0,63}\Z')
 _COMPACT = re.compile(r'[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\Z')
 
@@ -99,7 +100,10 @@ def fetch_object(url: str, *, timeout: float = 1.0, max_bytes: int = 32768) -> d
 class JwtVerifier:
     """Startup JWKS snapshot. It never follows URLs supplied in a token."""
 
-    def __init__(self, issuer: str, jwks: dict):
+    def __init__(self, issuer: str, jwks: dict, *, audience: str = RAG_AUDIENCE):
+        if audience not in (RAG_AUDIENCE, APPROVAL_AUDIENCE):
+            raise ValueError('Unsupported local resource audience.')
+        self.audience = audience
         self.issuer = local_origin(issuer)
         keys = jwks.get('keys')
         if not isinstance(keys, list) or not 1 <= len(keys) <= 8:
@@ -119,7 +123,7 @@ class JwtVerifier:
             self._keys[key['kid']] = public
 
     @classmethod
-    def discover(cls, issuer: str) -> 'JwtVerifier':
+    def discover(cls, issuer: str, *, audience: str = RAG_AUDIENCE) -> 'JwtVerifier':
         origin = local_origin(issuer)
         metadata = fetch_object(origin + '/.well-known/openid-configuration')
         if metadata.get('issuer') != origin or not isinstance(metadata.get('jwks_uri'), str):
@@ -129,7 +133,7 @@ class JwtVerifier:
                 or target.port != urlsplit(origin).port or target.username or target.password
                 or target.query or target.fragment):
             raise ValueError('Issuer keys must stay on the configured origin.')
-        return cls(origin, fetch_object(metadata['jwks_uri']))
+        return cls(origin, fetch_object(metadata['jwks_uri']), audience=audience)
 
     def verify(self, token: str):
         from .contracts import RagPrincipal
@@ -146,11 +150,11 @@ class JwtVerifier:
                     or 'crit' in header or 'b64' in header):
                 raise ValueError('Unsupported token header.')
             claims = jwt.decode(token, self._keys[header['kid']], algorithms=['RS256'],
-                issuer=self.issuer, audience=RAG_AUDIENCE, leeway=0,
+                issuer=self.issuer, audience=self.audience, leeway=0,
                 options={'require': ['iss', 'aud', 'exp', 'iat', 'sub', 'client_id', 'jti'],
                          'strict_aud': True})
             now = time.time()
-            if (claims != proposed or claims.get('iss') != self.issuer or claims.get('aud') != RAG_AUDIENCE
+            if (claims != proposed or claims.get('iss') != self.issuer or claims.get('aud') != self.audience
                     or type(claims['exp']) is not int or type(claims['iat']) is not int
                     or claims['iat'] > now or claims['exp'] <= now
                     or not 0 < claims['exp'] - claims['iat'] <= 60 or now - claims['iat'] >= 60
