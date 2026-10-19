@@ -31,7 +31,9 @@ def _sha(path: Path) -> str:
 
 def _server_pid(database: Path) -> int:
     """Observe a real direct child without using private SDK transport fields."""
-    result = subprocess.run(["ps", "-ax", "-o", "pid=,ppid=,command="],
+    # procps may truncate a captured command column to terminal width. Explicit
+    # unlimited width is necessary for Python/fixture paths on Linux runners.
+    result = subprocess.run(["ps", "-ww", "-ax", "-o", "pid=,ppid=,args="],
                             capture_output=True, text=True, check=True, timeout=2)
     matches = []
     for line in result.stdout.splitlines():

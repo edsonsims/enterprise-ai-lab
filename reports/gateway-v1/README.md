@@ -3,6 +3,8 @@
 This is an **actual local process run on 2026-10-19**, not a model evaluation or
 enterprise deployment. [demo.json](demo.json) retains the complete synthetic
 responses, schemas, metadata-only audit and observed runtime/protocol details.
+It was captured from source commit
+`40071b5af0a6174432ccdac8c2ad48ab31579647`; its source fingerprints remain frozen.
 The fixture and profiles are explicitly authored policy, not authentication or
 customer data. No Oracle/SAP system, model or remote identity provider is called.
 
@@ -54,6 +56,9 @@ IDs and chain invariants. Observed timings are diagnostics, not a performance
 benchmark. The source JSON SHA is
 `7f37ae73b4c670f22276e43170517b5c30a6ecaadbb7aba07231d20e271def56`.
 The report also fingerprints the exact gateway source files used.
+The subsequent Linux portability repair requests unlimited-width `ps` output
+when observing long server commands. It changes process observation, not tool
+results; current source fingerprints therefore differ from the preserved run.
 
 The focused suite adds actual SDK timeout, caller-deadline and cancellation
 tests, including cancellation after observing a committed remote intent,

@@ -258,3 +258,11 @@ The local hash chain has no external anchor against a host administrator, and
 the source/audit databases are not one atomic transaction. Trusted launcher,
 host/filesystem and authored schema remain explicit limits. No new model-quality,
 production-security, customer-outcome, owner-study or human-review claim is made.
+
+The first Linux gateway CI run reached the actual official client/server
+connection but failed at the child-PID observer: procps can truncate captured
+command columns, so long Python/fixture paths were not matched. The observer
+now requests unlimited-width `ps` output. This portability repair retains the
+frozen macOS run and its original source fingerprints, rather than rewriting
+that evidence to imply it used later code. The gateway-focused checks are
+repeated after the repair; the CI history retains the original failure.
