@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-19T16:17:29.666924+00:00",
+  "controlled_fault": true,
+  "fault": "publication_worker_absent_during_initial_create",
+  "original_ci_failure_cause": "unknown",
+  "human_review_performed": false,
+  "source": {
+    "repository_commit": "1f898c70bfa926bf9bdff24987b1cd67141735ee",
+    "file_hashes_bind_measured_working_tree": true,
+    "files_sha256": {
+      "src/enterprise_ai_lab/diagnostics.py": "a7be1b537338eee5ea87991dbcd76cc659242b89911d7b9765871b611b52bd2f",
+      "src/enterprise_ai_lab/publication/gateway.py": "50d966b9376cca2599d86a69928f387403c105ce854ee707e5a73c997fa7aa8a",
+      "src/enterprise_ai_lab/publication/workflow.py": "30754088962e737880cf4d490ebf494f5d0afc8ba4db345c3ece3623b8279af2",
+      "src/enterprise_ai_lab/review/__main__.py": "4b72cafe7e1b99965b3c2bf1c6ba45efb6ee45c6fdbc16266e07900ce86b25c4",
+      "src/enterprise_ai_lab/review/api.py": "9e9b8b872782c5a0eae3cb1b4bca238cc3a85b65b228dac05136162eecee4524",
+      "src/enterprise_ai_lab/review/core.py": "19b3c6951c402c007518df11628825e48a44efa25d8a99063ede3b1f0648f41b",
+      "src/enterprise_ai_lab/review/failure.py": "d0280db7c91d7391d00d6b20470bd7c2d27e30f35fce936db0720b4fa3022841",
+      "src/enterprise_ai_lab/review/integration.py": "74a1483927008e484c812e775773f205b736df0047354327c55368465dcfcb7a",
+      "src/enterprise_ai_lab/review/diagnostic_probe.py": "3bc417899629de78258b3b23d89e4a5bc4814c099db72f34c6053643014fa37c",
+      "public-data/pdf-v1/ingestion.json": "ff0fe614370ece259d8971301a038f95231e4ea9369838d0a7a1c37abe88706e"
+    },
+    "identity_repository_commit": "70e663c69ad96997c394581fa9df33487d2e3390",
+    "identity_artifacts_sha256": {
+      "dist/bridge.js": "33a37045aa34ded9d9e8221bd2a12d43741d21a36accc628036205dbfd7e4102",
+      "dist/review-bridge.js": "7180049d6019e59139bdfa83c9d4828ae762eeafd8b19b1e6b7e284303e598cf",
+      "dist/review-issuer.js": "d8ce629cf39732b0b953a5061fdfe10f395b514a5033615c0c27ab3498c164cf"
+    },
+    "trusted_manifest_sha256": "ff0fe614370ece259d8971301a038f95231e4ea9369838d0a7a1c37abe88706e"
+  },
+  "runtime": {
+    "python": "3.13.1",
+    "platform": "Darwin",
+    "pypdf": "6.21.1",
+    "pypdfium2": "5.14.0",
+    "pillow": "12.3.0",
+    "tesseract": "tesseract 5.5.1",
+    "english_traineddata_sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+    "ocr_language": "eng",
+    "ocr_dpi": 180,
+    "ocr_psm": 3,
+    "machine": "arm64",
+    "temporalio": "1.34.0",
+    "httpx": "0.28.1",
+    "onnxruntime": "1.31.0",
+    "qdrant-client": "1.19.1",
+    "node": "v24.19.0"
+  },
+  "cli": {
+    "cli_version": "1.9.1",
+    "server_version": "1.32.0",
+    "platform": "darwin-arm64",
+    "sha256": "33c298d41f6eefebf01a28a3511f444480e939e21d3518cb0c12a4abad467c4b",
+    "bytes": 150806194
+  },
+  "embedding": {
+    "repository": "Qdrant/all-MiniLM-L6-v2-onnx",
+    "revision": "d13954661f83248295ba75c1ed411eef3b7b936e",
+    "dimensions": 384,
+    "verified_files": 7,
+    "model_sha256": "bbd7b466f6d58e646fdc2bd5fd67b2f5e93c0b687011bd4548c420f7bd46f0c5"
+  },
+  "oidc": {
+    "flow": "authorization_code",
+    "pkce": "S256",
+    "subject": "requester-alpha",
+    "tenant_id": "alpha",
+    "roles": [
+      "requester",
+      "reader"
+    ]
+  },
+  "submission": {
+    "request_id": "controlled-accepted-without-worker",
+    "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+    "expected_revision": 0,
+    "expires_at": "2026-10-19T16:27:25Z",
+    "canonical_sha256": "5fc0fa81606eb4dbd54b02173afc43ff09d22aec599d5319feabccd1da9fc0eb",
+    "total_post_attempts": 2,
+    "identical_retry": true,
+    "rpc_timeout_seconds": 3.0,
+    "api_operation_timeout_seconds": 12
+  },
+  "public_candidate": {
+    "document_count": 2,
+    "documents": [
+      {
+        "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+        "tenant_id": "alpha",
+        "allowed_roles": [
+          "reader"
+        ],
+        "provenance": {
+          "source_id": "nist-zero-trust",
+          "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+          "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+          "source_page": 15,
+          "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+          "artifact_page": 15,
+          "method": "native",
+          "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+        }
+      },
+      {
+        "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+        "tenant_id": "alpha",
+        "allowed_roles": [
+          "analyst"
+        ],
+        "provenance": {
+          "source_id": "nist-ai-rmf",
+          "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+          "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+          "source_page": 25,
+          "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+          "artifact_page": 1,
+          "method": "ocr",
+          "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+        }
+      }
+    ]
+  },
+  "initial": {
+    "http_status": 503,
+    "elapsed_seconds": 3.011631,
+    "failure": {
+      "schema_version": 1,
+      "phase": "create_initial",
+      "http": {
+        "status": 503,
+        "format": "json",
+        "error_code": "unavailable"
+      },
+      "diagnostics_status": "available",
+      "diagnostics_complete": true,
+      "diagnostics": [
+        {
+          "category": "rpc",
+          "exception_type": "rpc_error",
+          "operation": "review_create",
+          "rpc_status": "CANCELLED",
+          "schema_version": 1,
+          "sqlite_error": null,
+          "stage": "temporal_query"
+        }
+      ],
+      "children": {
+        "portal": "running",
+        "resource": "unavailable"
+      }
+    },
+    "workflow_status": "RUNNING",
+    "run_id": "01a154f4-1935-72bb-9fae-cf54e4c6bef1",
+    "history": {
+      "event_count": 2,
+      "workflow_start_count": 1,
+      "workflow_task_completed_count": 0,
+      "activity_scheduled_count": 0,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED"
+      ]
+    },
+    "publication_effect_count": 0,
+    "tenant_revision": 0
+  },
+  "recovery": {
+    "http_status": 200,
+    "status": "pending",
+    "publication_status": "not_started",
+    "same_workflow_run": true,
+    "worker_ready_workflow_task_count": 1,
+    "history": {
+      "event_count": 5,
+      "workflow_start_count": 1,
+      "workflow_task_completed_count": 1,
+      "activity_scheduled_count": 0,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED"
+      ]
+    },
+    "publication_effect_count": 0,
+    "tenant_revision": 0,
+    "rag": {
+      "http_status": 200,
+      "abstained": true,
+      "citation_count": 0
+    }
+  },
+  "limitations": [
+    "Deliberate missing-worker fault, not a reproduction or explanation of the original intermittent CI failure.",
+    "The accepted start and later snapshot RPC failure are separate RPCs; HTTP failure does not mean the start was rejected.",
+    "Actual RPC status is retained without inferring its internal cause from elapsed time or a configured deadline.",
+    "One explicit identical retry after observed worker readiness; no automatic retry or timeout increase.",
+    "Automated fixture-account login, no person review or approval, and no publication activity.",
+    "Loopback development Temporal, trusted filesystem and public two-page native/OCR fixture only."
+  ]
+}

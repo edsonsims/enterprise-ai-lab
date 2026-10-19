@@ -153,6 +153,8 @@ jobs:
     env:
       RUN_REVIEW_INTEGRATION: '1'
       RUN_REVIEW_BROWSER: '1'
+      RUN_REVIEW_DIAGNOSTIC: '1'
+      REVIEW_FAILURE_REPORT: ${{ github.workspace }}/reports/local/review-failure.json
       TEMPORAL_CLI: ${{ github.workspace }}/.local/temporal-bin/temporal
       RAG_MODEL_DIR: ${{ github.workspace }}/.local/models/minilm
       IDENTITY_LAB_DIR: ${{ github.workspace }}/.local/identity-boundary-lab
@@ -194,3 +196,18 @@ jobs:
       - run: python -m enterprise_ai_lab.approval.bootstrap bootstrap --directory .local/temporal-bin
       - name: Actual browser login, permitted PDF pages, decisions, audit and published RAG
         run: python -m pytest tests/review -q
+      - name: Validate and export only finite failure metadata
+        id: failure-metadata
+        if: failure()
+        run: >-
+          python scripts/export_review_failure.py
+          reports/local/review-failure.json reports/local/review-failure-upload.json
+          >> "$GITHUB_OUTPUT"
+      - name: Retain safe failure metadata for diagnosis
+        if: failure() && steps.failure-metadata.outputs.valid == 'true'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: review-failure-python-${{ matrix.python }}
+          path: reports/local/review-failure-upload.json
+          if-no-files-found: error
+          retention-days: 7

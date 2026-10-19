@@ -36,6 +36,7 @@ from ..rag.models import verify_model
 from ..rag.pdf_corpus import load_pdf_documents
 from ..rag.pdf_demo import extraction_runtime
 from .audit import AuditLog
+from .failure import capture_failure, http_summary, phase_for_case, save_failure
 
 
 class Form(HTMLParser):
@@ -66,11 +67,14 @@ class HumanIssuer:
 
 
 class Portal:
-    def __init__(self, *, issuer, address, queue, database, audit, manifest, port):
+    def __init__(self, *, issuer, address, queue, database, audit, manifest, port, diagnostics_path=None):
         root = Path(__file__).resolve().parents[3]
-        self.process = _JsonProcess([sys.executable, "-m", "enterprise_ai_lab.review", "serve",
+        command = [sys.executable, "-m", "enterprise_ai_lab.review", "serve",
             "--issuer", issuer, "--address", address, "--task-queue", queue, "--database", str(database),
-            "--audit-database", str(audit), "--manifest", str(manifest), "--port", str(port)],
+            "--audit-database", str(audit), "--manifest", str(manifest), "--port", str(port)]
+        if diagnostics_path is not None:
+            command += ["--diagnostics-file", str(diagnostics_path)]
+        self.process = _JsonProcess(command,
             cwd=root, env={**os.environ, "PYTHONPATH": str(root/"src")})
         try:
             ready = self.process.read()
@@ -146,17 +150,24 @@ async def run_demo(args):
     env = resource = portal = None
     clients, observations, previews, histories = [], [], [], []
     audit_path = work/"review-audit.sqlite3"
+    diagnostics_path = work/"portal-diagnostics.jsonl"
+    failure_out = Path(getattr(args, "failure_out", None) or out.parent/"failure.json")
+    failure_context = {"phase": "setup", "http": None}
 
     def require(condition, message):
         if not condition: raise IntegrationError(message)
     def client(username):
+        failure_context.update(phase="login", http=None)
         browser = BrowserProtocol(origin, human.issuer); clients.append(browser)
         login = browser.login(username, passwords[username])
         require(login["user"]["subject"] == username, "OIDC subject was collapsed into the shared app client.")
         observations.append({"case": "login-"+username, "http_status": 200, "response": login})
         return browser
     def observe(browser, case, path, *, expected=200, **kwargs):
+        failure_context.update(phase=phase_for_case(case), http=None)
         response = browser.call(path, **kwargs)
+        if response.status_code != expected:
+            failure_context["http"] = http_summary(response)
         require(response.status_code == expected, f"Review case {case} returned unexpected status {response.status_code}.")
         body = response.json()
         observations.append({"case": case, "http_status": response.status_code, "response": body})
@@ -177,6 +188,7 @@ async def run_demo(args):
             await asyncio.sleep(0.1)
         raise IntegrationError("Approved human review did not publish within its bounded wait.")
     def preview(browser, detail, document, variant="artifact"):
+        failure_context.update(phase="preview", http=None)
         path = f"/api/reviews/{detail['request']['request_id']}/documents/{document['document_id']}/pdf"
         if variant == "original": path += "?variant=original"
         response = browser.call(path)
@@ -194,7 +206,7 @@ async def run_demo(args):
         resource = LocalProcess("resource", issuer=service_identity.issuer, address=address, queue=queue,
             database=candidates.database_path, model_dir=model_dir, store=work/"vectors")
         portal = Portal(issuer=human.issuer,address=address,queue=queue,database=candidates.database_path,
-            audit=audit_path,manifest=manifest,port=portal_port)
+            audit=audit_path,manifest=manifest,port=portal_port,diagnostics_path=diagnostics_path)
         unauth = BrowserProtocol(origin,human.issuer); clients.append(unauth)
         observe(unauth,"unauthenticated-api","/api/reviews",expected=401)
         requester = client("requester-alpha")
@@ -246,7 +258,7 @@ async def run_demo(args):
         before=observe(reviewer,"audit-before-restart","/api/audit")
         portal.close(); portal=None
         portal=Portal(issuer=human.issuer,address=address,queue=queue,database=candidates.database_path,
-            audit=audit_path,manifest=manifest,port=portal_port)
+            audit=audit_path,manifest=manifest,port=portal_port,diagnostics_path=diagnostics_path)
         observe(reviewer,"old-session-denied-after-portal-restart","/api/session",expected=401)
         reviewer=client("analyst-reviewer-alpha")
         after=observe(reviewer,"audit-after-restart","/api/audit")
@@ -263,6 +275,7 @@ async def run_demo(args):
             create(requester,"browser-reject",native,revision=1)
             create(beta_requester,"browser-beta",beta,revision=1)
             browser_out=work/"browser-checks.json"
+            failure_context.update(phase="browser", http=None)
             root=Path(__file__).resolve().parents[3]
             process=await asyncio.create_subprocess_exec(args.node,str(root/"tests/review/browser.mjs"),origin,str(accounts),str(browser_out),
                 cwd=root,stdout=asyncio.subprocess.PIPE,stderr=asyncio.subprocess.PIPE)
@@ -279,6 +292,7 @@ async def run_demo(args):
         require(len(effects)==expected_effects,"Review replay or rejection changed publication count.")
         out.parent.mkdir(parents=True,exist_ok=True)
         replayer=Replayer(workflows=[DocumentPublicationWorkflow])
+        failure_context.update(phase="replay", http=None)
         pairs=[("alpha","review-public-pages"),("alpha","reject-public-pages"),("beta","beta-public-pages")]
         if browser_result: pairs += [("alpha","browser-main"),("alpha","browser-reject"),("beta","browser-beta")]
         for tenant,request_id in pairs:
@@ -319,6 +333,21 @@ async def run_demo(args):
             print(json.dumps({"event":"ready","url":origin,"accounts_file":str(accounts),"fixture_only":True}),flush=True)
             await asyncio.Event().wait()
         return json.loads(encoded)
+    except BaseException:
+        # Export only validated finite metadata before child pipes/private state
+        # disappear. A diagnostic failure must not hide the original exception.
+        saved = False
+        try:
+            summary = capture_failure(phase=failure_context["phase"], http=failure_context["http"],
+                diagnostics_path=diagnostics_path, portal=None if portal is None else portal.process,
+                resource=None if resource is None else resource.process)
+            save_failure(failure_out, summary)
+            saved = True
+        except Exception:
+            pass
+        print(json.dumps({"event": "failure_diagnostics", "saved": saved,
+            "phase": failure_context["phase"]}), flush=True)
+        raise
     finally:
         for browser in clients: browser.close()
         if portal is not None: portal.close()

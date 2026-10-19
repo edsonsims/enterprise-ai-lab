@@ -15,6 +15,7 @@ async def serve(args):
     from .auth import HumanTokenVerifier
     from .core import HumanReviewService
     from .api import create_app
+    from ..diagnostics import DiagnosticRecorder
     import uvicorn
     client = await connect(args.address, "human-review-local-portal")
     verifier = HumanTokenVerifier.discover(args.issuer)
@@ -27,7 +28,8 @@ async def serve(args):
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         sock.bind(("127.0.0.1", args.port)); sock.listen(128)
         origin = f"http://127.0.0.1:{sock.getsockname()[1]}"
-        app = create_app(origin=origin, verifier=verifier, service=service, assets=PdfAssets(Path(args.manifest)))
+        app = create_app(origin=origin, verifier=verifier, service=service, assets=PdfAssets(Path(args.manifest)),
+            diagnostics=DiagnosticRecorder(getattr(args, "diagnostics_file", None)))
         print(json.dumps({"event": "ready", "url": origin}), flush=True)
         await uvicorn.Server(uvicorn.Config(app, access_log=False, log_level="warning",
             timeout_keep_alive=2, limit_concurrency=32)).serve(sockets=[sock])
@@ -43,12 +45,16 @@ def main(argv=None):
         server.add_argument("--" + name, required=True)
     server.add_argument("--task-queue", default="publication-v1")
     server.add_argument("--port", type=int, default=8090)
+    server.add_argument("--diagnostics-file", type=Path,
+        help="optional bounded metadata-only local failure journal; never raw logs")
     demo = commands.add_parser("demo", help="real local login, PDF preview, decisions, audit and RAG")
     for name in ("temporal-cli", "identity-dir", "model-dir", "manifest"):
         demo.add_argument("--" + name, required=True)
     demo.add_argument("--node", default="node")
     demo.add_argument("--work-dir", default=".local/review-demo")
     demo.add_argument("--out", default="reports/local/review-demo.json")
+    demo.add_argument("--failure-out", type=Path,
+        help="safe failure artifact outside private work; default: failure.json beside --out")
     demo.add_argument("--stay-open", action="store_true", help="keep local fixture services for browser review; private credentials in work directory")
     demo.add_argument("--browser-test", action="store_true", help="run the optional actual Chromium interface checks")
     args = parser.parse_args(argv)

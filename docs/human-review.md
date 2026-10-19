@@ -292,6 +292,9 @@ no broad OCR, security or answer-quality benchmark.
    compare the retained audit event hashes and durable decision.
 5. Inject the controlled receipt/audit gap in its test. Explain what later
    reconciliation restores and what a host administrator could still falsify.
+6. Run the controlled diagnostic probe below. Explain why its first 503 does not
+   authorize a replacement request ID, and distinguish its deliberately absent
+   worker from the unknown cause of the old CI failure.
 
 Record owner reflection only after the owner actually performs an exercise.
 
@@ -309,3 +312,88 @@ includes hashes of both built `review-bridge.js` and `review-issuer.js`, alongsi
 actual Python/Node, PDF/OCR, Temporal, ONNX and vector runtime versions. The
 [recorded evidence](../reports/review-v1) preserves that distinction; a successful
 hand-authored HTTP request alone would not establish working browser login.
+
+## Diagnosing an unconfirmed operation
+
+One intervening Linux/Python 3.13 CI run returned 503 at `create-browser-main`,
+before Playwright started. The then-current demo discarded the response category
+and child diagnostics during cleanup. Earlier and subsequent passing runs do
+not explain that failure; its cause remains **unknown**.
+
+The portal now accepts an optional `--diagnostics-file` local JSONL sink. Each
+record contains only a schema version and fixed operation, stage, error-category,
+exception-type, RPC-status and SQLite-code enums. Unknown exceptions map to
+`other`; messages, causes, dynamic class names, request IDs, subjects, tenant
+IDs, tokens, document text, paths and tracebacks are never serialized. Contexts
+isolate concurrent requests and retain the deepest stage for the same escaping
+exception. A handled missing-workflow error must not label a later unrelated
+failure. Expected 4xx responses are unchanged and produce no failure event.
+
+The owned regular single-link file must have mode 0600, is limited to 64 KiB and
+uses no-follow, nonblocking access. Existing contents are strictly validated
+before append. Corrupt, full, busy or unavailable sinks are refused without
+changing HTTP outcomes. This is optional **best-effort diagnostic metadata**,
+separate from the durable audit; it is neither a complete event record nor an
+administrator-proof log. No path means no file logging.
+
+On a failure inside the demo's process exercise, the runner captures a static
+phase, normalized HTTP status/format/public error code, child running/exited
+states and at most the last 16 validated diagnostic records **before cleanup**.
+`diagnostics_complete` means that this readable snapshot was not truncated; it
+does not guarantee every failure was recorded. Absent or invalid sinks are
+explicitly incomplete. The default artifact is `failure.json` beside `--out`;
+`--failure-out` selects a separate path. Existing files are never replaced and
+an export error never masks the original exception. Early model/PDF/identity
+setup failures outside that exercise are not covered by this capture.
+
+CI writes this artifact outside its private temporary work directory, then
+strictly validates and reserializes it into a new bounded 0600 file. A read-back
+must pass before the single-file upload is enabled. It uploads no raw stderr,
+credentials, SQLite database, browser state or private work directory. Unit and
+controlled HTTP tests retain hostile exception/header/body examples, sink
+failure and concurrent-context checks. The original authenticated response
+stays generic; diagnostics do not become an information-bearing API.
+
+### Controlled accepted-start recovery
+
+The [separate recorded experiment](../reports/review-diagnostics-v1) deliberately
+starts the actual local Temporal and signed account portal **without** a
+publication worker. A real public native/OCR candidate receives a 503 after
+the start has been accepted. Independent history inspection proves one running
+execution with no completed workflow task. The recorded RPC enum is preserved
+exactly, without inferring its internal cause from elapsed time.
+
+After the actual existing resource/worker completes a workflow task, one explicit
+POST with the **same IDs, candidate, revision and deadline** returns the pending
+snapshot on the same execution. No approval, activity, publication effect or
+tenant revision occurs, and actual RAG returns no citation. This demonstrates
+why an unconfirmed response requires status inspection or an exact retry; it
+does not reproduce or explain the older intermittent CI failure. Each RPC still
+has its original 3-second limit and the portal its 12-second operation bound;
+several sequential RPCs need not have a 3-second total HTTP duration. No automatic
+retry or timeout increase was added.
+
+After the same explicit runtime bootstrap as the review demo:
+
+```sh
+python -m enterprise_ai_lab.review.diagnostic_probe \
+  --temporal-cli .local/temporal-bin/temporal \
+  --identity-dir ../identity-boundary-lab --node node \
+  --model-dir .local/models/minilm \
+  --manifest public-data/pdf-v1/ingestion.json \
+  --work-dir .local/review-diagnostic --out reports/local/review-diagnostic.json
+```
+
+Use fresh work/output paths. This report command only accepts the byte-pinned
+public fixture; it is not a private-document report exporter. Add
+`RUN_REVIEW_DIAGNOSTIC=1` to the integration test command to exercise this real
+failure/recovery path. Missing runtimes fail an enabled test. All browser,
+tenant/role, provenance, immutable approval and vector pending-write boundaries
+remain in force. No person review or new model-quality result is claimed.
+
+Combined verification after this reliability change passed **558 tests and
+312 subtests** on Python 3.13.1/macOS arm64, with all actual process integrations
+and Chromium enabled. The original dependency-free 14 tests, reference output,
+prior frozen reports, public PDFs and four exact locks remain unchanged. This
+extends the existing review study; it does not add another roadmap milestone or
+establish that the historical intermittent failure has been fixed.

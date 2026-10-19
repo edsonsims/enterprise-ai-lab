@@ -49,6 +49,11 @@ guarantee of acceptance. Track submission and merge as separate events.
 
 ## Study evidence
 
+The 2026-10-19 [review diagnostic extension](reports/review-diagnostics-v1)
+maintains study6: finite failure evidence and actual accepted-start recovery,
+with no new scheduled milestone or explanation of the original intermittent CI
+failure. Study8 remains planned.
+
 After each milestone the owner can explain the design, reproduce a result, modify
 one assumption, and write a short reflection. Until that happens, the study remains
 available to learn from; it is not recorded as personally completed.

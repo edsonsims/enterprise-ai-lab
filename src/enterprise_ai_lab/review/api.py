@@ -18,6 +18,7 @@ from fastapi.responses import JSONResponse, RedirectResponse, Response
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Annotated, Literal
 
+from ..diagnostics import DiagnosticRecorder, diagnostic_scope, diagnostic_stage
 from ..rag.auth import AuthenticationError, AuthorizationError, local_origin, strict_json
 from ..publication.gateway import PublicationConflict
 from .sessions import Sessions
@@ -118,9 +119,10 @@ class Empty(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
 
 
-def create_app(*, origin, verifier, service, assets, sessions=None):
+def create_app(*, origin, verifier, service, assets, sessions=None, diagnostics=None):
     origin = local_origin(origin)
     sessions = sessions or Sessions()
+    diagnostics = diagnostics if diagnostics is not None else DiagnosticRecorder()
     app = FastAPI(title="Enterprise AI Lab — human review", version="0.6.0",
         docs_url=None, redoc_url=None, openapi_url=None)
     app.add_middleware(PortalBoundary, origin=origin)
@@ -151,32 +153,36 @@ def create_app(*, origin, verifier, service, assets, sessions=None):
         service.audit.log(tenant_id=principal.tenant_id, actor_id=principal.subject,
             identity_kind="user", action=action, result=result, **kwargs)
 
-    async def invoke(request, operation, *, csrf=False):
+    async def invoke(request, operation, *, diagnostic_operation, csrf=False):
         nonlocal inflight
-        try:
-            session, principal, scopes = authenticated(request, csrf=csrf)
-        except (AuthenticationError, ValueError):
-            return error("unauthorized", "Sign in again; this local session is missing or expired.")
-        except (PermissionError, AuthorizationError):
-            return error("forbidden", "The browser CSRF check failed.")
-        if inflight >= 16:
-            return error("unavailable", "The local review service is busy; retry explicitly.")
-        inflight += 1
-        try:
-            async with asyncio.timeout(12):
-                return await operation(principal, scopes)
-        except (PermissionError, AuthorizationError):
-            return error("forbidden", "Your tenant, role or document grant does not allow this operation.")
-        except LookupError:
-            return error("not_found", "No allowed review or document exists in this tenant.")
-        except PublicationConflict:
-            return error("conflict", "The immutable review or decision conflicts with durable state.")
-        except ValueError:
-            return error("invalid_request", "Invalid bounded review input.")
-        except Exception:
-            return error("unavailable", "Review state could not be confirmed; refresh before retrying the same command.")
-        finally:
-            inflight -= 1
+        with diagnostic_scope(diagnostic_operation):
+            try:
+                session, principal, scopes = authenticated(request, csrf=csrf)
+            except (AuthenticationError, ValueError):
+                return error("unauthorized", "Sign in again; this local session is missing or expired.")
+            except (PermissionError, AuthorizationError):
+                return error("forbidden", "The browser CSRF check failed.")
+            if inflight >= 16:
+                diagnostics.failure(diagnostic_operation, category="capacity")
+                return error("unavailable", "The local review service is busy; retry explicitly.")
+            inflight += 1
+            try:
+                with diagnostic_stage("review_operation"):
+                    async with asyncio.timeout(12):
+                        return await operation(principal, scopes)
+            except (PermissionError, AuthorizationError):
+                return error("forbidden", "Your tenant, role or document grant does not allow this operation.")
+            except LookupError:
+                return error("not_found", "No allowed review or document exists in this tenant.")
+            except PublicationConflict:
+                return error("conflict", "The immutable review or decision conflicts with durable state.")
+            except ValueError:
+                return error("invalid_request", "Invalid bounded review input.")
+            except Exception as exc:
+                diagnostics.failure(diagnostic_operation, exc)
+                return error("unavailable", "Review state could not be confirmed; refresh before retrying the same command.")
+            finally:
+                inflight -= 1
 
     @app.get("/healthz")
     def health():
@@ -198,6 +204,8 @@ def create_app(*, origin, verifier, service, assets, sessions=None):
         try:
             state, binding, code_verifier, nonce = sessions.login()
         except RuntimeError:
+            with diagnostic_scope("review_login"):
+                diagnostics.failure("review_login", category="capacity")
             return error("unavailable", "Local login capacity is full.")
         challenge = base64.urlsafe_b64encode(hashlib.sha256(code_verifier.encode()).digest()).decode().rstrip("=")
         target = verifier.authorization_endpoint + "?" + urlencode({"client_id": "review-portal",
@@ -267,14 +275,14 @@ def create_app(*, origin, verifier, service, assets, sessions=None):
             response = JSONResponse({"logged_out": True})
             response.delete_cookie(COOKIE, path="/")
             return response
-        return await invoke(request, action, csrf=True)
+        return await invoke(request, action, diagnostic_operation="review_logout", csrf=True)
 
     @app.get("/api/reviews")
     async def reviews(request: Request):
         async def action(principal, scopes):
             value = await service.list_requests(principal, scopes)
             return JSONResponse(value if isinstance(value, dict) else {"reviews": value})
-        return await invoke(request, action)
+        return await invoke(request, action, diagnostic_operation="review_list")
 
     def urls(detail):
         for document in detail.get("documents", []):
@@ -288,19 +296,19 @@ def create_app(*, origin, verifier, service, assets, sessions=None):
     async def submit(body: Submit, request: Request):
         async def action(principal, scopes):
             return JSONResponse(urls(await service.create_request(principal, scopes, **body.model_dump())))
-        return await invoke(request, action, csrf=True)
+        return await invoke(request, action, diagnostic_operation="review_create", csrf=True)
 
     @app.get("/api/reviews/{request_id}")
     async def detail(request_id: str, request: Request):
         async def action(principal, scopes):
             return JSONResponse(urls(await service.detail(principal, scopes, request_id)))
-        return await invoke(request, action)
+        return await invoke(request, action, diagnostic_operation="review_detail")
 
     @app.post("/api/reviews/{request_id}/decisions")
     async def decide(request_id: str, body: Decision, request: Request):
         async def action(principal, scopes):
             return JSONResponse(urls(await service.decide(principal, scopes, request_id, **body.model_dump())))
-        return await invoke(request, action, csrf=True)
+        return await invoke(request, action, diagnostic_operation="review_decide", csrf=True)
 
     @app.get("/api/reviews/{request_id}/documents/{document_id}/pdf")
     async def pdf(request_id: str, document_id: str, request: Request):
@@ -317,13 +325,13 @@ def create_app(*, origin, verifier, service, assets, sessions=None):
                 "content-disposition": 'inline; filename="authorized-page-preview.pdf"',
                 "x-preview-sha256": metadata["preview_sha256"], "x-preview-page-count": "1",
                 "x-original-sha256": metadata["original_sha256"], "x-artifact-sha256": metadata["artifact_sha256"]})
-        return await invoke(request, action)
+        return await invoke(request, action, diagnostic_operation="review_pdf")
 
     @app.get("/api/audit")
     async def audit(request: Request):
         async def action(principal, scopes):
             return JSONResponse({"events": await service.audit_events(principal, scopes), "chain_valid": True})
-        return await invoke(request, action)
+        return await invoke(request, action, diagnostic_operation="review_audit")
 
     @app.get("/api/reviews/{request_id}/documents/{document_id}/preview.png")
     async def page_image(request_id: str, document_id: str, request: Request):
@@ -339,5 +347,5 @@ def create_app(*, origin, verifier, service, assets, sessions=None):
             return Response(data, media_type="image/png", headers={"x-preview-page-count": "1",
                 "x-render-sha256": metadata["image_sha256"], "x-preview-sha256": metadata["preview_sha256"],
                 "x-render-width": str(metadata["width_px"]), "x-render-height": str(metadata["height_px"])})
-        return await invoke(request, action)
+        return await invoke(request, action, diagnostic_operation="review_preview")
     return app

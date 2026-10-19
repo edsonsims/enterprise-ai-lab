@@ -1,5 +1,37 @@
 # Decision log
 
+## 2026-10-19: preserve finite evidence before retrying an unconfirmed review
+
+**Problem.** An intermittent browser-review CI 503 lost its HTTP category and
+backend failure stage during temporary-directory cleanup. Identical relevant
+source and later green runs do not identify its cause. Blind retries or longer
+timeouts could hide an already accepted workflow rather than explain it.
+
+**Decision.** Keep generic authenticated responses and unchanged request bodies,
+deadlines and admission limits. Add an opt-in bounded local diagnostic sink with
+fixed operation/stage/category/status enums, never exception text or private
+identifiers. Keep diagnostics separate from the durable audit. Best-effort sink
+failure must not change request behavior. Validate existing bytes before append,
+and reserialize only a strict bounded failure snapshot for CI upload. A private
+work directory is never an artifact source.
+
+**Tradeoff.** A finite vocabulary and no request identity protect document/account
+content but sacrifice message detail, timing and exact cross-request correlation.
+The 64 KiB sink can drop events, so an absent/truncated snapshot is explicit and
+even a complete readable snapshot does not establish complete event coverage.
+Local filesystem administration remains trusted. This is observability for a
+local study, not production telemetry or a durable audit replacement.
+
+**Evidence.** A separate deliberately absent-worker experiment uses actual
+Temporal, the signed browser-account protocol, public native/OCR candidate and
+existing vector resource. Independent history proves an accepted running start
+despite HTTP 503. Once a real worker task completes, one identical explicit POST
+returns pending on the same execution with zero publication effects or visible
+RAG citations. Exact SDK status and timings remain recorded; no internal cause
+is inferred from the configured timeout. Controlled HTTP/sink tests and actual
+Chromium regression are separate. The historical CI cause remains unknown.
+See [review diagnostics](../reports/review-diagnostics-v1).
+
 ## 2026-10-19: expose named reads before a general database tool
 
 **Question.** Can an actual MCP client read useful records while tenant, row

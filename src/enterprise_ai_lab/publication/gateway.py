@@ -1,6 +1,7 @@
 """Verified approval identity to immutable candidates and a trusted namespace."""
 from __future__ import annotations
 
+from contextlib import contextmanager
 from dataclasses import asdict
 from datetime import datetime, timedelta, timezone
 import hashlib
@@ -12,6 +13,8 @@ from temporalio.common import WorkflowIDReusePolicy
 from temporalio.exceptions import WorkflowAlreadyStartedError
 from temporalio.service import RPCError, RPCStatusCode
 
+from ..diagnostics import diagnostic_stage, mark_rpc_failure
+
 from .contracts import (
     CandidateMetadata, DecisionCommand, MAX_LIFETIME_SECONDS, PublicationSnapshot,
     digest, identifier, make_request, parse_utc, validate_decision,
@@ -19,6 +22,18 @@ from .contracts import (
 from .workflow import DocumentPublicationWorkflow
 
 RPC_WAIT = timedelta(seconds=3)
+
+
+@contextmanager
+def _rpc_stage(stage):
+    with diagnostic_stage(stage):
+        try:
+            yield
+        except RPCError as exc:
+            if type(exc) is RPCError:
+                status = exc.status
+                mark_rpc_failure(exc, status.name if type(status) is RPCStatusCode else None)
+            raise
 
 
 class CandidateReader(Protocol):
@@ -46,30 +61,32 @@ class PublicationGateway:
         self.client, self.task_queue, self.candidates = client, task_queue, candidates
 
     def _candidate(self, tenant_id: str, candidate_sha256: str) -> CandidateMetadata:
-        identifier(tenant_id)
-        digest(candidate_sha256)
-        try:
-            value = self.candidates.get_candidate(tenant_id, candidate_sha256)
-        except LookupError:
-            raise PublicationNotFound("candidate does not exist in this tenant scope") from None
-        except ValueError as exc:
-            # Corrupt immutable content is a backend integrity failure, not a
-            # public client validation error with potentially private details.
-            raise RuntimeError("candidate integrity check failed") from exc
-        if (not isinstance(value, CandidateMetadata) or value.tenant_id != tenant_id
-                or value.candidate_sha256 != candidate_sha256
-                or type(value.document_count) is not int
-                or not 1 <= value.document_count <= 1000
-                or len(value.document_ids) != value.document_count
-                or len(value.documents) != value.document_count
-                or len(set(value.document_ids)) != value.document_count):
-            raise RuntimeError("candidate returned inconsistent metadata")
-        return value
+        with diagnostic_stage("publication_candidate"):
+            identifier(tenant_id)
+            digest(candidate_sha256)
+            try:
+                value = self.candidates.get_candidate(tenant_id, candidate_sha256)
+            except LookupError:
+                raise PublicationNotFound("candidate does not exist in this tenant scope") from None
+            except ValueError as exc:
+                # Corrupt immutable content is a backend integrity failure, not a
+                # public client validation error with potentially private details.
+                raise RuntimeError("candidate integrity check failed") from exc
+            if (not isinstance(value, CandidateMetadata) or value.tenant_id != tenant_id
+                    or value.candidate_sha256 != candidate_sha256
+                    or type(value.document_count) is not int
+                    or not 1 <= value.document_count <= 1000
+                    or len(value.document_ids) != value.document_count
+                    or len(value.documents) != value.document_count
+                    or len(set(value.document_ids)) != value.document_count):
+                raise RuntimeError("candidate returned inconsistent metadata")
+            return value
 
     async def _snapshot(self, principal, request_id: str) -> PublicationSnapshot:
         handle = self.client.get_workflow_handle(workflow_id(principal.tenant_id, request_id))
         try:
-            snapshot = await handle.query(DocumentPublicationWorkflow.snapshot, rpc_timeout=RPC_WAIT)
+            with _rpc_stage("temporal_query"):
+                snapshot = await handle.query(DocumentPublicationWorkflow.snapshot, rpc_timeout=RPC_WAIT)
         except RPCError as exc:
             if exc.status == RPCStatusCode.NOT_FOUND:
                 raise PublicationNotFound("request does not exist") from None
@@ -101,13 +118,14 @@ class PublicationGateway:
         if not 0 < remaining <= MAX_LIFETIME_SECONDS:
             raise ValueError("new publication deadline must be within 24 hours")
         try:
-            await self.client.start_workflow(
-                DocumentPublicationWorkflow.run, proposed,
-                id=workflow_id(principal.tenant_id, request_id), task_queue=self.task_queue,
-                execution_timeout=timedelta(days=2),
-                id_reuse_policy=WorkflowIDReusePolicy.REJECT_DUPLICATE,
-                rpc_timeout=RPC_WAIT,
-            )
+            with _rpc_stage("temporal_start"):
+                await self.client.start_workflow(
+                    DocumentPublicationWorkflow.run, proposed,
+                    id=workflow_id(principal.tenant_id, request_id), task_queue=self.task_queue,
+                    execution_timeout=timedelta(days=2),
+                    id_reuse_policy=WorkflowIDReusePolicy.REJECT_DUPLICATE,
+                    rpc_timeout=RPC_WAIT,
+                )
         except WorkflowAlreadyStartedError:
             # Two admissions can observe NOT_FOUND; compare every bound field
             # after the winning start rather than joining unrelated content.
@@ -140,8 +158,9 @@ class PublicationGateway:
         update_id = hashlib.sha256(canonical.encode()).hexdigest()
         handle = self.client.get_workflow_handle(workflow_id(principal.tenant_id, request_id))
         try:
-            receipt = await handle.execute_update(DocumentPublicationWorkflow.decide, command,
-                                                  id=update_id, rpc_timeout=RPC_WAIT)
+            with _rpc_stage("temporal_update"):
+                receipt = await handle.execute_update(DocumentPublicationWorkflow.decide, command,
+                                                      id=update_id, rpc_timeout=RPC_WAIT)
         except WorkflowUpdateFailedError:
             raise PublicationConflict("decision was rejected by the durable workflow") from None
         except RPCError as exc:

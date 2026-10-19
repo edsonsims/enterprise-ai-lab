@@ -13,6 +13,7 @@ import hashlib
 import json
 from pathlib import Path
 
+from ..diagnostics import diagnostic_stage
 from ..approval.contracts import DecisionCommand, DecisionReceipt, identifier, parse_utc, validate_decision
 from ..publication.contracts import make_request
 from ..publication.gateway import PublicationConflict, PublicationNotFound
@@ -111,22 +112,30 @@ class HumanReviewService:
 
     async def create_request(self, principal, scopes, request_id, candidate_sha256,
                              expected_revision, expires_at):
-        self._authorize(principal, scopes, "review:request", "requester")
-        request = make_request(request_id, principal.tenant_id, principal.subject,
-                               candidate_sha256, expected_revision, expires_at)
-        # Tenant-scoped immutable read before recording anything. Requesting
-        # review grants no additional document-reading or decision permission.
-        self.candidates.load_documents(principal.tenant_id, candidate_sha256)
-        self._save_request(request)
-        self.audit.append(tenant_id=principal.tenant_id, actor_id=principal.subject,
-                          action="request_intent", result="recorded", request_id=request_id,
-                          candidate_sha256=candidate_sha256, snapshot_sha256=request.snapshot_sha256,
-                          event_key="request-intent/" + request.snapshot_sha256)
-        snapshot = await self.gateway.submit(principal.publication_principal(), request_id,
-                                              candidate_sha256, expected_revision, expires_at)
-        self._validate_snapshot(request, snapshot)
-        self._reconcile(request, snapshot)
-        return self._view(principal, scopes, request, snapshot, include_text=True)
+        with diagnostic_stage("review_authorize"):
+            self._authorize(principal, scopes, "review:request", "requester")
+        with diagnostic_stage("review_make_request"):
+            request = make_request(request_id, principal.tenant_id, principal.subject,
+                                   candidate_sha256, expected_revision, expires_at)
+        # Requesting review grants no additional reading/decision permission.
+        with diagnostic_stage("review_candidate_load"):
+            self.candidates.load_documents(principal.tenant_id, candidate_sha256)
+        with diagnostic_stage("review_request_save"):
+            self._save_request(request)
+        with diagnostic_stage("review_intent_audit"):
+            self.audit.append(tenant_id=principal.tenant_id, actor_id=principal.subject,
+                              action="request_intent", result="recorded", request_id=request_id,
+                              candidate_sha256=candidate_sha256, snapshot_sha256=request.snapshot_sha256,
+                              event_key="request-intent/" + request.snapshot_sha256)
+        with diagnostic_stage("review_submit"):
+            snapshot = await self.gateway.submit(principal.publication_principal(), request_id,
+                                                  candidate_sha256, expected_revision, expires_at)
+        with diagnostic_stage("review_snapshot_validate"):
+            self._validate_snapshot(request, snapshot)
+        with diagnostic_stage("review_reconcile"):
+            self._reconcile(request, snapshot)
+        with diagnostic_stage("review_view"):
+            return self._view(principal, scopes, request, snapshot, include_text=True)
 
     @staticmethod
     def _validate_snapshot(request, snapshot):

@@ -34,7 +34,8 @@ class ActualHumanReviewIntegrationTests(unittest.TestCase):
             identity_dir=os.environ["IDENTITY_LAB_DIR"], node=os.environ["NODE_BINARY"],
             model_dir=os.environ["RAG_MODEL_DIR"], temporal_cli=os.environ["TEMPORAL_CLI"],
             manifest=str(Path(__file__).resolve().parents[2]/"public-data/pdf-v1/ingestion.json"),
-            browser_test=cls.browser, stay_open=False)))
+            browser_test=cls.browser, stay_open=False,
+            failure_out=os.environ.get("REVIEW_FAILURE_REPORT"))))
         cls.cases = {item["case"]: item for item in cls.report["observations"]}
 
     def body(self, name): return self.cases[name]["response"]

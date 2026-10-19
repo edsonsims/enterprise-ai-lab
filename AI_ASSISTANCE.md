@@ -278,3 +278,44 @@ This explicitly controlled scheduling avoids relying on a 50 ms window. It
 does not claim an executing SQLite query was interrupted, and it does not alter
 runtime audit refusal, source guards or query deadlines. The separate locked-DB
 timeout tests and original frozen process evidence remain intact.
+
+## 2026-10-19: finite review-failure diagnostics and controlled recovery
+
+AI assistance investigated an existing intermittent Linux review-demo 503. The
+original failure lost its backend details; its cause remains unknown. A clean
+base-source Chromium demo passed again, which is recovery evidence rather than
+a root-cause explanation. No blind retry or timeout increase was added.
+
+The optional local diagnostic sink records only fixed operation/stage/error
+enums, never exception text, dynamic names, paths, identities, tokens or document
+content. Strict bounded no-follow reads/writes and finite export validation
+keep corrupt/unavailable sinks from changing HTTP results. CI uploads only a
+fresh validated metadata file outside private temporary state. The sink is best
+effort, not the durable audit. Early pre-exercise setup is outside failure capture.
+
+Independent automated review exercised hostile exception/header/body inputs,
+concurrent/nested contexts, handled RPC failures, capacity, corrupt/full/locked
+files, alias/mode protections and unchanged safe HTTP responses. Forty-two
+focused tests passed with nine subtests; these include explicitly labelled
+service/signing doubles and real loopback HTTP. A separate startup-double test
+proves the safe artifact survives private cleanup while the original exception
+is re-raised.
+
+The [controlled process experiment](reports/review-diagnostics-v1) deliberately
+withholds a publication worker, receives an actual 503, independently observes
+one accepted running Temporal execution, then starts the real worker/resource.
+One identical explicit retry returns pending on the same execution, with zero
+publication effects, revision zero and no RAG citation. Exact SDK `CANCELLED`
+and observed timings are preserved without inferring its internal cause. Seven
+probe tests/four subtests passed locally. The report binds working-tree source
+hashes and labels the earlier HEAD as the base commit. It uses only the pinned
+public NIST pages and automated fixture-account login; no actual person review,
+owner study, production telemetry or new model-quality result is claimed. All
+previous frozen reports, source PDFs and dependency locks remain unchanged.
+
+Final combined verification for this reliability change passed **558 tests and
+312 subtests** on Python 3.13.1/macOS arm64, with actual RAG/PDF, approval,
+publication, Chromium review, controlled diagnostic and official MCP process
+paths enabled. The original14 dependency-free tests also passed, including a
+separate `python -S` check, and the reference reproduction stayed byte-identical.
+This is maintenance of an existing study, not a new scheduled milestone.
