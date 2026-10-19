@@ -1,0 +1,3152 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-19T12:14:25.884446Z",
+  "study": "local-sqlite-mcp-gateway-v1",
+  "data_kind": "authored_synthetic",
+  "identity_kind": "trusted_local_launcher_profiles_not_authentication",
+  "human_review_performed": false,
+  "runtime": {
+    "python": "3.13.1",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "sqlite": "3.48.0",
+    "mcp": "2.3.0",
+    "mcp_types": "2.3.0"
+  },
+  "source_files": {
+    "__init__.py": "c1dd5c99b214d1b5eb798e7bb941a28b587f587e9898ee91d094722b8f5a4b63",
+    "__main__.py": "55aaf55db69772811986bc77651ea7eaca51a5101707cc71cd32c2b6088792a5",
+    "audit.py": "f05eb1145e6028062f2ddf354cd19fcf87c7138392a349704937dcad63576638",
+    "integration.py": "7e0d876066b6d62f4545bd792f98b72a3d2030a761c2c682e40e060bf265fa66",
+    "server.py": "fd8586ebb29c9d804a631e0d01f4af337c2b7c5b76eaa16709df8912402cb163",
+    "service.py": "660fd0b09f1fc5282220e12819ba8d063ebc185de3677db00c3dd67943fc080a",
+    "store.py": "a5668685033f7c2dd22a074e168e8602b37afea2e396baaf1790da58f8ccbc07"
+  },
+  "protocol_versions": [
+    "2025-11-25",
+    "2026-07-28"
+  ],
+  "fixture": {
+    "schema_version": 1,
+    "fixture_sha256": "7f37ae73b4c670f22276e43170517b5c30a6ecaadbb7aba07231d20e271def56",
+    "work_order_count": 18,
+    "diagnostic_count": 6
+  },
+  "source_database_sha256_before": "af96760a7220e7159de677a3dfa398e0b741a5654e8e807cf4894d415f95f160",
+  "source_database_sha256_after": "af96760a7220e7159de677a3dfa398e0b741a5654e8e807cf4894d415f95f160",
+  "source_unchanged": true,
+  "catalogs": {
+    "alpha-reader": [
+      {
+        "name": "list_work_orders",
+        "description": "List visible synthetic work orders in ID order. Trusted launcher policy filters tenant and row roles before the bounded page. after_id is a visible row ID, not an opaque protocol cursor or authorization token. Source business data is read-only; each attempt writes a local audit event.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "open",
+                    "in_progress",
+                    "closed"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "after_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 7,
+                  "maxLength": 7,
+                  "pattern": "^WO-[0-9]{4}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10,
+              "default": 3
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "work_order_id": {
+                        "type": "string",
+                        "minLength": 7,
+                        "maxLength": 7,
+                        "pattern": "^WO-[0-9]{4}$"
+                      },
+                      "asset_id": {
+                        "type": "string",
+                        "minLength": 6,
+                        "maxLength": 6,
+                        "pattern": "^AS-[0-9]{3}$"
+                      },
+                      "tenant_id": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64,
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                      },
+                      "title": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "open",
+                          "in_progress",
+                          "closed"
+                        ]
+                      },
+                      "summary": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 2000
+                      }
+                    },
+                    "required": [
+                      "work_order_id",
+                      "asset_id",
+                      "tenant_id",
+                      "title",
+                      "status",
+                      "summary"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "maxItems": 10
+                },
+                "next_after": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 7,
+                      "maxLength": 7,
+                      "pattern": "^WO-[0-9]{4}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "items",
+                "next_after"
+              ],
+              "additionalProperties": false
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "const": "list_work_orders"
+                },
+                "tenant_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                }
+              },
+              "required": [
+                "operation",
+                "tenant_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data",
+            "meta"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "get_work_order",
+        "description": "Read one visible synthetic work order. Missing and unreadable IDs have the same not_found result. Tenant and roles come only from the launcher. Source business data is read-only; each attempt writes a local audit event.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "work_order_id": {
+              "type": "string",
+              "minLength": 7,
+              "maxLength": 7,
+              "pattern": "^WO-[0-9]{4}$"
+            }
+          },
+          "required": [
+            "work_order_id"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "work_order_id": {
+                      "type": "string",
+                      "minLength": 7,
+                      "maxLength": 7,
+                      "pattern": "^WO-[0-9]{4}$"
+                    },
+                    "asset_id": {
+                      "type": "string",
+                      "minLength": 6,
+                      "maxLength": 6,
+                      "pattern": "^AS-[0-9]{3}$"
+                    },
+                    "tenant_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64,
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 160
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "open",
+                        "in_progress",
+                        "closed"
+                      ]
+                    },
+                    "summary": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000
+                    }
+                  },
+                  "required": [
+                    "work_order_id",
+                    "asset_id",
+                    "tenant_id",
+                    "title",
+                    "status",
+                    "summary"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "item"
+              ],
+              "additionalProperties": false
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "const": "get_work_order"
+                },
+                "tenant_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                }
+              },
+              "required": [
+                "operation",
+                "tenant_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data",
+            "meta"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      }
+    ],
+    "beta-reader": [
+      {
+        "name": "list_work_orders",
+        "description": "List visible synthetic work orders in ID order. Trusted launcher policy filters tenant and row roles before the bounded page. after_id is a visible row ID, not an opaque protocol cursor or authorization token. Source business data is read-only; each attempt writes a local audit event.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "open",
+                    "in_progress",
+                    "closed"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "after_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 7,
+                  "maxLength": 7,
+                  "pattern": "^WO-[0-9]{4}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10,
+              "default": 3
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "work_order_id": {
+                        "type": "string",
+                        "minLength": 7,
+                        "maxLength": 7,
+                        "pattern": "^WO-[0-9]{4}$"
+                      },
+                      "asset_id": {
+                        "type": "string",
+                        "minLength": 6,
+                        "maxLength": 6,
+                        "pattern": "^AS-[0-9]{3}$"
+                      },
+                      "tenant_id": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64,
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                      },
+                      "title": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "open",
+                          "in_progress",
+                          "closed"
+                        ]
+                      },
+                      "summary": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 2000
+                      }
+                    },
+                    "required": [
+                      "work_order_id",
+                      "asset_id",
+                      "tenant_id",
+                      "title",
+                      "status",
+                      "summary"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "maxItems": 10
+                },
+                "next_after": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 7,
+                      "maxLength": 7,
+                      "pattern": "^WO-[0-9]{4}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "items",
+                "next_after"
+              ],
+              "additionalProperties": false
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "const": "list_work_orders"
+                },
+                "tenant_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                }
+              },
+              "required": [
+                "operation",
+                "tenant_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data",
+            "meta"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "get_work_order",
+        "description": "Read one visible synthetic work order. Missing and unreadable IDs have the same not_found result. Tenant and roles come only from the launcher. Source business data is read-only; each attempt writes a local audit event.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "work_order_id": {
+              "type": "string",
+              "minLength": 7,
+              "maxLength": 7,
+              "pattern": "^WO-[0-9]{4}$"
+            }
+          },
+          "required": [
+            "work_order_id"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "work_order_id": {
+                      "type": "string",
+                      "minLength": 7,
+                      "maxLength": 7,
+                      "pattern": "^WO-[0-9]{4}$"
+                    },
+                    "asset_id": {
+                      "type": "string",
+                      "minLength": 6,
+                      "maxLength": 6,
+                      "pattern": "^AS-[0-9]{3}$"
+                    },
+                    "tenant_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64,
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 160
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "open",
+                        "in_progress",
+                        "closed"
+                      ]
+                    },
+                    "summary": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000
+                    }
+                  },
+                  "required": [
+                    "work_order_id",
+                    "asset_id",
+                    "tenant_id",
+                    "title",
+                    "status",
+                    "summary"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "item"
+              ],
+              "additionalProperties": false
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "const": "get_work_order"
+                },
+                "tenant_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                }
+              },
+              "required": [
+                "operation",
+                "tenant_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data",
+            "meta"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      }
+    ],
+    "alpha-analyst": [
+      {
+        "name": "list_work_orders",
+        "description": "List visible synthetic work orders in ID order. Trusted launcher policy filters tenant and row roles before the bounded page. after_id is a visible row ID, not an opaque protocol cursor or authorization token. Source business data is read-only; each attempt writes a local audit event.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "open",
+                    "in_progress",
+                    "closed"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "after_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 7,
+                  "maxLength": 7,
+                  "pattern": "^WO-[0-9]{4}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10,
+              "default": 3
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "work_order_id": {
+                        "type": "string",
+                        "minLength": 7,
+                        "maxLength": 7,
+                        "pattern": "^WO-[0-9]{4}$"
+                      },
+                      "asset_id": {
+                        "type": "string",
+                        "minLength": 6,
+                        "maxLength": 6,
+                        "pattern": "^AS-[0-9]{3}$"
+                      },
+                      "tenant_id": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64,
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                      },
+                      "title": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "open",
+                          "in_progress",
+                          "closed"
+                        ]
+                      },
+                      "summary": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 2000
+                      }
+                    },
+                    "required": [
+                      "work_order_id",
+                      "asset_id",
+                      "tenant_id",
+                      "title",
+                      "status",
+                      "summary"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "maxItems": 10
+                },
+                "next_after": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 7,
+                      "maxLength": 7,
+                      "pattern": "^WO-[0-9]{4}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "items",
+                "next_after"
+              ],
+              "additionalProperties": false
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "const": "list_work_orders"
+                },
+                "tenant_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                }
+              },
+              "required": [
+                "operation",
+                "tenant_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data",
+            "meta"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "get_work_order",
+        "description": "Read one visible synthetic work order. Missing and unreadable IDs have the same not_found result. Tenant and roles come only from the launcher. Source business data is read-only; each attempt writes a local audit event.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "work_order_id": {
+              "type": "string",
+              "minLength": 7,
+              "maxLength": 7,
+              "pattern": "^WO-[0-9]{4}$"
+            }
+          },
+          "required": [
+            "work_order_id"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "work_order_id": {
+                      "type": "string",
+                      "minLength": 7,
+                      "maxLength": 7,
+                      "pattern": "^WO-[0-9]{4}$"
+                    },
+                    "asset_id": {
+                      "type": "string",
+                      "minLength": 6,
+                      "maxLength": 6,
+                      "pattern": "^AS-[0-9]{3}$"
+                    },
+                    "tenant_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64,
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 160
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "open",
+                        "in_progress",
+                        "closed"
+                      ]
+                    },
+                    "summary": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000
+                    }
+                  },
+                  "required": [
+                    "work_order_id",
+                    "asset_id",
+                    "tenant_id",
+                    "title",
+                    "status",
+                    "summary"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "item"
+              ],
+              "additionalProperties": false
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "const": "get_work_order"
+                },
+                "tenant_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                }
+              },
+              "required": [
+                "operation",
+                "tenant_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data",
+            "meta"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "get_asset_diagnostics",
+        "description": "Read synthetic diagnostics for an asset; requires the launcher's analyst role and the same tenant. No live enterprise system is connected. Source business data is read-only; each attempt writes a local audit event.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "asset_id": {
+              "type": "string",
+              "minLength": 6,
+              "maxLength": 6,
+              "pattern": "^AS-[0-9]{3}$"
+            }
+          },
+          "required": [
+            "asset_id"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "asset_id": {
+                      "type": "string",
+                      "minLength": 6,
+                      "maxLength": 6,
+                      "pattern": "^AS-[0-9]{3}$"
+                    },
+                    "tenant_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64,
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64,
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                    },
+                    "observation": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000
+                    }
+                  },
+                  "required": [
+                    "asset_id",
+                    "tenant_id",
+                    "code",
+                    "observation"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "item"
+              ],
+              "additionalProperties": false
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "const": "get_asset_diagnostics"
+                },
+                "tenant_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                }
+              },
+              "required": [
+                "operation",
+                "tenant_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data",
+            "meta"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      }
+    ],
+    "beta-analyst": [
+      {
+        "name": "list_work_orders",
+        "description": "List visible synthetic work orders in ID order. Trusted launcher policy filters tenant and row roles before the bounded page. after_id is a visible row ID, not an opaque protocol cursor or authorization token. Source business data is read-only; each attempt writes a local audit event.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "open",
+                    "in_progress",
+                    "closed"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "after_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 7,
+                  "maxLength": 7,
+                  "pattern": "^WO-[0-9]{4}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10,
+              "default": 3
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "work_order_id": {
+                        "type": "string",
+                        "minLength": 7,
+                        "maxLength": 7,
+                        "pattern": "^WO-[0-9]{4}$"
+                      },
+                      "asset_id": {
+                        "type": "string",
+                        "minLength": 6,
+                        "maxLength": 6,
+                        "pattern": "^AS-[0-9]{3}$"
+                      },
+                      "tenant_id": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64,
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                      },
+                      "title": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "open",
+                          "in_progress",
+                          "closed"
+                        ]
+                      },
+                      "summary": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 2000
+                      }
+                    },
+                    "required": [
+                      "work_order_id",
+                      "asset_id",
+                      "tenant_id",
+                      "title",
+                      "status",
+                      "summary"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "maxItems": 10
+                },
+                "next_after": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 7,
+                      "maxLength": 7,
+                      "pattern": "^WO-[0-9]{4}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "items",
+                "next_after"
+              ],
+              "additionalProperties": false
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "const": "list_work_orders"
+                },
+                "tenant_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                }
+              },
+              "required": [
+                "operation",
+                "tenant_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data",
+            "meta"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "get_work_order",
+        "description": "Read one visible synthetic work order. Missing and unreadable IDs have the same not_found result. Tenant and roles come only from the launcher. Source business data is read-only; each attempt writes a local audit event.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "work_order_id": {
+              "type": "string",
+              "minLength": 7,
+              "maxLength": 7,
+              "pattern": "^WO-[0-9]{4}$"
+            }
+          },
+          "required": [
+            "work_order_id"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "work_order_id": {
+                      "type": "string",
+                      "minLength": 7,
+                      "maxLength": 7,
+                      "pattern": "^WO-[0-9]{4}$"
+                    },
+                    "asset_id": {
+                      "type": "string",
+                      "minLength": 6,
+                      "maxLength": 6,
+                      "pattern": "^AS-[0-9]{3}$"
+                    },
+                    "tenant_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64,
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 160
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "open",
+                        "in_progress",
+                        "closed"
+                      ]
+                    },
+                    "summary": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000
+                    }
+                  },
+                  "required": [
+                    "work_order_id",
+                    "asset_id",
+                    "tenant_id",
+                    "title",
+                    "status",
+                    "summary"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "item"
+              ],
+              "additionalProperties": false
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "const": "get_work_order"
+                },
+                "tenant_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                }
+              },
+              "required": [
+                "operation",
+                "tenant_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data",
+            "meta"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "get_asset_diagnostics",
+        "description": "Read synthetic diagnostics for an asset; requires the launcher's analyst role and the same tenant. No live enterprise system is connected. Source business data is read-only; each attempt writes a local audit event.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "asset_id": {
+              "type": "string",
+              "minLength": 6,
+              "maxLength": 6,
+              "pattern": "^AS-[0-9]{3}$"
+            }
+          },
+          "required": [
+            "asset_id"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "properties": {
+                    "asset_id": {
+                      "type": "string",
+                      "minLength": 6,
+                      "maxLength": 6,
+                      "pattern": "^AS-[0-9]{3}$"
+                    },
+                    "tenant_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64,
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64,
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                    },
+                    "observation": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000
+                    }
+                  },
+                  "required": [
+                    "asset_id",
+                    "tenant_id",
+                    "code",
+                    "observation"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "item"
+              ],
+              "additionalProperties": false
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "const": "get_asset_diagnostics"
+                },
+                "tenant_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64,
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$"
+                }
+              },
+              "required": [
+                "operation",
+                "tenant_id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data",
+            "meta"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      }
+    ],
+    "alpha-observer": []
+  },
+  "sessions": [
+    {
+      "profile": "alpha-reader",
+      "mode": "auto",
+      "process_reaped": true,
+      "protocol_version": "2026-07-28",
+      "server_info": {
+        "name": "enterprise-legacy-fixture",
+        "version": "0.7.0"
+      },
+      "server_runtime": {
+        "mcp": "2.3.0",
+        "mcp_types": "2.3.0",
+        "python": "3.13.1",
+        "sqlite": "3.48.0"
+      },
+      "elapsed_seconds": 0.550217
+    },
+    {
+      "profile": "alpha-reader",
+      "mode": "auto",
+      "process_reaped": true,
+      "protocol_version": "2026-07-28",
+      "server_info": {
+        "name": "enterprise-legacy-fixture",
+        "version": "0.7.0"
+      },
+      "server_runtime": {
+        "mcp": "2.3.0",
+        "mcp_types": "2.3.0",
+        "python": "3.13.1",
+        "sqlite": "3.48.0"
+      },
+      "elapsed_seconds": 0.3335
+    },
+    {
+      "profile": "beta-reader",
+      "mode": "auto",
+      "process_reaped": true,
+      "protocol_version": "2026-07-28",
+      "server_info": {
+        "name": "enterprise-legacy-fixture",
+        "version": "0.7.0"
+      },
+      "server_runtime": {
+        "mcp": "2.3.0",
+        "mcp_types": "2.3.0",
+        "python": "3.13.1",
+        "sqlite": "3.48.0"
+      },
+      "elapsed_seconds": 0.337123
+    },
+    {
+      "profile": "alpha-analyst",
+      "mode": "auto",
+      "process_reaped": true,
+      "protocol_version": "2026-07-28",
+      "server_info": {
+        "name": "enterprise-legacy-fixture",
+        "version": "0.7.0"
+      },
+      "server_runtime": {
+        "mcp": "2.3.0",
+        "mcp_types": "2.3.0",
+        "python": "3.13.1",
+        "sqlite": "3.48.0"
+      },
+      "elapsed_seconds": 0.338325
+    },
+    {
+      "profile": "beta-analyst",
+      "mode": "auto",
+      "process_reaped": true,
+      "protocol_version": "2026-07-28",
+      "server_info": {
+        "name": "enterprise-legacy-fixture",
+        "version": "0.7.0"
+      },
+      "server_runtime": {
+        "mcp": "2.3.0",
+        "mcp_types": "2.3.0",
+        "python": "3.13.1",
+        "sqlite": "3.48.0"
+      },
+      "elapsed_seconds": 0.340113
+    },
+    {
+      "profile": "alpha-observer",
+      "mode": "auto",
+      "process_reaped": true,
+      "protocol_version": "2026-07-28",
+      "server_info": {
+        "name": "enterprise-legacy-fixture",
+        "version": "0.7.0"
+      },
+      "server_runtime": {
+        "mcp": "2.3.0",
+        "mcp_types": "2.3.0",
+        "python": "3.13.1",
+        "sqlite": "3.48.0"
+      },
+      "elapsed_seconds": 0.328858
+    },
+    {
+      "profile": "alpha-reader",
+      "mode": "legacy",
+      "process_reaped": true,
+      "protocol_version": "2025-11-25",
+      "server_info": {
+        "name": "enterprise-legacy-fixture",
+        "version": "0.7.0"
+      },
+      "server_runtime": {
+        "mcp": "2.3.0",
+        "mcp_types": "2.3.0",
+        "python": "3.13.1",
+        "sqlite": "3.48.0"
+      },
+      "elapsed_seconds": 0.334153
+    },
+    {
+      "profile": "alpha-reader",
+      "mode": "auto",
+      "process_reaped": true,
+      "protocol_version": "2026-07-28",
+      "server_info": {
+        "name": "enterprise-legacy-fixture",
+        "version": "0.7.0"
+      },
+      "server_runtime": {
+        "mcp": "2.3.0",
+        "mcp_types": "2.3.0",
+        "python": "3.13.1",
+        "sqlite": "3.48.0"
+      },
+      "elapsed_seconds": 0.330954
+    }
+  ],
+  "observations": [
+    {
+      "case": "reader_page_1",
+      "kind": "actual_stdio",
+      "tool": "list_work_orders",
+      "arguments": {
+        "limit": 2,
+        "after_id": null
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "items": [
+            {
+              "asset_id": "AS-001",
+              "status": "open",
+              "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+              "tenant_id": "alpha",
+              "title": "Alpha synthetic inspection 1",
+              "work_order_id": "WO-0001"
+            },
+            {
+              "asset_id": "AS-003",
+              "status": "closed",
+              "summary": "ALPHA_READER_03: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+              "tenant_id": "alpha",
+              "title": "Alpha synthetic inspection 3",
+              "work_order_id": "WO-0003"
+            }
+          ],
+          "next_after": "WO-0003"
+        },
+        "meta": {
+          "operation": "list_work_orders",
+          "tenant_id": "alpha"
+        }
+      },
+      "elapsed_seconds": 0.023689
+    },
+    {
+      "case": "reader_page_2",
+      "kind": "actual_stdio",
+      "tool": "list_work_orders",
+      "arguments": {
+        "limit": 2,
+        "after_id": "WO-0003"
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "items": [
+            {
+              "asset_id": "AS-002",
+              "status": "in_progress",
+              "summary": "ALPHA_READER_05: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+              "tenant_id": "alpha",
+              "title": "Alpha synthetic inspection 5",
+              "work_order_id": "WO-0005"
+            },
+            {
+              "asset_id": "AS-003",
+              "status": "closed",
+              "summary": "ALPHA_READER_06: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+              "tenant_id": "alpha",
+              "title": "Alpha synthetic inspection 6",
+              "work_order_id": "WO-0006"
+            }
+          ],
+          "next_after": "WO-0006"
+        },
+        "meta": {
+          "operation": "list_work_orders",
+          "tenant_id": "alpha"
+        }
+      },
+      "elapsed_seconds": 0.002704
+    },
+    {
+      "case": "reader_page_3",
+      "kind": "actual_stdio",
+      "tool": "list_work_orders",
+      "arguments": {
+        "limit": 2,
+        "after_id": "WO-0006"
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "items": [
+            {
+              "asset_id": "AS-002",
+              "status": "in_progress",
+              "summary": "ALPHA_READER_08: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+              "tenant_id": "alpha",
+              "title": "Alpha synthetic inspection 8",
+              "work_order_id": "WO-0008"
+            },
+            {
+              "asset_id": "AS-003",
+              "status": "closed",
+              "summary": "ALPHA_READER_09: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+              "tenant_id": "alpha",
+              "title": "Alpha synthetic inspection 9",
+              "work_order_id": "WO-0009"
+            }
+          ],
+          "next_after": null
+        },
+        "meta": {
+          "operation": "list_work_orders",
+          "tenant_id": "alpha"
+        }
+      },
+      "elapsed_seconds": 0.002328
+    },
+    {
+      "case": "alpha_colliding_id",
+      "kind": "actual_stdio",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "status": "open",
+            "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "alpha",
+            "title": "Alpha synthetic inspection 1",
+            "work_order_id": "WO-0001"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "alpha"
+        }
+      },
+      "elapsed_seconds": 0.003619
+    },
+    {
+      "case": "hidden_row",
+      "kind": "actual_stdio",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0002"
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "not_found",
+          "message": "No permitted resource exists for that identifier."
+        }
+      },
+      "elapsed_seconds": 0.002118
+    },
+    {
+      "case": "missing_row",
+      "kind": "actual_stdio",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-9999"
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "not_found",
+          "message": "No permitted resource exists for that identifier."
+        }
+      },
+      "elapsed_seconds": 0.001896
+    },
+    {
+      "case": "hidden_cursor",
+      "kind": "actual_stdio",
+      "tool": "list_work_orders",
+      "arguments": {
+        "after_id": "WO-0002"
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "not_found",
+          "message": "No permitted resource exists for that identifier."
+        }
+      },
+      "elapsed_seconds": 0.002119
+    },
+    {
+      "case": "reader_no_diagnostics",
+      "kind": "actual_stdio",
+      "tool": "get_asset_diagnostics",
+      "arguments": {
+        "asset_id": "AS-001"
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "The trusted profile does not allow this operation."
+        }
+      },
+      "elapsed_seconds": 0.001981
+    },
+    {
+      "case": "status_filter",
+      "kind": "actual_stdio",
+      "tool": "list_work_orders",
+      "arguments": {
+        "status": "open",
+        "limit": 10
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "items": [
+            {
+              "asset_id": "AS-001",
+              "status": "open",
+              "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+              "tenant_id": "alpha",
+              "title": "Alpha synthetic inspection 1",
+              "work_order_id": "WO-0001"
+            }
+          ],
+          "next_after": null
+        },
+        "meta": {
+          "operation": "list_work_orders",
+          "tenant_id": "alpha"
+        }
+      },
+      "elapsed_seconds": 0.002141
+    },
+    {
+      "case": "tenant_override",
+      "kind": "actual_stdio",
+      "tool": "list_work_orders",
+      "arguments": {
+        "tenant_id": "beta"
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Only documented operation fields are accepted."
+        }
+      },
+      "elapsed_seconds": 0.001996
+    },
+    {
+      "case": "role_override",
+      "kind": "actual_stdio",
+      "tool": "list_work_orders",
+      "arguments": {
+        "roles": [
+          "analyst"
+        ]
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Only documented operation fields are accepted."
+        }
+      },
+      "elapsed_seconds": 0.002103
+    },
+    {
+      "case": "sql_argument",
+      "kind": "actual_stdio",
+      "tool": "list_work_orders",
+      "arguments": {
+        "sql": "SELECT * FROM work_orders"
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Only documented operation fields are accepted."
+        }
+      },
+      "elapsed_seconds": 0.001981
+    },
+    {
+      "case": "bool_limit",
+      "kind": "actual_stdio",
+      "tool": "list_work_orders",
+      "arguments": {
+        "limit": true
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Operation fields have the wrong scalar type."
+        }
+      },
+      "elapsed_seconds": 0.001982
+    },
+    {
+      "case": "string_limit",
+      "kind": "actual_stdio",
+      "tool": "list_work_orders",
+      "arguments": {
+        "limit": "2"
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Operation fields have the wrong scalar type."
+        }
+      },
+      "elapsed_seconds": 0.002
+    },
+    {
+      "case": "oversized_limit",
+      "kind": "actual_stdio",
+      "tool": "list_work_orders",
+      "arguments": {
+        "limit": 11
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "The page limit must be between one and ten."
+        }
+      },
+      "elapsed_seconds": 0.002227
+    },
+    {
+      "case": "invalid_status",
+      "kind": "actual_stdio",
+      "tool": "list_work_orders",
+      "arguments": {
+        "status": "OPEN"
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Unsupported work-order status."
+        }
+      },
+      "elapsed_seconds": 0.002196
+    },
+    {
+      "case": "identifier_injection",
+      "kind": "actual_stdio",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001' OR 1=1 --"
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Expected a bounded resource identifier."
+        }
+      },
+      "elapsed_seconds": 0.002226
+    },
+    {
+      "case": "no_sql_tool",
+      "kind": "actual_stdio",
+      "tool": "execute_sql",
+      "arguments": {
+        "sql": "DELETE FROM work_orders"
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Unknown named read operation."
+        }
+      },
+      "elapsed_seconds": 0.002317
+    },
+    {
+      "case": "source_locked",
+      "kind": "controlled_fault",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "resource_busy",
+          "message": "The local resource is busy; retry explicitly."
+        }
+      },
+      "elapsed_seconds": 0.074912
+    },
+    {
+      "case": "source_lock_recovered",
+      "kind": "actual_stdio",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "status": "open",
+            "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "alpha",
+            "title": "Alpha synthetic inspection 1",
+            "work_order_id": "WO-0001"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "alpha"
+        }
+      },
+      "elapsed_seconds": 0.003613
+    },
+    {
+      "case": "audit_write_locked",
+      "kind": "controlled_fault",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "audit_unavailable",
+          "message": "The local audit could not be confirmed; no data is returned."
+        }
+      },
+      "elapsed_seconds": 0.076569
+    },
+    {
+      "case": "audit_lock_recovered",
+      "kind": "actual_stdio",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "status": "open",
+            "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "alpha",
+            "title": "Alpha synthetic inspection 1",
+            "work_order_id": "WO-0001"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "alpha"
+        }
+      },
+      "elapsed_seconds": 0.005525
+    },
+    {
+      "case": "fresh_process_same_read",
+      "kind": "actual_stdio",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "status": "open",
+            "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "alpha",
+            "title": "Alpha synthetic inspection 1",
+            "work_order_id": "WO-0001"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "alpha"
+        }
+      },
+      "elapsed_seconds": 0.005386
+    },
+    {
+      "case": "beta_colliding_id",
+      "kind": "actual_stdio",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "status": "open",
+            "summary": "BETA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "beta",
+            "title": "Beta synthetic inspection 1",
+            "work_order_id": "WO-0001"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "beta"
+        }
+      },
+      "elapsed_seconds": 0.005814
+    },
+    {
+      "case": "alpha-analyst_restricted",
+      "kind": "actual_stdio",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0002"
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-002",
+            "status": "in_progress",
+            "summary": "ALPHA_ANALYST_02: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "alpha",
+            "title": "Alpha synthetic inspection 2",
+            "work_order_id": "WO-0002"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "alpha"
+        }
+      },
+      "elapsed_seconds": 0.005729
+    },
+    {
+      "case": "alpha-analyst_diagnostics",
+      "kind": "actual_stdio",
+      "tool": "get_asset_diagnostics",
+      "arguments": {
+        "asset_id": "AS-001"
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "code": "CHECK_ALIGNMENT",
+            "observation": "ALPHA_DIAGNOSTIC_001: Fictional diagnostic note for a demonstration asset. No actual equipment or customer is represented.",
+            "tenant_id": "alpha"
+          }
+        },
+        "meta": {
+          "operation": "get_asset_diagnostics",
+          "tenant_id": "alpha"
+        }
+      },
+      "elapsed_seconds": 0.004269
+    },
+    {
+      "case": "beta-analyst_restricted",
+      "kind": "actual_stdio",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0002"
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-002",
+            "status": "in_progress",
+            "summary": "BETA_ANALYST_02: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "beta",
+            "title": "Beta synthetic inspection 2",
+            "work_order_id": "WO-0002"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "beta"
+        }
+      },
+      "elapsed_seconds": 0.006026
+    },
+    {
+      "case": "beta-analyst_diagnostics",
+      "kind": "actual_stdio",
+      "tool": "get_asset_diagnostics",
+      "arguments": {
+        "asset_id": "AS-001"
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "code": "CHECK_ALIGNMENT",
+            "observation": "BETA_DIAGNOSTIC_001: Fictional diagnostic note for a demonstration asset. No actual equipment or customer is represented.",
+            "tenant_id": "beta"
+          }
+        },
+        "meta": {
+          "operation": "get_asset_diagnostics",
+          "tenant_id": "beta"
+        }
+      },
+      "elapsed_seconds": 0.004251
+    },
+    {
+      "case": "observer_has_no_tools",
+      "kind": "actual_stdio",
+      "tool": "list_work_orders",
+      "arguments": {},
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "The trusted profile does not allow this operation."
+        }
+      },
+      "elapsed_seconds": 0.004268
+    },
+    {
+      "case": "legacy_handshake",
+      "kind": "actual_stdio",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "is_error": false,
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "status": "open",
+            "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "alpha",
+            "title": "Alpha synthetic inspection 1",
+            "work_order_id": "WO-0001"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "alpha"
+        }
+      },
+      "elapsed_seconds": 0.005845
+    },
+    {
+      "case": "engine_denies_write",
+      "kind": "controlled_engine_probe",
+      "write_denied": true
+    },
+    {
+      "case": "corrupt_chain_fails_closed",
+      "kind": "controlled_fault",
+      "tool": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "is_error": true,
+      "response": {
+        "error": {
+          "code": "audit_unavailable",
+          "message": "The local audit could not be confirmed; no data is returned."
+        }
+      },
+      "elapsed_seconds": 0.002141
+    }
+  ],
+  "audit": {
+    "events": [
+      {
+        "at": "2026-10-19T12:14:23.269319Z",
+        "call_id": "49fccf8248fd4b10a961f922553ab83a",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "106bd7694f84209a3bbadb6dbb650c6330632bae22d1228e743242ace57f1448",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 1,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "event_sha256": "a6c59ee2800dccbf4c54f64abbbb9578fa68b35af6abf82157b6a1450cc9522f"
+      },
+      {
+        "at": "2026-10-19T12:14:23.270224Z",
+        "call_id": "49fccf8248fd4b10a961f922553ab83a",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "106bd7694f84209a3bbadb6dbb650c6330632bae22d1228e743242ace57f1448",
+        "operation": "list_work_orders",
+        "outcome": "success",
+        "output_sha256": "60644b026e65cdbffe6c25ae2aec51a1e6f35c75931b09aab43abb2dbf357457",
+        "phase": "outcome",
+        "row_count": 2,
+        "sequence": 2,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "a6c59ee2800dccbf4c54f64abbbb9578fa68b35af6abf82157b6a1450cc9522f",
+        "event_sha256": "62c8032a15594b12a5ea1d656288a8437868671a1432529babfa24c047c74800"
+      },
+      {
+        "at": "2026-10-19T12:14:23.290117Z",
+        "call_id": "a3152eb780144c42ab1da22ad45703a0",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3232d6d63e78e1666c06bfe4f27b421e6ecc67281e6dbcec219fba50858ff784",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 3,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "62c8032a15594b12a5ea1d656288a8437868671a1432529babfa24c047c74800",
+        "event_sha256": "019f0a632e6b5a6bc2c39613d519a6887ff8879d6c0f989f31742231105d0993"
+      },
+      {
+        "at": "2026-10-19T12:14:23.290931Z",
+        "call_id": "a3152eb780144c42ab1da22ad45703a0",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3232d6d63e78e1666c06bfe4f27b421e6ecc67281e6dbcec219fba50858ff784",
+        "operation": "list_work_orders",
+        "outcome": "success",
+        "output_sha256": "3aefbdf38dca89cefa90b9f49522ed139ccb4fb3a971fafce2b81e7a59536e9b",
+        "phase": "outcome",
+        "row_count": 2,
+        "sequence": 4,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "019f0a632e6b5a6bc2c39613d519a6887ff8879d6c0f989f31742231105d0993",
+        "event_sha256": "cddafb84777e0318641052751ff7444503d8b3e24da75e7bbb509d9378924455"
+      },
+      {
+        "at": "2026-10-19T12:14:23.292730Z",
+        "call_id": "3cebee90c55f4ceeb2ea70418bce7c16",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "7b7ee4463099cb208148f2801c99c329899291d9cb6e0f60ea1f9a9c8b95fc81",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 5,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "cddafb84777e0318641052751ff7444503d8b3e24da75e7bbb509d9378924455",
+        "event_sha256": "c9894176b502952d9a2138ddb0a3cf4f4bc0ab072f5eeb5b54e4d31245baf242"
+      },
+      {
+        "at": "2026-10-19T12:14:23.293322Z",
+        "call_id": "3cebee90c55f4ceeb2ea70418bce7c16",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "7b7ee4463099cb208148f2801c99c329899291d9cb6e0f60ea1f9a9c8b95fc81",
+        "operation": "list_work_orders",
+        "outcome": "success",
+        "output_sha256": "0164c8cfc5e2b48d49274bde5d2fe37100bbcb9ca5df23633144c8793db5d432",
+        "phase": "outcome",
+        "row_count": 2,
+        "sequence": 6,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "c9894176b502952d9a2138ddb0a3cf4f4bc0ab072f5eeb5b54e4d31245baf242",
+        "event_sha256": "c0c5a53cd80e7d4bbeafff3937b76c138161a9d04b886ec550aa48d96a317d4e"
+      },
+      {
+        "at": "2026-10-19T12:14:23.295003Z",
+        "call_id": "ff7b4cefed28429b9fd8354528415d45",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 7,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "c0c5a53cd80e7d4bbeafff3937b76c138161a9d04b886ec550aa48d96a317d4e",
+        "event_sha256": "840e201dacdb55cc35da8b8f8dee8e0fb6ad064adddd3ebaec0c58fc7aa3d90e"
+      },
+      {
+        "at": "2026-10-19T12:14:23.295527Z",
+        "call_id": "ff7b4cefed28429b9fd8354528415d45",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 8,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "840e201dacdb55cc35da8b8f8dee8e0fb6ad064adddd3ebaec0c58fc7aa3d90e",
+        "event_sha256": "7e8a1267d221becb6f0b0c1b477e02453e17c8d45cdb4800b96a886f1f5e1357"
+      },
+      {
+        "at": "2026-10-19T12:14:23.298651Z",
+        "call_id": "3af093c13a1f48dc9833eb87284ac272",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "4d6e46a4f209fd0c27c909cc6e29437e98b3e9ffd4aadd5ff6bd30bf591199b1",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 9,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "7e8a1267d221becb6f0b0c1b477e02453e17c8d45cdb4800b96a886f1f5e1357",
+        "event_sha256": "468aa2b959bb1156c3fd4b664182d6f9029718f27122621b6f2569b8fb70da7d"
+      },
+      {
+        "at": "2026-10-19T12:14:23.299272Z",
+        "call_id": "3af093c13a1f48dc9833eb87284ac272",
+        "error_code": "not_found",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "4d6e46a4f209fd0c27c909cc6e29437e98b3e9ffd4aadd5ff6bd30bf591199b1",
+        "operation": "get_work_order",
+        "outcome": "error",
+        "output_sha256": "d16873e2bbac3be44516046ad4a609bb26a3570e53c17a66ef2a73400fb64e54",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 10,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "468aa2b959bb1156c3fd4b664182d6f9029718f27122621b6f2569b8fb70da7d",
+        "event_sha256": "c6c20011092ad4a9b0e28c717c4ceef85a80e0e340dd45e0d7537916f8816485"
+      },
+      {
+        "at": "2026-10-19T12:14:23.300683Z",
+        "call_id": "e9555e81595c476c9f1e765d83d689e8",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "20407c9ccf56caa4eea1732b53a561937e350b70c2bf0c0a8ef47346351cc131",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 11,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "c6c20011092ad4a9b0e28c717c4ceef85a80e0e340dd45e0d7537916f8816485",
+        "event_sha256": "6dd5fb107899906a5251190aa5ae23028a19dc26a048b08aa9109d379e74a948"
+      },
+      {
+        "at": "2026-10-19T12:14:23.301215Z",
+        "call_id": "e9555e81595c476c9f1e765d83d689e8",
+        "error_code": "not_found",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "20407c9ccf56caa4eea1732b53a561937e350b70c2bf0c0a8ef47346351cc131",
+        "operation": "get_work_order",
+        "outcome": "error",
+        "output_sha256": "d16873e2bbac3be44516046ad4a609bb26a3570e53c17a66ef2a73400fb64e54",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 12,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "6dd5fb107899906a5251190aa5ae23028a19dc26a048b08aa9109d379e74a948",
+        "event_sha256": "8a24100c48d4284052c07cabe347140d2358d4ab8d0479693317332e41b0b2e9"
+      },
+      {
+        "at": "2026-10-19T12:14:23.302709Z",
+        "call_id": "ccf0f70107f5477bac51add170691ff3",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "5023856ab29a3c97288261e46b9877779d1ee32d782b378851b61525d2f74339",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 13,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "8a24100c48d4284052c07cabe347140d2358d4ab8d0479693317332e41b0b2e9",
+        "event_sha256": "03d69059baf9cc7581dd97e4d1d8df4d2b76f11fdac13b3d036946ef284701ff"
+      },
+      {
+        "at": "2026-10-19T12:14:23.303309Z",
+        "call_id": "ccf0f70107f5477bac51add170691ff3",
+        "error_code": "not_found",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "5023856ab29a3c97288261e46b9877779d1ee32d782b378851b61525d2f74339",
+        "operation": "list_work_orders",
+        "outcome": "error",
+        "output_sha256": "d16873e2bbac3be44516046ad4a609bb26a3570e53c17a66ef2a73400fb64e54",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 14,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "03d69059baf9cc7581dd97e4d1d8df4d2b76f11fdac13b3d036946ef284701ff",
+        "event_sha256": "1ec49d07066c6048cdf2bc30077a4fb99e4935af0f163965f51e27d181cabdfc"
+      },
+      {
+        "at": "2026-10-19T12:14:23.304748Z",
+        "call_id": "8454339036d54758bb50e56791934c5b",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "1217bb7007d8ec84a09962b493e96ae041b8f66092c7702fd4349bc893264302",
+        "operation": "get_asset_diagnostics",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 15,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "1ec49d07066c6048cdf2bc30077a4fb99e4935af0f163965f51e27d181cabdfc",
+        "event_sha256": "7ac6655dd41f231d739e1de910d9a50742b53f9c2d453807e66e1836694bb4b2"
+      },
+      {
+        "at": "2026-10-19T12:14:23.305344Z",
+        "call_id": "8454339036d54758bb50e56791934c5b",
+        "error_code": "forbidden",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "1217bb7007d8ec84a09962b493e96ae041b8f66092c7702fd4349bc893264302",
+        "operation": "get_asset_diagnostics",
+        "outcome": "error",
+        "output_sha256": "756d0006850f33aaa13e257d24b916ae6f50cda1cf17c484540817a24f61e716",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 16,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "7ac6655dd41f231d739e1de910d9a50742b53f9c2d453807e66e1836694bb4b2",
+        "event_sha256": "ae63f57d42a0e6fbc9abcfab68690174f5f21f63687b67cd1d7212c579138247"
+      },
+      {
+        "at": "2026-10-19T12:14:23.306719Z",
+        "call_id": "a173da6e1cfd42a5a3da685cf337e4f4",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "240d33e412d9b76fe244a539a2bc3e9764ea7f62204959f679a68f2e211fe669",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 17,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "ae63f57d42a0e6fbc9abcfab68690174f5f21f63687b67cd1d7212c579138247",
+        "event_sha256": "b1f628dba53622f783f686ac4fa304bb34be756d5c7a21fd41546a60556d7bad"
+      },
+      {
+        "at": "2026-10-19T12:14:23.307314Z",
+        "call_id": "a173da6e1cfd42a5a3da685cf337e4f4",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "240d33e412d9b76fe244a539a2bc3e9764ea7f62204959f679a68f2e211fe669",
+        "operation": "list_work_orders",
+        "outcome": "success",
+        "output_sha256": "257a84f4faa0da04fd11311098439d5f12b3e8c35c09c1e8568adf715137a2bc",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 18,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "b1f628dba53622f783f686ac4fa304bb34be756d5c7a21fd41546a60556d7bad",
+        "event_sha256": "480699b397698d95d78846345fb79e0f26c6cd7f7162445a2c077a43066674a7"
+      },
+      {
+        "at": "2026-10-19T12:14:23.308896Z",
+        "call_id": "e86f108ca22943b696522bbf9f54460d",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "316d6f28fb2542c4a43e2ae4b35669d445321ad5c393491ff0bcd217a53aafba",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 19,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "480699b397698d95d78846345fb79e0f26c6cd7f7162445a2c077a43066674a7",
+        "event_sha256": "9421bbb8d178d42027648fa88bbc4ea6211bd55c365d12244b515578885f9a69"
+      },
+      {
+        "at": "2026-10-19T12:14:23.309468Z",
+        "call_id": "e86f108ca22943b696522bbf9f54460d",
+        "error_code": "invalid_request",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "316d6f28fb2542c4a43e2ae4b35669d445321ad5c393491ff0bcd217a53aafba",
+        "operation": "list_work_orders",
+        "outcome": "error",
+        "output_sha256": "38c5839214f4ba586d91ef11c8e7a7a86f9c110aa61f73d1cfe4e337b9aede04",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 20,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "9421bbb8d178d42027648fa88bbc4ea6211bd55c365d12244b515578885f9a69",
+        "event_sha256": "c0b9ed1b04d53a66a77767e3db6d1a7579acd42323718ca5df70aa2a9304a703"
+      },
+      {
+        "at": "2026-10-19T12:14:23.310949Z",
+        "call_id": "9bf2bcb769fb439382b77fc5252228db",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "a57bf097e1c65396bb8b66b59c0c1dbe72df1b758138c70d463bbf644e561fd5",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 21,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "c0b9ed1b04d53a66a77767e3db6d1a7579acd42323718ca5df70aa2a9304a703",
+        "event_sha256": "b8072e7e8a3c1bca85dcf4b18b453058a919fa10570985d7baebf636a6af1960"
+      },
+      {
+        "at": "2026-10-19T12:14:23.311541Z",
+        "call_id": "9bf2bcb769fb439382b77fc5252228db",
+        "error_code": "invalid_request",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "a57bf097e1c65396bb8b66b59c0c1dbe72df1b758138c70d463bbf644e561fd5",
+        "operation": "list_work_orders",
+        "outcome": "error",
+        "output_sha256": "38c5839214f4ba586d91ef11c8e7a7a86f9c110aa61f73d1cfe4e337b9aede04",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 22,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "b8072e7e8a3c1bca85dcf4b18b453058a919fa10570985d7baebf636a6af1960",
+        "event_sha256": "a6ff042b5bfcf2d33d65af5f44f59833af4a61a672fe4e256146962464d09203"
+      },
+      {
+        "at": "2026-10-19T12:14:23.312982Z",
+        "call_id": "04cb436745f942d082455be276f0f145",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "dce197c88c2d2393dd61d2bf42090ffb333bd2630f9ce0362c7b9074adb8cf54",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 23,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "a6ff042b5bfcf2d33d65af5f44f59833af4a61a672fe4e256146962464d09203",
+        "event_sha256": "370e515006878995eb78254df7be67d21e76520a69cf978225d2ebcc28be50ca"
+      },
+      {
+        "at": "2026-10-19T12:14:23.313597Z",
+        "call_id": "04cb436745f942d082455be276f0f145",
+        "error_code": "invalid_request",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "dce197c88c2d2393dd61d2bf42090ffb333bd2630f9ce0362c7b9074adb8cf54",
+        "operation": "list_work_orders",
+        "outcome": "error",
+        "output_sha256": "38c5839214f4ba586d91ef11c8e7a7a86f9c110aa61f73d1cfe4e337b9aede04",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 24,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "370e515006878995eb78254df7be67d21e76520a69cf978225d2ebcc28be50ca",
+        "event_sha256": "2ed9031058f0a288eeb3a28f7a8692071fd7e81002db0886676a1a26a4f6960f"
+      },
+      {
+        "at": "2026-10-19T12:14:23.314960Z",
+        "call_id": "aba7e3ecc8eb4eeba91e250724d6ad3f",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "2422cc4d354894e089ce6e31c6715dad48ade45392f3e0ea52ec0fc7a0918ffe",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 25,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "2ed9031058f0a288eeb3a28f7a8692071fd7e81002db0886676a1a26a4f6960f",
+        "event_sha256": "dbd60093daf5e0a11b8e594187d35cb76c211000356a0b86e73b0431da105d6f"
+      },
+      {
+        "at": "2026-10-19T12:14:23.315558Z",
+        "call_id": "aba7e3ecc8eb4eeba91e250724d6ad3f",
+        "error_code": "invalid_request",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "2422cc4d354894e089ce6e31c6715dad48ade45392f3e0ea52ec0fc7a0918ffe",
+        "operation": "list_work_orders",
+        "outcome": "error",
+        "output_sha256": "1b13585b07385fdcae208b806621c98d0779c7fae1d59a9e3be99482de206667",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 26,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "dbd60093daf5e0a11b8e594187d35cb76c211000356a0b86e73b0431da105d6f",
+        "event_sha256": "0700ad02e3d4f83502af360d98820c2d73d4a2da54b7957488ca1e50fd788b97"
+      },
+      {
+        "at": "2026-10-19T12:14:23.316960Z",
+        "call_id": "e47b87cf01f74d80aaf37155a5af889f",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "2beda443ee95bb965dafa49883ccc6732dbd60fae66917db7d26bfa49dcb5c5c",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 27,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "0700ad02e3d4f83502af360d98820c2d73d4a2da54b7957488ca1e50fd788b97",
+        "event_sha256": "f7595d0d11d473b39ae2e1da11b904d6bde2d207bdc60c119432409d76b16d01"
+      },
+      {
+        "at": "2026-10-19T12:14:23.317564Z",
+        "call_id": "e47b87cf01f74d80aaf37155a5af889f",
+        "error_code": "invalid_request",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "2beda443ee95bb965dafa49883ccc6732dbd60fae66917db7d26bfa49dcb5c5c",
+        "operation": "list_work_orders",
+        "outcome": "error",
+        "output_sha256": "1b13585b07385fdcae208b806621c98d0779c7fae1d59a9e3be99482de206667",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 28,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "f7595d0d11d473b39ae2e1da11b904d6bde2d207bdc60c119432409d76b16d01",
+        "event_sha256": "451c2d45f4ea4c4e3fe083dd8040b01f2bb6b058f6873db5e8ff1ccb6b8cdc40"
+      },
+      {
+        "at": "2026-10-19T12:14:23.319020Z",
+        "call_id": "61be39c87b634158b133c5cca92fccc1",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "bb3187abdd8543e05439d78c7b92a9e9827584b4b96835b974536209432d6c21",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 29,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "451c2d45f4ea4c4e3fe083dd8040b01f2bb6b058f6873db5e8ff1ccb6b8cdc40",
+        "event_sha256": "25d0c174c49025ddfb60894f644e89c4401c113dedc68ee076f42d97dac64e91"
+      },
+      {
+        "at": "2026-10-19T12:14:23.319775Z",
+        "call_id": "61be39c87b634158b133c5cca92fccc1",
+        "error_code": "invalid_request",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "bb3187abdd8543e05439d78c7b92a9e9827584b4b96835b974536209432d6c21",
+        "operation": "list_work_orders",
+        "outcome": "error",
+        "output_sha256": "21a1bbb9654194599184f4b726f78f219ec9bb21ebe07d06e34ff696316fbba3",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 30,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "25d0c174c49025ddfb60894f644e89c4401c113dedc68ee076f42d97dac64e91",
+        "event_sha256": "c1093953d24841a3cc20d769d6b5444ea6d78af15db441f1d24832bad2092123"
+      },
+      {
+        "at": "2026-10-19T12:14:23.321291Z",
+        "call_id": "892238369ee245c9a83584d1339e33c1",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "866553b1a8caa04bda36f29ba94b3af8afd163ccc9e8a2a0a1292d9e72e06796",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 31,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "c1093953d24841a3cc20d769d6b5444ea6d78af15db441f1d24832bad2092123",
+        "event_sha256": "5efa834c648707b75bcc88497057b455c4262eeb6d3097641ef1394889292779"
+      },
+      {
+        "at": "2026-10-19T12:14:23.321993Z",
+        "call_id": "892238369ee245c9a83584d1339e33c1",
+        "error_code": "invalid_request",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "866553b1a8caa04bda36f29ba94b3af8afd163ccc9e8a2a0a1292d9e72e06796",
+        "operation": "list_work_orders",
+        "outcome": "error",
+        "output_sha256": "93f073b84ebf5f9a484dcedb0c91c4c53290afcba04a398a150d3d462ba0d209",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 32,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "5efa834c648707b75bcc88497057b455c4262eeb6d3097641ef1394889292779",
+        "event_sha256": "4bff753108fd9c7ee04fdcb235ac9e76f0653b45fd6c5d817ee40b8993a096e3"
+      },
+      {
+        "at": "2026-10-19T12:14:23.323486Z",
+        "call_id": "af5999ccd36b4f78bdb7650749f484a5",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "ac5e3de5a6c46db010050cf2949da65ca9e795457eb01afc62b15025bfaacc05",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 33,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "4bff753108fd9c7ee04fdcb235ac9e76f0653b45fd6c5d817ee40b8993a096e3",
+        "event_sha256": "b86807f0031d30d5cd5f2598148490b88900c47235094a1c43f347bb983cb4ec"
+      },
+      {
+        "at": "2026-10-19T12:14:23.324198Z",
+        "call_id": "af5999ccd36b4f78bdb7650749f484a5",
+        "error_code": "invalid_request",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "ac5e3de5a6c46db010050cf2949da65ca9e795457eb01afc62b15025bfaacc05",
+        "operation": "get_work_order",
+        "outcome": "error",
+        "output_sha256": "d57fc56a2f7043abdf032994dedfe52e2fcd1cc3143e198aac9f3eb854b84910",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 34,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "b86807f0031d30d5cd5f2598148490b88900c47235094a1c43f347bb983cb4ec",
+        "event_sha256": "f6b30c6209e1350ae5a4eb66889583141bd37c8b516bf69d0558d3e087951ff0"
+      },
+      {
+        "at": "2026-10-19T12:14:23.325763Z",
+        "call_id": "8b2d216857394a4e821077390b21a640",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "d0dc75b61bc055a0a6e0ab4923e448e336f072058cb60a4e4b51710712f3c24b",
+        "operation": "unknown_tool",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 35,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "f6b30c6209e1350ae5a4eb66889583141bd37c8b516bf69d0558d3e087951ff0",
+        "event_sha256": "2878aab51a2d91e1d71d87c98f123bfc18ce20fc70cbe5776d83ab31b4447d90"
+      },
+      {
+        "at": "2026-10-19T12:14:23.326470Z",
+        "call_id": "8b2d216857394a4e821077390b21a640",
+        "error_code": "invalid_request",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "d0dc75b61bc055a0a6e0ab4923e448e336f072058cb60a4e4b51710712f3c24b",
+        "operation": "unknown_tool",
+        "outcome": "error",
+        "output_sha256": "a6661cfad13330be4d68c7e2372de8e8a7fb0181fdb80fe76cf56ca3b4750d31",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 36,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "2878aab51a2d91e1d71d87c98f123bfc18ce20fc70cbe5776d83ab31b4447d90",
+        "event_sha256": "e2d5409e253db0eecb03e72cb4eda3204efac9b85c5a21bee26186babfa01168"
+      },
+      {
+        "at": "2026-10-19T12:14:23.328158Z",
+        "call_id": "97e60e2d834f41e4844643fdde47f135",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 37,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "e2d5409e253db0eecb03e72cb4eda3204efac9b85c5a21bee26186babfa01168",
+        "event_sha256": "8a6ec85b3e316be54e23645b89e42fc1b9dbf7815b138c5dbb0f6521da6e7bd8"
+      },
+      {
+        "at": "2026-10-19T12:14:23.400846Z",
+        "call_id": "97e60e2d834f41e4844643fdde47f135",
+        "error_code": "resource_busy",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "error",
+        "output_sha256": "d97bd127ca5ec1e818e3a4253aee0391d487201072ccb914ed9cf0bdb7c0d6e1",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 38,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "8a6ec85b3e316be54e23645b89e42fc1b9dbf7815b138c5dbb0f6521da6e7bd8",
+        "event_sha256": "524ae13da25dc6bbcd67ba86040c8a9d5029226778cdac1c63d6e67a91fdbfec"
+      },
+      {
+        "at": "2026-10-19T12:14:23.403465Z",
+        "call_id": "345d60b7b544459f9c1665b6e93f3b89",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 39,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "524ae13da25dc6bbcd67ba86040c8a9d5029226778cdac1c63d6e67a91fdbfec",
+        "event_sha256": "c393d8a735203a546837002888af7ab372a99ea338e555b805f3d0997e020732"
+      },
+      {
+        "at": "2026-10-19T12:14:23.404726Z",
+        "call_id": "345d60b7b544459f9c1665b6e93f3b89",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 40,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "c393d8a735203a546837002888af7ab372a99ea338e555b805f3d0997e020732",
+        "event_sha256": "afc84e6e05fcfcb1ed0d2e3e7304172519f74e0ce544300978a5e8040f8f955b"
+      },
+      {
+        "at": "2026-10-19T12:14:23.485653Z",
+        "call_id": "60f5ffe7ddab48d4ae673bd43d495491",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 41,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "afc84e6e05fcfcb1ed0d2e3e7304172519f74e0ce544300978a5e8040f8f955b",
+        "event_sha256": "ed0d929fdc7af1a02c68477ee5a98d65f276349aaed962285cf482e0ce745705"
+      },
+      {
+        "at": "2026-10-19T12:14:23.487316Z",
+        "call_id": "60f5ffe7ddab48d4ae673bd43d495491",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 42,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "ed0d929fdc7af1a02c68477ee5a98d65f276349aaed962285cf482e0ce745705",
+        "event_sha256": "9f5abb9e8821dfc21b27dd8b7485303b7fa3600b04384297c8dda8d22390c700"
+      },
+      {
+        "at": "2026-10-19T12:14:23.819323Z",
+        "call_id": "8d535867c1df4bd3a1114d04f8172dcd",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 43,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "9f5abb9e8821dfc21b27dd8b7485303b7fa3600b04384297c8dda8d22390c700",
+        "event_sha256": "f5b303e0b518540ac13663d76de8876de630d691622f931935e577ab9658fb1e"
+      },
+      {
+        "at": "2026-10-19T12:14:23.820719Z",
+        "call_id": "8d535867c1df4bd3a1114d04f8172dcd",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 44,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "f5b303e0b518540ac13663d76de8876de630d691622f931935e577ab9658fb1e",
+        "event_sha256": "3ba298eb46c6435060fa8196a80aa009c69eab629f15851d4a30f9e45fe98b3b"
+      },
+      {
+        "at": "2026-10-19T12:14:24.157042Z",
+        "call_id": "9552f47e3d2e4d17863bfc03a3674dad",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 45,
+        "subject": "local:beta-reader",
+        "tenant_id": "beta",
+        "previous_sha256": "3ba298eb46c6435060fa8196a80aa009c69eab629f15851d4a30f9e45fe98b3b",
+        "event_sha256": "b119df2d173362d094765b3aa54ce73c436f82851e9abf8b80125e80287a5e10"
+      },
+      {
+        "at": "2026-10-19T12:14:24.158640Z",
+        "call_id": "9552f47e3d2e4d17863bfc03a3674dad",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "9203e4ae03bbd5e8953b491ecb33bf106034d2853260e780f7c2f60923c5f6bf",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 46,
+        "subject": "local:beta-reader",
+        "tenant_id": "beta",
+        "previous_sha256": "b119df2d173362d094765b3aa54ce73c436f82851e9abf8b80125e80287a5e10",
+        "event_sha256": "6347ceada6dea605423477552fb2ced83757cf3c4bb386ea4e880b3bb75ff2cd"
+      },
+      {
+        "at": "2026-10-19T12:14:24.491076Z",
+        "call_id": "6025001eaed141cdad11d3a9f2acb02f",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "4d6e46a4f209fd0c27c909cc6e29437e98b3e9ffd4aadd5ff6bd30bf591199b1",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 47,
+        "subject": "local:alpha-analyst",
+        "tenant_id": "alpha",
+        "previous_sha256": "6347ceada6dea605423477552fb2ced83757cf3c4bb386ea4e880b3bb75ff2cd",
+        "event_sha256": "b96c86f95218ba2e990703d252095f1b6b1c64562d9e611df5d19b2d9a5f8bcf"
+      },
+      {
+        "at": "2026-10-19T12:14:24.492672Z",
+        "call_id": "6025001eaed141cdad11d3a9f2acb02f",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "4d6e46a4f209fd0c27c909cc6e29437e98b3e9ffd4aadd5ff6bd30bf591199b1",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "f14c4169789f326bacf939ea08db343e821400f7507276c6089b62fd6a82e900",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 48,
+        "subject": "local:alpha-analyst",
+        "tenant_id": "alpha",
+        "previous_sha256": "b96c86f95218ba2e990703d252095f1b6b1c64562d9e611df5d19b2d9a5f8bcf",
+        "event_sha256": "d75181455c41f2712420df120be9334d2ce31bb90d5fb598c22b41d0c2f749c9"
+      },
+      {
+        "at": "2026-10-19T12:14:24.496695Z",
+        "call_id": "01006da701944c229eb79fbaaa30b89e",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "1217bb7007d8ec84a09962b493e96ae041b8f66092c7702fd4349bc893264302",
+        "operation": "get_asset_diagnostics",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 49,
+        "subject": "local:alpha-analyst",
+        "tenant_id": "alpha",
+        "previous_sha256": "d75181455c41f2712420df120be9334d2ce31bb90d5fb598c22b41d0c2f749c9",
+        "event_sha256": "f87ae8c9a2e4f5e85058f2f721b249dd3bf81d9ae648ca699986c1a35cd62b96"
+      },
+      {
+        "at": "2026-10-19T12:14:24.497586Z",
+        "call_id": "01006da701944c229eb79fbaaa30b89e",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "1217bb7007d8ec84a09962b493e96ae041b8f66092c7702fd4349bc893264302",
+        "operation": "get_asset_diagnostics",
+        "outcome": "success",
+        "output_sha256": "cd46d523c0b7c9621601f07d20c4ef9d3cfdb8c816d933331c257e0d5157bb4c",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 50,
+        "subject": "local:alpha-analyst",
+        "tenant_id": "alpha",
+        "previous_sha256": "f87ae8c9a2e4f5e85058f2f721b249dd3bf81d9ae648ca699986c1a35cd62b96",
+        "event_sha256": "26cb1627a8e50c72f0238ac3efebd78c2cd86d3d99f47c588607cbaa5a08dc86"
+      },
+      {
+        "at": "2026-10-19T12:14:24.830561Z",
+        "call_id": "4e13e7d092a04531bb2e38a621b0edd1",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "4d6e46a4f209fd0c27c909cc6e29437e98b3e9ffd4aadd5ff6bd30bf591199b1",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 51,
+        "subject": "local:beta-analyst",
+        "tenant_id": "beta",
+        "previous_sha256": "26cb1627a8e50c72f0238ac3efebd78c2cd86d3d99f47c588607cbaa5a08dc86",
+        "event_sha256": "06a2d35f004de80ac4eaca7fe96f89617198942f0b60d23ddce33d66cec9fc5c"
+      },
+      {
+        "at": "2026-10-19T12:14:24.832187Z",
+        "call_id": "4e13e7d092a04531bb2e38a621b0edd1",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "4d6e46a4f209fd0c27c909cc6e29437e98b3e9ffd4aadd5ff6bd30bf591199b1",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "f0d7f74c012d6134edb7bf7c586edabaf7e12002e75efe8d38207423de3a567c",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 52,
+        "subject": "local:beta-analyst",
+        "tenant_id": "beta",
+        "previous_sha256": "06a2d35f004de80ac4eaca7fe96f89617198942f0b60d23ddce33d66cec9fc5c",
+        "event_sha256": "2aeaa996c4ec361f807f56ecbe3d5730cfd0df1b6b0be4380d89da8fdcedeb33"
+      },
+      {
+        "at": "2026-10-19T12:14:24.836048Z",
+        "call_id": "6ed37e7a9a6740f8b67edb95ac3dd9b7",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "1217bb7007d8ec84a09962b493e96ae041b8f66092c7702fd4349bc893264302",
+        "operation": "get_asset_diagnostics",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 53,
+        "subject": "local:beta-analyst",
+        "tenant_id": "beta",
+        "previous_sha256": "2aeaa996c4ec361f807f56ecbe3d5730cfd0df1b6b0be4380d89da8fdcedeb33",
+        "event_sha256": "d07c3e5a93b862d014a6e8e9450ea4f59367c8d9cec7948e26dcaebc1fa366ad"
+      },
+      {
+        "at": "2026-10-19T12:14:24.837031Z",
+        "call_id": "6ed37e7a9a6740f8b67edb95ac3dd9b7",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "1217bb7007d8ec84a09962b493e96ae041b8f66092c7702fd4349bc893264302",
+        "operation": "get_asset_diagnostics",
+        "outcome": "success",
+        "output_sha256": "f209b5eed65bd50ed357a322c5d12dcca46ee3b3d6f1268a1ebaf48522661b2b",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 54,
+        "subject": "local:beta-analyst",
+        "tenant_id": "beta",
+        "previous_sha256": "d07c3e5a93b862d014a6e8e9450ea4f59367c8d9cec7948e26dcaebc1fa366ad",
+        "event_sha256": "3b7f9adde82571ce4d170ce2ab3ce823cbcd21f393d6dd65a6176ec4f97da90e"
+      },
+      {
+        "at": "2026-10-19T12:14:25.166234Z",
+        "call_id": "18749c894905464e9fa4b099cc267b54",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "c8aadacb391065bcd2fdf1193e77da79f3b66ced2eab45abc12c44f4b4732dbf",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 55,
+        "subject": "local:alpha-observer",
+        "tenant_id": "alpha",
+        "previous_sha256": "3b7f9adde82571ce4d170ce2ab3ce823cbcd21f393d6dd65a6176ec4f97da90e",
+        "event_sha256": "902a18b8529426ba48a1792d4be853b929f4b78b97cfedc95994c15d2190e475"
+      },
+      {
+        "at": "2026-10-19T12:14:25.167806Z",
+        "call_id": "18749c894905464e9fa4b099cc267b54",
+        "error_code": "forbidden",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "c8aadacb391065bcd2fdf1193e77da79f3b66ced2eab45abc12c44f4b4732dbf",
+        "operation": "list_work_orders",
+        "outcome": "error",
+        "output_sha256": "756d0006850f33aaa13e257d24b916ae6f50cda1cf17c484540817a24f61e716",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 56,
+        "subject": "local:alpha-observer",
+        "tenant_id": "alpha",
+        "previous_sha256": "902a18b8529426ba48a1792d4be853b929f4b78b97cfedc95994c15d2190e475",
+        "event_sha256": "199dd5ae90149c52f5b4dd02f2984cdd41c27f68548ef28441cb1bd8c9f4db4a"
+      },
+      {
+        "at": "2026-10-19T12:14:25.498541Z",
+        "call_id": "47c88c14d8174e338ebdecd638d03d73",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 57,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "199dd5ae90149c52f5b4dd02f2984cdd41c27f68548ef28441cb1bd8c9f4db4a",
+        "event_sha256": "306c57d11a70c8a53af02ae6fd61207c76e0bd0da6dcc82cbe7ee24c473fbcb2"
+      },
+      {
+        "at": "2026-10-19T12:14:25.500371Z",
+        "call_id": "47c88c14d8174e338ebdecd638d03d73",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 58,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "306c57d11a70c8a53af02ae6fd61207c76e0bd0da6dcc82cbe7ee24c473fbcb2",
+        "event_sha256": "97d6d5e0eec67010b27addff03599d1bf56812fa957fc7f6a38494cc5150364b"
+      }
+    ],
+    "event_count": 58,
+    "chain_verified": true,
+    "restart_preserved_prefix": true,
+    "last_sha256": "97d6d5e0eec67010b27addff03599d1bf56812fa957fc7f6a38494cc5150364b"
+  },
+  "limits": [
+    "Local stdio and trusted launcher, not remote authentication or production IAM",
+    "Synthetic SQLite, no Oracle/SAP, model or external customer data",
+    "Audit and source are separate databases, not a distributed transaction",
+    "Local hash chain has no external anchor against a host administrator",
+    "Read-only fixture pagination is not a mutable-database snapshot guarantee"
+  ]
+}

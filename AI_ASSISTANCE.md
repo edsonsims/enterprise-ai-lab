@@ -213,3 +213,48 @@ bounds, serialized native rendering and cleanup regressions. The original
 14-test dependency-free study and byte-identical reference demo still pass; a
 local wheel includes the review modules, static UI assets and Temporal pin.
 The wheel was built for packaging verification, not uploaded to a registry.
+
+The local SQLite MCP milestone was developed with Codex on 2026-10-19. Separate
+automated agents researched the official SDK artifact/API, implemented the
+read-only store/service/audit and protocol adapter, and independently reviewed
+the permission and persistence boundaries. Root integration runs the actual
+official SDK2 client against separate stdio server processes. This is automated
+engineering and review, not the owner's manual implementation, study or review.
+
+The fixture contains 18 authored fictional work orders and six diagnostics in
+two tenants. Launcher-selected profiles are trusted local policy, not remote
+authentication. No company database, Oracle/SAP connector, model call, remote
+transport or write/action tool exists. Source SQLite opens read-only; tenant
+and row roles filter inside SQL before pagination. A separate bounded audit
+commits intent before source access and outcome before returning data.
+
+Independent automated review reproduced a source overwrite through an audit
+SQLite sidecar hardlink on disposable files. File-family/inode admission checks
+now run before audit I/O at construction and each call, with actual hardlink
+regressions. Review also aligned explicit-null optional arguments with the
+advertised schema and added a server-computed runtime fingerprint to avoid
+mistaking a client-side version report for an independent server observation.
+
+The [frozen gateway run](reports/gateway-v1) records 32 observations, eight
+actual reaped child processes, modern discovery and a separate legacy handshake,
+source hash preservation and 58 metadata-only audit events. Controlled source
+and audit locks, copied-chain corruption and a direct engine write probe remain
+labelled. Separate real stdio tests exercise SDK timeout, caller deadline and
+cancellation after a committed intent, followed by explicit recovery. They do
+not claim cancellation rolled back a read or made a distributed transaction.
+
+Final combined verification on Python 3.13.1/macOS arm64 passed **509 tests and
+299 subtests**, including all previous RAG/PDF, approval, publication and actual
+Chromium review integrations. The 70 gateway tests include 52 subtests; some
+adapter tests use explicitly controlled in-process services, while the process
+tests use the actual official client, stdio server and SQLite. The original14
+tests and reference reproduction still pass; all prior frozen reports and
+public sources are unchanged. Both the combined four-lock runtime and a fresh
+standalone MCP-lock/wheel environment pass dependency checks. The installed
+wheel includes the gateway code/fixture and reproduces the 32-check demo; no
+package was uploaded to a registry.
+
+The local hash chain has no external anchor against a host administrator, and
+the source/audit databases are not one atomic transaction. Trusted launcher,
+host/filesystem and authored schema remain explicit limits. No new model-quality,
+production-security, customer-outcome, owner-study or human-review claim is made.

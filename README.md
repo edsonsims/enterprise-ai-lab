@@ -20,6 +20,7 @@ separate controlled experiment, with its original reports preserved.
 [Durable approval demo](#wait-for-approval-survive-a-restart) ·
 [Approve → publish → query](#approve-a-document-before-it-enters-search) ·
 [Browser review room](#open-the-source-and-leave-a-decision) ·
+[SQLite MCP gateway](#give-a-tool-the-rows-it-can-read) ·
 [Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
 
 ## Run the connected RAG demo
@@ -303,6 +304,47 @@ Automated fixture logins and clicks are **not a person's review or owner study**
 The audit is local, not externally tamper-proof, and the development Temporal
 administration endpoint remains trusted. External SSO, production HTTPS, key
 rotation and live entitlement synchronization remain planned.
+
+## Give a tool the rows it can read
+
+The [MCP gateway study](docs/sqlite-mcp-gateway.md) connects the official Python
+MCP SDK to a read-only SQLite database of **fictional work orders**. An actual
+stdio client discovers the allowed tools, reads tenant-bound records and leaves
+a durable metadata-only audit. The trusted local launcher chooses the profile;
+this is a local policy experiment, not remote authentication.
+
+Use Python **3.12+** on macOS/Linux. This small demo needs no model, Node server,
+credentials or external system:
+
+```sh
+python3.13 -m venv .venv-mcp
+.venv-mcp/bin/python -m pip install -r requirements-mcp.lock
+.venv-mcp/bin/python -m pip install --no-deps -e .
+.venv-mcp/bin/python -m enterprise_ai_lab.mcp_gateway demo \
+  --work-dir .local/gateway-demo --out reports/local/gateway-demo.json
+.venv-mcp/bin/python -m pytest tests/gateway -q
+```
+
+| Call | Observed behavior |
+| --- | --- |
+| Alpha reader lists two rows per page | `0001, 0003` → `0005, 0006` → `0008, 0009`; restricted rows never consume the page |
+| Alpha and Beta ask for `WO-0001` | Different records from their own tenant |
+| Reader requests analyst diagnostics | Tool hidden from catalog; direct call also refused |
+| Caller adds tenant, role or SQL arguments | Audited refusal; no source data |
+| Source is locked / audit cannot commit | Bounded tool error / data withheld |
+| Client reconnects in a fresh server process | Same source result; prior audit chain preserved |
+
+Tenant **and** row roles filter inside SQL before ordering and pagination. The
+source also has a read-only connection and an operation authorizer. Audit intent
+commits before the query, and outcome commits before the response. A timeout
+does not prove a read never ran; the tests retain that distinction and verify
+same-client recovery and actual process cleanup.
+
+The [recorded run](reports/gateway-v1) includes negotiated modern/legacy
+protocols, full synthetic responses, runtime fingerprints, file hashes and
+labelled fault probes. SQLite is the implemented connector; Oracle/SAP, remote
+IAM and approved write tools remain planned. The local audit has no external
+anchor against a host administrator.
 
 ## Run the first experiment
 

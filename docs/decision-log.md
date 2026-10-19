@@ -1,5 +1,44 @@
 # Decision log
 
+## 2026-10-19: expose named reads before a general database tool
+
+**Question.** Can an actual MCP client read useful records while tenant, row
+roles, source immutability and durable audit remain enforced outside the model?
+
+**Decision.** Use official MCP2 stdio and an authored synthetic SQLite work-order
+fixture. The trusted local launcher supplies immutable profiles. Expose two
+reader tools and one analyst diagnostic tool, with strict service validation,
+parameterized SQL and tenant AND row-role filtering before page limits. There
+is no general SQL tool, model or caller-controlled tenant/role field. This
+local launcher boundary is not remote authentication.
+
+**Protocol decision.** Pin the actual SDK2.3 artifact and use its public low-level
+Server callbacks. This retains rejected arguments for a durable audit instead
+of decorator coercion dropping extra fields. The real official Client discovers
+the modern protocol and separately exercises the legacy initialize handshake;
+both versions are recorded from the wire rather than inferred from the SDK.
+
+**Storage decision.** Open the source read-only with an authorizer and bounded
+busy/progress handling. Commit audit intent before source access and outcome
+before returning. Audit failure after a read withholds data and preserves an
+honest unfinished intent. This costs two durable writes and full-chain checking
+per attempt, and it is not a transaction across source and audit. The bounded
+local chain detects corruption but has no external anchor against an admin.
+
+**Review finding.** A hardlink from an audit SQLite sidecar to the source could
+overwrite the source despite distinct main paths. Independent automated review
+reproduced this with disposable real files. Constructor and call admission now
+check every existing main/WAL/SHM/journal inode pairing before audit I/O, with
+real-file regressions preserving the source hash. The host/filesystem still
+remain trusted; this is not a hostile-file sandbox.
+
+**Evidence and limits.** The demo exercises actual separate processes, colliding
+tenant IDs, role-filtered multi-page reads, safe errors, restart persistence,
+locked databases, corrupt audit and source hash preservation. Separate tests
+exercise SDK timeout and cancellation after a durable intent, without claiming
+rollback, and verify explicit recovery/process reaping. No Oracle/SAP, remote
+OAuth, action tool, new model inference, owner study or production claim exists.
+
 ## 2026-10-17: one connected lab, evaluation first
 
 **Context.** The goal is a balanced portfolio for senior software engineering and

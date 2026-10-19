@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "work_orders": [
+    {
+      "tenant_id": "alpha",
+      "work_order_id": "WO-0001",
+      "asset_id": "AS-001",
+      "title": "Alpha synthetic inspection 1",
+      "status": "open",
+      "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "reader"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "work_order_id": "WO-0002",
+      "asset_id": "AS-002",
+      "title": "Alpha synthetic inspection 2",
+      "status": "in_progress",
+      "summary": "ALPHA_ANALYST_02: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "analyst"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "work_order_id": "WO-0003",
+      "asset_id": "AS-003",
+      "title": "Alpha synthetic inspection 3",
+      "status": "closed",
+      "summary": "ALPHA_READER_03: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "reader"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "work_order_id": "WO-0004",
+      "asset_id": "AS-001",
+      "title": "Alpha synthetic inspection 4",
+      "status": "open",
+      "summary": "ALPHA_ANALYST_04: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "analyst"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "work_order_id": "WO-0005",
+      "asset_id": "AS-002",
+      "title": "Alpha synthetic inspection 5",
+      "status": "in_progress",
+      "summary": "ALPHA_READER_05: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "reader"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "work_order_id": "WO-0006",
+      "asset_id": "AS-003",
+      "title": "Alpha synthetic inspection 6",
+      "status": "closed",
+      "summary": "ALPHA_READER_06: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "reader"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "work_order_id": "WO-0007",
+      "asset_id": "AS-001",
+      "title": "Alpha synthetic inspection 7",
+      "status": "open",
+      "summary": "ALPHA_ANALYST_07: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "analyst"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "work_order_id": "WO-0008",
+      "asset_id": "AS-002",
+      "title": "Alpha synthetic inspection 8",
+      "status": "in_progress",
+      "summary": "ALPHA_READER_08: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "reader"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "work_order_id": "WO-0009",
+      "asset_id": "AS-003",
+      "title": "Alpha synthetic inspection 9",
+      "status": "closed",
+      "summary": "ALPHA_READER_09: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "reader"
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "work_order_id": "WO-0001",
+      "asset_id": "AS-001",
+      "title": "Beta synthetic inspection 1",
+      "status": "open",
+      "summary": "BETA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "reader"
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "work_order_id": "WO-0002",
+      "asset_id": "AS-002",
+      "title": "Beta synthetic inspection 2",
+      "status": "in_progress",
+      "summary": "BETA_ANALYST_02: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "analyst"
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "work_order_id": "WO-0003",
+      "asset_id": "AS-003",
+      "title": "Beta synthetic inspection 3",
+      "status": "closed",
+      "summary": "BETA_READER_03: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "reader"
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "work_order_id": "WO-0004",
+      "asset_id": "AS-001",
+      "title": "Beta synthetic inspection 4",
+      "status": "open",
+      "summary": "BETA_ANALYST_04: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "analyst"
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "work_order_id": "WO-0005",
+      "asset_id": "AS-002",
+      "title": "Beta synthetic inspection 5",
+      "status": "in_progress",
+      "summary": "BETA_READER_05: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "reader"
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "work_order_id": "WO-0006",
+      "asset_id": "AS-003",
+      "title": "Beta synthetic inspection 6",
+      "status": "closed",
+      "summary": "BETA_READER_06: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "reader"
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "work_order_id": "WO-0007",
+      "asset_id": "AS-001",
+      "title": "Beta synthetic inspection 7",
+      "status": "open",
+      "summary": "BETA_ANALYST_07: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "analyst"
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "work_order_id": "WO-0008",
+      "asset_id": "AS-002",
+      "title": "Beta synthetic inspection 8",
+      "status": "in_progress",
+      "summary": "BETA_READER_08: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "reader"
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "work_order_id": "WO-0009",
+      "asset_id": "AS-003",
+      "title": "Beta synthetic inspection 9",
+      "status": "closed",
+      "summary": "BETA_READER_09: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+      "allowed_roles": [
+        "reader"
+      ]
+    }
+  ],
+  "asset_diagnostics": [
+    {
+      "tenant_id": "alpha",
+      "asset_id": "AS-001",
+      "code": "CHECK_ALIGNMENT",
+      "observation": "ALPHA_DIAGNOSTIC_001: Fictional diagnostic note for a demonstration asset. No actual equipment or customer is represented.",
+      "allowed_roles": [
+        "analyst"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "asset_id": "AS-002",
+      "code": "CHECK_ALIGNMENT",
+      "observation": "ALPHA_DIAGNOSTIC_002: Fictional diagnostic note for a demonstration asset. No actual equipment or customer is represented.",
+      "allowed_roles": [
+        "analyst"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "asset_id": "AS-003",
+      "code": "CHECK_ALIGNMENT",
+      "observation": "ALPHA_DIAGNOSTIC_003: Fictional diagnostic note for a demonstration asset. No actual equipment or customer is represented.",
+      "allowed_roles": [
+        "analyst"
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "asset_id": "AS-001",
+      "code": "CHECK_ALIGNMENT",
+      "observation": "BETA_DIAGNOSTIC_001: Fictional diagnostic note for a demonstration asset. No actual equipment or customer is represented.",
+      "allowed_roles": [
+        "analyst"
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "asset_id": "AS-002",
+      "code": "CHECK_ALIGNMENT",
+      "observation": "BETA_DIAGNOSTIC_002: Fictional diagnostic note for a demonstration asset. No actual equipment or customer is represented.",
+      "allowed_roles": [
+        "analyst"
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "asset_id": "AS-003",
+      "code": "CHECK_ALIGNMENT",
+      "observation": "BETA_DIAGNOSTIC_003: Fictional diagnostic note for a demonstration asset. No actual equipment or customer is represented.",
+      "allowed_roles": [
+        "analyst"
+      ]
+    }
+  ]
+}
