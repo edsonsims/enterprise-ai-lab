@@ -266,3 +266,15 @@ now requests unlimited-width `ps` output. This portability repair retains the
 frozen macOS run and its original source fingerprints, rather than rewriting
 that evidence to imply it used later code. The gateway-focused checks are
 repeated after the repair; the CI history retains the original failure.
+
+That Linux repair exposed a second test-harness race: 69 gateway tests passed,
+while the cancellation observer's audit inspection failed during concurrent
+writing. Its underlying SQLite exception was sanitized, so write-mode observer
+contention is an inference. The test now observes the full chain through a
+persistent read-only connection and injects a bounded test-only pre-query
+barrier after the real durable intent. It cancels the caller's wait, releases
+the barrier, executes the real query/outcome and verifies same-client recovery.
+This explicitly controlled scheduling avoids relying on a 50 ms window. It
+does not claim an executing SQLite query was interrupted, and it does not alter
+runtime audit refusal, source guards or query deadlines. The separate locked-DB
+timeout tests and original frozen process evidence remain intact.

@@ -152,8 +152,13 @@ thread work on cancellation; cancelling an await does not prove SQLite was
 forcibly interrupted or that a durable audit record was rolled back.
 
 Actual process tests hold an exclusive source lock, exercise both a caller
-deadline and SDK timeout/cancellation, release the lock, then successfully read
-again through the same client. The official stdio transport owns shutdown and
+deadline and SDK timeout, release the lock, then successfully read again through
+the same client. A separate cancellation test injects a bounded pre-query
+scheduling barrier **after a real committed audit intent**. It cancels the
+caller's wait before releasing the handler to execute the real SQL and audit
+outcome. That proves an in-flight cancellation/recovery path, not interruption
+of an executing SQLite query. Its observer uses read-only SQLite snapshots so
+watching for the intent does not request write-mode PRAGMAs. The official stdio transport owns shutdown and
 reaping. The demo observes real child PIDs through `ps` and checks they no longer
 exist after context exit; it does not infer cleanup from a closed Python object.
 

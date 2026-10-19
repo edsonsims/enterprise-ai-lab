@@ -62,7 +62,9 @@ results; current source fingerprints therefore differ from the preserved run.
 
 The focused suite adds actual SDK timeout, caller-deadline and cancellation
 tests, including cancellation after observing a committed remote intent,
-same-client recovery and process reaping. A timeout means the caller stopped
+same-client recovery and process reaping. The cancellation case uses a labelled
+test-only pre-query barrier to control scheduling before the real SQL runs;
+the separate source-lock cases exercise actual SQLite busy waits. A timeout means the caller stopped
 waiting; it does not mean a source read or audit commit never ran. Other tests
 exercise an outcome-write failure after the real source read and preserve an
 honest intent-only gap. Those cases are test evidence, not extra observations
