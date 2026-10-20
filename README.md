@@ -469,4 +469,4 @@ describes principal-based filtering and its distinction from authentication.
 This repository studies that boundary and claims no new retrieval method.
 
 [Roadmap](ROADMAP.md) · [Contribution guide](CONTRIBUTING.md) ·
-[AI assistance](AI_ASSISTANCE.md) · [MIT license](LICENSE)
+[MIT license](LICENSE)

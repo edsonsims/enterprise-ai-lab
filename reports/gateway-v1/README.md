@@ -81,5 +81,4 @@ security, owner study and human review are unclaimed. Existing RAG/OCR/approval
 and browser-review reports remain unchanged.
 
 [Design, tradeoffs and exercises](../../docs/sqlite-mcp-gateway.md) ·
-[Fixture provenance](../../src/enterprise_ai_lab/mcp_gateway/data/README.md) ·
-[AI assistance](../../AI_ASSISTANCE.md)
+[Fixture provenance](../../src/enterprise_ai_lab/mcp_gateway/data/README.md)
