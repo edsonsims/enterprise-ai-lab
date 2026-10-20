@@ -1,0 +1,466 @@
+{
+  "schema": "privacy-process-v1",
+  "recorded_at": "2026-10-20T12:22:00.295314+00:00",
+  "synthetic_only": true,
+  "processor": "actual loopback HTTP deterministic transformer; no model call",
+  "runtime": {
+    "python": "3.13.1",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "httpx": "0.28.1",
+    "PyJWT": "2.15.1",
+    "node": "v24.19.0"
+  },
+  "source_sha256": {
+    "privacy_proxy/__init__.py": "a28bfe1bab55251f7eea02ed8c7798b202262d943cc2987c98548e3f63bff44d",
+    "privacy_proxy/__main__.py": "81cce494a36cd52efeea6b52bb26117e24e9ea0815b8ca8c4250f189d185468f",
+    "privacy_proxy/api.py": "23113e0c25d21b2cae48e07d257adfa55c09b7c3125a7f2901a89dd5347b720d",
+    "privacy_proxy/contracts.py": "b267362ac0bdb18d97adab95bc3f3d695a9c5422fbd73d2bf5f12dca908d722e",
+    "privacy_proxy/detector.py": "63fe43735d015597e65eeee7115e39ce303f3fef127530181794940f22453f3c",
+    "privacy_proxy/evaluation.py": "b687e573b789daffc88ce04a02ba197283b6c33fec3b1175179c2e89b102f512",
+    "privacy_proxy/integration.py": "dbe502df902bd4dac30eb5d47663c709b8907483aebc8b5f884af411dc3d1804",
+    "privacy_proxy/vault.py": "7336b0897fef7d84010c684e0782fb3c0b69cbfe181d20373d0021a0d0e3eef3",
+    "rag/auth.py": "4966fa72892272b4cce854da9b0be085c2261502e26d02075b25ae98613fa57e"
+  },
+  "identity_dist_sha256": {
+    "issuer.js": "863250396513101c19b784ddcc7b8510fadddb0139977234d7847516d44b477e",
+    "bridge.js": "4ffec7359131e0862a6379dc7a46a41c87d3e82e3c94e6221b66a240828d54f6"
+  },
+  "synthetic_input": "Fictional note for Mara Vale: nina@privacy.example, +1 202-555-0114, card 4242 4242 4242 4242.",
+  "observations": [
+    {
+      "case": "redact",
+      "http_status": 200,
+      "response": {
+        "context_id": "0a4b84cf601bacc48e327929dbf1bdd2",
+        "redacted_text": "Fictional note for Mara Vale: [[PII:12b06f408a1fc6169052e3c2b1dc96dd]], [[PII:70a9bf4629174ff22e3996238264fc8e]], card [[PII:42ebaa51c688984abdf8ba2fe1cc2878]].",
+        "expires_at": 1792499038,
+        "detections": [
+          {
+            "kind": "EMAIL",
+            "start": 30,
+            "end": 50,
+            "token": "[[PII:12b06f408a1fc6169052e3c2b1dc96dd]]"
+          },
+          {
+            "kind": "PHONE",
+            "start": 52,
+            "end": 67,
+            "token": "[[PII:70a9bf4629174ff22e3996238264fc8e]]"
+          },
+          {
+            "kind": "PAN",
+            "start": 74,
+            "end": 93,
+            "token": "[[PII:42ebaa51c688984abdf8ba2fe1cc2878]]"
+          }
+        ]
+      }
+    },
+    {
+      "case": "restore",
+      "http_status": 200,
+      "response": {
+        "restored_text": "Fictional note for Mara Vale: nina@privacy.example, +1 202-555-0114, card 4242 4242 4242 4242."
+      }
+    },
+    {
+      "case": "cross_tenant_path",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "This principal cannot perform this operation."
+        }
+      }
+    },
+    {
+      "case": "other_tenant_context",
+      "http_status": 404,
+      "response": {
+        "error": {
+          "code": "context_unavailable",
+          "message": "The context is missing, expired or unavailable."
+        }
+      }
+    },
+    {
+      "case": "other_client_same_tenant",
+      "http_status": 404,
+      "response": {
+        "error": {
+          "code": "context_unavailable",
+          "message": "The context is missing, expired or unavailable."
+        }
+      }
+    },
+    {
+      "case": "redactor_cannot_restore",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "This principal cannot perform this operation."
+        }
+      }
+    },
+    {
+      "case": "missing_restore_scope",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "This principal cannot perform this operation."
+        }
+      }
+    },
+    {
+      "case": "wrong_audience",
+      "http_status": 401,
+      "response": {
+        "error": {
+          "code": "invalid_token",
+          "message": "A valid token for this resource is required."
+        }
+      }
+    },
+    {
+      "case": "missing_token",
+      "http_status": 401,
+      "response": {
+        "error": {
+          "code": "invalid_token",
+          "message": "A valid token for this resource is required."
+        }
+      }
+    },
+    {
+      "case": "identity_override",
+      "http_status": 400,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "The request does not match this operation."
+        }
+      }
+    },
+    {
+      "case": "extra_body_identity",
+      "http_status": 400,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "The request does not match this operation."
+        }
+      }
+    },
+    {
+      "case": "duplicate_json",
+      "http_status": 400,
+      "response": {
+        "error": {
+          "code": "invalid_json",
+          "message": "The JSON body is malformed or ambiguous."
+        }
+      }
+    },
+    {
+      "case": "invalid_utf8",
+      "http_status": 400,
+      "response": {
+        "error": {
+          "code": "invalid_json",
+          "message": "The JSON body is malformed or ambiguous."
+        }
+      }
+    },
+    {
+      "case": "body_limit",
+      "http_status": 413,
+      "response": {
+        "error": {
+          "code": "body_too_large",
+          "message": "The body exceeds the fixed byte limit."
+        }
+      }
+    },
+    {
+      "case": "reserved_literal",
+      "http_status": 400,
+      "response": {
+        "error": {
+          "code": "invalid_input",
+          "message": "The text or configuration exceeds the supported contract."
+        }
+      }
+    },
+    {
+      "case": "same_values_new_context",
+      "http_status": 200,
+      "response": {
+        "context_id": "cdaaac3af6816e1be5b2983424b78a21",
+        "redacted_text": "Fictional note for Mara Vale: [[PII:31a75c36074db816b702b7a9e266e9f3]], [[PII:2c6bf5ddaaf4cc209f9a61d41c27a0a8]], card [[PII:30cfcec2b4a0fd571ceead4d12484e77]].",
+        "expires_at": 1792499038,
+        "detections": [
+          {
+            "kind": "EMAIL",
+            "start": 30,
+            "end": 50,
+            "token": "[[PII:31a75c36074db816b702b7a9e266e9f3]]"
+          },
+          {
+            "kind": "PHONE",
+            "start": 52,
+            "end": 67,
+            "token": "[[PII:2c6bf5ddaaf4cc209f9a61d41c27a0a8]]"
+          },
+          {
+            "kind": "PAN",
+            "start": 74,
+            "end": 93,
+            "token": "[[PII:30cfcec2b4a0fd571ceead4d12484e77]]"
+          }
+        ]
+      }
+    },
+    {
+      "case": "copied_other_context_token",
+      "http_status": 400,
+      "response": {
+        "error": {
+          "code": "invalid_token_reference",
+          "message": "The response contains an unavailable placeholder."
+        }
+      }
+    },
+    {
+      "case": "actual_http_processor",
+      "http_status": 200,
+      "response": {
+        "context_id": "134e28583c28590aa3882e5176b32ac2",
+        "redacted_text": "Fictional note for Mara Vale: [[PII:ab81482a72c6e7bab414b94eb0390623]], [[PII:44e7de2d9ffdeac80326653da8aa83d2]], card [[PII:248cf88b98c39d764c05c9016949d074]].",
+        "expires_at": 1792499038,
+        "detections": [
+          {
+            "kind": "EMAIL",
+            "start": 30,
+            "end": 50,
+            "token": "[[PII:ab81482a72c6e7bab414b94eb0390623]]"
+          },
+          {
+            "kind": "PHONE",
+            "start": 52,
+            "end": 67,
+            "token": "[[PII:44e7de2d9ffdeac80326653da8aa83d2]]"
+          },
+          {
+            "kind": "PAN",
+            "start": 74,
+            "end": 93,
+            "token": "[[PII:248cf88b98c39d764c05c9016949d074]]"
+          }
+        ],
+        "processed_text": "Processed: Fictional note for Mara Vale: [[PII:ab81482a72c6e7bab414b94eb0390623]], [[PII:44e7de2d9ffdeac80326653da8aa83d2]], card [[PII:248cf88b98c39d764c05c9016949d074]].",
+        "restored_text": "Processed: Fictional note for Mara Vale: nina@privacy.example, +1 202-555-0114, card 4242 4242 4242 4242."
+      }
+    },
+    {
+      "case": "processor_injected_token",
+      "http_status": 400,
+      "response": {
+        "error": {
+          "code": "invalid_token_reference",
+          "message": "The response contains an unavailable placeholder."
+        }
+      }
+    },
+    {
+      "case": "processor_failure",
+      "http_status": 502,
+      "response": {
+        "error": {
+          "code": "processor_unavailable",
+          "message": "The configured local processor did not complete safely."
+        }
+      }
+    },
+    {
+      "case": "actual_sqlite_lock",
+      "http_status": 503,
+      "response": {
+        "error": {
+          "code": "resource_busy",
+          "message": "The local resource is busy; retry explicitly."
+        }
+      }
+    },
+    {
+      "case": "after_lock_released",
+      "http_status": 200,
+      "response": {
+        "restored_text": "Fictional note for Mara Vale: nina@privacy.example, +1 202-555-0114, card 4242 4242 4242 4242."
+      }
+    },
+    {
+      "case": "restore_after_resource_restart",
+      "http_status": 200,
+      "response": {
+        "restored_text": "Fictional note for Mara Vale: nina@privacy.example, +1 202-555-0114, card 4242 4242 4242 4242."
+      }
+    },
+    {
+      "case": "short_context_created",
+      "http_status": 200,
+      "response": {
+        "context_id": "7227f1c380be6978821b64fe834e9f4a",
+        "redacted_text": "Fictional note for Mara Vale: [[PII:5066420775e987cc09a9ce6a613ac38c]], [[PII:4aabe2b82b30646210434b09e4a929a9]], card [[PII:c6e909eef35a1345e2b8049fccc73f2a]].",
+        "expires_at": 1792498919,
+        "detections": [
+          {
+            "kind": "EMAIL",
+            "start": 30,
+            "end": 50,
+            "token": "[[PII:5066420775e987cc09a9ce6a613ac38c]]"
+          },
+          {
+            "kind": "PHONE",
+            "start": 52,
+            "end": 67,
+            "token": "[[PII:4aabe2b82b30646210434b09e4a929a9]]"
+          },
+          {
+            "kind": "PAN",
+            "start": 74,
+            "end": 93,
+            "token": "[[PII:c6e909eef35a1345e2b8049fccc73f2a]]"
+          }
+        ]
+      }
+    },
+    {
+      "case": "actual_context_expiry",
+      "http_status": 404,
+      "response": {
+        "error": {
+          "code": "context_unavailable",
+          "message": "The context is missing, expired or unavailable."
+        }
+      }
+    }
+  ],
+  "processor_requests": [
+    {
+      "text": "Fictional note for Mara Vale: [[PII:ab81482a72c6e7bab414b94eb0390623]], [[PII:44e7de2d9ffdeac80326653da8aa83d2]], card [[PII:248cf88b98c39d764c05c9016949d074]].",
+      "authorization_present": false
+    },
+    {
+      "text": "Fictional note for Mara Vale: [[PII:fec32bf72658725dc3bcc7227ebe3703]], [[PII:0b2c3307c6655106e4b7c303c6849474]], card [[PII:1c0f55a70df562fb023093ddf6787976]].",
+      "authorization_present": false
+    },
+    {
+      "text": "Fictional note for Mara Vale: [[PII:93673aeb0b7d410f3b684c6badabc513]], [[PII:a2bef774e19e3229b7bd7b774fb6d9e9]], card [[PII:642f5a0aac95330197b0b6e7cbebd0a4]].",
+      "authorization_present": false
+    }
+  ],
+  "limitations": {
+    "unsupported_name_was_forwarded": true,
+    "universal_pii_detection": false,
+    "vault_encrypted": false,
+    "secure_physical_erasure": false,
+    "issuer_remained_running_during_resource_restart": true,
+    "external_processor_or_neural_inference": false
+  },
+  "actual_sqlite_busy_seconds": 0.07411837500694674,
+  "log_scan": {
+    "resource_processes": 3,
+    "bytes": 156,
+    "matched_supported_values_or_bearer_tokens": 0,
+    "raw_private_issuer_ipc_included": false
+  },
+  "processes_reaped": true,
+  "audit": [
+    {
+      "sequence": 1,
+      "action": "redact",
+      "outcome": "success",
+      "count": 3
+    },
+    {
+      "sequence": 2,
+      "action": "restore",
+      "outcome": "success",
+      "count": 3
+    },
+    {
+      "sequence": 3,
+      "action": "restore",
+      "outcome": "denied",
+      "count": 0
+    },
+    {
+      "sequence": 4,
+      "action": "restore",
+      "outcome": "denied",
+      "count": 0
+    },
+    {
+      "sequence": 5,
+      "action": "redact",
+      "outcome": "denied",
+      "count": 0
+    },
+    {
+      "sequence": 6,
+      "action": "redact",
+      "outcome": "success",
+      "count": 3
+    },
+    {
+      "sequence": 7,
+      "action": "restore",
+      "outcome": "denied",
+      "count": 0
+    },
+    {
+      "sequence": 8,
+      "action": "redact",
+      "outcome": "success",
+      "count": 3
+    },
+    {
+      "sequence": 9,
+      "action": "restore",
+      "outcome": "success",
+      "count": 3
+    },
+    {
+      "sequence": 10,
+      "action": "redact",
+      "outcome": "success",
+      "count": 3
+    },
+    {
+      "sequence": 11,
+      "action": "restore",
+      "outcome": "denied",
+      "count": 0
+    },
+    {
+      "sequence": 12,
+      "action": "redact",
+      "outcome": "success",
+      "count": 3
+    },
+    {
+      "sequence": 13,
+      "action": "restore",
+      "outcome": "success",
+      "count": 3
+    },
+    {
+      "sequence": 14,
+      "action": "restore",
+      "outcome": "success",
+      "count": 3
+    }
+  ]
+}

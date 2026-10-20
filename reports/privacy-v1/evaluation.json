@@ -1,0 +1,1427 @@
+{
+  "schema": "privacy-development-report-v1",
+  "created_at": "2026-10-20T12:22:00.688414+00:00",
+  "corpus": {
+    "id": "synthetic-v1",
+    "split": "development",
+    "schema": "privacy-development-corpus-v1",
+    "package_path": "privacy_proxy/data/synthetic-v1.json",
+    "sha256": "38974426ef1c84ae6899de815164df51e72cbeface00dc4abc7015e36fbf9279",
+    "case_count": 36,
+    "created_date": "2026-10-20",
+    "source": {
+      "kind": "hand_authored_synthetic",
+      "license": "MIT",
+      "description": "Fictional English, Portuguese and Unicode development examples authored for this repository; no external personal data or operational records. Email domains use .example or .invalid, phones are fictional test contacts and PANs are sandbox digit sequences, not financial accounts."
+    },
+    "protocol": {
+      "span_unit": "python_unicode_code_points",
+      "matching": "exact_kind_start_end",
+      "supported_kinds": [
+        "EMAIL",
+        "PAN",
+        "PHONE"
+      ],
+      "unsupported_kinds": [
+        "NAME",
+        "ADDRESS",
+        "LOCAL_PHONE",
+        "UNICODE_EMAIL"
+      ],
+      "gold_policy": "Gold describes this development annotation policy, not universal personal-data status. The fictional public-contact mailbox is deliberately unannotated to expose a context-dependent false positive. Supported-kind denominators retain valid formats the narrow matcher misses, including the quoted mailbox. Unsupported labels remain in the all-annotation denominator. No overlap credit, partial matching or post-hoc case exclusion.",
+      "purpose": "Development scope illustration only: no held-out/generalization, model accuracy, comprehensive PII detection or privacy/compliance claim."
+    }
+  },
+  "formulae": {
+    "match": "exact equality of (kind, start, end), using Python Unicode code-point offsets",
+    "precision": "true_positives / (true_positives + false_positives)",
+    "recall": "true_positives / (true_positives + false_negatives)",
+    "f1": "2 * precision * recall / (precision + recall)",
+    "zero_denominator": "0.0",
+    "supported": "Only gold/predicted EMAIL, PAN and PHONE kinds; unhandled formats remain in the denominator.",
+    "all_annotations": "All supported and unsupported gold kinds; every predicted supported span remains in precision.",
+    "unsupported_coverage": "Exact matched unsupported gold spans / all unsupported gold spans; not general privacy coverage.",
+    "failure_policy": "Keep every case; failed/invalid predictions are empty, gold remains in recall denominators and failures are counted.",
+    "integrity": "Recompute validates frozen corpus and current source hashes, re-runs detect(text) to verify predictions, then recomputes metrics."
+  },
+  "source_sha256": {
+    "privacy_proxy/contracts.py": "b267362ac0bdb18d97adab95bc3f3d695a9c5422fbd73d2bf5f12dca908d722e",
+    "privacy_proxy/detector.py": "63fe43735d015597e65eeee7115e39ce303f3fef127530181794940f22453f3c",
+    "privacy_proxy/evaluation.py": "b687e573b789daffc88ce04a02ba197283b6c33fec3b1175179c2e89b102f512"
+  },
+  "runtime": {
+    "implementation": "CPython",
+    "python": "3.13.1",
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "cases": [
+    {
+      "id": "dev-001",
+      "language": "en",
+      "text": "Write to cedar@inbox.invalid.",
+      "tags": [
+        "ascii_email"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 9,
+          "end": 28,
+          "text": "cedar@inbox.invalid"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "EMAIL",
+          "start": 9,
+          "end": 28,
+          "text": "cedar@inbox.invalid"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "EMAIL",
+          "start": 9,
+          "end": 28,
+          "text": "cedar@inbox.invalid"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-002",
+      "language": "en",
+      "text": "For this fictional test, use (leaf+ticket@workshop.example).",
+      "tags": [
+        "ascii_email",
+        "punctuation"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 30,
+          "end": 58,
+          "text": "leaf+ticket@workshop.example"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "EMAIL",
+          "start": 30,
+          "end": 58,
+          "text": "leaf+ticket@workshop.example"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "EMAIL",
+          "start": 30,
+          "end": 58,
+          "text": "leaf+ticket@workshop.example"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-003",
+      "language": "pt",
+      "text": "A caixa fictícia é nuvem@laboratorio.invalid; confirme só no teste.",
+      "tags": [
+        "ascii_email",
+        "portuguese_context"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 19,
+          "end": 44,
+          "text": "nuvem@laboratorio.invalid"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "EMAIL",
+          "start": 19,
+          "end": 44,
+          "text": "nuvem@laboratorio.invalid"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "EMAIL",
+          "start": 19,
+          "end": 44,
+          "text": "nuvem@laboratorio.invalid"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-004",
+      "language": "mixed",
+      "text": "🙂 é → mapa@unicode.example; fim.",
+      "tags": [
+        "ascii_email",
+        "unicode_offsets"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 7,
+          "end": 27,
+          "text": "mapa@unicode.example"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "EMAIL",
+          "start": 7,
+          "end": 27,
+          "text": "mapa@unicode.example"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "EMAIL",
+          "start": 7,
+          "end": 27,
+          "text": "mapa@unicode.example"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-005",
+      "language": "en",
+      "text": "First pine@desk.invalid; then moss@desk.example.",
+      "tags": [
+        "multiple"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 6,
+          "end": 23,
+          "text": "pine@desk.invalid"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 30,
+          "end": 47,
+          "text": "moss@desk.example"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "EMAIL",
+          "start": 6,
+          "end": 23,
+          "text": "pine@desk.invalid"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 30,
+          "end": 47,
+          "text": "moss@desk.example"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "EMAIL",
+          "start": 6,
+          "end": 23,
+          "text": "pine@desk.invalid"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 30,
+          "end": 47,
+          "text": "moss@desk.example"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-006",
+      "language": "pt",
+      "text": "Repita eco@estudo.invalid e eco@estudo.invalid.",
+      "tags": [
+        "repeated_value"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 7,
+          "end": 25,
+          "text": "eco@estudo.invalid"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 28,
+          "end": 46,
+          "text": "eco@estudo.invalid"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "EMAIL",
+          "start": 7,
+          "end": 25,
+          "text": "eco@estudo.invalid"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 28,
+          "end": 46,
+          "text": "eco@estudo.invalid"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "EMAIL",
+          "start": 7,
+          "end": 25,
+          "text": "eco@estudo.invalid"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 28,
+          "end": 46,
+          "text": "eco@estudo.invalid"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-007",
+      "language": "en",
+      "text": "Synthetic callback: +14165550121.",
+      "tags": [
+        "nanp_phone"
+      ],
+      "gold": [
+        {
+          "kind": "PHONE",
+          "start": 20,
+          "end": 32,
+          "text": "+14165550121"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "PHONE",
+          "start": 20,
+          "end": 32,
+          "text": "+14165550121"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "PHONE",
+          "start": 20,
+          "end": 32,
+          "text": "+14165550121"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-008",
+      "language": "en",
+      "text": "Test line +1-202-555-0142 is fictional.",
+      "tags": [
+        "nanp_phone"
+      ],
+      "gold": [
+        {
+          "kind": "PHONE",
+          "start": 10,
+          "end": 25,
+          "text": "+1-202-555-0142"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "PHONE",
+          "start": 10,
+          "end": 25,
+          "text": "+1-202-555-0142"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "PHONE",
+          "start": 10,
+          "end": 25,
+          "text": "+1-202-555-0142"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-009",
+      "language": "pt",
+      "text": "Número fictício: +1 (416) 555-0134.",
+      "tags": [
+        "nanp_phone",
+        "portuguese_context"
+      ],
+      "gold": [
+        {
+          "kind": "PHONE",
+          "start": 17,
+          "end": 34,
+          "text": "+1 (416) 555-0134"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "PHONE",
+          "start": 17,
+          "end": 34,
+          "text": "+1 (416) 555-0134"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "PHONE",
+          "start": 17,
+          "end": 34,
+          "text": "+1 (416) 555-0134"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-010",
+      "language": "en",
+      "text": "Fixture contact +1.202.555.0176; never place a call.",
+      "tags": [
+        "nanp_phone"
+      ],
+      "gold": [
+        {
+          "kind": "PHONE",
+          "start": 16,
+          "end": 31,
+          "text": "+1.202.555.0176"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "PHONE",
+          "start": 16,
+          "end": 31,
+          "text": "+1.202.555.0176"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "PHONE",
+          "start": 16,
+          "end": 31,
+          "text": "+1.202.555.0176"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-011",
+      "language": "pt",
+      "text": "💬 Teste +1 416 555 0158; nenhuma mensagem será enviada.",
+      "tags": [
+        "nanp_phone",
+        "unicode_offsets"
+      ],
+      "gold": [
+        {
+          "kind": "PHONE",
+          "start": 8,
+          "end": 23,
+          "text": "+1 416 555 0158"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "PHONE",
+          "start": 8,
+          "end": 23,
+          "text": "+1 416 555 0158"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "PHONE",
+          "start": 8,
+          "end": 23,
+          "text": "+1 416 555 0158"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-012",
+      "language": "en",
+      "text": "Sandbox digits: 4111 1111 1111 1111.",
+      "tags": [
+        "luhn_test_digits"
+      ],
+      "gold": [
+        {
+          "kind": "PAN",
+          "start": 16,
+          "end": 35,
+          "text": "4111 1111 1111 1111"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "PAN",
+          "start": 16,
+          "end": 35,
+          "text": "4111 1111 1111 1111"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "PAN",
+          "start": 16,
+          "end": 35,
+          "text": "4111 1111 1111 1111"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-013",
+      "language": "pt",
+      "text": "Sequência de teste: 4111-1111-1111-1111.",
+      "tags": [
+        "luhn_test_digits"
+      ],
+      "gold": [
+        {
+          "kind": "PAN",
+          "start": 20,
+          "end": 39,
+          "text": "4111-1111-1111-1111"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "PAN",
+          "start": 20,
+          "end": 39,
+          "text": "4111-1111-1111-1111"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "PAN",
+          "start": 20,
+          "end": 39,
+          "text": "4111-1111-1111-1111"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-014",
+      "language": "en",
+      "text": "Use fictional test digits 4111111111111111 only in this fixture.",
+      "tags": [
+        "luhn_test_digits"
+      ],
+      "gold": [
+        {
+          "kind": "PAN",
+          "start": 26,
+          "end": 42,
+          "text": "4111111111111111"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "PAN",
+          "start": 26,
+          "end": 42,
+          "text": "4111111111111111"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "PAN",
+          "start": 26,
+          "end": 42,
+          "text": "4111111111111111"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-015",
+      "language": "en",
+      "text": "Short test sequence: 4222222222222.",
+      "tags": [
+        "luhn_test_digits"
+      ],
+      "gold": [
+        {
+          "kind": "PAN",
+          "start": 21,
+          "end": 34,
+          "text": "4222222222222"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "PAN",
+          "start": 21,
+          "end": 34,
+          "text": "4222222222222"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "PAN",
+          "start": 21,
+          "end": 34,
+          "text": "4222222222222"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-016",
+      "language": "pt",
+      "text": "Longa sequência artificial: 4000000000000000006.",
+      "tags": [
+        "luhn_test_digits"
+      ],
+      "gold": [
+        {
+          "kind": "PAN",
+          "start": 28,
+          "end": 47,
+          "text": "4000000000000000006"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "PAN",
+          "start": 28,
+          "end": 47,
+          "text": "4000000000000000006"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "PAN",
+          "start": 28,
+          "end": 47,
+          "text": "4000000000000000006"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-017",
+      "language": "en",
+      "text": "Fictional record: reed@demo.example, +1-202-555-0185, 4111 1111 1111 1111.",
+      "tags": [
+        "multiple",
+        "mixed_supported"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 18,
+          "end": 35,
+          "text": "reed@demo.example"
+        },
+        {
+          "kind": "PHONE",
+          "start": 37,
+          "end": 52,
+          "text": "+1-202-555-0185"
+        },
+        {
+          "kind": "PAN",
+          "start": 54,
+          "end": 73,
+          "text": "4111 1111 1111 1111"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "EMAIL",
+          "start": 18,
+          "end": 35,
+          "text": "reed@demo.example"
+        },
+        {
+          "kind": "PHONE",
+          "start": 37,
+          "end": 52,
+          "text": "+1-202-555-0185"
+        },
+        {
+          "kind": "PAN",
+          "start": 54,
+          "end": 73,
+          "text": "4111 1111 1111 1111"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "EMAIL",
+          "start": 18,
+          "end": 35,
+          "text": "reed@demo.example"
+        },
+        {
+          "kind": "PHONE",
+          "start": 37,
+          "end": 52,
+          "text": "+1-202-555-0185"
+        },
+        {
+          "kind": "PAN",
+          "start": 54,
+          "end": 73,
+          "text": "4111 1111 1111 1111"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-018",
+      "language": "pt",
+      "text": "🧪 é: flor@ensaio.invalid | +1 (416) 555-0162 | 4111-1111-1111-1111.",
+      "tags": [
+        "multiple",
+        "mixed_supported",
+        "unicode_offsets"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 6,
+          "end": 25,
+          "text": "flor@ensaio.invalid"
+        },
+        {
+          "kind": "PHONE",
+          "start": 28,
+          "end": 45,
+          "text": "+1 (416) 555-0162"
+        },
+        {
+          "kind": "PAN",
+          "start": 48,
+          "end": 67,
+          "text": "4111-1111-1111-1111"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "EMAIL",
+          "start": 6,
+          "end": 25,
+          "text": "flor@ensaio.invalid"
+        },
+        {
+          "kind": "PHONE",
+          "start": 28,
+          "end": 45,
+          "text": "+1 (416) 555-0162"
+        },
+        {
+          "kind": "PAN",
+          "start": 48,
+          "end": 67,
+          "text": "4111-1111-1111-1111"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "EMAIL",
+          "start": 6,
+          "end": 25,
+          "text": "flor@ensaio.invalid"
+        },
+        {
+          "kind": "PHONE",
+          "start": 28,
+          "end": 45,
+          "text": "+1 (416) 555-0162"
+        },
+        {
+          "kind": "PAN",
+          "start": 48,
+          "end": 67,
+          "text": "4111-1111-1111-1111"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-019",
+      "language": "en",
+      "text": "Numeric local part: 4111111111111111@fixture.example.",
+      "tags": [
+        "overlap_precedence"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 20,
+          "end": 52,
+          "text": "4111111111111111@fixture.example"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "EMAIL",
+          "start": 20,
+          "end": 52,
+          "text": "4111111111111111@fixture.example"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "EMAIL",
+          "start": 20,
+          "end": 52,
+          "text": "4111111111111111@fixture.example"
+        }
+      ],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-020",
+      "language": "en",
+      "text": "The fictional folder contains blue squares and paper clouds.",
+      "tags": [
+        "negative"
+      ],
+      "gold": [],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-021",
+      "language": "pt",
+      "text": "Checksum deliberadamente inválido: 4111 1111 1111 1112.",
+      "tags": [
+        "negative",
+        "invalid_luhn"
+      ],
+      "gold": [],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-022",
+      "language": "en",
+      "text": "Invalid address shapes: .leaf@fixture.invalid and leaf..moss@fixture.example.",
+      "tags": [
+        "negative",
+        "invalid_email"
+      ],
+      "gold": [],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-023",
+      "language": "en",
+      "text": "Version 2026.10.20; start 09:30; batch 42; no contact values.",
+      "tags": [
+        "negative"
+      ],
+      "gold": [],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-024",
+      "language": "en",
+      "text": "Embedded non-contact token: abc+14165550123xyz.",
+      "tags": [
+        "negative",
+        "invalid_phone_boundary"
+      ],
+      "gold": [],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-025",
+      "language": "en",
+      "text": "Fictional participant: Rowan Papercloud.",
+      "tags": [
+        "unsupported_name"
+      ],
+      "gold": [
+        {
+          "kind": "NAME",
+          "start": 23,
+          "end": 39,
+          "text": "Rowan Papercloud"
+        }
+      ],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [
+        {
+          "kind": "NAME",
+          "start": 23,
+          "end": 39,
+          "text": "Rowan Papercloud"
+        }
+      ],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-026",
+      "language": "pt",
+      "text": "Pessoa inventada: Nara Ipê de Papel.",
+      "tags": [
+        "unsupported_name",
+        "unicode_offsets"
+      ],
+      "gold": [
+        {
+          "kind": "NAME",
+          "start": 18,
+          "end": 35,
+          "text": "Nara Ipê de Papel"
+        }
+      ],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [
+        {
+          "kind": "NAME",
+          "start": 18,
+          "end": 35,
+          "text": "Nara Ipê de Papel"
+        }
+      ],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-027",
+      "language": "en",
+      "text": "Invented location: 404 Paper Cloud Lane.",
+      "tags": [
+        "unsupported_address"
+      ],
+      "gold": [
+        {
+          "kind": "ADDRESS",
+          "start": 19,
+          "end": 39,
+          "text": "404 Paper Cloud Lane"
+        }
+      ],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [
+        {
+          "kind": "ADDRESS",
+          "start": 19,
+          "end": 39,
+          "text": "404 Paper Cloud Lane"
+        }
+      ],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-028",
+      "language": "pt",
+      "text": "Endereço inventado: Rua da Nuvem de Papel, 404.",
+      "tags": [
+        "unsupported_address"
+      ],
+      "gold": [
+        {
+          "kind": "ADDRESS",
+          "start": 20,
+          "end": 46,
+          "text": "Rua da Nuvem de Papel, 404"
+        }
+      ],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [
+        {
+          "kind": "ADDRESS",
+          "start": 20,
+          "end": 46,
+          "text": "Rua da Nuvem de Papel, 404"
+        }
+      ],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-029",
+      "language": "en",
+      "text": "Fictional local callback: 416-555-0128.",
+      "tags": [
+        "unsupported_local_phone"
+      ],
+      "gold": [
+        {
+          "kind": "LOCAL_PHONE",
+          "start": 26,
+          "end": 38,
+          "text": "416-555-0128"
+        }
+      ],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [
+        {
+          "kind": "LOCAL_PHONE",
+          "start": 26,
+          "end": 38,
+          "text": "416-555-0128"
+        }
+      ],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-030",
+      "language": "pt",
+      "text": "Contato local fictício: (202) 555 0194.",
+      "tags": [
+        "unsupported_local_phone"
+      ],
+      "gold": [
+        {
+          "kind": "LOCAL_PHONE",
+          "start": 24,
+          "end": 38,
+          "text": "(202) 555 0194"
+        }
+      ],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [
+        {
+          "kind": "LOCAL_PHONE",
+          "start": 24,
+          "end": 38,
+          "text": "(202) 555 0194"
+        }
+      ],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-031",
+      "language": "pt",
+      "text": "Caixa internacional fictícia: lírio@estudo.example.",
+      "tags": [
+        "unsupported_unicode_email"
+      ],
+      "gold": [
+        {
+          "kind": "UNICODE_EMAIL",
+          "start": 30,
+          "end": 50,
+          "text": "lírio@estudo.example"
+        }
+      ],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [
+        {
+          "kind": "UNICODE_EMAIL",
+          "start": 30,
+          "end": 50,
+          "text": "lírio@estudo.example"
+        }
+      ],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-032",
+      "language": "en",
+      "text": "Fictional Unicode domain: leaf@café.example.",
+      "tags": [
+        "unsupported_unicode_email"
+      ],
+      "gold": [
+        {
+          "kind": "UNICODE_EMAIL",
+          "start": 26,
+          "end": 43,
+          "text": "leaf@café.example"
+        }
+      ],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [
+        {
+          "kind": "UNICODE_EMAIL",
+          "start": 26,
+          "end": 43,
+          "text": "leaf@café.example"
+        }
+      ],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-033",
+      "language": "pt",
+      "text": "Nara Ipê de Papel usa caixa@ensaio.invalid na Rua da Nuvem de Papel, 404.",
+      "tags": [
+        "mixed_supported_unsupported"
+      ],
+      "gold": [
+        {
+          "kind": "NAME",
+          "start": 0,
+          "end": 17,
+          "text": "Nara Ipê de Papel"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 22,
+          "end": 42,
+          "text": "caixa@ensaio.invalid"
+        },
+        {
+          "kind": "ADDRESS",
+          "start": 46,
+          "end": 72,
+          "text": "Rua da Nuvem de Papel, 404"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "EMAIL",
+          "start": 22,
+          "end": 42,
+          "text": "caixa@ensaio.invalid"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "EMAIL",
+          "start": 22,
+          "end": 42,
+          "text": "caixa@ensaio.invalid"
+        }
+      ],
+      "misses": [
+        {
+          "kind": "NAME",
+          "start": 0,
+          "end": 17,
+          "text": "Nara Ipê de Papel"
+        },
+        {
+          "kind": "ADDRESS",
+          "start": 46,
+          "end": 72,
+          "text": "Rua da Nuvem de Papel, 404"
+        }
+      ],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-034",
+      "language": "en",
+      "text": "Test record: +1 202 555 0192; local 416-555-0139; fern@record.example.",
+      "tags": [
+        "mixed_supported_unsupported"
+      ],
+      "gold": [
+        {
+          "kind": "PHONE",
+          "start": 13,
+          "end": 28,
+          "text": "+1 202 555 0192"
+        },
+        {
+          "kind": "LOCAL_PHONE",
+          "start": 36,
+          "end": 48,
+          "text": "416-555-0139"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 50,
+          "end": 69,
+          "text": "fern@record.example"
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "PHONE",
+          "start": 13,
+          "end": 28,
+          "text": "+1 202 555 0192"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 50,
+          "end": 69,
+          "text": "fern@record.example"
+        }
+      ],
+      "true_positives": [
+        {
+          "kind": "PHONE",
+          "start": 13,
+          "end": 28,
+          "text": "+1 202 555 0192"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 50,
+          "end": 69,
+          "text": "fern@record.example"
+        }
+      ],
+      "misses": [
+        {
+          "kind": "LOCAL_PHONE",
+          "start": 36,
+          "end": 48,
+          "text": "416-555-0139"
+        }
+      ],
+      "false_positives": [],
+      "error": null
+    },
+    {
+      "id": "dev-035",
+      "language": "pt",
+      "text": "Contato público fictício do painel, não pessoal neste protocolo: ajuda@painel.example.",
+      "tags": [
+        "context_public_contact",
+        "expected_context_false_positive"
+      ],
+      "gold": [],
+      "predicted": [
+        {
+          "kind": "EMAIL",
+          "start": 65,
+          "end": 85,
+          "text": "ajuda@painel.example"
+        }
+      ],
+      "true_positives": [],
+      "misses": [],
+      "false_positives": [
+        {
+          "kind": "EMAIL",
+          "start": 65,
+          "end": 85,
+          "text": "ajuda@painel.example"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "dev-036",
+      "language": "en",
+      "text": "Quoted fictional mailbox: \"paper cloud\"@quoted.example.",
+      "tags": [
+        "supported_kind_unhandled_format"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 26,
+          "end": 54,
+          "text": "\"paper cloud\"@quoted.example"
+        }
+      ],
+      "predicted": [],
+      "true_positives": [],
+      "misses": [
+        {
+          "kind": "EMAIL",
+          "start": 26,
+          "end": 54,
+          "text": "\"paper cloud\"@quoted.example"
+        }
+      ],
+      "false_positives": [],
+      "error": null
+    }
+  ],
+  "metrics": {
+    "cases": {
+      "total": 36,
+      "succeeded": 36,
+      "failed": 0
+    },
+    "supported": {
+      "gold": 29,
+      "predicted": 29,
+      "true_positives": 28,
+      "false_positives": 1,
+      "false_negatives": 1,
+      "precision": 0.9655172413793104,
+      "recall": 0.9655172413793104,
+      "f1": 0.9655172413793104
+    },
+    "all_annotations": {
+      "gold": 40,
+      "predicted": 29,
+      "true_positives": 28,
+      "false_positives": 1,
+      "false_negatives": 12,
+      "precision": 0.9655172413793104,
+      "recall": 0.7,
+      "f1": 0.8115942028985508
+    },
+    "per_kind": {
+      "EMAIL": {
+        "gold": 14,
+        "predicted": 14,
+        "true_positives": 13,
+        "false_positives": 1,
+        "false_negatives": 1,
+        "precision": 0.9285714285714286,
+        "recall": 0.9285714285714286,
+        "f1": 0.9285714285714286
+      },
+      "PAN": {
+        "gold": 7,
+        "predicted": 7,
+        "true_positives": 7,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "PHONE": {
+        "gold": 8,
+        "predicted": 8,
+        "true_positives": 8,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "NAME": {
+        "gold": 3,
+        "predicted": 0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "ADDRESS": {
+        "gold": 3,
+        "predicted": 0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "LOCAL_PHONE": {
+        "gold": 3,
+        "predicted": 0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "UNICODE_EMAIL": {
+        "gold": 2,
+        "predicted": 0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "unsupported": {
+      "gold": 11,
+      "matched": 0,
+      "missed": 11,
+      "coverage": 0.0
+    }
+  }
+}

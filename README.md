@@ -21,6 +21,7 @@ separate controlled experiment, with its original reports preserved.
 [Approve → publish → query](#approve-a-document-before-it-enters-search) ·
 [Browser review room](#open-the-source-and-leave-a-decision) ·
 [SQLite MCP gateway](#give-a-tool-the-rows-it-can-read) ·
+[Scoped redaction proxy](#redact-before-a-local-tool-and-restore-in-context) ·
 [Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
 
 ## Run the connected RAG demo
@@ -345,6 +346,46 @@ protocols, full synthetic responses, runtime fingerprints, file hashes and
 labelled fault probes. SQLite is the implemented connector; Oracle/SAP, remote
 IAM and approved write tools remain planned. The local audit has no external
 anchor against a host administrator.
+
+## Redact before a local tool and restore in context
+
+The privacy study sends fictional text through a narrow deterministic detector,
+a private SQLite token map, an actual local HTTP tool and scoped restoration.
+The dedicated OAuth resource requires signed tenant/client identity, operation
+scopes and roles. Another client in the same tenant cannot restore a context.
+
+Use Python **3.12+** and the sibling Identity Boundary Lab revision pinned by the
+privacy CI job, with **Node 24**:
+
+```sh
+python3.13 -m venv .venv-privacy
+.venv-privacy/bin/python -m pip install -r requirements-approval.lock
+.venv-privacy/bin/python -m pip install --no-deps -e .
+(cd ../identity-boundary-lab && npm ci --ignore-scripts && npm run build)
+.venv-privacy/bin/python -m enterprise_ai_lab.privacy_proxy demo \
+  --identity-dir ../identity-boundary-lab --node node \
+  --work-dir .local/privacy-demo --out reports/local/privacy-demo.json
+.venv-privacy/bin/python -m enterprise_ai_lab.privacy_proxy evaluate \
+  --out reports/local/privacy-evaluation.json
+.venv-privacy/bin/python -m enterprise_ai_lab.privacy_proxy verify-report \
+  reports/local/privacy-evaluation.json
+```
+
+The actual demo records 25 HTTP cases, denied cross-client restoration, resource
+restart, real SQLite contention, context expiry and a scan of resource logs for
+its known sensitive substrings and bearer tokens. The tool receives no bearer
+credential. Unknown response placeholders withhold the whole restoration.
+
+Detection covers narrow email, `+1` phone and Luhn-valid card-like formats. The
+frozen **36-case development fixture** retains 28 exact matches, one false
+positive and one miss among supported kinds; including names/addresses and other
+unsupported formats leaves **12 misses out of 40 annotations**. A fictional name
+deliberately passes through the demo. This is not universal PII protection.
+The local map is plaintext; expiry is logical deletion, not secure erasure.
+
+Read the [protocol, tradeoffs and exercises](docs/privacy-proxy.md) and
+[complete recorded results](reports/privacy-v1). No model, paid service or
+external provider is used by this study.
 
 ## Run the first experiment
 

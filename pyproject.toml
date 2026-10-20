@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "enterprise-ai-lab"
-version = "0.7.0"
-description = "Reproducible local studies in permission-aware RAG, durable review and bounded MCP data access"
+version = "0.8.0"
+description = "Reproducible local studies in permission-aware RAG, durable review, MCP data access and scoped redaction"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 readme = "README.md"
@@ -20,10 +20,11 @@ enterprise-ai-lab = "enterprise_ai_lab.cli:main"
 where = ["src"]
 
 [project.optional-dependencies]
+privacy = ["fastapi==0.143.3", "pydantic==2.14.1", "uvicorn==0.54.0", "httpx==0.28.1", "PyJWT[crypto]==2.15.1", "cryptography==50.0.2"]
 mcp = ["mcp==2.3.0"]
 approval = ["temporalio==1.34.0", "fastapi==0.143.3", "pydantic==2.14.1", "uvicorn==0.54.0", "httpx==0.28.1", "PyJWT[crypto]==2.15.1", "cryptography==50.0.2"]
 ingestion = ["pypdf==6.21.1", "pypdfium2==5.14.0", "pillow==12.3.0"]
 rag = ["numpy==2.5.4", "onnxruntime==1.31.0", "qdrant-client==1.19.1", "fastembed==0.9.0", "fastapi==0.143.3", "pydantic==2.14.1", "uvicorn==0.54.0", "httpx==0.28.1", "PyJWT[crypto]==2.15.1", "cryptography==50.0.2"]
 
 [tool.setuptools.package-data]
-enterprise_ai_lab = ["rag/*.json", "rag/data/*.jsonl", "rag/data/*.md", "approval/*.json", "review/static/*.html", "review/static/*.css", "review/static/*.js", "mcp_gateway/data/*.json", "mcp_gateway/data/*.md"]
+enterprise_ai_lab = ["rag/*.json", "rag/data/*.jsonl", "rag/data/*.md", "approval/*.json", "review/static/*.html", "review/static/*.css", "review/static/*.js", "mcp_gateway/data/*.json", "mcp_gateway/data/*.md", "privacy_proxy/data/*.json", "privacy_proxy/data/*.md"]

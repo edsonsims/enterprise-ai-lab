@@ -1,0 +1,637 @@
+{
+  "schema": "privacy-development-corpus-v1",
+  "corpus_id": "synthetic-v1",
+  "split": "development",
+  "created_date": "2026-10-20",
+  "source": {
+    "kind": "hand_authored_synthetic",
+    "license": "MIT",
+    "description": "Fictional English, Portuguese and Unicode development examples authored for this repository; no external personal data or operational records. Email domains use .example or .invalid, phones are fictional test contacts and PANs are sandbox digit sequences, not financial accounts."
+  },
+  "protocol": {
+    "span_unit": "python_unicode_code_points",
+    "matching": "exact_kind_start_end",
+    "supported_kinds": [
+      "EMAIL",
+      "PAN",
+      "PHONE"
+    ],
+    "unsupported_kinds": [
+      "NAME",
+      "ADDRESS",
+      "LOCAL_PHONE",
+      "UNICODE_EMAIL"
+    ],
+    "gold_policy": "Gold describes this development annotation policy, not universal personal-data status. The fictional public-contact mailbox is deliberately unannotated to expose a context-dependent false positive. Supported-kind denominators retain valid formats the narrow matcher misses, including the quoted mailbox. Unsupported labels remain in the all-annotation denominator. No overlap credit, partial matching or post-hoc case exclusion.",
+    "purpose": "Development scope illustration only: no held-out/generalization, model accuracy, comprehensive PII detection or privacy/compliance claim."
+  },
+  "cases": [
+    {
+      "id": "dev-001",
+      "language": "en",
+      "text": "Write to cedar@inbox.invalid.",
+      "tags": [
+        "ascii_email"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 9,
+          "end": 28,
+          "text": "cedar@inbox.invalid"
+        }
+      ]
+    },
+    {
+      "id": "dev-002",
+      "language": "en",
+      "text": "For this fictional test, use (leaf+ticket@workshop.example).",
+      "tags": [
+        "ascii_email",
+        "punctuation"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 30,
+          "end": 58,
+          "text": "leaf+ticket@workshop.example"
+        }
+      ]
+    },
+    {
+      "id": "dev-003",
+      "language": "pt",
+      "text": "A caixa fictícia é nuvem@laboratorio.invalid; confirme só no teste.",
+      "tags": [
+        "ascii_email",
+        "portuguese_context"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 19,
+          "end": 44,
+          "text": "nuvem@laboratorio.invalid"
+        }
+      ]
+    },
+    {
+      "id": "dev-004",
+      "language": "mixed",
+      "text": "🙂 é → mapa@unicode.example; fim.",
+      "tags": [
+        "ascii_email",
+        "unicode_offsets"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 7,
+          "end": 27,
+          "text": "mapa@unicode.example"
+        }
+      ]
+    },
+    {
+      "id": "dev-005",
+      "language": "en",
+      "text": "First pine@desk.invalid; then moss@desk.example.",
+      "tags": [
+        "multiple"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 6,
+          "end": 23,
+          "text": "pine@desk.invalid"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 30,
+          "end": 47,
+          "text": "moss@desk.example"
+        }
+      ]
+    },
+    {
+      "id": "dev-006",
+      "language": "pt",
+      "text": "Repita eco@estudo.invalid e eco@estudo.invalid.",
+      "tags": [
+        "repeated_value"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 7,
+          "end": 25,
+          "text": "eco@estudo.invalid"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 28,
+          "end": 46,
+          "text": "eco@estudo.invalid"
+        }
+      ]
+    },
+    {
+      "id": "dev-007",
+      "language": "en",
+      "text": "Synthetic callback: +14165550121.",
+      "tags": [
+        "nanp_phone"
+      ],
+      "gold": [
+        {
+          "kind": "PHONE",
+          "start": 20,
+          "end": 32,
+          "text": "+14165550121"
+        }
+      ]
+    },
+    {
+      "id": "dev-008",
+      "language": "en",
+      "text": "Test line +1-202-555-0142 is fictional.",
+      "tags": [
+        "nanp_phone"
+      ],
+      "gold": [
+        {
+          "kind": "PHONE",
+          "start": 10,
+          "end": 25,
+          "text": "+1-202-555-0142"
+        }
+      ]
+    },
+    {
+      "id": "dev-009",
+      "language": "pt",
+      "text": "Número fictício: +1 (416) 555-0134.",
+      "tags": [
+        "nanp_phone",
+        "portuguese_context"
+      ],
+      "gold": [
+        {
+          "kind": "PHONE",
+          "start": 17,
+          "end": 34,
+          "text": "+1 (416) 555-0134"
+        }
+      ]
+    },
+    {
+      "id": "dev-010",
+      "language": "en",
+      "text": "Fixture contact +1.202.555.0176; never place a call.",
+      "tags": [
+        "nanp_phone"
+      ],
+      "gold": [
+        {
+          "kind": "PHONE",
+          "start": 16,
+          "end": 31,
+          "text": "+1.202.555.0176"
+        }
+      ]
+    },
+    {
+      "id": "dev-011",
+      "language": "pt",
+      "text": "💬 Teste +1 416 555 0158; nenhuma mensagem será enviada.",
+      "tags": [
+        "nanp_phone",
+        "unicode_offsets"
+      ],
+      "gold": [
+        {
+          "kind": "PHONE",
+          "start": 8,
+          "end": 23,
+          "text": "+1 416 555 0158"
+        }
+      ]
+    },
+    {
+      "id": "dev-012",
+      "language": "en",
+      "text": "Sandbox digits: 4111 1111 1111 1111.",
+      "tags": [
+        "luhn_test_digits"
+      ],
+      "gold": [
+        {
+          "kind": "PAN",
+          "start": 16,
+          "end": 35,
+          "text": "4111 1111 1111 1111"
+        }
+      ]
+    },
+    {
+      "id": "dev-013",
+      "language": "pt",
+      "text": "Sequência de teste: 4111-1111-1111-1111.",
+      "tags": [
+        "luhn_test_digits"
+      ],
+      "gold": [
+        {
+          "kind": "PAN",
+          "start": 20,
+          "end": 39,
+          "text": "4111-1111-1111-1111"
+        }
+      ]
+    },
+    {
+      "id": "dev-014",
+      "language": "en",
+      "text": "Use fictional test digits 4111111111111111 only in this fixture.",
+      "tags": [
+        "luhn_test_digits"
+      ],
+      "gold": [
+        {
+          "kind": "PAN",
+          "start": 26,
+          "end": 42,
+          "text": "4111111111111111"
+        }
+      ]
+    },
+    {
+      "id": "dev-015",
+      "language": "en",
+      "text": "Short test sequence: 4222222222222.",
+      "tags": [
+        "luhn_test_digits"
+      ],
+      "gold": [
+        {
+          "kind": "PAN",
+          "start": 21,
+          "end": 34,
+          "text": "4222222222222"
+        }
+      ]
+    },
+    {
+      "id": "dev-016",
+      "language": "pt",
+      "text": "Longa sequência artificial: 4000000000000000006.",
+      "tags": [
+        "luhn_test_digits"
+      ],
+      "gold": [
+        {
+          "kind": "PAN",
+          "start": 28,
+          "end": 47,
+          "text": "4000000000000000006"
+        }
+      ]
+    },
+    {
+      "id": "dev-017",
+      "language": "en",
+      "text": "Fictional record: reed@demo.example, +1-202-555-0185, 4111 1111 1111 1111.",
+      "tags": [
+        "multiple",
+        "mixed_supported"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 18,
+          "end": 35,
+          "text": "reed@demo.example"
+        },
+        {
+          "kind": "PHONE",
+          "start": 37,
+          "end": 52,
+          "text": "+1-202-555-0185"
+        },
+        {
+          "kind": "PAN",
+          "start": 54,
+          "end": 73,
+          "text": "4111 1111 1111 1111"
+        }
+      ]
+    },
+    {
+      "id": "dev-018",
+      "language": "pt",
+      "text": "🧪 é: flor@ensaio.invalid | +1 (416) 555-0162 | 4111-1111-1111-1111.",
+      "tags": [
+        "multiple",
+        "mixed_supported",
+        "unicode_offsets"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 6,
+          "end": 25,
+          "text": "flor@ensaio.invalid"
+        },
+        {
+          "kind": "PHONE",
+          "start": 28,
+          "end": 45,
+          "text": "+1 (416) 555-0162"
+        },
+        {
+          "kind": "PAN",
+          "start": 48,
+          "end": 67,
+          "text": "4111-1111-1111-1111"
+        }
+      ]
+    },
+    {
+      "id": "dev-019",
+      "language": "en",
+      "text": "Numeric local part: 4111111111111111@fixture.example.",
+      "tags": [
+        "overlap_precedence"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 20,
+          "end": 52,
+          "text": "4111111111111111@fixture.example"
+        }
+      ]
+    },
+    {
+      "id": "dev-020",
+      "language": "en",
+      "text": "The fictional folder contains blue squares and paper clouds.",
+      "tags": [
+        "negative"
+      ],
+      "gold": []
+    },
+    {
+      "id": "dev-021",
+      "language": "pt",
+      "text": "Checksum deliberadamente inválido: 4111 1111 1111 1112.",
+      "tags": [
+        "negative",
+        "invalid_luhn"
+      ],
+      "gold": []
+    },
+    {
+      "id": "dev-022",
+      "language": "en",
+      "text": "Invalid address shapes: .leaf@fixture.invalid and leaf..moss@fixture.example.",
+      "tags": [
+        "negative",
+        "invalid_email"
+      ],
+      "gold": []
+    },
+    {
+      "id": "dev-023",
+      "language": "en",
+      "text": "Version 2026.10.20; start 09:30; batch 42; no contact values.",
+      "tags": [
+        "negative"
+      ],
+      "gold": []
+    },
+    {
+      "id": "dev-024",
+      "language": "en",
+      "text": "Embedded non-contact token: abc+14165550123xyz.",
+      "tags": [
+        "negative",
+        "invalid_phone_boundary"
+      ],
+      "gold": []
+    },
+    {
+      "id": "dev-025",
+      "language": "en",
+      "text": "Fictional participant: Rowan Papercloud.",
+      "tags": [
+        "unsupported_name"
+      ],
+      "gold": [
+        {
+          "kind": "NAME",
+          "start": 23,
+          "end": 39,
+          "text": "Rowan Papercloud"
+        }
+      ]
+    },
+    {
+      "id": "dev-026",
+      "language": "pt",
+      "text": "Pessoa inventada: Nara Ipê de Papel.",
+      "tags": [
+        "unsupported_name",
+        "unicode_offsets"
+      ],
+      "gold": [
+        {
+          "kind": "NAME",
+          "start": 18,
+          "end": 35,
+          "text": "Nara Ipê de Papel"
+        }
+      ]
+    },
+    {
+      "id": "dev-027",
+      "language": "en",
+      "text": "Invented location: 404 Paper Cloud Lane.",
+      "tags": [
+        "unsupported_address"
+      ],
+      "gold": [
+        {
+          "kind": "ADDRESS",
+          "start": 19,
+          "end": 39,
+          "text": "404 Paper Cloud Lane"
+        }
+      ]
+    },
+    {
+      "id": "dev-028",
+      "language": "pt",
+      "text": "Endereço inventado: Rua da Nuvem de Papel, 404.",
+      "tags": [
+        "unsupported_address"
+      ],
+      "gold": [
+        {
+          "kind": "ADDRESS",
+          "start": 20,
+          "end": 46,
+          "text": "Rua da Nuvem de Papel, 404"
+        }
+      ]
+    },
+    {
+      "id": "dev-029",
+      "language": "en",
+      "text": "Fictional local callback: 416-555-0128.",
+      "tags": [
+        "unsupported_local_phone"
+      ],
+      "gold": [
+        {
+          "kind": "LOCAL_PHONE",
+          "start": 26,
+          "end": 38,
+          "text": "416-555-0128"
+        }
+      ]
+    },
+    {
+      "id": "dev-030",
+      "language": "pt",
+      "text": "Contato local fictício: (202) 555 0194.",
+      "tags": [
+        "unsupported_local_phone"
+      ],
+      "gold": [
+        {
+          "kind": "LOCAL_PHONE",
+          "start": 24,
+          "end": 38,
+          "text": "(202) 555 0194"
+        }
+      ]
+    },
+    {
+      "id": "dev-031",
+      "language": "pt",
+      "text": "Caixa internacional fictícia: lírio@estudo.example.",
+      "tags": [
+        "unsupported_unicode_email"
+      ],
+      "gold": [
+        {
+          "kind": "UNICODE_EMAIL",
+          "start": 30,
+          "end": 50,
+          "text": "lírio@estudo.example"
+        }
+      ]
+    },
+    {
+      "id": "dev-032",
+      "language": "en",
+      "text": "Fictional Unicode domain: leaf@café.example.",
+      "tags": [
+        "unsupported_unicode_email"
+      ],
+      "gold": [
+        {
+          "kind": "UNICODE_EMAIL",
+          "start": 26,
+          "end": 43,
+          "text": "leaf@café.example"
+        }
+      ]
+    },
+    {
+      "id": "dev-033",
+      "language": "pt",
+      "text": "Nara Ipê de Papel usa caixa@ensaio.invalid na Rua da Nuvem de Papel, 404.",
+      "tags": [
+        "mixed_supported_unsupported"
+      ],
+      "gold": [
+        {
+          "kind": "NAME",
+          "start": 0,
+          "end": 17,
+          "text": "Nara Ipê de Papel"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 22,
+          "end": 42,
+          "text": "caixa@ensaio.invalid"
+        },
+        {
+          "kind": "ADDRESS",
+          "start": 46,
+          "end": 72,
+          "text": "Rua da Nuvem de Papel, 404"
+        }
+      ]
+    },
+    {
+      "id": "dev-034",
+      "language": "en",
+      "text": "Test record: +1 202 555 0192; local 416-555-0139; fern@record.example.",
+      "tags": [
+        "mixed_supported_unsupported"
+      ],
+      "gold": [
+        {
+          "kind": "PHONE",
+          "start": 13,
+          "end": 28,
+          "text": "+1 202 555 0192"
+        },
+        {
+          "kind": "LOCAL_PHONE",
+          "start": 36,
+          "end": 48,
+          "text": "416-555-0139"
+        },
+        {
+          "kind": "EMAIL",
+          "start": 50,
+          "end": 69,
+          "text": "fern@record.example"
+        }
+      ]
+    },
+    {
+      "id": "dev-035",
+      "language": "pt",
+      "text": "Contato público fictício do painel, não pessoal neste protocolo: ajuda@painel.example.",
+      "tags": [
+        "context_public_contact",
+        "expected_context_false_positive"
+      ],
+      "gold": []
+    },
+    {
+      "id": "dev-036",
+      "language": "en",
+      "text": "Quoted fictional mailbox: \"paper cloud\"@quoted.example.",
+      "tags": [
+        "supported_kind_unhandled_format"
+      ],
+      "gold": [
+        {
+          "kind": "EMAIL",
+          "start": 26,
+          "end": 54,
+          "text": "\"paper cloud\"@quoted.example"
+        }
+      ]
+    }
+  ]
+}

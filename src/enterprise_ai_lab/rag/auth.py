@@ -14,6 +14,7 @@ import jwt
 RAG_AUDIENCE = 'urn:identity-boundary:rag'
 RAG_SCOPE = 'rag:query'
 APPROVAL_AUDIENCE = 'urn:identity-boundary:approval'
+PRIVACY_AUDIENCE = 'urn:identity-boundary:privacy'
 _NAME = re.compile(r'[a-z][a-z0-9:_-]{0,63}\Z')
 _COMPACT = re.compile(r'[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\Z')
 
@@ -101,7 +102,7 @@ class JwtVerifier:
     """Startup JWKS snapshot. It never follows URLs supplied in a token."""
 
     def __init__(self, issuer: str, jwks: dict, *, audience: str = RAG_AUDIENCE):
-        if audience not in (RAG_AUDIENCE, APPROVAL_AUDIENCE):
+        if audience not in (RAG_AUDIENCE, APPROVAL_AUDIENCE, PRIVACY_AUDIENCE):
             raise ValueError('Unsupported local resource audience.')
         self.audience = audience
         self.issuer = local_origin(issuer)

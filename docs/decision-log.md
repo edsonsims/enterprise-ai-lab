@@ -341,3 +341,42 @@ not establish that the owner or any person read or approved a source. The local
 Temporal gRPC administrator, source files and trusted grants remain outside the
 browser authorization boundary. No production identity, generalized OCR
 accuracy, answer-quality improvement or customer outcome is claimed.
+
+## 2026-10-20: scope restoration to the client that created the map
+
+**Question.** Can selected substrings stay out of a downstream tool's request
+without turning every placeholder into a reusable cross-tenant recovery key?
+
+**Decision.** Keep narrow deterministic detection separate from storage and
+authorization. The actual local issuer grants a dedicated privacy JWT audience
+and role-bounded scopes; the resource enforces scope AND role. Each occurrence
+gets a fresh random token in a generated context. SQLite binds every restoration
+to the original signed tenant AND client AND unexpired context. Persistent ID
+tombstones prevent reuse after logical expiry. Unknown or copied placeholders
+withhold the whole result, and no bearer/identity headers reach the fixed local
+HTTP processor. Recheck the short-lived credential after downstream work.
+
+**Tradeoff.** Strict per-client scope prevents an implicit reviewer/agent handoff;
+an explicit delegation protocol would be a separate study. Random per-occurrence
+tokens avoid a global reusable dictionary, but downstream work can lose or repeat
+them. Restoration proves mapping provenance, not answer semantics. Finite audit
+and tombstone budgets eventually require an explicit fresh private vault. The
+stored substrings are plaintext and expiry is logical deletion, not secure
+erasure. Redaction retry creates a new context; HTTP processing and SQLite do
+not share a transaction.
+
+**Evidence.** The [frozen process run](../reports/privacy-v1) exercises actual
+issuer/JWT/HTTP boundaries, three resource processes, restart, a real SQLite
+lock, expiry, metadata-only audit and a finite resource-log scan. The separate
+36-case fictional development evaluation retains a quoted-mailbox miss,
+context-dependent public-contact false positive and eleven unsupported-format
+misses. Supported-kind precision/recall are 28/29; all-annotation recall is 28/40.
+There is no held-out generalization or comprehensive privacy claim. The local
+processor deliberately forwards a fictional name unchanged and calls no model.
+
+**Review repair.** A fresh work directory initially did not protect an existing
+report path. Report creation now refuses existing paths and uses exclusive
+creation, with a regression before any child service starts. Actual slow-peer
+checks also established that the 3-second HTTP budget is checked between reads;
+the 2-second I/O timeout can extend elapsed time. The documented bound preserves
+that observation instead of claiming a hard 3-second cutoff.
