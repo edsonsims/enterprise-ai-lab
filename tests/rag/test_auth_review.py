@@ -145,13 +145,14 @@ class SignedIdentityReviewTests(unittest.TestCase):
                 self.verifier.verify(self.sign(claims))
 
     def test_strict_integer_timestamps_and_short_lifetime(self):
-        now = int(time.time())
+        claims = self.claims()
+        now = claims["iat"]
         mutations = [{"iat": True}, {"exp": True}, {"iat": float(now)}, {"exp": str(now + 60)},
                      {"exp": now - 1}, {"iat": now + 10}, {"exp": now + 61},
                      {"nbf": now + 10}, {"nbf": False}]
         for mutation in mutations:
             with self.subTest(mutation=mutation), self.assertRaises(AuthenticationError):
-                self.verifier.verify(self.sign({**self.claims(), **mutation}))
+                self.verifier.verify(self.sign({**claims, **mutation}))
 
     def test_mixed_or_ambiguous_principal_claim_types_rejected(self):
         mutations = [{"roles": "reader"}, {"roles": []}, {"roles": ["reader", "reader"]},
