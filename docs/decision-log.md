@@ -1,5 +1,36 @@
 # Decision log
 
+## 2026-10-21: fail over a read without bypassing a refusal
+
+**Question.** What does a caller know after a local MCP connection times out or
+closes, and which observation permits another read?
+
+**Decision.** Bind one trusted profile to at most two fixed local replicas of the
+existing synthetic fixture. Validate full source content and grants, seal byte
+hashes and compare successful wire results with the exact fixture-authorized
+contract. Only an official SDK timeout or verified transport closure may advance
+once. All tool refusals, audit failures, malformed output, provenance drift and
+caller cancellation are terminal. No general SQL/action tool or new dependency
+is introduced.
+
+**Budget.** Keep an absolute total work/acceptance deadline, capped per-attempt
+work and at most two attempts. Recompute remaining time after mandatory cleanup;
+do not grant another full total. The official transport owns reaping. Only a
+separately observed owned child may be killed when cleanup must stop a stalled
+process. Work deadlines and measured whole-call time are distinct; no hard
+real-time exit guarantee is made.
+
+**Evidence and tradeoff.** Real local processes lose responses after committed
+reads/audit outcomes, die after a durable intent, stall, disconnect, hit actual
+SQLite locks and recover. Refusals and native cancellation never reach the
+secondary. Additional read attempts can leave duplicate audit records; an
+unfinished intent is preserved. This favors inspectable refusal over hiding
+failure and costs admission/startup, strict fixture matching and cleanup time.
+The [separate chaos report](../reports/chaos-v1) retains timings and failures.
+This same-host immutable-data experiment is not replication, an atomic
+source/audit transaction, exactly-once effects or production availability.
+
+
 ## 2026-10-19: preserve finite evidence before retrying an unconfirmed review
 
 **Problem.** An intermittent browser-review CI 503 lost its HTTP category and

@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "enterprise-ai-lab"
-version = "0.8.0"
-description = "Reproducible local studies in permission-aware RAG, durable review, MCP data access and scoped redaction"
+version = "0.9.0"
+description = "Reproducible local studies in permission-aware RAG, durable review, MCP data access, scoped redaction and bounded failover"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 readme = "README.md"

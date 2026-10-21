@@ -1,0 +1,2111 @@
+{
+  "schema_version": 1,
+  "study": "fixture-bound-local-read-failover-v1",
+  "recorded_at": "2026-10-21T12:18:00.081626Z",
+  "data_kind": "authored_synthetic",
+  "identity_kind": "trusted_local_launcher_profile_not_authentication",
+  "profile": "alpha-reader",
+  "human_review_performed": false,
+  "runtime": {
+    "python": "3.13.1",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "sqlite": "3.48.0",
+    "mcp": "2.3.0",
+    "mcp_types": "2.3.0"
+  },
+  "source_sha256": {
+    "chaos/__init__.py": "94d166e1e6adb85386931385b9d61fe5a918aa7f1a0b54a7a34539a70d932aa1",
+    "chaos/__main__.py": "c60958d4c0ca70da9cf3a4b5929ccecea2ea05c516822961f7dcd1b3dc35bcd7",
+    "chaos/client.py": "632828bebed579583a88c09920fa08ae34129b7110ef9580b4c7afe19ab0427a",
+    "chaos/contract.py": "c3a0b0351d361df6353fc237950974a47f448709797cf1d9e2a1ca2ebbfbdfa9",
+    "chaos/experiment.py": "cc89cfc528650d0b07f8ec7bca098c00e3c1f29a07390969a2338e7985ca4cdb",
+    "chaos/transport.py": "0ddecc031c67a9bb400afd1ede1f0ad2517e3c12712e3b5202a9916e23908ca3",
+    "mcp_gateway/__init__.py": "c1dd5c99b214d1b5eb798e7bb941a28b587f587e9898ee91d094722b8f5a4b63",
+    "mcp_gateway/__main__.py": "55aaf55db69772811986bc77651ea7eaca51a5101707cc71cd32c2b6088792a5",
+    "mcp_gateway/audit.py": "f05eb1145e6028062f2ddf354cd19fcf87c7138392a349704937dcad63576638",
+    "mcp_gateway/data/work-orders-v1.json": "7f37ae73b4c670f22276e43170517b5c30a6ecaadbb7aba07231d20e271def56",
+    "mcp_gateway/integration.py": "d782286fe4c1f5886d95bfc3eb4b025b04b8fc114767319edd6a1f573734d447",
+    "mcp_gateway/server.py": "fd8586ebb29c9d804a631e0d01f4af337c2b7c5b76eaa16709df8912402cb163",
+    "mcp_gateway/service.py": "660fd0b09f1fc5282220e12819ba8d063ebc185de3677db00c3dd67943fc080a",
+    "mcp_gateway/store.py": "a5668685033f7c2dd22a074e168e8602b37afea2e396baaf1790da58f8ccbc07"
+  },
+  "requirements_mcp_lock_sha256": "f4cc23099d77c6eb3cb71f0645f0e6c804231046ceea3fe69a1e53785580ea10",
+  "source_databases_before": {
+    "primary": "af96760a7220e7159de677a3dfa398e0b741a5654e8e807cf4894d415f95f160",
+    "secondary": "af96760a7220e7159de677a3dfa398e0b741a5654e8e807cf4894d415f95f160"
+  },
+  "source_databases_after": {
+    "primary": "af96760a7220e7159de677a3dfa398e0b741a5654e8e807cf4894d415f95f160",
+    "secondary": "af96760a7220e7159de677a3dfa398e0b741a5654e8e807cf4894d415f95f160"
+  },
+  "source_unchanged": true,
+  "observations": [
+    {
+      "case": "healthy_primary",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {},
+      "operation": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "budget": {
+        "total_work_seconds": 4.0,
+        "per_attempt_work_seconds": 2.0,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.001828,
+      "whole_read_seconds": 0.308536,
+      "outcome": "success",
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "status": "open",
+            "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "alpha",
+            "title": "Alpha synthetic inspection 1",
+            "work_order_id": "WO-0001"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "alpha"
+        }
+      },
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "response",
+          "work_budget_seconds": 1.999998459010385,
+          "work_seconds": 0.265554,
+          "cleanup_seconds": 0.041584,
+          "wall_seconds": 0.307137,
+          "protocol_version": "2026-07-28",
+          "pid": 13660,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": true,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        }
+      ],
+      "audit_events_added": {
+        "primary": [
+          {
+            "at": "2026-10-21T12:17:52.588888Z",
+            "call_id": "f10dfc1cf96642508ed93b15925a8d7b",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 1,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "event_sha256": "574dde25acb5c13071ebd48b00783235e0a23cff1227b7e81d54c66eaad488e7"
+          },
+          {
+            "at": "2026-10-21T12:17:52.590171Z",
+            "call_id": "f10dfc1cf96642508ed93b15925a8d7b",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "success",
+            "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+            "phase": "outcome",
+            "row_count": 1,
+            "sequence": 2,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "574dde25acb5c13071ebd48b00783235e0a23cff1227b7e81d54c66eaad488e7",
+            "event_sha256": "ac71ff58c9be1720ca5ab6b4a13247fdb0bcd5f5ed23c9d61325b4485d3490e7"
+          }
+        ],
+        "secondary": []
+      }
+    },
+    {
+      "case": "primary_killed_after_durable_outcome",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {
+        "primary": "kill_after_read"
+      },
+      "operation": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "budget": {
+        "total_work_seconds": 4.0,
+        "per_attempt_work_seconds": 2.0,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.001956,
+      "whole_read_seconds": 0.585913,
+      "outcome": "success",
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "status": "open",
+            "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "alpha",
+            "title": "Alpha synthetic inspection 1",
+            "work_order_id": "WO-0001"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "alpha"
+        }
+      },
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "transport_closed",
+          "work_budget_seconds": 1.999998500017682,
+          "work_seconds": 0.267286,
+          "cleanup_seconds": 0.005231,
+          "wall_seconds": 0.272517,
+          "protocol_version": "2026-07-28",
+          "pid": 13664,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": false,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        },
+        {
+          "endpoint": "secondary",
+          "outcome": "response",
+          "work_budget_seconds": 1.9999984170135576,
+          "work_seconds": 0.2712,
+          "cleanup_seconds": 0.040042,
+          "wall_seconds": 0.311242,
+          "protocol_version": "2026-07-28",
+          "pid": 13668,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": true,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        }
+      ],
+      "audit_events_added": {
+        "primary": [
+          {
+            "at": "2026-10-21T12:17:52.904164Z",
+            "call_id": "65941b13f5ec44ee8e7413b7cf21faf9",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 3,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "ac71ff58c9be1720ca5ab6b4a13247fdb0bcd5f5ed23c9d61325b4485d3490e7",
+            "event_sha256": "72faa0757056ad569c1908e5db45da81437b60e271a5a174db662e71a6e21015"
+          },
+          {
+            "at": "2026-10-21T12:17:52.905385Z",
+            "call_id": "65941b13f5ec44ee8e7413b7cf21faf9",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "success",
+            "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+            "phase": "outcome",
+            "row_count": 1,
+            "sequence": 4,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "72faa0757056ad569c1908e5db45da81437b60e271a5a174db662e71a6e21015",
+            "event_sha256": "df19edb13a876cf3576249df2121a7f0e733f689315b83cf284edb039ef29a0c"
+          }
+        ],
+        "secondary": [
+          {
+            "at": "2026-10-21T12:17:53.180429Z",
+            "call_id": "a4d9a93fd8c74adf950cf1b1061e95a8",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 1,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "event_sha256": "4792ddc0ddb2f6361282089638a44a1cd194f18d20183eb38068df912202cb81"
+          },
+          {
+            "at": "2026-10-21T12:17:53.181381Z",
+            "call_id": "a4d9a93fd8c74adf950cf1b1061e95a8",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "success",
+            "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+            "phase": "outcome",
+            "row_count": 1,
+            "sequence": 2,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "4792ddc0ddb2f6361282089638a44a1cd194f18d20183eb38068df912202cb81",
+            "event_sha256": "5d3f88842e5e36e9afbc27b19b6387ae01a48d609765111803ed9e694b920b6f"
+          }
+        ]
+      }
+    },
+    {
+      "case": "primary_disconnect_before_read",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {
+        "primary": "disconnect_before_read"
+      },
+      "operation": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "budget": {
+        "total_work_seconds": 4.0,
+        "per_attempt_work_seconds": 2.0,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.002083,
+      "whole_read_seconds": 0.624734,
+      "outcome": "success",
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "status": "open",
+            "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "alpha",
+            "title": "Alpha synthetic inspection 1",
+            "work_order_id": "WO-0001"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "alpha"
+        }
+      },
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "transport_closed",
+          "work_budget_seconds": 1.9999987090122886,
+          "work_seconds": 0.265976,
+          "cleanup_seconds": 0.005053,
+          "wall_seconds": 0.271028,
+          "protocol_version": "2026-07-28",
+          "pid": 13673,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": false,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        },
+        {
+          "endpoint": "secondary",
+          "outcome": "response",
+          "work_budget_seconds": 1.9999983340094332,
+          "work_seconds": 0.299415,
+          "cleanup_seconds": 0.052172,
+          "wall_seconds": 0.351587,
+          "protocol_version": "2026-07-28",
+          "pid": 13677,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": true,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        }
+      ],
+      "audit_events_added": {
+        "primary": [],
+        "secondary": [
+          {
+            "at": "2026-10-21T12:17:53.796432Z",
+            "call_id": "cced9594b53442a3b2ab997ad2c5ccc5",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 3,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "5d3f88842e5e36e9afbc27b19b6387ae01a48d609765111803ed9e694b920b6f",
+            "event_sha256": "d2f5f0018068633cdadc9d45521039a913e0bb6cf358041372d23db9455b5d2e"
+          },
+          {
+            "at": "2026-10-21T12:17:53.797714Z",
+            "call_id": "cced9594b53442a3b2ab997ad2c5ccc5",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "success",
+            "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+            "phase": "outcome",
+            "row_count": 1,
+            "sequence": 4,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "d2f5f0018068633cdadc9d45521039a913e0bb6cf358041372d23db9455b5d2e",
+            "event_sha256": "c8b04b873836bfaed1fe9d730b159ac516879069ba2d25b848cf0f8047882acd"
+          }
+        ]
+      }
+    },
+    {
+      "case": "primary_killed_after_intent",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {
+        "primary": "kill_after_intent"
+      },
+      "operation": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "budget": {
+        "total_work_seconds": 4.0,
+        "per_attempt_work_seconds": 2.0,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.001986,
+      "whole_read_seconds": 0.609353,
+      "outcome": "success",
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "status": "open",
+            "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "alpha",
+            "title": "Alpha synthetic inspection 1",
+            "work_order_id": "WO-0001"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "alpha"
+        }
+      },
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "transport_closed",
+          "work_budget_seconds": 1.9999980829888955,
+          "work_seconds": 0.290536,
+          "cleanup_seconds": 0.007378,
+          "wall_seconds": 0.297914,
+          "protocol_version": "2026-07-28",
+          "pid": 13689,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": false,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        },
+        {
+          "endpoint": "secondary",
+          "outcome": "response",
+          "work_budget_seconds": 1.999997250008164,
+          "work_seconds": 0.269357,
+          "cleanup_seconds": 0.039825,
+          "wall_seconds": 0.309182,
+          "protocol_version": "2026-07-28",
+          "pid": 13693,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": true,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        }
+      ],
+      "audit_events_added": {
+        "primary": [
+          {
+            "at": "2026-10-21T12:17:54.146746Z",
+            "call_id": "357ca99cf75f47d59d5a2c2b90982a5e",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 5,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "df19edb13a876cf3576249df2121a7f0e733f689315b83cf284edb039ef29a0c",
+            "event_sha256": "3dd5e74fcfe219374a606c8c27232e4b6e0c614ffa56b8bb0e4b7830bb7a7dee"
+          }
+        ],
+        "secondary": [
+          {
+            "at": "2026-10-21T12:17:54.422593Z",
+            "call_id": "d4bb98b6383c45f7b2f6e9402c8e72e4",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 5,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "c8b04b873836bfaed1fe9d730b159ac516879069ba2d25b848cf0f8047882acd",
+            "event_sha256": "a06cef4dad69d46b2963d54ab836af2b1672eea6b89c726f8df86a5f5d2c51f6"
+          },
+          {
+            "at": "2026-10-21T12:17:54.423772Z",
+            "call_id": "d4bb98b6383c45f7b2f6e9402c8e72e4",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "success",
+            "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+            "phase": "outcome",
+            "row_count": 1,
+            "sequence": 6,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "a06cef4dad69d46b2963d54ab836af2b1672eea6b89c726f8df86a5f5d2c51f6",
+            "event_sha256": "3ad4e593d00123fd117677e455766d08fd217fdea345a39705c2f0b2ade29fdb"
+          }
+        ]
+      }
+    },
+    {
+      "case": "primary_stalled_after_read",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {
+        "primary": "stall_after_read"
+      },
+      "operation": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "budget": {
+        "total_work_seconds": 4,
+        "per_attempt_work_seconds": 1,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.001879,
+      "whole_read_seconds": 1.36345,
+      "outcome": "success",
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "status": "open",
+            "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "alpha",
+            "title": "Alpha synthetic inspection 1",
+            "work_order_id": "WO-0001"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "alpha"
+        }
+      },
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "transport_timeout",
+          "work_budget_seconds": 0.9999987089831848,
+          "work_seconds": 1.01604,
+          "cleanup_seconds": 0.01812,
+          "wall_seconds": 1.03416,
+          "protocol_version": "2026-07-28",
+          "pid": 13697,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": false,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        },
+        {
+          "endpoint": "secondary",
+          "outcome": "response",
+          "work_budget_seconds": 0.9999950829951558,
+          "work_seconds": 0.286609,
+          "cleanup_seconds": 0.039692,
+          "wall_seconds": 0.326301,
+          "protocol_version": "2026-07-28",
+          "pid": 13701,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": true,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        }
+      ],
+      "audit_events_added": {
+        "primary": [
+          {
+            "at": "2026-10-21T12:17:54.734189Z",
+            "call_id": "dbdd56b5e8c34bc1a43010011c13ebc3",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 6,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "3dd5e74fcfe219374a606c8c27232e4b6e0c614ffa56b8bb0e4b7830bb7a7dee",
+            "event_sha256": "0ff688891ed91ae57c071e266966d44847f9242c4cb4b3132fcb45365c48324d"
+          },
+          {
+            "at": "2026-10-21T12:17:54.735405Z",
+            "call_id": "dbdd56b5e8c34bc1a43010011c13ebc3",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "success",
+            "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+            "phase": "outcome",
+            "row_count": 1,
+            "sequence": 7,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "0ff688891ed91ae57c071e266966d44847f9242c4cb4b3132fcb45365c48324d",
+            "event_sha256": "0287bc8c74cda42033c8b3fd6202ffbaea320c0cf1c319295b7b3316b55b9ba2"
+          }
+        ],
+        "secondary": [
+          {
+            "at": "2026-10-21T12:17:55.789866Z",
+            "call_id": "21683d82ba6a419c85b07ae6ec59930f",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 7,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "3ad4e593d00123fd117677e455766d08fd217fdea345a39705c2f0b2ade29fdb",
+            "event_sha256": "d848fa6afd90a677325bd02ce47f4909e31ac1328cab01f218f384a64848157c"
+          },
+          {
+            "at": "2026-10-21T12:17:55.791090Z",
+            "call_id": "21683d82ba6a419c85b07ae6ec59930f",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "success",
+            "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+            "phase": "outcome",
+            "row_count": 1,
+            "sequence": 8,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "d848fa6afd90a677325bd02ce47f4909e31ac1328cab01f218f384a64848157c",
+            "event_sha256": "4d21dddcd4d26d2d48b3bdc379dc94e79ad5be3d050136a31d356074cd28e7fd"
+          }
+        ]
+      }
+    },
+    {
+      "case": "both_transports_disconnect",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {
+        "primary": "disconnect_before_read",
+        "secondary": "disconnect_before_read"
+      },
+      "operation": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "budget": {
+        "total_work_seconds": 4.0,
+        "per_attempt_work_seconds": 2.0,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.001929,
+      "whole_read_seconds": 0.538167,
+      "outcome": "attempts_exhausted",
+      "response": null,
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "transport_closed",
+          "work_budget_seconds": 1.99999862498953,
+          "work_seconds": 0.264068,
+          "cleanup_seconds": 0.004777,
+          "wall_seconds": 0.268845,
+          "protocol_version": "2026-07-28",
+          "pid": 13705,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": false,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        },
+        {
+          "endpoint": "secondary",
+          "outcome": "transport_closed",
+          "work_budget_seconds": 1.9999983750167303,
+          "work_seconds": 0.263116,
+          "cleanup_seconds": 0.004668,
+          "wall_seconds": 0.267784,
+          "protocol_version": "2026-07-28",
+          "pid": 13709,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": false,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        }
+      ],
+      "audit_events_added": {
+        "primary": [],
+        "secondary": []
+      }
+    },
+    {
+      "case": "total_work_deadline",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {
+        "primary": "stall_after_read"
+      },
+      "operation": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "budget": {
+        "total_work_seconds": 1,
+        "per_attempt_work_seconds": 3,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.00194,
+      "whole_read_seconds": 1.03217,
+      "outcome": "total_deadline",
+      "response": null,
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "transport_timeout",
+          "work_budget_seconds": 0.9996234160207678,
+          "work_seconds": 1.013563,
+          "cleanup_seconds": 0.017817,
+          "wall_seconds": 1.03138,
+          "protocol_version": "2026-07-28",
+          "pid": 13713,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": false,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        }
+      ],
+      "audit_events_added": {
+        "primary": [
+          {
+            "at": "2026-10-21T12:17:56.642827Z",
+            "call_id": "78e2a53212454df6b4746f54ddda7f09",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 8,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "0287bc8c74cda42033c8b3fd6202ffbaea320c0cf1c319295b7b3316b55b9ba2",
+            "event_sha256": "e89a6487b4aa1957214ca48f79a3e9fffaef626e94adc4b35ae66c7089409433"
+          },
+          {
+            "at": "2026-10-21T12:17:56.644072Z",
+            "call_id": "78e2a53212454df6b4746f54ddda7f09",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "success",
+            "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+            "phase": "outcome",
+            "row_count": 1,
+            "sequence": 9,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "e89a6487b4aa1957214ca48f79a3e9fffaef626e94adc4b35ae66c7089409433",
+            "event_sha256": "23fc350dfb05df154c0b22ff0a04d48039d4f7c2f7a636c6a6e836f34ac7b995"
+          }
+        ],
+        "secondary": []
+      }
+    },
+    {
+      "case": "terminal_permission_denial",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {},
+      "operation": "get_asset_diagnostics",
+      "arguments": {
+        "asset_id": "AS-001"
+      },
+      "budget": {
+        "total_work_seconds": 4.0,
+        "per_attempt_work_seconds": 2.0,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.003925,
+      "whole_read_seconds": 0.322038,
+      "outcome": "tool_error",
+      "response": null,
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "tool_error",
+          "work_budget_seconds": 1.9999977919796947,
+          "work_seconds": 0.281275,
+          "cleanup_seconds": 0.039881,
+          "wall_seconds": 0.321156,
+          "protocol_version": "2026-07-28",
+          "pid": 13717,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": true,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": "forbidden"
+        }
+      ],
+      "audit_events_added": {
+        "primary": [
+          {
+            "at": "2026-10-21T12:17:57.701414Z",
+            "call_id": "08e23850011f4d42bf0cb4ee90d6aa21",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "1217bb7007d8ec84a09962b493e96ae041b8f66092c7702fd4349bc893264302",
+            "operation": "get_asset_diagnostics",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 10,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "23fc350dfb05df154c0b22ff0a04d48039d4f7c2f7a636c6a6e836f34ac7b995",
+            "event_sha256": "8b16d7588735e41036d2b69a474afe321ee7ab4146316be7a4b33c2098674182"
+          },
+          {
+            "at": "2026-10-21T12:17:57.702663Z",
+            "call_id": "08e23850011f4d42bf0cb4ee90d6aa21",
+            "error_code": "forbidden",
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "1217bb7007d8ec84a09962b493e96ae041b8f66092c7702fd4349bc893264302",
+            "operation": "get_asset_diagnostics",
+            "outcome": "error",
+            "output_sha256": "756d0006850f33aaa13e257d24b916ae6f50cda1cf17c484540817a24f61e716",
+            "phase": "outcome",
+            "row_count": 0,
+            "sequence": 11,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "8b16d7588735e41036d2b69a474afe321ee7ab4146316be7a4b33c2098674182",
+            "event_sha256": "ce6f3ee308bd84dbfcad1f2cab0022a14eeb17b124cb1e83104ae92e2f9bfc56"
+          }
+        ],
+        "secondary": []
+      }
+    },
+    {
+      "case": "terminal_hidden_row",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {},
+      "operation": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0002"
+      },
+      "budget": {
+        "total_work_seconds": 4.0,
+        "per_attempt_work_seconds": 2.0,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.001931,
+      "whole_read_seconds": 0.307318,
+      "outcome": "tool_error",
+      "response": null,
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "tool_error",
+          "work_budget_seconds": 1.9999987079936545,
+          "work_seconds": 0.266733,
+          "cleanup_seconds": 0.040025,
+          "wall_seconds": 0.306759,
+          "protocol_version": "2026-07-28",
+          "pid": 13721,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": true,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": "not_found"
+        }
+      ],
+      "audit_events_added": {
+        "primary": [
+          {
+            "at": "2026-10-21T12:17:58.012608Z",
+            "call_id": "a7c4eaa664b942a386da0f241cf41937",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "4d6e46a4f209fd0c27c909cc6e29437e98b3e9ffd4aadd5ff6bd30bf591199b1",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 12,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "ce6f3ee308bd84dbfcad1f2cab0022a14eeb17b124cb1e83104ae92e2f9bfc56",
+            "event_sha256": "117049dd31409579ade36741f4e3cdaa3c12177b12324a3e87667fa4561f26e7"
+          },
+          {
+            "at": "2026-10-21T12:17:58.013898Z",
+            "call_id": "a7c4eaa664b942a386da0f241cf41937",
+            "error_code": "not_found",
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "4d6e46a4f209fd0c27c909cc6e29437e98b3e9ffd4aadd5ff6bd30bf591199b1",
+            "operation": "get_work_order",
+            "outcome": "error",
+            "output_sha256": "d16873e2bbac3be44516046ad4a609bb26a3570e53c17a66ef2a73400fb64e54",
+            "phase": "outcome",
+            "row_count": 0,
+            "sequence": 13,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "117049dd31409579ade36741f4e3cdaa3c12177b12324a3e87667fa4561f26e7",
+            "event_sha256": "bf0eeb852a1332b1281ee9f5115aa7c37fb85ec2d3c5672f611d4556a080f5fa"
+          }
+        ],
+        "secondary": []
+      }
+    },
+    {
+      "case": "terminal_invalid_tenant_argument",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {},
+      "operation": "list_work_orders",
+      "arguments": {
+        "tenant_id": "beta"
+      },
+      "budget": {
+        "total_work_seconds": 4.0,
+        "per_attempt_work_seconds": 2.0,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.001915,
+      "whole_read_seconds": 0.307763,
+      "outcome": "tool_error",
+      "response": null,
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "tool_error",
+          "work_budget_seconds": 1.9999986659968272,
+          "work_seconds": 0.266947,
+          "cleanup_seconds": 0.040256,
+          "wall_seconds": 0.307202,
+          "protocol_version": "2026-07-28",
+          "pid": 13725,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": true,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": "invalid_request"
+        }
+      ],
+      "audit_events_added": {
+        "primary": [
+          {
+            "at": "2026-10-21T12:17:58.324316Z",
+            "call_id": "763f1178d49241a6acb6310ae3b246e1",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "316d6f28fb2542c4a43e2ae4b35669d445321ad5c393491ff0bcd217a53aafba",
+            "operation": "list_work_orders",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 14,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "bf0eeb852a1332b1281ee9f5115aa7c37fb85ec2d3c5672f611d4556a080f5fa",
+            "event_sha256": "02569862317defa066d32f96b9cd13374d50fe59f3c6202b02b420967cd5473e"
+          },
+          {
+            "at": "2026-10-21T12:17:58.325556Z",
+            "call_id": "763f1178d49241a6acb6310ae3b246e1",
+            "error_code": "invalid_request",
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "316d6f28fb2542c4a43e2ae4b35669d445321ad5c393491ff0bcd217a53aafba",
+            "operation": "list_work_orders",
+            "outcome": "error",
+            "output_sha256": "38c5839214f4ba586d91ef11c8e7a7a86f9c110aa61f73d1cfe4e337b9aede04",
+            "phase": "outcome",
+            "row_count": 0,
+            "sequence": 15,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "02569862317defa066d32f96b9cd13374d50fe59f3c6202b02b420967cd5473e",
+            "event_sha256": "260439d2f1be4faf28e0c889a71cbd305a737e17cdb4377604ed13f56a0ae8a6"
+          }
+        ],
+        "secondary": []
+      }
+    },
+    {
+      "case": "terminal_source_busy",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {
+        "primary": "source_locked"
+      },
+      "operation": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "budget": {
+        "total_work_seconds": 4.0,
+        "per_attempt_work_seconds": 2.0,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.001922,
+      "whole_read_seconds": 0.393874,
+      "outcome": "tool_error",
+      "response": null,
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "tool_error",
+          "work_budget_seconds": 1.9999988749914337,
+          "work_seconds": 0.339458,
+          "cleanup_seconds": 0.053781,
+          "wall_seconds": 0.393239,
+          "protocol_version": "2026-07-28",
+          "pid": 13729,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": true,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": "resource_busy"
+        }
+      ],
+      "audit_events_added": {
+        "primary": [
+          {
+            "at": "2026-10-21T12:17:58.632863Z",
+            "call_id": "98c9a527f5fa4985b45e6633d12fa25f",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 16,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "260439d2f1be4faf28e0c889a71cbd305a737e17cdb4377604ed13f56a0ae8a6",
+            "event_sha256": "3c617065f1be016567c2c0d126ce3132b66b971d46c1176bcd84e4017840495a"
+          },
+          {
+            "at": "2026-10-21T12:17:58.709560Z",
+            "call_id": "98c9a527f5fa4985b45e6633d12fa25f",
+            "error_code": "resource_busy",
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "error",
+            "output_sha256": "d97bd127ca5ec1e818e3a4253aee0391d487201072ccb914ed9cf0bdb7c0d6e1",
+            "phase": "outcome",
+            "row_count": 0,
+            "sequence": 17,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "3c617065f1be016567c2c0d126ce3132b66b971d46c1176bcd84e4017840495a",
+            "event_sha256": "45df1c2698cdc480747b3908a5819e9de088d2740a510ca128fb46eaa5888160"
+          }
+        ],
+        "secondary": []
+      }
+    },
+    {
+      "case": "terminal_audit_unavailable",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {
+        "primary": "audit_locked"
+      },
+      "operation": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "budget": {
+        "total_work_seconds": 4.0,
+        "per_attempt_work_seconds": 2.0,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.002255,
+      "whole_read_seconds": 0.394232,
+      "outcome": "tool_error",
+      "response": null,
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "tool_error",
+          "work_budget_seconds": 1.9999985829927027,
+          "work_seconds": 0.339383,
+          "cleanup_seconds": 0.05369,
+          "wall_seconds": 0.393073,
+          "protocol_version": "2026-07-28",
+          "pid": 13733,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": true,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": "audit_unavailable"
+        }
+      ],
+      "audit_events_added": {
+        "primary": [],
+        "secondary": []
+      }
+    },
+    {
+      "case": "terminal_wire_provenance_mismatch",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {
+        "primary": "wrong_tenant"
+      },
+      "operation": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "budget": {
+        "total_work_seconds": 4.0,
+        "per_attempt_work_seconds": 2.0,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.002223,
+      "whole_read_seconds": 0.310183,
+      "outcome": "provenance_mismatch",
+      "response": null,
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "response",
+          "work_budget_seconds": 1.9999986669863574,
+          "work_seconds": 0.26997,
+          "cleanup_seconds": 0.039401,
+          "wall_seconds": 0.309371,
+          "protocol_version": "2026-07-28",
+          "pid": 13737,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": true,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        }
+      ],
+      "audit_events_added": {
+        "primary": [
+          {
+            "at": "2026-10-21T12:17:59.435438Z",
+            "call_id": "e351793e12414021a45dcaf5ca8d8488",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 18,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "45df1c2698cdc480747b3908a5819e9de088d2740a510ca128fb46eaa5888160",
+            "event_sha256": "a878b28d2a32e59a5b9a5ca5b809fc6e6fe75ddc9755c9bef9fcff85271709e6"
+          },
+          {
+            "at": "2026-10-21T12:17:59.436695Z",
+            "call_id": "e351793e12414021a45dcaf5ca8d8488",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "success",
+            "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+            "phase": "outcome",
+            "row_count": 1,
+            "sequence": 19,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "a878b28d2a32e59a5b9a5ca5b809fc6e6fe75ddc9755c9bef9fcff85271709e6",
+            "event_sha256": "5eabe19e1aeb43ab4d03b040e8697f5b8e205b0428c2943c80f780fcd7bee0af"
+          }
+        ],
+        "secondary": []
+      }
+    },
+    {
+      "case": "explicit_fresh_primary_recovery",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {},
+      "operation": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "budget": {
+        "total_work_seconds": 4.0,
+        "per_attempt_work_seconds": 2.0,
+        "maximum_attempts": 2
+      },
+      "admission_seconds": 0.001902,
+      "whole_read_seconds": 0.306867,
+      "outcome": "success",
+      "response": {
+        "data": {
+          "item": {
+            "asset_id": "AS-001",
+            "status": "open",
+            "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data.",
+            "tenant_id": "alpha",
+            "title": "Alpha synthetic inspection 1",
+            "work_order_id": "WO-0001"
+          }
+        },
+        "meta": {
+          "operation": "get_work_order",
+          "tenant_id": "alpha"
+        }
+      },
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "response",
+          "work_budget_seconds": 1.9999987500195857,
+          "work_seconds": 0.265783,
+          "cleanup_seconds": 0.039828,
+          "wall_seconds": 0.305611,
+          "protocol_version": "2026-07-28",
+          "pid": 13741,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": true,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        }
+      ],
+      "audit_events_added": {
+        "primary": [
+          {
+            "at": "2026-10-21T12:17:59.745508Z",
+            "call_id": "ef52bee1b28b4a57bc49f7f111b0abff",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 20,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "5eabe19e1aeb43ab4d03b040e8697f5b8e205b0428c2943c80f780fcd7bee0af",
+            "event_sha256": "e0c97cc7674b5112478efa22bc0e87efbcb6bedff427b220962405ade45179c5"
+          },
+          {
+            "at": "2026-10-21T12:17:59.746726Z",
+            "call_id": "ef52bee1b28b4a57bc49f7f111b0abff",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "success",
+            "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+            "phase": "outcome",
+            "row_count": 1,
+            "sequence": 21,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "e0c97cc7674b5112478efa22bc0e87efbcb6bedff427b220962405ade45179c5",
+            "event_sha256": "d7ad6c7131afe059516f2608efb526f115037e1a6105a18fb25882b04ffe9234"
+          }
+        ],
+        "secondary": []
+      }
+    },
+    {
+      "case": "caller_cancellation_after_durable_outcome",
+      "kind": "actual_official_mcp_stdio",
+      "test_only_injections": {
+        "primary": "stall_after_read",
+        "parent": "explicit_anyio_cancellation_after_child_marker"
+      },
+      "operation": "get_work_order",
+      "arguments": {
+        "work_order_id": "WO-0001"
+      },
+      "budget": {
+        "total_work_seconds": 5,
+        "per_attempt_work_seconds": 3,
+        "maximum_attempts": 2
+      },
+      "outcome": "caller_cancelled",
+      "response": null,
+      "attempts": [
+        {
+          "endpoint": "primary",
+          "outcome": "caller_cancelled",
+          "work_budget_seconds": 2.9999985419854056,
+          "work_seconds": 0.269289,
+          "cleanup_seconds": 0.014799,
+          "wall_seconds": 0.284087,
+          "protocol_version": "2026-07-28",
+          "pid": 13745,
+          "owned_child_observed": true,
+          "process_reaped": true,
+          "tool_call_sent": true,
+          "wire_result_received": false,
+          "server_info": {
+            "name": "enterprise-legacy-fixture",
+            "version": "0.9.0"
+          },
+          "server_runtime": {
+            "mcp": "2.3.0",
+            "mcp_types": "2.3.0",
+            "python": "3.13.1",
+            "sqlite": "3.48.0"
+          },
+          "tool_error_code": null
+        }
+      ],
+      "audit_events_added": {
+        "primary": [
+          {
+            "at": "2026-10-21T12:18:00.055471Z",
+            "call_id": "323214cc09714f9293c382caa122c91a",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "intent",
+            "output_sha256": null,
+            "phase": "intent",
+            "row_count": null,
+            "sequence": 22,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "d7ad6c7131afe059516f2608efb526f115037e1a6105a18fb25882b04ffe9234",
+            "event_sha256": "2dd1833db0c3ebf2b04c9378b14eb4411e7bcd4e2e912484dc8f5c65b4898bf8"
+          },
+          {
+            "at": "2026-10-21T12:18:00.056930Z",
+            "call_id": "323214cc09714f9293c382caa122c91a",
+            "error_code": null,
+            "input_digest_kind": "canonical_json",
+            "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+            "operation": "get_work_order",
+            "outcome": "success",
+            "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+            "phase": "outcome",
+            "row_count": 1,
+            "sequence": 23,
+            "subject": "local:alpha-reader",
+            "tenant_id": "alpha",
+            "previous_sha256": "2dd1833db0c3ebf2b04c9378b14eb4411e7bcd4e2e912484dc8f5c65b4898bf8",
+            "event_sha256": "3449cc07691dc1cf99e8659fe810b5d0e4c34270faebccb4e79b9f186dffcd34"
+          }
+        ],
+        "secondary": []
+      },
+      "whole_read_seconds": 0.286299,
+      "cancellation_did_not_rollback_read": true
+    }
+  ],
+  "actual_processes": 20,
+  "all_observed_children_reaped": true,
+  "audits": {
+    "primary": [
+      {
+        "at": "2026-10-21T12:17:52.588888Z",
+        "call_id": "f10dfc1cf96642508ed93b15925a8d7b",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 1,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "event_sha256": "574dde25acb5c13071ebd48b00783235e0a23cff1227b7e81d54c66eaad488e7"
+      },
+      {
+        "at": "2026-10-21T12:17:52.590171Z",
+        "call_id": "f10dfc1cf96642508ed93b15925a8d7b",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 2,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "574dde25acb5c13071ebd48b00783235e0a23cff1227b7e81d54c66eaad488e7",
+        "event_sha256": "ac71ff58c9be1720ca5ab6b4a13247fdb0bcd5f5ed23c9d61325b4485d3490e7"
+      },
+      {
+        "at": "2026-10-21T12:17:52.904164Z",
+        "call_id": "65941b13f5ec44ee8e7413b7cf21faf9",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 3,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "ac71ff58c9be1720ca5ab6b4a13247fdb0bcd5f5ed23c9d61325b4485d3490e7",
+        "event_sha256": "72faa0757056ad569c1908e5db45da81437b60e271a5a174db662e71a6e21015"
+      },
+      {
+        "at": "2026-10-21T12:17:52.905385Z",
+        "call_id": "65941b13f5ec44ee8e7413b7cf21faf9",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 4,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "72faa0757056ad569c1908e5db45da81437b60e271a5a174db662e71a6e21015",
+        "event_sha256": "df19edb13a876cf3576249df2121a7f0e733f689315b83cf284edb039ef29a0c"
+      },
+      {
+        "at": "2026-10-21T12:17:54.146746Z",
+        "call_id": "357ca99cf75f47d59d5a2c2b90982a5e",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 5,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "df19edb13a876cf3576249df2121a7f0e733f689315b83cf284edb039ef29a0c",
+        "event_sha256": "3dd5e74fcfe219374a606c8c27232e4b6e0c614ffa56b8bb0e4b7830bb7a7dee"
+      },
+      {
+        "at": "2026-10-21T12:17:54.734189Z",
+        "call_id": "dbdd56b5e8c34bc1a43010011c13ebc3",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 6,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "3dd5e74fcfe219374a606c8c27232e4b6e0c614ffa56b8bb0e4b7830bb7a7dee",
+        "event_sha256": "0ff688891ed91ae57c071e266966d44847f9242c4cb4b3132fcb45365c48324d"
+      },
+      {
+        "at": "2026-10-21T12:17:54.735405Z",
+        "call_id": "dbdd56b5e8c34bc1a43010011c13ebc3",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 7,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "0ff688891ed91ae57c071e266966d44847f9242c4cb4b3132fcb45365c48324d",
+        "event_sha256": "0287bc8c74cda42033c8b3fd6202ffbaea320c0cf1c319295b7b3316b55b9ba2"
+      },
+      {
+        "at": "2026-10-21T12:17:56.642827Z",
+        "call_id": "78e2a53212454df6b4746f54ddda7f09",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 8,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "0287bc8c74cda42033c8b3fd6202ffbaea320c0cf1c319295b7b3316b55b9ba2",
+        "event_sha256": "e89a6487b4aa1957214ca48f79a3e9fffaef626e94adc4b35ae66c7089409433"
+      },
+      {
+        "at": "2026-10-21T12:17:56.644072Z",
+        "call_id": "78e2a53212454df6b4746f54ddda7f09",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 9,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "e89a6487b4aa1957214ca48f79a3e9fffaef626e94adc4b35ae66c7089409433",
+        "event_sha256": "23fc350dfb05df154c0b22ff0a04d48039d4f7c2f7a636c6a6e836f34ac7b995"
+      },
+      {
+        "at": "2026-10-21T12:17:57.701414Z",
+        "call_id": "08e23850011f4d42bf0cb4ee90d6aa21",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "1217bb7007d8ec84a09962b493e96ae041b8f66092c7702fd4349bc893264302",
+        "operation": "get_asset_diagnostics",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 10,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "23fc350dfb05df154c0b22ff0a04d48039d4f7c2f7a636c6a6e836f34ac7b995",
+        "event_sha256": "8b16d7588735e41036d2b69a474afe321ee7ab4146316be7a4b33c2098674182"
+      },
+      {
+        "at": "2026-10-21T12:17:57.702663Z",
+        "call_id": "08e23850011f4d42bf0cb4ee90d6aa21",
+        "error_code": "forbidden",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "1217bb7007d8ec84a09962b493e96ae041b8f66092c7702fd4349bc893264302",
+        "operation": "get_asset_diagnostics",
+        "outcome": "error",
+        "output_sha256": "756d0006850f33aaa13e257d24b916ae6f50cda1cf17c484540817a24f61e716",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 11,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "8b16d7588735e41036d2b69a474afe321ee7ab4146316be7a4b33c2098674182",
+        "event_sha256": "ce6f3ee308bd84dbfcad1f2cab0022a14eeb17b124cb1e83104ae92e2f9bfc56"
+      },
+      {
+        "at": "2026-10-21T12:17:58.012608Z",
+        "call_id": "a7c4eaa664b942a386da0f241cf41937",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "4d6e46a4f209fd0c27c909cc6e29437e98b3e9ffd4aadd5ff6bd30bf591199b1",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 12,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "ce6f3ee308bd84dbfcad1f2cab0022a14eeb17b124cb1e83104ae92e2f9bfc56",
+        "event_sha256": "117049dd31409579ade36741f4e3cdaa3c12177b12324a3e87667fa4561f26e7"
+      },
+      {
+        "at": "2026-10-21T12:17:58.013898Z",
+        "call_id": "a7c4eaa664b942a386da0f241cf41937",
+        "error_code": "not_found",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "4d6e46a4f209fd0c27c909cc6e29437e98b3e9ffd4aadd5ff6bd30bf591199b1",
+        "operation": "get_work_order",
+        "outcome": "error",
+        "output_sha256": "d16873e2bbac3be44516046ad4a609bb26a3570e53c17a66ef2a73400fb64e54",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 13,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "117049dd31409579ade36741f4e3cdaa3c12177b12324a3e87667fa4561f26e7",
+        "event_sha256": "bf0eeb852a1332b1281ee9f5115aa7c37fb85ec2d3c5672f611d4556a080f5fa"
+      },
+      {
+        "at": "2026-10-21T12:17:58.324316Z",
+        "call_id": "763f1178d49241a6acb6310ae3b246e1",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "316d6f28fb2542c4a43e2ae4b35669d445321ad5c393491ff0bcd217a53aafba",
+        "operation": "list_work_orders",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 14,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "bf0eeb852a1332b1281ee9f5115aa7c37fb85ec2d3c5672f611d4556a080f5fa",
+        "event_sha256": "02569862317defa066d32f96b9cd13374d50fe59f3c6202b02b420967cd5473e"
+      },
+      {
+        "at": "2026-10-21T12:17:58.325556Z",
+        "call_id": "763f1178d49241a6acb6310ae3b246e1",
+        "error_code": "invalid_request",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "316d6f28fb2542c4a43e2ae4b35669d445321ad5c393491ff0bcd217a53aafba",
+        "operation": "list_work_orders",
+        "outcome": "error",
+        "output_sha256": "38c5839214f4ba586d91ef11c8e7a7a86f9c110aa61f73d1cfe4e337b9aede04",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 15,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "02569862317defa066d32f96b9cd13374d50fe59f3c6202b02b420967cd5473e",
+        "event_sha256": "260439d2f1be4faf28e0c889a71cbd305a737e17cdb4377604ed13f56a0ae8a6"
+      },
+      {
+        "at": "2026-10-21T12:17:58.632863Z",
+        "call_id": "98c9a527f5fa4985b45e6633d12fa25f",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 16,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "260439d2f1be4faf28e0c889a71cbd305a737e17cdb4377604ed13f56a0ae8a6",
+        "event_sha256": "3c617065f1be016567c2c0d126ce3132b66b971d46c1176bcd84e4017840495a"
+      },
+      {
+        "at": "2026-10-21T12:17:58.709560Z",
+        "call_id": "98c9a527f5fa4985b45e6633d12fa25f",
+        "error_code": "resource_busy",
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "error",
+        "output_sha256": "d97bd127ca5ec1e818e3a4253aee0391d487201072ccb914ed9cf0bdb7c0d6e1",
+        "phase": "outcome",
+        "row_count": 0,
+        "sequence": 17,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "3c617065f1be016567c2c0d126ce3132b66b971d46c1176bcd84e4017840495a",
+        "event_sha256": "45df1c2698cdc480747b3908a5819e9de088d2740a510ca128fb46eaa5888160"
+      },
+      {
+        "at": "2026-10-21T12:17:59.435438Z",
+        "call_id": "e351793e12414021a45dcaf5ca8d8488",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 18,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "45df1c2698cdc480747b3908a5819e9de088d2740a510ca128fb46eaa5888160",
+        "event_sha256": "a878b28d2a32e59a5b9a5ca5b809fc6e6fe75ddc9755c9bef9fcff85271709e6"
+      },
+      {
+        "at": "2026-10-21T12:17:59.436695Z",
+        "call_id": "e351793e12414021a45dcaf5ca8d8488",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 19,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "a878b28d2a32e59a5b9a5ca5b809fc6e6fe75ddc9755c9bef9fcff85271709e6",
+        "event_sha256": "5eabe19e1aeb43ab4d03b040e8697f5b8e205b0428c2943c80f780fcd7bee0af"
+      },
+      {
+        "at": "2026-10-21T12:17:59.745508Z",
+        "call_id": "ef52bee1b28b4a57bc49f7f111b0abff",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 20,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "5eabe19e1aeb43ab4d03b040e8697f5b8e205b0428c2943c80f780fcd7bee0af",
+        "event_sha256": "e0c97cc7674b5112478efa22bc0e87efbcb6bedff427b220962405ade45179c5"
+      },
+      {
+        "at": "2026-10-21T12:17:59.746726Z",
+        "call_id": "ef52bee1b28b4a57bc49f7f111b0abff",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 21,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "e0c97cc7674b5112478efa22bc0e87efbcb6bedff427b220962405ade45179c5",
+        "event_sha256": "d7ad6c7131afe059516f2608efb526f115037e1a6105a18fb25882b04ffe9234"
+      },
+      {
+        "at": "2026-10-21T12:18:00.055471Z",
+        "call_id": "323214cc09714f9293c382caa122c91a",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 22,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "d7ad6c7131afe059516f2608efb526f115037e1a6105a18fb25882b04ffe9234",
+        "event_sha256": "2dd1833db0c3ebf2b04c9378b14eb4411e7bcd4e2e912484dc8f5c65b4898bf8"
+      },
+      {
+        "at": "2026-10-21T12:18:00.056930Z",
+        "call_id": "323214cc09714f9293c382caa122c91a",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 23,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "2dd1833db0c3ebf2b04c9378b14eb4411e7bcd4e2e912484dc8f5c65b4898bf8",
+        "event_sha256": "3449cc07691dc1cf99e8659fe810b5d0e4c34270faebccb4e79b9f186dffcd34"
+      }
+    ],
+    "secondary": [
+      {
+        "at": "2026-10-21T12:17:53.180429Z",
+        "call_id": "a4d9a93fd8c74adf950cf1b1061e95a8",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 1,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "event_sha256": "4792ddc0ddb2f6361282089638a44a1cd194f18d20183eb38068df912202cb81"
+      },
+      {
+        "at": "2026-10-21T12:17:53.181381Z",
+        "call_id": "a4d9a93fd8c74adf950cf1b1061e95a8",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 2,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "4792ddc0ddb2f6361282089638a44a1cd194f18d20183eb38068df912202cb81",
+        "event_sha256": "5d3f88842e5e36e9afbc27b19b6387ae01a48d609765111803ed9e694b920b6f"
+      },
+      {
+        "at": "2026-10-21T12:17:53.796432Z",
+        "call_id": "cced9594b53442a3b2ab997ad2c5ccc5",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 3,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "5d3f88842e5e36e9afbc27b19b6387ae01a48d609765111803ed9e694b920b6f",
+        "event_sha256": "d2f5f0018068633cdadc9d45521039a913e0bb6cf358041372d23db9455b5d2e"
+      },
+      {
+        "at": "2026-10-21T12:17:53.797714Z",
+        "call_id": "cced9594b53442a3b2ab997ad2c5ccc5",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 4,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "d2f5f0018068633cdadc9d45521039a913e0bb6cf358041372d23db9455b5d2e",
+        "event_sha256": "c8b04b873836bfaed1fe9d730b159ac516879069ba2d25b848cf0f8047882acd"
+      },
+      {
+        "at": "2026-10-21T12:17:54.422593Z",
+        "call_id": "d4bb98b6383c45f7b2f6e9402c8e72e4",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 5,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "c8b04b873836bfaed1fe9d730b159ac516879069ba2d25b848cf0f8047882acd",
+        "event_sha256": "a06cef4dad69d46b2963d54ab836af2b1672eea6b89c726f8df86a5f5d2c51f6"
+      },
+      {
+        "at": "2026-10-21T12:17:54.423772Z",
+        "call_id": "d4bb98b6383c45f7b2f6e9402c8e72e4",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 6,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "a06cef4dad69d46b2963d54ab836af2b1672eea6b89c726f8df86a5f5d2c51f6",
+        "event_sha256": "3ad4e593d00123fd117677e455766d08fd217fdea345a39705c2f0b2ade29fdb"
+      },
+      {
+        "at": "2026-10-21T12:17:55.789866Z",
+        "call_id": "21683d82ba6a419c85b07ae6ec59930f",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "intent",
+        "output_sha256": null,
+        "phase": "intent",
+        "row_count": null,
+        "sequence": 7,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "3ad4e593d00123fd117677e455766d08fd217fdea345a39705c2f0b2ade29fdb",
+        "event_sha256": "d848fa6afd90a677325bd02ce47f4909e31ac1328cab01f218f384a64848157c"
+      },
+      {
+        "at": "2026-10-21T12:17:55.791090Z",
+        "call_id": "21683d82ba6a419c85b07ae6ec59930f",
+        "error_code": null,
+        "input_digest_kind": "canonical_json",
+        "input_sha256": "3f4b3e98a3a5649cf76ca9fcdf0d0221ae05228526128b7d9f4c2cb74103d2cd",
+        "operation": "get_work_order",
+        "outcome": "success",
+        "output_sha256": "ca6e71e0ae692fcde55fca6756b2a5cb17195b95280a94d1626a85d8efbfd4b1",
+        "phase": "outcome",
+        "row_count": 1,
+        "sequence": 8,
+        "subject": "local:alpha-reader",
+        "tenant_id": "alpha",
+        "previous_sha256": "d848fa6afd90a677325bd02ce47f4909e31ac1328cab01f218f384a64848157c",
+        "event_sha256": "4d21dddcd4d26d2d48b3bdc379dc94e79ad5be3d050136a31d356074cd28e7fd"
+      }
+    ]
+  },
+  "audit_chains_verified": true,
+  "observed_degradation": {
+    "sample_size_each": 1,
+    "healthy_whole_read_seconds": 0.308536,
+    "kill_failover_whole_read_seconds": 0.585913,
+    "stall_failover_whole_read_seconds": 1.36345,
+    "kill_minus_healthy_seconds": 0.277377,
+    "interpretation": "Single controlled local observations including process start/handshake/cleanup; no performance or availability guarantee"
+  },
+  "limits": [
+    "Only fixed local named reads on this immutable synthetic dataset; not a generic production retrier",
+    "Work/acceptance deadlines are absolute; cleanup is separately observed and SDK-shielded, not hard real-time wall exit",
+    "At most one failover; any tool error, payload/provenance failure or caller cancellation is terminal",
+    "Timeout/closure may follow a read and durable outcome; repeated reads can produce duplicate audit attempts",
+    "No exactly-once, atomic audit/source transaction, aborted-SQL or rollback claim",
+    "Host/filesystem and launcher are trusted; no remote authentication, model, Oracle/SAP, action or write tool"
+  ]
+}

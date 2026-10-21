@@ -21,6 +21,7 @@ separate controlled experiment, with its original reports preserved.
 [Approve → publish → query](#approve-a-document-before-it-enters-search) ·
 [Browser review room](#open-the-source-and-leave-a-decision) ·
 [SQLite MCP gateway](#give-a-tool-the-rows-it-can-read) ·
+[Read-only failover](#lose-a-connection-without-bypassing-a-refusal) ·
 [Scoped redaction proxy](#redact-before-a-local-tool-and-restore-in-context) ·
 [Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
 
@@ -346,6 +347,26 @@ protocols, full synthetic responses, runtime fingerprints, file hashes and
 labelled fault probes. SQLite is the implemented connector; Oracle/SAP, remote
 IAM and approved write tools remain planned. The local audit has no external
 anchor against a host administrator.
+
+## Lose a connection without bypassing a refusal
+
+The [local chaos study](docs/chaos-failover.md) sends actual official MCP reads to
+one of two fixed copies of the synthetic work-order fixture. It kills a process
+after its durable outcome, stalls a completed read, loses a connection and
+exhausts a total deadline. One explicit read-only failover is allowed; permission,
+audit, validation and cancellation failures remain terminal.
+
+```sh
+.venv-mcp/bin/python -m enterprise_ai_lab.chaos demo \
+  --work-dir .local/chaos-demo --out reports/local/chaos-demo.json
+.venv-mcp/bin/python -m pytest tests/chaos -q
+```
+
+Use the existing `requirements-mcp.lock` setup and a fresh work directory. The
+[recorded run](reports/chaos-v1) keeps both attempts and surviving audit intents,
+source hashes, observed/reaped children and measured timings. A deadline stops
+accepting work; it does not promise rollback or hard real-time process cleanup.
+This is a fixed local synthetic study, with no remote system or write tool.
 
 ## Redact before a local tool and restore in context
 
