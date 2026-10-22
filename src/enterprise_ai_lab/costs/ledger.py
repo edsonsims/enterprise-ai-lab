@@ -74,7 +74,12 @@ def _admit(path):
             if not suffix:
                 raise CostError("storage_unavailable")
             continue
-        info = member.lstat()
+        try:
+            info = member.lstat()
+        except FileNotFoundError:
+            if suffix:  # A concurrent SQLite commit may naturally unlink its journal.
+                continue
+            raise CostError("storage_unavailable") from None
         if (
             not stat.S_ISREG(info.st_mode)
             or info.st_size > MAX_DATABASE

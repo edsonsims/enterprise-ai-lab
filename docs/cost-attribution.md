@@ -106,6 +106,14 @@ closes, which could release SQLite's process-wide POSIX locks. The host and
 filesystem remain trusted; these checks are not a hostile-host race-proof sandbox.
 Schema/digest checks are not an externally anchored or administrator-proof audit.
 
+SQLite may naturally remove a sidecar during a concurrent commit. Admission
+tolerates only a missing non-main file at that stat boundary; missing/replaced
+main files and existing unsafe sidecars still fail closed. A real child-commit
+barrier regression covers this separately from the unchanged
+[original report's follow-up note](../reports/costs-v1#journal-admission-follow-up), whose
+source hashes precede that repair. The original Linux CI's unprinted child error
+does not establish its historical cause.
+
 The tradeoff is deliberate: exact verification and immutable receipts cost reads,
 storage and serialized writes. This small local ledger does not establish
 production throughput, high availability or a billing integration.

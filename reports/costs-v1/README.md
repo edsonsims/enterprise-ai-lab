@@ -45,6 +45,20 @@ hashes have explicit `data/...` keys in the same `source_sha256` map as runtime
 source hashes. These inspectable correctness
 fixtures are not a held-out statistical benchmark.
 
+## Journal-admission follow-up
+
+The unchanged JSON is preserved in commit `b04896fb7476268a6840e734aa830b77b776a2e7`
+and binds ledger source `278785199682746d10d6cac88f59579206adb28276cc706f763f3064d7389dc5`.
+It does **not** exercise the later missing-sidecar guard. A separate deterministic
+regression pauses a real writer before commit, then lets SQLite naturally unlink
+its journal between another process's existence/stat checks. The original guard
+returns `storage_corrupt`; the repair retains the committed usage. The regression
+and all 39 cost tests pass on Python 3.10 and 3.13 locally.
+
+The first Linux CI failure involved an unexpected finite child code that the old
+assertion did not print. Its exact historical cause remains unknown; the controlled
+regression establishes a separate admission race, without an exactly-once claim.
+
 The [contract and exercises](../../docs/cost-attribution.md) describe exact bounds,
 aggregate-first half-even rounding, immutable statement snapshots, SQLite storage
 tradeoffs and limitations. Schema/digest checks require a trusted host and are

@@ -434,10 +434,77 @@ class CostLedgerTests(unittest.TestCase):
             results.append(json.loads(stdout))
         accepted = [r for r in results if "error" not in r]
         self.assertEqual(sum(not r["replayed"] for r in accepted), 1)
-        self.assertTrue(all(r.get("error") in (None, "resource_busy") for r in results))
+        self.assertTrue(all(r.get("error") in (None, "resource_busy") for r in results),
+                        {"errors": [r.get("error") for r in results],
+                         "returncodes": [process.returncode for process, _ in children]})
         original = accepted[0]
         replay = CostLedger(self.path).append(self.other_operator, event())
         self.assertEqual(replay["receipt_id"], original["receipt_id"])
+        self.assertEqual(self.counts(), (1, 0))
+
+    def test_naturally_removed_journal_during_admission_keeps_committed_usage(self):
+        """A real child commit unlinks its journal between exists and lstat."""
+        ready, gate, committed = (self.directory / name for name in
+                                  ("journal-ready", "journal-gate", "journal-committed"))
+        child_code = r"""
+import json,sqlite3,sys,time
+from pathlib import Path
+from enterprise_ai_lab.costs import CostLedger,principal_for_profile
+path,ready,gate,committed=sys.argv[1:5]
+original=sqlite3.connect
+class Scheduled(sqlite3.Connection):
+    def commit(self):
+        if self.in_transaction and Path(path+'-journal').exists():
+            Path(ready).write_text('journal-exists')
+            end=time.monotonic()+5
+            while not Path(gate).exists():
+                if time.monotonic()>=end:raise RuntimeError('test child gate deadline')
+                time.sleep(.005)
+            super().commit()
+            Path(committed).write_text('committed')
+        else:super().commit()
+def connect(*args,**kwargs):
+    kwargs['factory']=Scheduled
+    return original(*args,**kwargs)
+sqlite3.connect=connect
+value=json.loads(sys.argv[5])
+receipt=CostLedger(path).append(principal_for_profile('alpha-operator'),value)
+print(json.dumps({'charge':receipt['charge']}),flush=True)
+"""
+        environment = dict(os.environ)
+        environment["PYTHONPATH"] = str(Path(costs_package.__file__).resolve().parents[2])
+        process = subprocess.Popen([sys.executable, "-c", child_code, str(self.path),
+                                    str(ready), str(gate), str(committed), canonical(event())],
+                                   stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                   text=True, env=environment)
+        self.addCleanup(self.reap_child, process)
+        self.wait_ready([(process, ready)])
+        journal = Path(str(self.path) + "-journal")
+        original_exists = Path.exists
+        self.assertTrue(original_exists(journal))
+        scheduled = []
+
+        def exists(path):
+            result = original_exists(path)
+            if path == journal and result and not scheduled:
+                scheduled.append(True)
+                gate.write_text("commit")
+                deadline = time.monotonic() + 5
+                while not original_exists(committed):
+                    if time.monotonic() >= deadline:
+                        self.fail("actual journal commit deadline")
+                    time.sleep(.005)
+                self.assertFalse(original_exists(journal))
+            return result
+
+        with patch.object(Path, "exists", exists):
+            summary = self.ledger.summary(self.auditor, START, END)
+        stdout, stderr = process.communicate(timeout=3)
+        self.assertEqual(process.returncode, 0, stderr)
+        self.assertEqual(stderr, "")
+        self.assertEqual(json.loads(stdout), {"charge": "0.005"})
+        self.assertEqual(scheduled, [True])
+        self.assertEqual((summary["events"], summary["exact_total"]), (1, "0.005"))
         self.assertEqual(self.counts(), (1, 0))
 
     def test_actual_process_conflicting_writers_preserve_one_winner(self):
