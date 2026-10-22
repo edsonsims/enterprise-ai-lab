@@ -1,0 +1,969 @@
+{
+  "schema_version": 1,
+  "study": "fictional-tenant-cost-ledger-v1",
+  "recorded_at": "2026-10-22T12:41:48Z",
+  "data_kind": "authored_synthetic_usage_not_measurement",
+  "identity_kind": "trusted_local_launcher_not_authentication",
+  "human_review_performed": false,
+  "base_head": "8f6652279d976d9b29de9b81124960bda18e0f05",
+  "runtime": {
+    "python": "3.13.1",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "sqlite": "3.48.0",
+    "installed_distribution": "0.10.0",
+    "source_version": "0.10.0"
+  },
+  "source_sha256": {
+    "__init__.py": "123b2d4ae2717a8f202bd2758ffa402069c7f17e7b03cc7c877450630e56a821",
+    "__main__.py": "53b335dfba2d36c603f523cdc9f3df6358dd09608150decbc913da0365892bfd",
+    "contracts.py": "30b4ea679bd12b4a19c1cf03947ca5080d817fbc2dc5de0c81661ea4984a61e1",
+    "data/rates-v1.json": "e57215f6629910ef95e5120e3b19d6e6228f3345e6b5a5c75af7604f55ff8080",
+    "data/scenario-v1.json": "f4437f66975f3e3e167560f2e3d4b5d1934f3d7d483bfbf6f8ff3f54df9312a5",
+    "experiment.py": "9cf4b9c08d7b5ed293714c02145f444f35aa8eaf1d4ebb0a9911724561ce0178",
+    "ledger.py": "278785199682746d10d6cac88f59579206adb28276cc706f763f3064d7389dc5",
+    "package-init.py": "228e2548100d0f56048f126589849527dd481f27ed2a6224d5fed156b3c2452f"
+  },
+  "observations": [
+    {
+      "case": "initialize",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "initialized": true
+        }
+      }
+    },
+    {
+      "case": "alpha-operator:shared-001",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "dfdebf7016b64e0f8a19574282bf1d5e",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-22T12:41:47Z",
+          "event": {
+            "event_id": "shared-001",
+            "metric": "input_tokens",
+            "occurred_at": "2026-10-22T10:00:00Z",
+            "quantity": 1001,
+            "rate_version": "fictional-v1",
+            "request_id": "request-shared"
+          },
+          "event_sha256": "608ad8836bc18b33edfdccef9896e3fb345eefbb1bc74b6fe84af97fb37234ab",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 1,
+          "charge": "0.5005",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "alpha-operator:tiny-001",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "8a6d906e8be34010aacc25bed69acd85",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-22T12:41:47Z",
+          "event": {
+            "event_id": "tiny-001",
+            "metric": "embedding_tokens",
+            "occurred_at": "2026-10-22T10:00:00Z",
+            "quantity": 1,
+            "rate_version": "fictional-v1",
+            "request_id": "request-shared"
+          },
+          "event_sha256": "6443cf352d7e94d5dab8fe9f9f97bb93c34778c21b77ca868295811d41eede8d",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 2,
+          "charge": "0.005",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "alpha-operator:tiny-002",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "32ecdb7ce8df48b985c52bbc73d3fc28",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-22T12:41:47Z",
+          "event": {
+            "event_id": "tiny-002",
+            "metric": "embedding_tokens",
+            "occurred_at": "2026-10-22T10:00:00Z",
+            "quantity": 1,
+            "rate_version": "fictional-v1",
+            "request_id": "request-shared"
+          },
+          "event_sha256": "8bed9d13c21549048a71689f48ef08fe42c4770d7d139ab33d0ef50259cc3706",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 3,
+          "charge": "0.005",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "alpha-operator:pages-001",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "553cf0891d2c4621a4f1131a5ba66efa",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-22T12:41:47Z",
+          "event": {
+            "event_id": "pages-001",
+            "metric": "ocr_pages",
+            "occurred_at": "2026-10-22T10:00:00Z",
+            "quantity": 3,
+            "rate_version": "fictional-v1",
+            "request_id": "request-shared"
+          },
+          "event_sha256": "4fcce09978f90e651da86023e08282a61d479a172e9c4221f730dbbb723e2982",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 4,
+          "charge": "0.045",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "alpha-operator:output-001",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "c40301d752594611ae855ff55bd30366",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-22T12:41:47Z",
+          "event": {
+            "event_id": "output-001",
+            "metric": "output_tokens",
+            "occurred_at": "2026-10-22T10:00:00Z",
+            "quantity": 7,
+            "rate_version": "fictional-v1",
+            "request_id": "request-shared"
+          },
+          "event_sha256": "a9d6144803f55d9c6681ebc9907d80fb666cb1140eee558a49900ca7949c7ef9",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 5,
+          "charge": "0.0105",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "beta-operator:shared-001",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "42343debd11e4ab7a5763ab5220ef8a1",
+          "tenant_id": "beta",
+          "first_actor": "local:beta-operator",
+          "created_at": "2026-10-22T12:41:47Z",
+          "event": {
+            "event_id": "shared-001",
+            "metric": "input_tokens",
+            "occurred_at": "2026-10-22T10:00:00Z",
+            "quantity": 2000,
+            "rate_version": "fictional-v1",
+            "request_id": "request-shared"
+          },
+          "event_sha256": "53ec949936e0f8142f08ea2dd7626f0aaea129ed2cbea37802e0282d17b63372",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 1,
+          "charge": "1",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "beta-operator:output-001",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "69f885b5bd694a6da840ce366a5c64cd",
+          "tenant_id": "beta",
+          "first_actor": "local:beta-operator",
+          "created_at": "2026-10-22T12:41:47Z",
+          "event": {
+            "event_id": "output-001",
+            "metric": "output_tokens",
+            "occurred_at": "2026-10-22T10:00:00Z",
+            "quantity": 2,
+            "rate_version": "fictional-v1",
+            "request_id": "request-shared"
+          },
+          "event_sha256": "aad724ec61e360919c5a5df704544d59062d80b2db3f42ea242906c1794e76da",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 2,
+          "charge": "0.003",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "beta-operator:pages-001",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "753aea76111b4aafb2b751fde33e33b3",
+          "tenant_id": "beta",
+          "first_actor": "local:beta-operator",
+          "created_at": "2026-10-22T12:41:47Z",
+          "event": {
+            "event_id": "pages-001",
+            "metric": "ocr_pages",
+            "occurred_at": "2026-10-22T10:00:00Z",
+            "quantity": 1,
+            "rate_version": "fictional-v1",
+            "request_id": "request-shared"
+          },
+          "event_sha256": "fd43369c725a7fac08872c5bdf056ef040719bd8b21d7e9dde73b1ddcbd0b307",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 3,
+          "charge": "0.015",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "same-event-new-process",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "charge": "0.5005",
+          "created_at": "2026-10-22T12:41:47Z",
+          "event": {
+            "event_id": "shared-001",
+            "metric": "input_tokens",
+            "occurred_at": "2026-10-22T10:00:00Z",
+            "quantity": 1001,
+            "rate_version": "fictional-v1",
+            "request_id": "request-shared"
+          },
+          "event_sha256": "608ad8836bc18b33edfdccef9896e3fb345eefbb1bc74b6fe84af97fb37234ab",
+          "first_actor": "local:alpha-operator",
+          "ordinal": 1,
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "receipt_id": "dfdebf7016b64e0f8a19574282bf1d5e",
+          "tenant_id": "alpha",
+          "replayed": true
+        }
+      }
+    },
+    {
+      "case": "conflicting-event",
+      "process_exit": 2,
+      "response": {
+        "ok": false,
+        "error": "idempotency_conflict"
+      }
+    },
+    {
+      "case": "alpha-summary-after-reopen",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "tenant_id": "alpha",
+          "currency": "USD",
+          "start": "2026-10-22T00:00:00Z",
+          "end": "2026-10-23T00:00:00Z",
+          "events": 5,
+          "exact_total": "0.566",
+          "settled_total": "0.57",
+          "rounding_delta": "0.004"
+        }
+      }
+    },
+    {
+      "case": "beta-summary-after-reopen",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "tenant_id": "beta",
+          "currency": "USD",
+          "start": "2026-10-22T00:00:00Z",
+          "end": "2026-10-23T00:00:00Z",
+          "events": 3,
+          "exact_total": "1.018",
+          "settled_total": "1.02",
+          "rounding_delta": "0.002"
+        }
+      }
+    },
+    {
+      "case": "alpha-clean",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "d554ff781a8e4822a3c2f2d48d556cb5",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-auditor",
+          "created_at": "2026-10-22T12:41:48Z",
+          "statement": {
+            "currency": "USD",
+            "end": "2026-10-23T00:00:00Z",
+            "lines": [
+              {
+                "amount": "0.0105",
+                "event_id": "output-001"
+              },
+              {
+                "amount": "0.045",
+                "event_id": "pages-001"
+              },
+              {
+                "amount": "0.5005",
+                "event_id": "shared-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-002"
+              }
+            ],
+            "settled_total": "0.57",
+            "start": "2026-10-22T00:00:00Z",
+            "statement_id": "alpha-clean"
+          },
+          "statement_sha256": "54e15ac2ca2d3d439e9af85cb5caa5f2d422614fbb5ba09401505df564b10b2c",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "watermark": 5,
+          "snapshot_sha256": "e37584b83cb090172bc6cda3d6786587ae0143c08df3346ad337e547ec8fe71d",
+          "result": {
+            "currency": "USD",
+            "missing_events": [],
+            "extra_events": [],
+            "amount_mismatches": [],
+            "currency_mismatch": false,
+            "exact_total": "0.566",
+            "settled_total": "0.57",
+            "rounding_delta": "0.004",
+            "settled_total_mismatch": false,
+            "matched": true
+          },
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "beta-clean",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "6eeda1294e0d4bef8aa8b0e2352e72ef",
+          "tenant_id": "beta",
+          "first_actor": "local:beta-auditor",
+          "created_at": "2026-10-22T12:41:48Z",
+          "statement": {
+            "currency": "USD",
+            "end": "2026-10-23T00:00:00Z",
+            "lines": [
+              {
+                "amount": "0.003",
+                "event_id": "output-001"
+              },
+              {
+                "amount": "0.015",
+                "event_id": "pages-001"
+              },
+              {
+                "amount": "1",
+                "event_id": "shared-001"
+              }
+            ],
+            "settled_total": "1.02",
+            "start": "2026-10-22T00:00:00Z",
+            "statement_id": "beta-clean"
+          },
+          "statement_sha256": "056db30df9e586bd66043ed14c9ad357a8d14d9ca5f8a048401e85a1d9bd5077",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "watermark": 3,
+          "snapshot_sha256": "48d4446317d6ac3ad844e6ebc5ceafb5fd9fad18088c8b8cb4220e149d05459f",
+          "result": {
+            "currency": "USD",
+            "missing_events": [],
+            "extra_events": [],
+            "amount_mismatches": [],
+            "currency_mismatch": false,
+            "exact_total": "1.018",
+            "settled_total": "1.02",
+            "rounding_delta": "0.002",
+            "settled_total_mismatch": false,
+            "matched": true
+          },
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "missing",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "0a60c58e60ce49729595bf0c95c209e8",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-auditor",
+          "created_at": "2026-10-22T12:41:48Z",
+          "statement": {
+            "currency": "USD",
+            "end": "2026-10-23T00:00:00Z",
+            "lines": [
+              {
+                "amount": "0.0105",
+                "event_id": "output-001"
+              },
+              {
+                "amount": "0.045",
+                "event_id": "pages-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-002"
+              }
+            ],
+            "settled_total": "0.57",
+            "start": "2026-10-22T00:00:00Z",
+            "statement_id": "alpha-missing"
+          },
+          "statement_sha256": "eb825dffbf55217ccbdf1d8d7cbeceb18e3829ffdc901618adf667bdffb4bbf9",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "watermark": 5,
+          "snapshot_sha256": "e37584b83cb090172bc6cda3d6786587ae0143c08df3346ad337e547ec8fe71d",
+          "result": {
+            "currency": "USD",
+            "missing_events": [
+              "shared-001"
+            ],
+            "extra_events": [],
+            "amount_mismatches": [],
+            "currency_mismatch": false,
+            "exact_total": "0.566",
+            "settled_total": "0.57",
+            "rounding_delta": "0.004",
+            "settled_total_mismatch": false,
+            "matched": false
+          },
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "extra",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "a3a0598ce4524ab8bc832d62fd6003fc",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-auditor",
+          "created_at": "2026-10-22T12:41:48Z",
+          "statement": {
+            "currency": "USD",
+            "end": "2026-10-23T00:00:00Z",
+            "lines": [
+              {
+                "amount": "0.1",
+                "event_id": "absent-001"
+              },
+              {
+                "amount": "0.0105",
+                "event_id": "output-001"
+              },
+              {
+                "amount": "0.045",
+                "event_id": "pages-001"
+              },
+              {
+                "amount": "0.5005",
+                "event_id": "shared-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-002"
+              }
+            ],
+            "settled_total": "0.57",
+            "start": "2026-10-22T00:00:00Z",
+            "statement_id": "alpha-extra"
+          },
+          "statement_sha256": "fdacd27128d0da968acac9c71595508da4b8ff10831a06ef46651e597d7311fc",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "watermark": 5,
+          "snapshot_sha256": "e37584b83cb090172bc6cda3d6786587ae0143c08df3346ad337e547ec8fe71d",
+          "result": {
+            "currency": "USD",
+            "missing_events": [],
+            "extra_events": [
+              "absent-001"
+            ],
+            "amount_mismatches": [],
+            "currency_mismatch": false,
+            "exact_total": "0.566",
+            "settled_total": "0.57",
+            "rounding_delta": "0.004",
+            "settled_total_mismatch": false,
+            "matched": false
+          },
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "wrong-amount",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "251f2c8dfec643e285bed6f2a61afd5b",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-auditor",
+          "created_at": "2026-10-22T12:41:48Z",
+          "statement": {
+            "currency": "USD",
+            "end": "2026-10-23T00:00:00Z",
+            "lines": [
+              {
+                "amount": "0.0105",
+                "event_id": "output-001"
+              },
+              {
+                "amount": "0.045",
+                "event_id": "pages-001"
+              },
+              {
+                "amount": "0.5",
+                "event_id": "shared-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-002"
+              }
+            ],
+            "settled_total": "0.57",
+            "start": "2026-10-22T00:00:00Z",
+            "statement_id": "alpha-wrong-amount"
+          },
+          "statement_sha256": "795ea050f8f82cd7ef2b825a28a540cbe25eba40c5fc6e756f55746ccfe69373",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "watermark": 5,
+          "snapshot_sha256": "e37584b83cb090172bc6cda3d6786587ae0143c08df3346ad337e547ec8fe71d",
+          "result": {
+            "currency": "USD",
+            "missing_events": [],
+            "extra_events": [],
+            "amount_mismatches": [
+              {
+                "event_id": "shared-001",
+                "expected": "0.5005",
+                "declared": "0.5"
+              }
+            ],
+            "currency_mismatch": false,
+            "exact_total": "0.566",
+            "settled_total": "0.57",
+            "rounding_delta": "0.004",
+            "settled_total_mismatch": false,
+            "matched": false
+          },
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "currency",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "c64ffe7dbae94d3191ee4883a77244f0",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-auditor",
+          "created_at": "2026-10-22T12:41:48Z",
+          "statement": {
+            "currency": "EUR",
+            "end": "2026-10-23T00:00:00Z",
+            "lines": [
+              {
+                "amount": "0.0105",
+                "event_id": "output-001"
+              },
+              {
+                "amount": "0.045",
+                "event_id": "pages-001"
+              },
+              {
+                "amount": "0.5005",
+                "event_id": "shared-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-002"
+              }
+            ],
+            "settled_total": "0.57",
+            "start": "2026-10-22T00:00:00Z",
+            "statement_id": "alpha-currency"
+          },
+          "statement_sha256": "763ad7dc674436caf777308bdb5ecad4bfce9a2cab162cf783782615a9378b7f",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "watermark": 5,
+          "snapshot_sha256": "e37584b83cb090172bc6cda3d6786587ae0143c08df3346ad337e547ec8fe71d",
+          "result": {
+            "currency": "USD",
+            "missing_events": [],
+            "extra_events": [],
+            "amount_mismatches": [],
+            "currency_mismatch": true,
+            "exact_total": "0.566",
+            "settled_total": "0.57",
+            "rounding_delta": "0.004",
+            "settled_total_mismatch": null,
+            "matched": false
+          },
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "rounded-total",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "6407b5b63e284b25ba12945172ea445c",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-auditor",
+          "created_at": "2026-10-22T12:41:48Z",
+          "statement": {
+            "currency": "USD",
+            "end": "2026-10-23T00:00:00Z",
+            "lines": [
+              {
+                "amount": "0.0105",
+                "event_id": "output-001"
+              },
+              {
+                "amount": "0.045",
+                "event_id": "pages-001"
+              },
+              {
+                "amount": "0.5005",
+                "event_id": "shared-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-002"
+              }
+            ],
+            "settled_total": "0.56",
+            "start": "2026-10-22T00:00:00Z",
+            "statement_id": "alpha-rounded-total"
+          },
+          "statement_sha256": "83a142da5d5c8a560ef537cec5bede77907efcd7de41b3171f712ecec3a5d90f",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "watermark": 5,
+          "snapshot_sha256": "e37584b83cb090172bc6cda3d6786587ae0143c08df3346ad337e547ec8fe71d",
+          "result": {
+            "currency": "USD",
+            "missing_events": [],
+            "extra_events": [],
+            "amount_mismatches": [],
+            "currency_mismatch": false,
+            "exact_total": "0.566",
+            "settled_total": "0.57",
+            "rounding_delta": "0.004",
+            "settled_total_mismatch": true,
+            "matched": false
+          },
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "duplicate",
+      "process_exit": 2,
+      "response": {
+        "ok": false,
+        "error": "duplicate_statement_line"
+      }
+    },
+    {
+      "case": "later-usage",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "05976e3520814728bee81173da53fbc6",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-22T12:41:48Z",
+          "event": {
+            "event_id": "later-event",
+            "metric": "embedding_tokens",
+            "occurred_at": "2026-10-22T10:00:00Z",
+            "quantity": 1,
+            "rate_version": "fictional-v1",
+            "request_id": "request-shared"
+          },
+          "event_sha256": "a625c9b7748531acda52d2356f07780db32054773a18459f38cc9ba443cc5878",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 6,
+          "charge": "0.005",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "case": "statement-frozen-after-later-append",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "created_at": "2026-10-22T12:41:48Z",
+          "first_actor": "local:alpha-auditor",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "receipt_id": "d554ff781a8e4822a3c2f2d48d556cb5",
+          "result": {
+            "amount_mismatches": [],
+            "currency": "USD",
+            "currency_mismatch": false,
+            "exact_total": "0.566",
+            "extra_events": [],
+            "matched": true,
+            "missing_events": [],
+            "rounding_delta": "0.004",
+            "settled_total": "0.57",
+            "settled_total_mismatch": false
+          },
+          "snapshot_sha256": "e37584b83cb090172bc6cda3d6786587ae0143c08df3346ad337e547ec8fe71d",
+          "statement": {
+            "currency": "USD",
+            "end": "2026-10-23T00:00:00Z",
+            "lines": [
+              {
+                "amount": "0.0105",
+                "event_id": "output-001"
+              },
+              {
+                "amount": "0.045",
+                "event_id": "pages-001"
+              },
+              {
+                "amount": "0.5005",
+                "event_id": "shared-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-001"
+              },
+              {
+                "amount": "0.005",
+                "event_id": "tiny-002"
+              }
+            ],
+            "settled_total": "0.57",
+            "start": "2026-10-22T00:00:00Z",
+            "statement_id": "alpha-clean"
+          },
+          "statement_sha256": "54e15ac2ca2d3d439e9af85cb5caa5f2d422614fbb5ba09401505df564b10b2c",
+          "tenant_id": "alpha",
+          "watermark": 5,
+          "replayed": true
+        }
+      }
+    },
+    {
+      "case": "observer-denied",
+      "process_exit": 2,
+      "response": {
+        "ok": false,
+        "error": "forbidden"
+      }
+    },
+    {
+      "case": "auditor-cannot-append",
+      "process_exit": 2,
+      "response": {
+        "ok": false,
+        "error": "forbidden"
+      }
+    },
+    {
+      "case": "body-tenant-override",
+      "process_exit": 2,
+      "response": {
+        "ok": false,
+        "error": "invalid_input"
+      }
+    },
+    {
+      "case": "unreadable-foreign-id",
+      "process_exit": 2,
+      "response": {
+        "ok": false,
+        "error": "not_found"
+      }
+    },
+    {
+      "case": "absent-id-same-error",
+      "process_exit": 2,
+      "response": {
+        "ok": false,
+        "error": "not_found"
+      }
+    },
+    {
+      "case": "lost-receipt-replay",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "charge": "0.005",
+          "created_at": "2026-10-22T12:41:48Z",
+          "event": {
+            "event_id": "lost-receipt",
+            "metric": "embedding_tokens",
+            "occurred_at": "2026-10-22T10:00:00Z",
+            "quantity": 1,
+            "rate_version": "fictional-v1",
+            "request_id": "request-shared"
+          },
+          "event_sha256": "d25213f36250f154b24129ae6a7da58c5262e6b355625d10b6d3d9ce4969abd0",
+          "first_actor": "local:alpha-operator",
+          "ordinal": 7,
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "receipt_id": "70e5bd7a51ed4ee7b21d903539ea087a",
+          "tenant_id": "alpha",
+          "replayed": true
+        }
+      }
+    },
+    {
+      "case": "concurrent-identical-processes",
+      "responses": [
+        {
+          "receipt_id": "c20f7ef4a1df4f0c8094e66c128887d6",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-22T12:41:48Z",
+          "event": {
+            "event_id": "concurrent-duplicate",
+            "metric": "embedding_tokens",
+            "occurred_at": "2026-10-22T10:00:00Z",
+            "quantity": 1,
+            "rate_version": "fictional-v1",
+            "request_id": "request-shared"
+          },
+          "event_sha256": "7a7b5e5184d0b5c29fa0b13315ecd3a846b3259afe4dc652ed08476a45aea2c4",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 8,
+          "charge": "0.005",
+          "replayed": false
+        },
+        {
+          "charge": "0.005",
+          "created_at": "2026-10-22T12:41:48Z",
+          "event": {
+            "event_id": "concurrent-duplicate",
+            "metric": "embedding_tokens",
+            "occurred_at": "2026-10-22T10:00:00Z",
+            "quantity": 1,
+            "rate_version": "fictional-v1",
+            "request_id": "request-shared"
+          },
+          "event_sha256": "7a7b5e5184d0b5c29fa0b13315ecd3a846b3259afe4dc652ed08476a45aea2c4",
+          "first_actor": "local:alpha-operator",
+          "ordinal": 8,
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "receipt_id": "c20f7ef4a1df4f0c8094e66c128887d6",
+          "tenant_id": "alpha",
+          "replayed": true
+        }
+      ]
+    },
+    {
+      "case": "alpha-final-summary",
+      "process_exit": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "tenant_id": "alpha",
+          "currency": "USD",
+          "start": "2026-10-22T00:00:00Z",
+          "end": "2026-10-23T00:00:00Z",
+          "events": 8,
+          "exact_total": "0.581",
+          "settled_total": "0.58",
+          "rounding_delta": "-0.001"
+        }
+      }
+    }
+  ],
+  "actual_processes": 33,
+  "all_owned_processes_reaped": true,
+  "lost_receipt": {
+    "committed_receipt_id": "70e5bd7a51ed4ee7b21d903539ea087a",
+    "killed_process_exit": -9,
+    "empty_stdout": true
+  },
+  "rounding_control": {
+    "aggregate_first": {
+      "exact_total": "0.01",
+      "settled_total": "0.01",
+      "rounding_delta": "0"
+    },
+    "incorrect_sum_of_individually_rounded_lines": "0.00"
+  },
+  "limits": [
+    "Authored fictional rates/usage/statements; not provider telemetry, prices, invoices or billing.",
+    "One trusted local host and launcher; no authentication or administrator-proof audit.",
+    "No payments, model/provider calls, ROI, tax, FX, credits or production deployment.",
+    "Independent usage and statement input; original RAG/OCR/MCP results are not billed."
+  ]
+}

@@ -1,0 +1,382 @@
+{
+  "schema_version": 1,
+  "data_kind": "authored_synthetic_usage_not_measurement",
+  "period": {
+    "start": "2026-10-22T00:00:00Z",
+    "end": "2026-10-23T00:00:00Z"
+  },
+  "events": [
+    {
+      "profile": "alpha-operator",
+      "event": {
+        "event_id": "shared-001",
+        "request_id": "request-shared",
+        "metric": "input_tokens",
+        "quantity": 1001,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-22T10:00:00Z"
+      }
+    },
+    {
+      "profile": "alpha-operator",
+      "event": {
+        "event_id": "tiny-001",
+        "request_id": "request-shared",
+        "metric": "embedding_tokens",
+        "quantity": 1,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-22T10:00:00Z"
+      }
+    },
+    {
+      "profile": "alpha-operator",
+      "event": {
+        "event_id": "tiny-002",
+        "request_id": "request-shared",
+        "metric": "embedding_tokens",
+        "quantity": 1,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-22T10:00:00Z"
+      }
+    },
+    {
+      "profile": "alpha-operator",
+      "event": {
+        "event_id": "pages-001",
+        "request_id": "request-shared",
+        "metric": "ocr_pages",
+        "quantity": 3,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-22T10:00:00Z"
+      }
+    },
+    {
+      "profile": "alpha-operator",
+      "event": {
+        "event_id": "output-001",
+        "request_id": "request-shared",
+        "metric": "output_tokens",
+        "quantity": 7,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-22T10:00:00Z"
+      }
+    },
+    {
+      "profile": "beta-operator",
+      "event": {
+        "event_id": "shared-001",
+        "request_id": "request-shared",
+        "metric": "input_tokens",
+        "quantity": 2000,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-22T10:00:00Z"
+      }
+    },
+    {
+      "profile": "beta-operator",
+      "event": {
+        "event_id": "output-001",
+        "request_id": "request-shared",
+        "metric": "output_tokens",
+        "quantity": 2,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-22T10:00:00Z"
+      }
+    },
+    {
+      "profile": "beta-operator",
+      "event": {
+        "event_id": "pages-001",
+        "request_id": "request-shared",
+        "metric": "ocr_pages",
+        "quantity": 1,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-22T10:00:00Z"
+      }
+    }
+  ],
+  "statements": [
+    {
+      "label": "alpha-clean",
+      "profile": "alpha-auditor",
+      "statement": {
+        "statement_id": "alpha-clean",
+        "currency": "USD",
+        "start": "2026-10-22T00:00:00Z",
+        "end": "2026-10-23T00:00:00Z",
+        "lines": [
+          {
+            "event_id": "shared-001",
+            "amount": "0.5005"
+          },
+          {
+            "event_id": "tiny-001",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "tiny-002",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "pages-001",
+            "amount": "0.045"
+          },
+          {
+            "event_id": "output-001",
+            "amount": "0.0105"
+          }
+        ],
+        "settled_total": "0.57"
+      },
+      "expected": "matched"
+    },
+    {
+      "label": "beta-clean",
+      "profile": "beta-auditor",
+      "statement": {
+        "statement_id": "beta-clean",
+        "currency": "USD",
+        "start": "2026-10-22T00:00:00Z",
+        "end": "2026-10-23T00:00:00Z",
+        "lines": [
+          {
+            "event_id": "shared-001",
+            "amount": "1"
+          },
+          {
+            "event_id": "output-001",
+            "amount": "0.003"
+          },
+          {
+            "event_id": "pages-001",
+            "amount": "0.015"
+          }
+        ],
+        "settled_total": "1.02"
+      },
+      "expected": "matched"
+    },
+    {
+      "label": "missing",
+      "profile": "alpha-auditor",
+      "statement": {
+        "statement_id": "alpha-missing",
+        "currency": "USD",
+        "start": "2026-10-22T00:00:00Z",
+        "end": "2026-10-23T00:00:00Z",
+        "lines": [
+          {
+            "event_id": "tiny-001",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "tiny-002",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "pages-001",
+            "amount": "0.045"
+          },
+          {
+            "event_id": "output-001",
+            "amount": "0.0105"
+          }
+        ],
+        "settled_total": "0.57"
+      },
+      "expected": "missing_events"
+    },
+    {
+      "label": "extra",
+      "profile": "alpha-auditor",
+      "statement": {
+        "statement_id": "alpha-extra",
+        "currency": "USD",
+        "start": "2026-10-22T00:00:00Z",
+        "end": "2026-10-23T00:00:00Z",
+        "lines": [
+          {
+            "event_id": "shared-001",
+            "amount": "0.5005"
+          },
+          {
+            "event_id": "tiny-001",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "tiny-002",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "pages-001",
+            "amount": "0.045"
+          },
+          {
+            "event_id": "output-001",
+            "amount": "0.0105"
+          },
+          {
+            "event_id": "absent-001",
+            "amount": "0.1"
+          }
+        ],
+        "settled_total": "0.57"
+      },
+      "expected": "extra_events"
+    },
+    {
+      "label": "wrong-amount",
+      "profile": "alpha-auditor",
+      "statement": {
+        "statement_id": "alpha-wrong-amount",
+        "currency": "USD",
+        "start": "2026-10-22T00:00:00Z",
+        "end": "2026-10-23T00:00:00Z",
+        "lines": [
+          {
+            "event_id": "shared-001",
+            "amount": "0.5"
+          },
+          {
+            "event_id": "tiny-001",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "tiny-002",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "pages-001",
+            "amount": "0.045"
+          },
+          {
+            "event_id": "output-001",
+            "amount": "0.0105"
+          }
+        ],
+        "settled_total": "0.57"
+      },
+      "expected": "amount_mismatches"
+    },
+    {
+      "label": "currency",
+      "profile": "alpha-auditor",
+      "statement": {
+        "statement_id": "alpha-currency",
+        "currency": "EUR",
+        "start": "2026-10-22T00:00:00Z",
+        "end": "2026-10-23T00:00:00Z",
+        "lines": [
+          {
+            "event_id": "shared-001",
+            "amount": "0.5005"
+          },
+          {
+            "event_id": "tiny-001",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "tiny-002",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "pages-001",
+            "amount": "0.045"
+          },
+          {
+            "event_id": "output-001",
+            "amount": "0.0105"
+          }
+        ],
+        "settled_total": "0.57"
+      },
+      "expected": "currency_mismatch"
+    },
+    {
+      "label": "rounded-total",
+      "profile": "alpha-auditor",
+      "statement": {
+        "statement_id": "alpha-rounded-total",
+        "currency": "USD",
+        "start": "2026-10-22T00:00:00Z",
+        "end": "2026-10-23T00:00:00Z",
+        "lines": [
+          {
+            "event_id": "shared-001",
+            "amount": "0.5005"
+          },
+          {
+            "event_id": "tiny-001",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "tiny-002",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "pages-001",
+            "amount": "0.045"
+          },
+          {
+            "event_id": "output-001",
+            "amount": "0.0105"
+          }
+        ],
+        "settled_total": "0.56"
+      },
+      "expected": "settled_total_mismatch"
+    },
+    {
+      "label": "duplicate",
+      "profile": "alpha-auditor",
+      "statement": {
+        "statement_id": "alpha-duplicate",
+        "currency": "USD",
+        "start": "2026-10-22T00:00:00Z",
+        "end": "2026-10-23T00:00:00Z",
+        "lines": [
+          {
+            "event_id": "shared-001",
+            "amount": "0.5005"
+          },
+          {
+            "event_id": "tiny-001",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "tiny-002",
+            "amount": "0.005"
+          },
+          {
+            "event_id": "pages-001",
+            "amount": "0.045"
+          },
+          {
+            "event_id": "output-001",
+            "amount": "0.0105"
+          },
+          {
+            "event_id": "shared-001",
+            "amount": "0.5005"
+          }
+        ],
+        "settled_total": "0.57"
+      },
+      "expected": "duplicate_statement_line"
+    }
+  ],
+  "literal_expected_totals": {
+    "alpha": {
+      "events": 5,
+      "exact_total": "0.566",
+      "settled_total": "0.57",
+      "rounding_delta": "0.004"
+    },
+    "beta": {
+      "events": 3,
+      "exact_total": "1.018",
+      "settled_total": "1.02",
+      "rounding_delta": "0.002"
+    }
+  }
+}

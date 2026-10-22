@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "enterprise-ai-lab"
-version = "0.9.0"
-description = "Reproducible local studies in permission-aware RAG, durable review, MCP data access, scoped redaction and bounded failover"
+version = "0.10.0"
+description = "Reproducible local studies in permission-aware RAG, durable review, MCP access, scoped redaction, failover and fictional cost attribution"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 readme = "README.md"
@@ -27,4 +27,4 @@ ingestion = ["pypdf==6.21.1", "pypdfium2==5.14.0", "pillow==12.3.0"]
 rag = ["numpy==2.5.4", "onnxruntime==1.31.0", "qdrant-client==1.19.1", "fastembed==0.9.0", "fastapi==0.143.3", "pydantic==2.14.1", "uvicorn==0.54.0", "httpx==0.28.1", "PyJWT[crypto]==2.15.1", "cryptography==50.0.2"]
 
 [tool.setuptools.package-data]
-enterprise_ai_lab = ["rag/*.json", "rag/data/*.jsonl", "rag/data/*.md", "approval/*.json", "review/static/*.html", "review/static/*.css", "review/static/*.js", "mcp_gateway/data/*.json", "mcp_gateway/data/*.md", "privacy_proxy/data/*.json", "privacy_proxy/data/*.md"]
+enterprise_ai_lab = ["rag/*.json", "rag/data/*.jsonl", "rag/data/*.md", "approval/*.json", "review/static/*.html", "review/static/*.css", "review/static/*.js", "mcp_gateway/data/*.json", "mcp_gateway/data/*.md", "privacy_proxy/data/*.json", "privacy_proxy/data/*.md", "costs/data/*.json", "costs/data/*.md"]

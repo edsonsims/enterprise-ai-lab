@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "data_kind": "fictional_scenario_rates",
+  "version": "fictional-v1",
+  "currency": "USD",
+  "rates": {
+    "input_tokens": {"unit_price": "0.5", "unit_exponent": 3},
+    "output_tokens": {"unit_price": "1.5", "unit_exponent": 3},
+    "embedding_tokens": {"unit_price": "0.005", "unit_exponent": 0},
+    "ocr_pages": {"unit_price": "0.015", "unit_exponent": 0}
+  }
+}

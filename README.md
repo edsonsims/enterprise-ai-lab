@@ -22,6 +22,7 @@ separate controlled experiment, with its original reports preserved.
 [Browser review room](#open-the-source-and-leave-a-decision) ·
 [SQLite MCP gateway](#give-a-tool-the-rows-it-can-read) ·
 [Read-only failover](#lose-a-connection-without-bypassing-a-refusal) ·
+[Fictional cost ledger](#count-usage-before-rounding-cost) ·
 [Scoped redaction proxy](#redact-before-a-local-tool-and-restore-in-context) ·
 [Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
 
@@ -367,6 +368,27 @@ Use the existing `requirements-mcp.lock` setup and a fresh work directory. The
 source hashes, observed/reaped children and measured timings. A deadline stops
 accepting work; it does not promise rollback or hard real-time process cleanup.
 This is a fixed local synthetic study, with no remote system or write tool.
+
+## Count usage before rounding cost
+
+The cost study keeps authored usage once, attributes it to the selected tenant
+and reconciles an independent fictional statement against an immutable snapshot.
+It uses real SQLite/CLI processes and exact Decimal arithmetic. Prices and usage
+are scenario inputs; earlier RAG/OCR/MCP runs are not measured or billed here.
+
+```sh
+python -m enterprise_ai_lab.costs demo \
+  --work-dir .local/cost-demo --out reports/local/cost-demo.json
+python -m unittest discover -s tests/costs -v
+```
+
+Alpha's initial exact `0.566` settles to `0.57`; Beta's `1.018` settles to `1.02`.
+The demo retains missing/extra/amount/currency/rounding mismatches, stable replay,
+concurrent duplicate writers and recovery after a child commits without returning
+its receipt. Launcher profiles enforce local tenant/role policy; they are not login.
+
+[Accounting contract and exercises](docs/cost-attribution.md) ·
+[Recorded fictional run](reports/costs-v1)
 
 ## Redact before a local tool and restore in context
 

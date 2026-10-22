@@ -1,5 +1,35 @@
 # Decision log
 
+## 2026-10-22: preserve usage and freeze the reconciliation result
+
+**Question.** Can a local ledger reconcile fractional fictional charges without
+cross-tenant totals, duplicate effects or a statement whose answer changes later?
+
+**Decision.** Use authored usage and fictional versioned rates, exact decimal-text
+amounts, tenant-local event IDs/ordinals and append-only SQLite receipts. A fresh
+bounded Decimal context computes exact line charges; aggregate-first half-even
+settlement is the only rounding boundary. Reconciliation binds its input, rate
+card and snapshot to a durable tenant/statement ID. Same input replays that frozen
+result; a new statement ID observes later usage. This avoids silently repricing or
+reinterpreting prior receipts.
+
+**Tradeoffs.** Full selected-tenant integrity checks cost reads and CPU. Immutable
+statement receipts consume bounded storage and `BEGIN IMMEDIATE` serializes writers.
+There is no provider collection, authenticated API, credit/tax/FX system or billing
+execution. Launcher profiles and one trusted host remain explicit assumptions.
+
+**Storage lesson.** Admission rechecks captured inode/mode/schema without raw
+database descriptor closes. Closing a separate raw descriptor can cancel a
+process's SQLite POSIX locks; actual foreign-process contention tests preserve
+both component and unmanaged SQLite transaction locks. Writer page limits are
+applied on every verified connection, rather than assumed persistent after init.
+
+**Evidence.** Real CLI processes exercise restart, duplicate writers, conflict and
+a child killed after commit before stdout. Independently authored statements keep
+missing/extra/amount/currency/rounding failures visible. These are fictional local
+correctness cases, not measured provider prices, customer savings, ROI or owner
+study. See [the accounting contract](cost-attribution.md).
+
 ## 2026-10-21: fail over a read without bypassing a refusal
 
 **Question.** What does a caller know after a local MCP connection times out or
