@@ -17,10 +17,147 @@ from pathlib import Path
 from .. import __version__
 from .contracts import DATA, MAX_OUTPUT, CostError, canonical, now, strict_json, totals
 
+STAGES = frozenset(
+    {
+        "setup",
+        "fixture",
+        "init",
+        "append",
+        "get",
+        "list",
+        "summary",
+        "reconcile",
+        "lost_receipt",
+        "duplicate_writers",
+        "duplicate_replay",
+        "final_summary",
+        "output",
+    }
+)
+ERROR_CODES = frozenset(
+    {
+        "invalid_input",
+        "invalid_profile",
+        "duplicate_statement_line",
+        "forbidden",
+        "idempotency_conflict",
+        "not_found",
+        "capacity_exceeded",
+        "resource_busy",
+        "storage_unavailable",
+        "storage_corrupt",
+        "demo_failed",
+        "invalid_response",
+    }
+)
+
+
+class DemoFailure(CostError):
+    """Fixed, metadata-only diagnostic; never includes a child message or input."""
+
+    def __init__(self, stage, category, *, error_codes=(), returncodes=()):
+        super().__init__("demo_failed")
+        self.diagnostic = {
+            "stage": stage if type(stage) is str and stage in STAGES else "setup",
+            "category": category
+            if type(category) is str
+            and category
+            in {
+                "child_error",
+                "invalid_response",
+                "timeout",
+                "io",
+                "invariant",
+                "other",
+            }
+            else "other",
+            "error_codes": [
+                code
+                if type(code) is str and code in ERROR_CODES
+                else "invalid_response"
+                for code in error_codes
+            ][:2],
+            "returncodes": [
+                code if type(code) is int and -255 <= code <= 255 else None
+                for code in returncodes
+            ][:2],
+        }
+
+
+def safe_diagnostic(exc):
+    """Copy only finite primitive fields, including for a tampered known exception."""
+    fallback = DemoFailure("setup", "other").diagnostic
+    if type(exc) is not DemoFailure:
+        return fallback
+    value = exc.diagnostic
+    if (
+        type(value) is not dict
+        or len(value) != 4
+        or any(type(key) is not str for key in value)
+        or set(value) != {"stage", "category", "error_codes", "returncodes"}
+    ):
+        return fallback
+    errors, returns = value["error_codes"], value["returncodes"]
+    if type(errors) is not list or type(returns) is not list:
+        return fallback
+    return DemoFailure(
+        value["stage"],
+        value["category"],
+        error_codes=errors[:2],
+        returncodes=returns[:2],
+    ).diagnostic
+
+
+def _response(raw, stderr, returncode, stage):
+    if len(raw) > MAX_OUTPUT or stderr:
+        raise DemoFailure(stage, "invalid_response", returncodes=[returncode])
+    try:
+        body = json.loads(raw)
+    except (ValueError, UnicodeError):
+        raise DemoFailure(stage, "invalid_response", returncodes=[returncode]) from None
+    if not isinstance(body, dict) or not (
+        (
+            set(body) == {"ok", "result"}
+            and body["ok"] is True
+            and isinstance(body["result"], dict)
+            and returncode == 0
+        )
+        or (
+            set(body) == {"ok", "error"}
+            and body["ok"] is False
+            and isinstance(body["error"], str)
+            and body["error"] in ERROR_CODES
+            and returncode == 2
+        )
+    ):
+        raise DemoFailure(stage, "invalid_response", returncodes=[returncode])
+    return body
+
 
 def run_demo(work_dir):
+    state = {"stage": "setup"}
+    try:
+        return _run_demo(work_dir, state)
+    except DemoFailure as exc:
+        if type(exc) is DemoFailure:
+            raise
+        raise DemoFailure(state["stage"], "other") from None
+    except subprocess.TimeoutExpired:
+        raise DemoFailure(state["stage"], "timeout") from None
+    except CostError as exc:
+        if type(exc) is not CostError:
+            raise DemoFailure(state["stage"], "other") from None
+        raise DemoFailure(state["stage"], "invariant", error_codes=[exc.code]) from None
+    except OSError:
+        raise DemoFailure(state["stage"], "io") from None
+    except Exception:  # noqa: BLE001 - only finite diagnostic tags leave the harness
+        raise DemoFailure(state["stage"], "other") from None
+
+
+def _run_demo(work_dir, state):
     work = Path(work_dir).absolute()
     work.mkdir(mode=0o700, parents=True, exist_ok=False)
+    state["stage"] = "fixture"
     scenario = strict_json((DATA / "scenario-v1.json").read_bytes())
     database = work / "usage.sqlite"
     observations = []
@@ -54,8 +191,17 @@ def run_demo(work_dir):
             args += ["--" + key.replace("_", "-"), str(item)]
         return args
 
-    def run(label, operation, profile=None, value=None, expected=None, **options):
+    def run(
+        label,
+        operation,
+        profile=None,
+        value=None,
+        expected=None,
+        diagnostic_stage=None,
+        **options,
+    ):
         nonlocal process_count
+        state["stage"] = diagnostic_stage or operation
         completed = subprocess.run(
             command(operation, profile, value, **options),
             env=env,
@@ -64,14 +210,24 @@ def run_demo(work_dir):
             check=False,
         )
         process_count += 1
-        if len(completed.stdout) > MAX_OUTPUT or completed.stderr:
-            raise CostError("demo_failed")
-        result = json.loads(completed.stdout)
+        result = _response(
+            completed.stdout, completed.stderr, completed.returncode, state["stage"]
+        )
         if expected is None:
             if completed.returncode != 0 or result["ok"] is not True:
-                raise CostError("demo_failed")
+                raise DemoFailure(
+                    state["stage"],
+                    "child_error",
+                    error_codes=[result.get("error", "invalid_response")],
+                    returncodes=[completed.returncode],
+                )
         elif completed.returncode != 2 or result != {"ok": False, "error": expected}:
-            raise CostError("demo_failed")
+            raise DemoFailure(
+                state["stage"],
+                "child_error",
+                error_codes=[result.get("error", "invalid_response")],
+                returncodes=[completed.returncode],
+            )
         observations.append(
             {"case": label, "process_exit": completed.returncode, "response": result}
         )
@@ -166,9 +322,10 @@ def run_demo(work_dir):
     )
 
     # Fixed experiment-only wrapper blocks after actual durable commit, before stdout.
+    state["stage"] = "lost_receipt"
     lost = {**later, "event_id": "lost-receipt"}
     marker = work / "committed.json"
-    code = "from pathlib import Path;import json,sys;from enterprise_ai_lab.costs import CostLedger,principal_for_profile; r=CostLedger(sys.argv[1]).append(principal_for_profile('alpha-operator'),json.loads(sys.argv[2]));Path(sys.argv[3]).write_text(json.dumps(r));sys.stdin.read(1)"
+    code = "from pathlib import Path;import json,os,sys;from enterprise_ai_lab.costs import CostLedger,principal_for_profile; r=CostLedger(sys.argv[1]).append(principal_for_profile('alpha-operator'),json.loads(sys.argv[2]));marker=Path(sys.argv[3]);temporary=Path(sys.argv[3]+'.tmp');temporary.write_text(json.dumps(r));os.replace(temporary,marker);sys.stdin.read(1)"
     child = subprocess.Popen(
         [sys.executable, "-c", code, str(database), canonical(lost), str(marker)],
         env=env,
@@ -198,11 +355,18 @@ def run_demo(work_dir):
         for stream in (child.stdin, child.stdout, child.stderr):
             if stream is not None:
                 stream.close()
-    recovered = run("lost-receipt-replay", "append", "alpha-operator", lost)
+    recovered = run(
+        "lost-receipt-replay",
+        "append",
+        "alpha-operator",
+        lost,
+        diagnostic_stage="lost_receipt",
+    )
     if recovered["receipt_id"] != committed["receipt_id"] or not recovered["replayed"]:
         raise CostError("demo_failed")
 
     race = {**later, "event_id": "concurrent-duplicate"}
+    state["stage"] = "duplicate_writers"
     children = []
     try:
         for _ in range(2):
@@ -216,17 +380,47 @@ def run_demo(work_dir):
             )
             process_count += 1
         results = []
+        attempts = []
+        busy_attempts = []
         for process in children:
             out, err = process.communicate(timeout=10)
-            if process.returncode != 0 or err or len(out) > MAX_OUTPUT:
-                raise CostError("demo_failed")
-            results.append(json.loads(out)["result"])
+            body = _response(out, err, process.returncode, "duplicate_writers")
+            attempts.append({"process_exit": process.returncode, "response": body})
+            if body["ok"]:
+                results.append(body["result"])
+            elif body["error"] == "resource_busy":
+                busy_attempts.append(len(attempts) - 1)
+            else:
+                raise DemoFailure(
+                    "duplicate_writers",
+                    "child_error",
+                    error_codes=[body["error"]],
+                    returncodes=[process.returncode],
+                )
+        # All initial owned writers have exited; only a finite busy refusal is replayed.
+        for index in busy_attempts:
+            results.append(
+                run(
+                    "concurrent-resource-busy-replay-" + str(index),
+                    "append",
+                    "alpha-operator",
+                    race,
+                    diagnostic_stage="duplicate_replay",
+                )
+            )
+        state["stage"] = "duplicate_writers"
         if results[0]["receipt_id"] != results[1]["receipt_id"] or sorted(
             row["replayed"] for row in results
         ) != [False, True]:
             raise CostError("demo_failed")
         observations.append(
-            {"case": "concurrent-identical-processes", "responses": results}
+            {
+                "case": "concurrent-identical-processes",
+                "responses": results,
+                "initial_attempts": attempts,
+                "explicit_replay_count": len(busy_attempts),
+                "attempt_count": 2 + len(busy_attempts),
+            }
         )
     finally:
         for process in children:
@@ -236,9 +430,16 @@ def run_demo(work_dir):
             for stream in (process.stdout, process.stderr):
                 if stream is not None:
                     stream.close()
-    final = run("alpha-final-summary", "summary", "alpha-auditor", **scenario["period"])
+    final = run(
+        "alpha-final-summary",
+        "summary",
+        "alpha-auditor",
+        diagnostic_stage="final_summary",
+        **scenario["period"],
+    )
     if final["events"] != 8:
         raise CostError("demo_failed")
+    state["stage"] = "output"
     source = Path(__file__).parent
     hashes = {
         str(p.relative_to(source)): hashlib.sha256(p.read_bytes()).hexdigest()

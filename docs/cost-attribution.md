@@ -25,6 +25,18 @@ after commit but before stdout. Retrying that exact event preserves its original
 receipt. The fixed experiment wrapper supplies the fault; normal commands have
 no crash selector, arbitrary command, SQL or provider connection option.
 
+For concurrent duplicate writers, the current harness preserves both initial
+responses. After both children have exited, it permits one exact event replay per
+`resource_busy` response (zero to two total), then requires one durable receipt
+and one insert across successful attempts. Other errors remain terminal. Each
+explicit replay adds one observation and one process: `31+k` and `33+k`, where
+`k` is the recorded replay count. No runtime lock budget or general retry loop is
+changed. Demo failures expose only fixed stage/category/error/return-code tags.
+
+The lost-receipt child closes a temporary marker before atomically publishing
+the final path. Controlled tests hold empty/partial temporary bytes so file
+creation cannot be mistaken for completed readiness.
+
 The [recorded run](../reports/costs-v1) binds the selected runtime/source and
 fixture hashes. Original reports and locks are unchanged.
 

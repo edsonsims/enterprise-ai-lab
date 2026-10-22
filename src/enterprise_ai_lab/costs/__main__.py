@@ -9,6 +9,7 @@ import stat
 from pathlib import Path
 
 from .contracts import MAX_INPUT, CostError, bounded, principal_for_profile, strict_json
+from .experiment import ERROR_CODES, DemoFailure, safe_diagnostic
 from .ledger import CostLedger, initialize
 
 
@@ -94,8 +95,17 @@ def main(argv=None):
         )
         return 0
     except Exception as exc:  # noqa: BLE001 - fixed CLI error envelope
-        code = exc.code if isinstance(exc, CostError) else "storage_unavailable"
-        print(json.dumps({"ok": False, "error": code}))
+        code = "storage_unavailable"
+        if (
+            (type(exc) is CostError or type(exc) is DemoFailure)
+            and type(exc.code) is str
+            and exc.code in ERROR_CODES
+        ):
+            code = exc.code
+        response = {"ok": False, "error": code}
+        if type(exc) is DemoFailure:
+            response["diagnostic"] = safe_diagnostic(exc)
+        print(json.dumps(response))
         return 2
 
 

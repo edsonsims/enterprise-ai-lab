@@ -31,6 +31,21 @@ never downloads packages or data. [The recorded run](../reports/chaos-v1) keeps
 all cases, configured budgets, observed timings, process evidence, source hashes
 and both audit chains. Earlier gateway and other study reports are unchanged.
 
+If the current demo fails, the CLI keeps exit status 2 and adds a bounded JSON
+line to stderr. It identifies a fixed case/stage, a fixed exception category,
+allowlisted outcomes/codes and at most two attempts. No exception message,
+traceback, custom class name, path, ID, text, environment or raw trace is included.
+An unavailable/malformed attempt count is `null`, rather than an invented count.
+There is no diagnostic file or broad work-directory upload. A failed diagnostic
+callback cannot replace the original programmatic exception, and caller
+cancellation still propagates without failover.
+
+These failure-only diagnostics were added after a Linux standalone demo exited
+with only a generic message. Its stage and cause remain unknown: elapsed time,
+a passing test run or a later successful demo do not establish what failed.
+The frozen original report predates this diagnostic path; its exact matching
+source is still required for its source fingerprints.
+
 ## What can fail over?
 
 | Observation | Policy |

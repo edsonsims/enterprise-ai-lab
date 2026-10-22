@@ -66,6 +66,15 @@ The final affected-source suite passed **77 tests**, with controlled-clock/file
 checks separate from the actual official-client process fixture. This does not
 substitute for other project or platform integrations.
 
+## Later failure diagnostics
+
+The recorded JSON is unchanged and binds its original source. A later Linux
+Python 3.13 job passed the 77 chaos tests, then its standalone demo exited 2 with
+only a generic message. The original failing stage and cause remain unknown.
+The current CLI adds strictly finite, bounded failure-only metadata for future
+observations; those additions are not part of the old report's source hashes.
+They do not change retry/deadline/audit rules or explain the earlier failure.
+
 Use a new work directory/report. [Design and study exercises](../../docs/chaos-failover.md)
 explain the trust, deadline and audit boundaries. Earlier gateway/RAG/approval
 reports and public input files remain unchanged. Tests and recorded executions

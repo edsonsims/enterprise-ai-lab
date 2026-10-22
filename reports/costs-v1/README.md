@@ -59,6 +59,24 @@ The first Linux CI failure involved an unexpected finite child code that the old
 assertion did not print. Its exact historical cause remains unknown; the controlled
 regression establishes a separate admission race, without an exactly-once claim.
 
+## Harness follow-up
+
+The JSON above also predates the bounded-contention/readiness harness repair.
+Controlled real SQLite/CLI tests reproduce a successful first writer and a
+`resource_busy` second writer; the old harness reports `demo_failed`. The current
+harness retains both initial responses and, only after both children exit, makes
+at most one exact replay per initial busy response. Other errors stop the demo.
+New runs record the replay/attempt counts and have `31+k` observations and `33+k`
+processes for `k` in `0..2`; the unchanged original JSON remains 31/33.
+
+Separate deterministic marker tests pause a real child with zero or 19 bytes
+written. The old final-path write exposes those incomplete bytes; the new child
+publishes only a closed complete temporary file by atomic replacement. Both are
+harness regressions, **not** an explanation of the second Linux CI's undetailed
+`demo_failed` envelope. Fixed finite stage/error/return-code diagnostics now help
+distinguish future failures without printing child text, input IDs or stderr.
+See the [controlled harness tests](../../tests/costs/test_cost_harness.py).
+
 The [contract and exercises](../../docs/cost-attribution.md) describe exact bounds,
 aggregate-first half-even rounding, immutable statement snapshots, SQLite storage
 tradeoffs and limitations. Schema/digest checks require a trusted host and are

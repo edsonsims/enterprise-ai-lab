@@ -1,22 +1,24 @@
 """Fixed, labelled test-only faults around actual gateway reads and durable audits."""
 from __future__ import annotations
-from datetime import datetime, timezone
+
 import hashlib
-from importlib.metadata import version
 import json
 import os
-from pathlib import Path
 import platform
 import sqlite3
 import time
+from datetime import datetime, timezone
+from importlib.metadata import version
+from pathlib import Path
 
 import anyio
 
 from ..mcp_gateway.audit import GatewayAudit
-from ..mcp_gateway.store import initialize_fixture
+from ..mcp_gateway.store import GatewayError, initialize_fixture
 from .client import FailoverReader
 from .contract import Budget, LocalEndpoint, ReadFailure
-from .transport import StdioDriver, _BOOTSTRAP
+from .diagnostics import DemoDiagnostics
+from .transport import _BOOTSTRAP, StdioDriver
 
 
 class _FaultDriver(StdioDriver):
@@ -92,36 +94,68 @@ def _audit(endpoint):
     return GatewayAudit(endpoint.audit).events()
 
 
-async def run_demo(work_dir):
+async def run_demo(work_dir, *, _on_failure=None):
+    """Preserve original failures; optionally report finite best-effort metadata."""
+    diagnostic = DemoDiagnostics()
+    try:
+        return await _run_demo(work_dir, diagnostic)
+    except Exception as exc:
+        try:
+            kind = ('read_failure' if type(exc) is ReadFailure else
+                    'gateway_error' if type(exc) is GatewayError else None)
+            code = exc.code if kind is not None else None
+            record = diagnostic.failure(exc, known_kind=kind, code=code)
+            if _on_failure is not None:
+                _on_failure(record)
+        except BaseException:
+            pass  # A diagnostic callback must never replace the original failure.
+        raise
+
+
+async def _run_demo(work_dir, diagnostic):
+    diagnostic.begin('setup', 'work_directory')
     work_dir = Path(work_dir).absolute()
     work_dir.mkdir(parents=True, exist_ok=False)
     endpoints = []
+    diagnostic.stage('fixture_initialize')
     for name in ('primary', 'secondary'):
         source = work_dir / (name + '.sqlite')
         initialize_fixture(source)
         endpoints.append(LocalEndpoint(name, source, work_dir / (name + '-audit.sqlite')))
+    diagnostic.stage('source_snapshot')
     original_hashes = {endpoint.name: _sha(endpoint.database) for endpoint in endpoints}
     observations, all_traces = [], []
 
     async def case(name, faults=None, *, operation='get_work_order', arguments=None, budget=Budget(), expected=None):
+        diagnostic.begin(name, 'case_setup', expected=expected or 'success')
         driver = _FaultDriver(faults)
+        diagnostic.bind(driver.records)
+        diagnostic.stage('before_audit')
         before = {endpoint.name: len(_audit(endpoint)) for endpoint in endpoints}
+        diagnostic.stage('admission')
         admission_start = time.monotonic()
         reader = FailoverReader(endpoints, 'alpha-reader', budget=budget, _driver=driver)
         admission_seconds = time.monotonic() - admission_start
         started = time.monotonic()
         result, error = None, None
+        diagnostic.stage('read')
         try:
             result = await reader.read(operation, arguments if arguments is not None else {'work_order_id': 'WO-0001'})
         except ReadFailure as exc:
             error = exc.code
         elapsed = time.monotonic() - started
+        diagnostic.observe(error or 'success')
+        diagnostic.stage('outcome_check')
         assert error == expected, (name, error, expected)
+        diagnostic.stage('attempt_check')
         traces = driver.records
         assert 1 <= len(traces) <= 2 and all(v['process_reaped'] and v['owned_child_observed'] for v in traces), name
+        diagnostic.stage('after_audit')
         added = {endpoint.name: _audit(endpoint)[before[endpoint.name]:] for endpoint in endpoints}
+        diagnostic.stage('response_check')
         if expected is None:
             assert result['response']['meta']['tenant_id'] == 'alpha'
+        diagnostic.stage('case_record')
         observations.append({'case': name, 'kind': 'actual_official_mcp_stdio',
             'test_only_injections': faults or {}, 'operation': operation,
             'arguments': arguments if arguments is not None else {'work_order_id': 'WO-0001'},
@@ -130,6 +164,7 @@ async def run_demo(work_dir):
             'whole_read_seconds': round(elapsed, 6), 'outcome': error or 'success',
             'response': result['response'] if result else None, 'attempts': traces, 'audit_events_added': added})
         all_traces.extend(traces)
+        diagnostic.stage('case_check')
         return observations[-1]
 
     healthy = await case('healthy_primary')
@@ -158,9 +193,13 @@ async def run_demo(work_dir):
     assert recovery['response'] == healthy['response'] and len(recovery['attempts']) == 1
 
     # Explicit caller cancellation after an independently visible durable outcome.
+    diagnostic.begin('caller_cancellation_after_durable_outcome', 'case_setup', expected='caller_cancelled')
     marker = work_dir / 'test-only-completed-read.marker'
     driver = _FaultDriver({'primary': 'stall_after_read'}, marker=marker)
+    diagnostic.bind(driver.records)
+    diagnostic.stage('admission')
     reader = FailoverReader(endpoints, 'alpha-reader', budget=Budget(5, 3), _driver=driver)
+    diagnostic.stage('before_audit')
     before = {endpoint.name: len(_audit(endpoint)) for endpoint in endpoints}
     scopes, results = [], []
     done = anyio.Event()
@@ -172,15 +211,22 @@ async def run_demo(work_dir):
         done.set()
     async with anyio.create_task_group() as group:
         group.start_soon(cancelled_read)
+        diagnostic.stage('cancellation_marker')
         with anyio.fail_after(3):
             while not marker.exists():
                 await anyio.sleep(.005)
+        diagnostic.stage('cancellation_request')
         scopes[0].cancel()
+        diagnostic.stage('cancellation_completion')
         with anyio.fail_after(2):
             await done.wait()
+    diagnostic.stage('cancellation_check')
     assert not results and scopes[0].cancelled_caught
+    diagnostic.observe('caller_cancelled')
     assert len(driver.records) == 1 and driver.records[0]['process_reaped']
+    diagnostic.stage('after_audit')
     added = {endpoint.name: _audit(endpoint)[before[endpoint.name]:] for endpoint in endpoints}
+    diagnostic.stage('cancellation_check')
     assert len(added['primary']) == 2 and not added['secondary']
     observations.append({'case': 'caller_cancellation_after_durable_outcome', 'kind': 'actual_official_mcp_stdio',
         'test_only_injections': {'primary': 'stall_after_read', 'parent': 'explicit_anyio_cancellation_after_child_marker'},
@@ -189,8 +235,11 @@ async def run_demo(work_dir):
         'outcome': 'caller_cancelled', 'response': None, 'attempts': driver.records, 'audit_events_added': added,
         'whole_read_seconds': round(time.monotonic() - started, 6), 'cancellation_did_not_rollback_read': True})
     all_traces.extend(driver.records)
+    diagnostic.begin('finalize', 'source_integrity')
     assert all(_sha(endpoint.database) == original_hashes[endpoint.name] for endpoint in endpoints)
+    diagnostic.stage('final_audit')
     audits = {endpoint.name: _audit(endpoint) for endpoint in endpoints}
+    diagnostic.stage('report_metadata')
     own = Path(__file__).parent
     gateway = own.parent / 'mcp_gateway'
     return {'schema_version': 1, 'study': 'fixture-bound-local-read-failover-v1',

@@ -9,7 +9,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from enterprise_ai_lab.costs.experiment import run_demo
+from enterprise_ai_lab.costs.experiment import DemoFailure, run_demo
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -36,9 +36,11 @@ class ProcessTests(unittest.TestCase):
                 "enterprise_ai_lab.costs.experiment.subprocess.Popen",
                 side_effect=spawn,
             ),
-            self.assertRaises(OSError),
+            self.assertRaises(DemoFailure) as caught,
         ):
             run_demo(Path(directory) / "work")
+        self.assertEqual(caught.exception.diagnostic["stage"], "duplicate_writers")
+        self.assertEqual(caught.exception.diagnostic["category"], "io")
         self.assertEqual(len(children), 1)
         self.assertIsNotNone(children[0].poll())
         self.assertTrue(children[0].stdout.closed)
@@ -65,15 +67,24 @@ class ProcessTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             report = run_demo(root / "work")
-            self.assertEqual(len(report["observations"]), 31)
-            self.assertEqual(report["actual_processes"], 33)
+            race = next(
+                row
+                for row in report["observations"]
+                if row["case"] == "concurrent-identical-processes"
+            )
+            retries = race["explicit_replay_count"]
+            self.assertIn(retries, (0, 1, 2))
+            self.assertEqual(race["attempt_count"], 2 + retries)
+            self.assertEqual(len(report["observations"]), 31 + retries)
+            self.assertEqual(report["actual_processes"], 33 + retries)
             self.assertTrue(report["all_owned_processes_reaped"])
             self.assertLess(report["lost_receipt"]["killed_process_exit"], 0)
             self.assertTrue(report["lost_receipt"]["empty_stdout"])
             final = report["observations"][-1]["response"]["result"]
             self.assertEqual((final["events"], final["exact_total"]), (8, "0.581"))
-            with self.assertRaises(FileExistsError):
+            with self.assertRaises(DemoFailure) as caught:
                 run_demo(root / "work")
+            self.assertEqual(caught.exception.diagnostic["stage"], "setup")
 
     def test_existing_report_is_refused_before_work_mutation(self):
         with tempfile.TemporaryDirectory() as directory:
