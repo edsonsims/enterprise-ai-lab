@@ -23,7 +23,7 @@ these components; separate repositories are useful only when a module stands alo
 | 8 | PII redaction and restoration proxy (6) | Synthetic test corpus, precision/recall, scoped token mapping, collision and log-leak tests | [Local scoped milestone](docs/privacy-proxy.md) implemented 2026-10-20: actual dedicated OAuth JWT/HTTP boundary, tenant AND client AND context restoration, private SQLite map, random-token collision/expiry/capacity/rollback tests and actual local processor/restart/log observations. Frozen 36-case development evaluation retains narrow detector errors and unsupported formats. Comprehensive detection, encrypted storage, secure erasure and external providers remain unimplemented. |
 | 9 | Chaos and failover suite (13) | Injected timeouts, bounded retries, failure recovery and measured degradation | [Local read-only MCP milestone](docs/chaos-failover.md) implemented 2026-10-21: actual fixed stdio replicas, immutable fixture/profile checks, absolute work budgets and at most one transport-only failover. Real process kill/stall/disconnect, terminal permission/audit/payload cases, preserved incomplete intents, cancellation and explicit recovery; observed timings and reaped children. Remote topology, write retries and production availability remain planned. |
 | 10 | Multi-tenant cost attribution (14) | Usage ledger, reconciliation, decimal arithmetic, tenant isolation and anomaly cases | [Local fictional milestone](docs/cost-attribution.md) implemented 2026-10-22: exact Decimal charges, tenant-local idempotent usage, immutable statement snapshots and independently authored anomalies; actual SQLite/CLI restart, concurrent duplicate and lost-receipt recovery. Trusted launcher profiles are not authentication. Provider telemetry/pricing, billing, credits/FX/tax and production operations remain planned. |
-| 11 | Customer health and ROI dashboard (9) | Traceable usage/cost, explicit baseline and assumptions, uncertainty and sensitivity | Planned; modeled savings separate from observed savings |
+| 11 | Customer health and ROI dashboard (9) | Traceable usage/cost, explicit baseline and assumptions, uncertainty and sensitivity | [Local fictional activity and modeled ROI milestone](docs/activity-roi.md) implemented2026-10-23: one tenant-local ledger snapshot, exact request/charge references, declared activity flags and27 rational-arithmetic sensitivity scenarios, private offline HTML/JSON and actual CLI/restart/isolation/export tests. Real task outcomes, measured savings, causal evaluation, customer integrations and authenticated serving remain planned. |
 | 12 | Air-gapped deployment pipeline (2) | Repeatable offline artifact bundle, image inventory and tested egress denial in an isolated environment | Planned; no cloud spend authorized |
 | 13 | On-prem edge inference node (8) | Actual supported local model, measured latency/memory and reproducible configuration | Planned; NVIDIA vLLM/TensorRT/MIG require appropriate hardware |
 | 14 | Self-service admin and runbook portal (12) | Authenticated admin boundary, safe config updates, audit and recovery exercise | Planned |
@@ -57,7 +57,9 @@ with fictional inputs and explicit detector/storage limits. The 2026-10-21
 [chaos milestone](reports/chaos-v1) advances study9 with actual read-only MCP
 failure injection and bounded failover. The 2026-10-22 [fictional cost milestone](docs/cost-attribution.md)
 advances study10 with exact local accounting and frozen reconciliation receipts.
-Study11 remains next; modeled ROI and observed business outcomes remain separate.
+The2026-10-23 [fictional activity/ROI milestone](docs/activity-roi.md) advances
+study11. Study12/offline artifact deployment remains next; modeled ROI and
+observed business outcomes remain separate.
 
 After each milestone the owner can explain the design, reproduce a result, modify
 one assumption, and write a short reflection. Until that happens, the study remains

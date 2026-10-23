@@ -3,6 +3,26 @@ on: [push, pull_request]
 permissions:
   contents: read
 jobs:
+  fictional-activity-roi:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install --no-deps -e .
+      - name: Tenant snapshot, exact scenario arithmetic and actual CLI boundaries
+        run: python -W error::ResourceWarning -m unittest discover -s tests/health -v
+      - name: Offline fictional activity and modeled ROI story
+        run: >-
+          python scripts/health_demo.py
+          --work-dir .local/ci-health --out reports/local/ci-health.json
+
   fictional-cost-ledger:
     runs-on: ubuntu-latest
     strategy:

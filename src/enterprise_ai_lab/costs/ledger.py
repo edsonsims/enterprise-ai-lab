@@ -489,6 +489,48 @@ class CostLedger:
             **totals(row["charge"] for row in selected),
         }
 
+    def snapshot(self, principal, start, end):
+        """Return one bounded, validated tenant snapshot without paginated rereads."""
+        period(start, end)
+        rows = self._read(principal)
+        selected = self._snapshot(rows, start, end, len(rows))
+        return bounded(
+            {
+                "schema_version": 1,
+                "tenant_id": principal.tenant_id,
+                "watermark": len(rows),
+                "rate_card_sha256": self.card_hash,
+                "currency": self._card["currency"],
+                "start": start,
+                "end": end,
+                "snapshot_sha256": digest(selected),
+                "events": [
+                    {
+                        **{
+                            key: row["event"][key]
+                            for key in (
+                                "event_id",
+                                "request_id",
+                                "metric",
+                                "quantity",
+                                "occurred_at",
+                            )
+                        },
+                        **{
+                            key: row[key]
+                            for key in (
+                                "charge",
+                                "receipt_id",
+                                "event_sha256",
+                                "ordinal",
+                            )
+                        },
+                    }
+                    for row in selected
+                ],
+            }
+        )
+
     def reconcile(self, principal, value):
         authorize(principal, ("auditor",))
         value = statement(value)

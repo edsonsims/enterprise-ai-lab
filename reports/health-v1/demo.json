@@ -1,0 +1,4346 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-23T12:34:55.517651+00:00",
+  "data_kind": "authored_fictional_usage_and_scenario_model",
+  "observations": [
+    {
+      "module": "costs",
+      "operation": "init",
+      "returncode": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "initialized": true
+        }
+      }
+    },
+    {
+      "module": "costs",
+      "operation": "append",
+      "returncode": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "81f99b4f9b5f4adf9abdbb964478eed9",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-23T12:34:54Z",
+          "event": {
+            "event_id": "previous-1",
+            "metric": "input_tokens",
+            "occurred_at": "2026-10-02T00:00:00Z",
+            "quantity": 1000,
+            "rate_version": "fictional-v1",
+            "request_id": "previous-one"
+          },
+          "event_sha256": "63b252201396ddf6f124a684bdc59f40e5fd8c64c0da050f9e51c69e31c197a8",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 1,
+          "charge": "0.5",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "module": "costs",
+      "operation": "append",
+      "returncode": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "4d8c19fb91064fc08209e2d5ef69baad",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-23T12:34:54Z",
+          "event": {
+            "event_id": "previous-2",
+            "metric": "input_tokens",
+            "occurred_at": "2026-10-03T00:00:00Z",
+            "quantity": 200,
+            "rate_version": "fictional-v1",
+            "request_id": "previous-two"
+          },
+          "event_sha256": "8befbedf70f732afeee4def793cc412037b0a5fd4e011ff20a4c877d5b2932e5",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 2,
+          "charge": "0.1",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "module": "costs",
+      "operation": "append",
+      "returncode": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "3ab7b82724954945ab33f0e5255a118d",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-23T12:34:55Z",
+          "event": {
+            "event_id": "previous-3",
+            "metric": "ocr_pages",
+            "occurred_at": "2026-10-04T00:00:00Z",
+            "quantity": 1,
+            "rate_version": "fictional-v1",
+            "request_id": "previous-three"
+          },
+          "event_sha256": "b07698e969c7a3fa59c71f45c2b4e488d97161c167d348cceede6a0a5f8dc757",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 3,
+          "charge": "0.015",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "module": "costs",
+      "operation": "append",
+      "returncode": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "f65ca091c6e9450490d08f1d35a4fbdf",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-23T12:34:55Z",
+          "event": {
+            "event_id": "current-input",
+            "metric": "input_tokens",
+            "occurred_at": "2026-10-09T00:00:00Z",
+            "quantity": 1000,
+            "rate_version": "fictional-v1",
+            "request_id": "current-one"
+          },
+          "event_sha256": "3aec0ffcff7974a51eb1efe8fe5552d4b1d434f48cbf9c81d326ce4be760e4ee",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 4,
+          "charge": "0.5",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "module": "costs",
+      "operation": "append",
+      "returncode": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "12a413f978774157aac8a59fcd1d7980",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-23T12:34:55Z",
+          "event": {
+            "event_id": "current-output",
+            "metric": "output_tokens",
+            "occurred_at": "2026-10-09T00:00:00Z",
+            "quantity": 200,
+            "rate_version": "fictional-v1",
+            "request_id": "current-one"
+          },
+          "event_sha256": "75c6385399201649b30de8b95768ec0ebd9bdbc731845e09dfb4b8da23741816",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 5,
+          "charge": "0.3",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "module": "costs",
+      "operation": "append",
+      "returncode": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "0638344522c7445cb591e71f78470d27",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-23T12:34:55Z",
+          "event": {
+            "event_id": "current-ocr",
+            "metric": "ocr_pages",
+            "occurred_at": "2026-10-10T00:00:00Z",
+            "quantity": 2,
+            "rate_version": "fictional-v1",
+            "request_id": "current-two"
+          },
+          "event_sha256": "a217b65e7ce411f36799d15465a0177064866eaf4aaab6ec64f0a33eb0c9487f",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 6,
+          "charge": "0.03",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "module": "costs",
+      "operation": "append",
+      "returncode": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "3fa3df93f531437b9c84e0c1e8f6ffb8",
+          "tenant_id": "beta",
+          "first_actor": "local:beta-operator",
+          "created_at": "2026-10-23T12:34:55Z",
+          "event": {
+            "event_id": "current-input",
+            "metric": "input_tokens",
+            "occurred_at": "2026-10-09T00:00:00Z",
+            "quantity": 100000,
+            "rate_version": "fictional-v1",
+            "request_id": "beta-only"
+          },
+          "event_sha256": "9c08855780e6d154a69eacbd8dc1342ca799875906078f0d817c9034954a4681",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 1,
+          "charge": "50",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "module": "health",
+      "operation": "render",
+      "returncode": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "report_sha256": "63f9d074dfbdb9aca0d164677f38275afd1a26d1d3936218198e6925e75f7869",
+          "html_sha256": "3588663dad9642da74fae8b72c6f5fe4ce8b8b82ca5f2c45ce1f2a630549148f",
+          "snapshot_sha256": "c300dc4b219cd9778cc3c8d3ab1bff068019123e40afc6a1eeddde07c83d2083",
+          "cells": 27
+        }
+      }
+    },
+    {
+      "module": "health",
+      "operation": "render",
+      "returncode": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "report_sha256": "5312d0ae30676217b0109e47815355148f8606a81b593849153f600384f785e3",
+          "html_sha256": "e8d195f9d17db2faa7c9d4dae3ce3225ef3d4c05e58cc338c0677298082146f4",
+          "snapshot_sha256": "1449fc47d9c9db4f213867438c8d250b9d11098f961efd5e5aeb61992b3d469d",
+          "cells": 27
+        }
+      }
+    },
+    {
+      "module": "health",
+      "operation": "render",
+      "returncode": 2,
+      "response": {
+        "ok": false,
+        "error": "forbidden"
+      }
+    },
+    {
+      "module": "health",
+      "operation": "render",
+      "returncode": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "report_sha256": "63f9d074dfbdb9aca0d164677f38275afd1a26d1d3936218198e6925e75f7869",
+          "html_sha256": "3588663dad9642da74fae8b72c6f5fe4ce8b8b82ca5f2c45ce1f2a630549148f",
+          "snapshot_sha256": "c300dc4b219cd9778cc3c8d3ab1bff068019123e40afc6a1eeddde07c83d2083",
+          "cells": 27
+        }
+      }
+    },
+    {
+      "module": "costs",
+      "operation": "append",
+      "returncode": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "receipt_id": "c5d3da1b0f204aa984260383cd39e1a8",
+          "tenant_id": "alpha",
+          "first_actor": "local:alpha-operator",
+          "created_at": "2026-10-23T12:34:55Z",
+          "event": {
+            "event_id": "late-current",
+            "metric": "ocr_pages",
+            "occurred_at": "2026-10-11T00:00:00Z",
+            "quantity": 1,
+            "rate_version": "fictional-v1",
+            "request_id": "current-three"
+          },
+          "event_sha256": "372e146809fc5f1cf2dc793503a027c2ea7a05c90339f88a776cd02f4b0c5e43",
+          "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+          "ordinal": 7,
+          "charge": "0.015",
+          "replayed": false
+        }
+      }
+    },
+    {
+      "module": "health",
+      "operation": "render",
+      "returncode": 0,
+      "response": {
+        "ok": true,
+        "result": {
+          "report_sha256": "88804a998e94f316d84a3d2247c2b813859678cb0f442a85c86bab0331627c20",
+          "html_sha256": "2c8fc66669f1d75ef4387e1cce17dad0ddaa110a7b07be5b55251671bd08c703",
+          "snapshot_sha256": "34d8bb9b940ae6a76bda99fd2757d09323f011420a84d7989b1f62a8990d0148",
+          "cells": 27
+        }
+      }
+    },
+    {
+      "module": "health",
+      "operation": "render",
+      "returncode": 2,
+      "response": {
+        "ok": false,
+        "error": "invalid_input"
+      }
+    }
+  ],
+  "actual_CLI_processes": 15,
+  "every_subprocess_reaped": true,
+  "subprocess_socket_connect_and_DNS_audit_denial": true,
+  "reports": {
+    "alpha": {
+      "schema_version": 1,
+      "data_kind": "fictional_usage_and_modeled_roi",
+      "scenario_id": "fictional-window-v1",
+      "scenario_sha256": "89c5d3091ba992d0ed01b2d3be869aeda6f3eb1bfc0d5a384f3854398d8a72f6",
+      "assumptions": {
+        "schema_version": 1,
+        "data_kind": "fictional_roi_assumptions",
+        "scenario_id": "fictional-window-v1",
+        "previous_start": "2026-10-01T00:00:00Z",
+        "current_start": "2026-10-08T00:00:00Z",
+        "current_end": "2026-10-15T00:00:00Z",
+        "baseline_minutes": {
+          "low": "5",
+          "base": "15",
+          "high": "30"
+        },
+        "automation_share": {
+          "low": "0",
+          "base": "0.5",
+          "high": "0.8"
+        },
+        "realization_share": {
+          "low": "0.25",
+          "base": "0.5",
+          "high": "0.75"
+        },
+        "hourly_rate": "40",
+        "allocated_fixed_cost": "3",
+        "period_operating_cost": "1",
+        "minimum_requests": 3
+      },
+      "snapshot": {
+        "schema_version": 1,
+        "tenant_id": "alpha",
+        "watermark": 6,
+        "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+        "currency": "USD",
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2026-10-15T00:00:00Z",
+        "snapshot_sha256": "c300dc4b219cd9778cc3c8d3ab1bff068019123e40afc6a1eeddde07c83d2083",
+        "events": [
+          {
+            "event_id": "previous-1",
+            "request_id": "previous-one",
+            "metric": "input_tokens",
+            "quantity": 1000,
+            "occurred_at": "2026-10-02T00:00:00Z",
+            "charge": "0.5",
+            "receipt_id": "81f99b4f9b5f4adf9abdbb964478eed9",
+            "event_sha256": "63b252201396ddf6f124a684bdc59f40e5fd8c64c0da050f9e51c69e31c197a8",
+            "ordinal": 1
+          },
+          {
+            "event_id": "previous-2",
+            "request_id": "previous-two",
+            "metric": "input_tokens",
+            "quantity": 200,
+            "occurred_at": "2026-10-03T00:00:00Z",
+            "charge": "0.1",
+            "receipt_id": "4d8c19fb91064fc08209e2d5ef69baad",
+            "event_sha256": "8befbedf70f732afeee4def793cc412037b0a5fd4e011ff20a4c877d5b2932e5",
+            "ordinal": 2
+          },
+          {
+            "event_id": "previous-3",
+            "request_id": "previous-three",
+            "metric": "ocr_pages",
+            "quantity": 1,
+            "occurred_at": "2026-10-04T00:00:00Z",
+            "charge": "0.015",
+            "receipt_id": "3ab7b82724954945ab33f0e5255a118d",
+            "event_sha256": "b07698e969c7a3fa59c71f45c2b4e488d97161c167d348cceede6a0a5f8dc757",
+            "ordinal": 3
+          },
+          {
+            "event_id": "current-input",
+            "request_id": "current-one",
+            "metric": "input_tokens",
+            "quantity": 1000,
+            "occurred_at": "2026-10-09T00:00:00Z",
+            "charge": "0.5",
+            "receipt_id": "f65ca091c6e9450490d08f1d35a4fbdf",
+            "event_sha256": "3aec0ffcff7974a51eb1efe8fe5552d4b1d434f48cbf9c81d326ce4be760e4ee",
+            "ordinal": 4
+          },
+          {
+            "event_id": "current-output",
+            "request_id": "current-one",
+            "metric": "output_tokens",
+            "quantity": 200,
+            "occurred_at": "2026-10-09T00:00:00Z",
+            "charge": "0.3",
+            "receipt_id": "12a413f978774157aac8a59fcd1d7980",
+            "event_sha256": "75c6385399201649b30de8b95768ec0ebd9bdbc731845e09dfb4b8da23741816",
+            "ordinal": 5
+          },
+          {
+            "event_id": "current-ocr",
+            "request_id": "current-two",
+            "metric": "ocr_pages",
+            "quantity": 2,
+            "occurred_at": "2026-10-10T00:00:00Z",
+            "charge": "0.03",
+            "receipt_id": "0638344522c7445cb591e71f78470d27",
+            "event_sha256": "a217b65e7ce411f36799d15465a0177064866eaf4aaab6ec64f0a33eb0c9487f",
+            "ordinal": 6
+          }
+        ]
+      },
+      "period_seconds": 604800,
+      "previous": {
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2026-10-08T00:00:00Z",
+        "event_count": 3,
+        "usage_identified_requests": 3,
+        "metrics": {
+          "input_tokens": {
+            "event_count": 2,
+            "quantity": 1200,
+            "charge": {
+              "exact": {
+                "numerator": "3",
+                "denominator": "5"
+              },
+              "display_usd": "0.60"
+            }
+          },
+          "output_tokens": {
+            "event_count": 0,
+            "quantity": 0,
+            "charge": {
+              "exact": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "display_usd": "0.00"
+            }
+          },
+          "embedding_tokens": {
+            "event_count": 0,
+            "quantity": 0,
+            "charge": {
+              "exact": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "display_usd": "0.00"
+            }
+          },
+          "ocr_pages": {
+            "event_count": 1,
+            "quantity": 1,
+            "charge": {
+              "exact": {
+                "numerator": "3",
+                "denominator": "200"
+              },
+              "display_usd": "0.02"
+            }
+          }
+        },
+        "ledger_cost": {
+          "exact": {
+            "numerator": "123",
+            "denominator": "200"
+          },
+          "display_usd": "0.62"
+        }
+      },
+      "current": {
+        "start": "2026-10-08T00:00:00Z",
+        "end": "2026-10-15T00:00:00Z",
+        "event_count": 3,
+        "usage_identified_requests": 2,
+        "metrics": {
+          "input_tokens": {
+            "event_count": 1,
+            "quantity": 1000,
+            "charge": {
+              "exact": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "display_usd": "0.50"
+            }
+          },
+          "output_tokens": {
+            "event_count": 1,
+            "quantity": 200,
+            "charge": {
+              "exact": {
+                "numerator": "3",
+                "denominator": "10"
+              },
+              "display_usd": "0.30"
+            }
+          },
+          "embedding_tokens": {
+            "event_count": 0,
+            "quantity": 0,
+            "charge": {
+              "exact": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "display_usd": "0.00"
+            }
+          },
+          "ocr_pages": {
+            "event_count": 1,
+            "quantity": 2,
+            "charge": {
+              "exact": {
+                "numerator": "3",
+                "denominator": "100"
+              },
+              "display_usd": "0.03"
+            }
+          }
+        },
+        "ledger_cost": {
+          "exact": {
+            "numerator": "83",
+            "denominator": "100"
+          },
+          "display_usd": "0.83"
+        }
+      },
+      "activity": {
+        "request_count_change": -1,
+        "ratio_change": {
+          "numerator": "-1",
+          "denominator": "3"
+        },
+        "percent_change_display": "-33.33",
+        "flags": {
+          "no_current_usage": false,
+          "below_authored_minimum": true,
+          "declining_usage": true
+        }
+      },
+      "modeled_cost": {
+        "ledger": {
+          "exact": {
+            "numerator": "83",
+            "denominator": "100"
+          },
+          "display_usd": "0.83"
+        },
+        "allocated_fixed": {
+          "exact": {
+            "numerator": "3",
+            "denominator": "1"
+          },
+          "display_usd": "3.00"
+        },
+        "period_operating": {
+          "exact": {
+            "numerator": "1",
+            "denominator": "1"
+          },
+          "display_usd": "1.00"
+        },
+        "total": {
+          "exact": {
+            "numerator": "483",
+            "denominator": "100"
+          },
+          "display_usd": "4.83"
+        }
+      },
+      "modeled_base": {
+        "levels": {
+          "baseline_minutes": "base",
+          "automation_share": "base",
+          "realization_share": "base"
+        },
+        "gross_benefit": {
+          "exact": {
+            "numerator": "5",
+            "denominator": "1"
+          },
+          "display_usd": "5.00"
+        },
+        "net_benefit": {
+          "exact": {
+            "numerator": "17",
+            "denominator": "100"
+          },
+          "display_usd": "0.17"
+        },
+        "total_cost": {
+          "exact": {
+            "numerator": "483",
+            "denominator": "100"
+          },
+          "display_usd": "4.83"
+        },
+        "roi_percent": {
+          "exact": {
+            "numerator": "1700",
+            "denominator": "483"
+          },
+          "display": "3.52"
+        }
+      },
+      "modeled_range": {
+        "low": {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "low",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-483",
+              "denominator": "100"
+            },
+            "display_usd": "-4.83"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        "high": {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "high",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "24",
+              "denominator": "1"
+            },
+            "display_usd": "24.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "1917",
+              "denominator": "100"
+            },
+            "display_usd": "19.17"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "63900",
+              "denominator": "161"
+            },
+            "display": "396.89"
+          }
+        }
+      },
+      "sensitivity": [
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "low",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-483",
+              "denominator": "100"
+            },
+            "display_usd": "-4.83"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "low",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-483",
+              "denominator": "100"
+            },
+            "display_usd": "-4.83"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "low",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-483",
+              "denominator": "100"
+            },
+            "display_usd": "-4.83"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "base",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "6"
+            },
+            "display_usd": "0.83"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-1199",
+              "denominator": "300"
+            },
+            "display_usd": "-4.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-119900",
+              "denominator": "1449"
+            },
+            "display": "-82.75"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "base",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "3"
+            },
+            "display_usd": "1.67"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-949",
+              "denominator": "300"
+            },
+            "display_usd": "-3.16"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-94900",
+              "denominator": "1449"
+            },
+            "display": "-65.49"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "base",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "2"
+            },
+            "display_usd": "2.50"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-233",
+              "denominator": "100"
+            },
+            "display_usd": "-2.33"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-23300",
+              "denominator": "483"
+            },
+            "display": "-48.24"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "high",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "4",
+              "denominator": "3"
+            },
+            "display_usd": "1.33"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-1049",
+              "denominator": "300"
+            },
+            "display_usd": "-3.50"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-104900",
+              "denominator": "1449"
+            },
+            "display": "-72.39"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "high",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "8",
+              "denominator": "3"
+            },
+            "display_usd": "2.67"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-649",
+              "denominator": "300"
+            },
+            "display_usd": "-2.16"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-64900",
+              "denominator": "1449"
+            },
+            "display": "-44.79"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "high",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "4",
+              "denominator": "1"
+            },
+            "display_usd": "4.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-83",
+              "denominator": "100"
+            },
+            "display_usd": "-0.83"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-8300",
+              "denominator": "483"
+            },
+            "display": "-17.18"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "low",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-483",
+              "denominator": "100"
+            },
+            "display_usd": "-4.83"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "low",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-483",
+              "denominator": "100"
+            },
+            "display_usd": "-4.83"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "low",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-483",
+              "denominator": "100"
+            },
+            "display_usd": "-4.83"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "base",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "2"
+            },
+            "display_usd": "2.50"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-233",
+              "denominator": "100"
+            },
+            "display_usd": "-2.33"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-23300",
+              "denominator": "483"
+            },
+            "display": "-48.24"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "base",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "1"
+            },
+            "display_usd": "5.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "17",
+              "denominator": "100"
+            },
+            "display_usd": "0.17"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "1700",
+              "denominator": "483"
+            },
+            "display": "3.52"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "base",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "15",
+              "denominator": "2"
+            },
+            "display_usd": "7.50"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "267",
+              "denominator": "100"
+            },
+            "display_usd": "2.67"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "8900",
+              "denominator": "161"
+            },
+            "display": "55.28"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "high",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "4",
+              "denominator": "1"
+            },
+            "display_usd": "4.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-83",
+              "denominator": "100"
+            },
+            "display_usd": "-0.83"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-8300",
+              "denominator": "483"
+            },
+            "display": "-17.18"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "high",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "8",
+              "denominator": "1"
+            },
+            "display_usd": "8.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "317",
+              "denominator": "100"
+            },
+            "display_usd": "3.17"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "31700",
+              "denominator": "483"
+            },
+            "display": "65.63"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "high",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "12",
+              "denominator": "1"
+            },
+            "display_usd": "12.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "717",
+              "denominator": "100"
+            },
+            "display_usd": "7.17"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "23900",
+              "denominator": "161"
+            },
+            "display": "148.45"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "low",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-483",
+              "denominator": "100"
+            },
+            "display_usd": "-4.83"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "low",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-483",
+              "denominator": "100"
+            },
+            "display_usd": "-4.83"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "low",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-483",
+              "denominator": "100"
+            },
+            "display_usd": "-4.83"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "base",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "1"
+            },
+            "display_usd": "5.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "17",
+              "denominator": "100"
+            },
+            "display_usd": "0.17"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "1700",
+              "denominator": "483"
+            },
+            "display": "3.52"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "base",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "10",
+              "denominator": "1"
+            },
+            "display_usd": "10.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "517",
+              "denominator": "100"
+            },
+            "display_usd": "5.17"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "51700",
+              "denominator": "483"
+            },
+            "display": "107.04"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "base",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "15",
+              "denominator": "1"
+            },
+            "display_usd": "15.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "1017",
+              "denominator": "100"
+            },
+            "display_usd": "10.17"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "33900",
+              "denominator": "161"
+            },
+            "display": "210.56"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "high",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "8",
+              "denominator": "1"
+            },
+            "display_usd": "8.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "317",
+              "denominator": "100"
+            },
+            "display_usd": "3.17"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "31700",
+              "denominator": "483"
+            },
+            "display": "65.63"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "high",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "16",
+              "denominator": "1"
+            },
+            "display_usd": "16.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "1117",
+              "denominator": "100"
+            },
+            "display_usd": "11.17"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "111700",
+              "denominator": "483"
+            },
+            "display": "231.26"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "high",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "24",
+              "denominator": "1"
+            },
+            "display_usd": "24.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "1917",
+              "denominator": "100"
+            },
+            "display_usd": "19.17"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "483",
+              "denominator": "100"
+            },
+            "display_usd": "4.83"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "63900",
+              "denominator": "161"
+            },
+            "display": "396.89"
+          }
+        }
+      ],
+      "rounding": "Aggregate display only: integer rational half-even cents; ROI percent two places.",
+      "formula": "request_count * baseline_minutes * automation_share * realization_share * hourly_rate / 60; net = gross - cost; ROI_percent = net / cost * 100 when cost > 0",
+      "limitations": [
+        "Usage and rates are fictional fixtures, not provider or customer telemetry.",
+        "Usage-identified requests are distinct request IDs, not completed or successful tasks.",
+        "Benefits and ROI are modeled assumptions, not observed savings or business outcomes.",
+        "Low/base/high ranges are authored sensitivity ranges, not statistical confidence intervals.",
+        "Activity flags are declared count comparisons, not predictive customer health scores.",
+        "Launcher profiles are trusted local policy selection, not authentication.",
+        "Recomputing the selected full-row digest requires preserved ledger receipts; compact references alone are insufficient."
+      ],
+      "runtime": {
+        "python": "3.13.1",
+        "sqlite": "3.48.0"
+      },
+      "source_sha256": {
+        "health/__init__.py": "1cdb16d6f2eebf2ac61bbe4a6c8816cb1ce8d54662fe36307176ec7680d00d10",
+        "health/core.py": "f09eca80ce01f402b83d3d2a4d6c8866a178a91b15a718d8a969e4cc3021790b",
+        "health/view.py": "e1b7ae3f26234da5be9ad36367de0473e84d1c7b3b7cb93f2cccdc9b27e3b144",
+        "health/__main__.py": "4795e2aa0135eb8f641bd5fe5a470f1dd252ab9ba80e30991c61d3c8d949d58d",
+        "costs/__init__.py": "123b2d4ae2717a8f202bd2758ffa402069c7f17e7b03cc7c877450630e56a821",
+        "costs/ledger.py": "75feaf14e958a8f8857f1bd1802e73262d6f199e481df0db16e10ec112bb3143",
+        "costs/contracts.py": "30b4ea679bd12b4a19c1cf03947ca5080d817fbc2dc5de0c81661ea4984a61e1"
+      }
+    },
+    "beta": {
+      "schema_version": 1,
+      "data_kind": "fictional_usage_and_modeled_roi",
+      "scenario_id": "fictional-window-v1",
+      "scenario_sha256": "89c5d3091ba992d0ed01b2d3be869aeda6f3eb1bfc0d5a384f3854398d8a72f6",
+      "assumptions": {
+        "schema_version": 1,
+        "data_kind": "fictional_roi_assumptions",
+        "scenario_id": "fictional-window-v1",
+        "previous_start": "2026-10-01T00:00:00Z",
+        "current_start": "2026-10-08T00:00:00Z",
+        "current_end": "2026-10-15T00:00:00Z",
+        "baseline_minutes": {
+          "low": "5",
+          "base": "15",
+          "high": "30"
+        },
+        "automation_share": {
+          "low": "0",
+          "base": "0.5",
+          "high": "0.8"
+        },
+        "realization_share": {
+          "low": "0.25",
+          "base": "0.5",
+          "high": "0.75"
+        },
+        "hourly_rate": "40",
+        "allocated_fixed_cost": "3",
+        "period_operating_cost": "1",
+        "minimum_requests": 3
+      },
+      "snapshot": {
+        "schema_version": 1,
+        "tenant_id": "beta",
+        "watermark": 1,
+        "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+        "currency": "USD",
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2026-10-15T00:00:00Z",
+        "snapshot_sha256": "1449fc47d9c9db4f213867438c8d250b9d11098f961efd5e5aeb61992b3d469d",
+        "events": [
+          {
+            "event_id": "current-input",
+            "request_id": "beta-only",
+            "metric": "input_tokens",
+            "quantity": 100000,
+            "occurred_at": "2026-10-09T00:00:00Z",
+            "charge": "50",
+            "receipt_id": "3fa3df93f531437b9c84e0c1e8f6ffb8",
+            "event_sha256": "9c08855780e6d154a69eacbd8dc1342ca799875906078f0d817c9034954a4681",
+            "ordinal": 1
+          }
+        ]
+      },
+      "period_seconds": 604800,
+      "previous": {
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2026-10-08T00:00:00Z",
+        "event_count": 0,
+        "usage_identified_requests": 0,
+        "metrics": {
+          "input_tokens": {
+            "event_count": 0,
+            "quantity": 0,
+            "charge": {
+              "exact": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "display_usd": "0.00"
+            }
+          },
+          "output_tokens": {
+            "event_count": 0,
+            "quantity": 0,
+            "charge": {
+              "exact": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "display_usd": "0.00"
+            }
+          },
+          "embedding_tokens": {
+            "event_count": 0,
+            "quantity": 0,
+            "charge": {
+              "exact": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "display_usd": "0.00"
+            }
+          },
+          "ocr_pages": {
+            "event_count": 0,
+            "quantity": 0,
+            "charge": {
+              "exact": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "display_usd": "0.00"
+            }
+          }
+        },
+        "ledger_cost": {
+          "exact": {
+            "numerator": "0",
+            "denominator": "1"
+          },
+          "display_usd": "0.00"
+        }
+      },
+      "current": {
+        "start": "2026-10-08T00:00:00Z",
+        "end": "2026-10-15T00:00:00Z",
+        "event_count": 1,
+        "usage_identified_requests": 1,
+        "metrics": {
+          "input_tokens": {
+            "event_count": 1,
+            "quantity": 100000,
+            "charge": {
+              "exact": {
+                "numerator": "50",
+                "denominator": "1"
+              },
+              "display_usd": "50.00"
+            }
+          },
+          "output_tokens": {
+            "event_count": 0,
+            "quantity": 0,
+            "charge": {
+              "exact": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "display_usd": "0.00"
+            }
+          },
+          "embedding_tokens": {
+            "event_count": 0,
+            "quantity": 0,
+            "charge": {
+              "exact": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "display_usd": "0.00"
+            }
+          },
+          "ocr_pages": {
+            "event_count": 0,
+            "quantity": 0,
+            "charge": {
+              "exact": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "display_usd": "0.00"
+            }
+          }
+        },
+        "ledger_cost": {
+          "exact": {
+            "numerator": "50",
+            "denominator": "1"
+          },
+          "display_usd": "50.00"
+        }
+      },
+      "activity": {
+        "request_count_change": 1,
+        "ratio_change": null,
+        "percent_change_display": null,
+        "flags": {
+          "no_current_usage": false,
+          "below_authored_minimum": true,
+          "declining_usage": false
+        }
+      },
+      "modeled_cost": {
+        "ledger": {
+          "exact": {
+            "numerator": "50",
+            "denominator": "1"
+          },
+          "display_usd": "50.00"
+        },
+        "allocated_fixed": {
+          "exact": {
+            "numerator": "3",
+            "denominator": "1"
+          },
+          "display_usd": "3.00"
+        },
+        "period_operating": {
+          "exact": {
+            "numerator": "1",
+            "denominator": "1"
+          },
+          "display_usd": "1.00"
+        },
+        "total": {
+          "exact": {
+            "numerator": "54",
+            "denominator": "1"
+          },
+          "display_usd": "54.00"
+        }
+      },
+      "modeled_base": {
+        "levels": {
+          "baseline_minutes": "base",
+          "automation_share": "base",
+          "realization_share": "base"
+        },
+        "gross_benefit": {
+          "exact": {
+            "numerator": "5",
+            "denominator": "2"
+          },
+          "display_usd": "2.50"
+        },
+        "net_benefit": {
+          "exact": {
+            "numerator": "-103",
+            "denominator": "2"
+          },
+          "display_usd": "-51.50"
+        },
+        "total_cost": {
+          "exact": {
+            "numerator": "54",
+            "denominator": "1"
+          },
+          "display_usd": "54.00"
+        },
+        "roi_percent": {
+          "exact": {
+            "numerator": "-2575",
+            "denominator": "27"
+          },
+          "display": "-95.37"
+        }
+      },
+      "modeled_range": {
+        "low": {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "low",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-54",
+              "denominator": "1"
+            },
+            "display_usd": "-54.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        "high": {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "high",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "12",
+              "denominator": "1"
+            },
+            "display_usd": "12.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-42",
+              "denominator": "1"
+            },
+            "display_usd": "-42.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-700",
+              "denominator": "9"
+            },
+            "display": "-77.78"
+          }
+        }
+      },
+      "sensitivity": [
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "low",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-54",
+              "denominator": "1"
+            },
+            "display_usd": "-54.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "low",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-54",
+              "denominator": "1"
+            },
+            "display_usd": "-54.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "low",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-54",
+              "denominator": "1"
+            },
+            "display_usd": "-54.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "base",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "12"
+            },
+            "display_usd": "0.42"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-643",
+              "denominator": "12"
+            },
+            "display_usd": "-53.58"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-16075",
+              "denominator": "162"
+            },
+            "display": "-99.23"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "base",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "6"
+            },
+            "display_usd": "0.83"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-319",
+              "denominator": "6"
+            },
+            "display_usd": "-53.17"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-7975",
+              "denominator": "81"
+            },
+            "display": "-98.46"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "base",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "4"
+            },
+            "display_usd": "1.25"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-211",
+              "denominator": "4"
+            },
+            "display_usd": "-52.75"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-5275",
+              "denominator": "54"
+            },
+            "display": "-97.69"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "high",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "2",
+              "denominator": "3"
+            },
+            "display_usd": "0.67"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-160",
+              "denominator": "3"
+            },
+            "display_usd": "-53.33"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-8000",
+              "denominator": "81"
+            },
+            "display": "-98.77"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "high",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "4",
+              "denominator": "3"
+            },
+            "display_usd": "1.33"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-158",
+              "denominator": "3"
+            },
+            "display_usd": "-52.67"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-7900",
+              "denominator": "81"
+            },
+            "display": "-97.53"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "high",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "2",
+              "denominator": "1"
+            },
+            "display_usd": "2.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-52",
+              "denominator": "1"
+            },
+            "display_usd": "-52.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-2600",
+              "denominator": "27"
+            },
+            "display": "-96.30"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "low",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-54",
+              "denominator": "1"
+            },
+            "display_usd": "-54.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "low",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-54",
+              "denominator": "1"
+            },
+            "display_usd": "-54.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "low",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-54",
+              "denominator": "1"
+            },
+            "display_usd": "-54.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "base",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "4"
+            },
+            "display_usd": "1.25"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-211",
+              "denominator": "4"
+            },
+            "display_usd": "-52.75"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-5275",
+              "denominator": "54"
+            },
+            "display": "-97.69"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "base",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "2"
+            },
+            "display_usd": "2.50"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-103",
+              "denominator": "2"
+            },
+            "display_usd": "-51.50"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-2575",
+              "denominator": "27"
+            },
+            "display": "-95.37"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "base",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "15",
+              "denominator": "4"
+            },
+            "display_usd": "3.75"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-201",
+              "denominator": "4"
+            },
+            "display_usd": "-50.25"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-1675",
+              "denominator": "18"
+            },
+            "display": "-93.06"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "high",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "2",
+              "denominator": "1"
+            },
+            "display_usd": "2.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-52",
+              "denominator": "1"
+            },
+            "display_usd": "-52.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-2600",
+              "denominator": "27"
+            },
+            "display": "-96.30"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "high",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "4",
+              "denominator": "1"
+            },
+            "display_usd": "4.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-50",
+              "denominator": "1"
+            },
+            "display_usd": "-50.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-2500",
+              "denominator": "27"
+            },
+            "display": "-92.59"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "high",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "6",
+              "denominator": "1"
+            },
+            "display_usd": "6.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-48",
+              "denominator": "1"
+            },
+            "display_usd": "-48.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-800",
+              "denominator": "9"
+            },
+            "display": "-88.89"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "low",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-54",
+              "denominator": "1"
+            },
+            "display_usd": "-54.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "low",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-54",
+              "denominator": "1"
+            },
+            "display_usd": "-54.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "low",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-54",
+              "denominator": "1"
+            },
+            "display_usd": "-54.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "base",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "2"
+            },
+            "display_usd": "2.50"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-103",
+              "denominator": "2"
+            },
+            "display_usd": "-51.50"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-2575",
+              "denominator": "27"
+            },
+            "display": "-95.37"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "base",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "1"
+            },
+            "display_usd": "5.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-49",
+              "denominator": "1"
+            },
+            "display_usd": "-49.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-2450",
+              "denominator": "27"
+            },
+            "display": "-90.74"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "base",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "15",
+              "denominator": "2"
+            },
+            "display_usd": "7.50"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-93",
+              "denominator": "2"
+            },
+            "display_usd": "-46.50"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-775",
+              "denominator": "9"
+            },
+            "display": "-86.11"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "high",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "4",
+              "denominator": "1"
+            },
+            "display_usd": "4.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-50",
+              "denominator": "1"
+            },
+            "display_usd": "-50.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-2500",
+              "denominator": "27"
+            },
+            "display": "-92.59"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "high",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "8",
+              "denominator": "1"
+            },
+            "display_usd": "8.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-46",
+              "denominator": "1"
+            },
+            "display_usd": "-46.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-2300",
+              "denominator": "27"
+            },
+            "display": "-85.19"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "high",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "12",
+              "denominator": "1"
+            },
+            "display_usd": "12.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-42",
+              "denominator": "1"
+            },
+            "display_usd": "-42.00"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "54",
+              "denominator": "1"
+            },
+            "display_usd": "54.00"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-700",
+              "denominator": "9"
+            },
+            "display": "-77.78"
+          }
+        }
+      ],
+      "rounding": "Aggregate display only: integer rational half-even cents; ROI percent two places.",
+      "formula": "request_count * baseline_minutes * automation_share * realization_share * hourly_rate / 60; net = gross - cost; ROI_percent = net / cost * 100 when cost > 0",
+      "limitations": [
+        "Usage and rates are fictional fixtures, not provider or customer telemetry.",
+        "Usage-identified requests are distinct request IDs, not completed or successful tasks.",
+        "Benefits and ROI are modeled assumptions, not observed savings or business outcomes.",
+        "Low/base/high ranges are authored sensitivity ranges, not statistical confidence intervals.",
+        "Activity flags are declared count comparisons, not predictive customer health scores.",
+        "Launcher profiles are trusted local policy selection, not authentication.",
+        "Recomputing the selected full-row digest requires preserved ledger receipts; compact references alone are insufficient."
+      ],
+      "runtime": {
+        "python": "3.13.1",
+        "sqlite": "3.48.0"
+      },
+      "source_sha256": {
+        "health/__init__.py": "1cdb16d6f2eebf2ac61bbe4a6c8816cb1ce8d54662fe36307176ec7680d00d10",
+        "health/core.py": "f09eca80ce01f402b83d3d2a4d6c8866a178a91b15a718d8a969e4cc3021790b",
+        "health/view.py": "e1b7ae3f26234da5be9ad36367de0473e84d1c7b3b7cb93f2cccdc9b27e3b144",
+        "health/__main__.py": "4795e2aa0135eb8f641bd5fe5a470f1dd252ab9ba80e30991c61d3c8d949d58d",
+        "costs/__init__.py": "123b2d4ae2717a8f202bd2758ffa402069c7f17e7b03cc7c877450630e56a821",
+        "costs/ledger.py": "75feaf14e958a8f8857f1bd1802e73262d6f199e481df0db16e10ec112bb3143",
+        "costs/contracts.py": "30b4ea679bd12b4a19c1cf03947ca5080d817fbc2dc5de0c81661ea4984a61e1"
+      }
+    },
+    "later": {
+      "schema_version": 1,
+      "data_kind": "fictional_usage_and_modeled_roi",
+      "scenario_id": "fictional-window-v1",
+      "scenario_sha256": "89c5d3091ba992d0ed01b2d3be869aeda6f3eb1bfc0d5a384f3854398d8a72f6",
+      "assumptions": {
+        "schema_version": 1,
+        "data_kind": "fictional_roi_assumptions",
+        "scenario_id": "fictional-window-v1",
+        "previous_start": "2026-10-01T00:00:00Z",
+        "current_start": "2026-10-08T00:00:00Z",
+        "current_end": "2026-10-15T00:00:00Z",
+        "baseline_minutes": {
+          "low": "5",
+          "base": "15",
+          "high": "30"
+        },
+        "automation_share": {
+          "low": "0",
+          "base": "0.5",
+          "high": "0.8"
+        },
+        "realization_share": {
+          "low": "0.25",
+          "base": "0.5",
+          "high": "0.75"
+        },
+        "hourly_rate": "40",
+        "allocated_fixed_cost": "3",
+        "period_operating_cost": "1",
+        "minimum_requests": 3
+      },
+      "snapshot": {
+        "schema_version": 1,
+        "tenant_id": "alpha",
+        "watermark": 7,
+        "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+        "currency": "USD",
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2026-10-15T00:00:00Z",
+        "snapshot_sha256": "34d8bb9b940ae6a76bda99fd2757d09323f011420a84d7989b1f62a8990d0148",
+        "events": [
+          {
+            "event_id": "previous-1",
+            "request_id": "previous-one",
+            "metric": "input_tokens",
+            "quantity": 1000,
+            "occurred_at": "2026-10-02T00:00:00Z",
+            "charge": "0.5",
+            "receipt_id": "81f99b4f9b5f4adf9abdbb964478eed9",
+            "event_sha256": "63b252201396ddf6f124a684bdc59f40e5fd8c64c0da050f9e51c69e31c197a8",
+            "ordinal": 1
+          },
+          {
+            "event_id": "previous-2",
+            "request_id": "previous-two",
+            "metric": "input_tokens",
+            "quantity": 200,
+            "occurred_at": "2026-10-03T00:00:00Z",
+            "charge": "0.1",
+            "receipt_id": "4d8c19fb91064fc08209e2d5ef69baad",
+            "event_sha256": "8befbedf70f732afeee4def793cc412037b0a5fd4e011ff20a4c877d5b2932e5",
+            "ordinal": 2
+          },
+          {
+            "event_id": "previous-3",
+            "request_id": "previous-three",
+            "metric": "ocr_pages",
+            "quantity": 1,
+            "occurred_at": "2026-10-04T00:00:00Z",
+            "charge": "0.015",
+            "receipt_id": "3ab7b82724954945ab33f0e5255a118d",
+            "event_sha256": "b07698e969c7a3fa59c71f45c2b4e488d97161c167d348cceede6a0a5f8dc757",
+            "ordinal": 3
+          },
+          {
+            "event_id": "current-input",
+            "request_id": "current-one",
+            "metric": "input_tokens",
+            "quantity": 1000,
+            "occurred_at": "2026-10-09T00:00:00Z",
+            "charge": "0.5",
+            "receipt_id": "f65ca091c6e9450490d08f1d35a4fbdf",
+            "event_sha256": "3aec0ffcff7974a51eb1efe8fe5552d4b1d434f48cbf9c81d326ce4be760e4ee",
+            "ordinal": 4
+          },
+          {
+            "event_id": "current-output",
+            "request_id": "current-one",
+            "metric": "output_tokens",
+            "quantity": 200,
+            "occurred_at": "2026-10-09T00:00:00Z",
+            "charge": "0.3",
+            "receipt_id": "12a413f978774157aac8a59fcd1d7980",
+            "event_sha256": "75c6385399201649b30de8b95768ec0ebd9bdbc731845e09dfb4b8da23741816",
+            "ordinal": 5
+          },
+          {
+            "event_id": "current-ocr",
+            "request_id": "current-two",
+            "metric": "ocr_pages",
+            "quantity": 2,
+            "occurred_at": "2026-10-10T00:00:00Z",
+            "charge": "0.03",
+            "receipt_id": "0638344522c7445cb591e71f78470d27",
+            "event_sha256": "a217b65e7ce411f36799d15465a0177064866eaf4aaab6ec64f0a33eb0c9487f",
+            "ordinal": 6
+          },
+          {
+            "event_id": "late-current",
+            "request_id": "current-three",
+            "metric": "ocr_pages",
+            "quantity": 1,
+            "occurred_at": "2026-10-11T00:00:00Z",
+            "charge": "0.015",
+            "receipt_id": "c5d3da1b0f204aa984260383cd39e1a8",
+            "event_sha256": "372e146809fc5f1cf2dc793503a027c2ea7a05c90339f88a776cd02f4b0c5e43",
+            "ordinal": 7
+          }
+        ]
+      },
+      "period_seconds": 604800,
+      "previous": {
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2026-10-08T00:00:00Z",
+        "event_count": 3,
+        "usage_identified_requests": 3,
+        "metrics": {
+          "input_tokens": {
+            "event_count": 2,
+            "quantity": 1200,
+            "charge": {
+              "exact": {
+                "numerator": "3",
+                "denominator": "5"
+              },
+              "display_usd": "0.60"
+            }
+          },
+          "output_tokens": {
+            "event_count": 0,
+            "quantity": 0,
+            "charge": {
+              "exact": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "display_usd": "0.00"
+            }
+          },
+          "embedding_tokens": {
+            "event_count": 0,
+            "quantity": 0,
+            "charge": {
+              "exact": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "display_usd": "0.00"
+            }
+          },
+          "ocr_pages": {
+            "event_count": 1,
+            "quantity": 1,
+            "charge": {
+              "exact": {
+                "numerator": "3",
+                "denominator": "200"
+              },
+              "display_usd": "0.02"
+            }
+          }
+        },
+        "ledger_cost": {
+          "exact": {
+            "numerator": "123",
+            "denominator": "200"
+          },
+          "display_usd": "0.62"
+        }
+      },
+      "current": {
+        "start": "2026-10-08T00:00:00Z",
+        "end": "2026-10-15T00:00:00Z",
+        "event_count": 4,
+        "usage_identified_requests": 3,
+        "metrics": {
+          "input_tokens": {
+            "event_count": 1,
+            "quantity": 1000,
+            "charge": {
+              "exact": {
+                "numerator": "1",
+                "denominator": "2"
+              },
+              "display_usd": "0.50"
+            }
+          },
+          "output_tokens": {
+            "event_count": 1,
+            "quantity": 200,
+            "charge": {
+              "exact": {
+                "numerator": "3",
+                "denominator": "10"
+              },
+              "display_usd": "0.30"
+            }
+          },
+          "embedding_tokens": {
+            "event_count": 0,
+            "quantity": 0,
+            "charge": {
+              "exact": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "display_usd": "0.00"
+            }
+          },
+          "ocr_pages": {
+            "event_count": 2,
+            "quantity": 3,
+            "charge": {
+              "exact": {
+                "numerator": "9",
+                "denominator": "200"
+              },
+              "display_usd": "0.04"
+            }
+          }
+        },
+        "ledger_cost": {
+          "exact": {
+            "numerator": "169",
+            "denominator": "200"
+          },
+          "display_usd": "0.84"
+        }
+      },
+      "activity": {
+        "request_count_change": 0,
+        "ratio_change": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "percent_change_display": "0.00",
+        "flags": {
+          "no_current_usage": false,
+          "below_authored_minimum": false,
+          "declining_usage": false
+        }
+      },
+      "modeled_cost": {
+        "ledger": {
+          "exact": {
+            "numerator": "169",
+            "denominator": "200"
+          },
+          "display_usd": "0.84"
+        },
+        "allocated_fixed": {
+          "exact": {
+            "numerator": "3",
+            "denominator": "1"
+          },
+          "display_usd": "3.00"
+        },
+        "period_operating": {
+          "exact": {
+            "numerator": "1",
+            "denominator": "1"
+          },
+          "display_usd": "1.00"
+        },
+        "total": {
+          "exact": {
+            "numerator": "969",
+            "denominator": "200"
+          },
+          "display_usd": "4.84"
+        }
+      },
+      "modeled_base": {
+        "levels": {
+          "baseline_minutes": "base",
+          "automation_share": "base",
+          "realization_share": "base"
+        },
+        "gross_benefit": {
+          "exact": {
+            "numerator": "15",
+            "denominator": "2"
+          },
+          "display_usd": "7.50"
+        },
+        "net_benefit": {
+          "exact": {
+            "numerator": "531",
+            "denominator": "200"
+          },
+          "display_usd": "2.66"
+        },
+        "total_cost": {
+          "exact": {
+            "numerator": "969",
+            "denominator": "200"
+          },
+          "display_usd": "4.84"
+        },
+        "roi_percent": {
+          "exact": {
+            "numerator": "17700",
+            "denominator": "323"
+          },
+          "display": "54.80"
+        }
+      },
+      "modeled_range": {
+        "low": {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "low",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-969",
+              "denominator": "200"
+            },
+            "display_usd": "-4.84"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        "high": {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "high",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "36",
+              "denominator": "1"
+            },
+            "display_usd": "36.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "6231",
+              "denominator": "200"
+            },
+            "display_usd": "31.16"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "207700",
+              "denominator": "323"
+            },
+            "display": "643.03"
+          }
+        }
+      },
+      "sensitivity": [
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "low",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-969",
+              "denominator": "200"
+            },
+            "display_usd": "-4.84"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "low",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-969",
+              "denominator": "200"
+            },
+            "display_usd": "-4.84"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "low",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-969",
+              "denominator": "200"
+            },
+            "display_usd": "-4.84"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "base",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "4"
+            },
+            "display_usd": "1.25"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-719",
+              "denominator": "200"
+            },
+            "display_usd": "-3.60"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-71900",
+              "denominator": "969"
+            },
+            "display": "-74.20"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "base",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "5",
+              "denominator": "2"
+            },
+            "display_usd": "2.50"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-469",
+              "denominator": "200"
+            },
+            "display_usd": "-2.34"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-46900",
+              "denominator": "969"
+            },
+            "display": "-48.40"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "base",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "15",
+              "denominator": "4"
+            },
+            "display_usd": "3.75"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-219",
+              "denominator": "200"
+            },
+            "display_usd": "-1.10"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-7300",
+              "denominator": "323"
+            },
+            "display": "-22.60"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "high",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "2",
+              "denominator": "1"
+            },
+            "display_usd": "2.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-569",
+              "denominator": "200"
+            },
+            "display_usd": "-2.84"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-56900",
+              "denominator": "969"
+            },
+            "display": "-58.72"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "high",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "4",
+              "denominator": "1"
+            },
+            "display_usd": "4.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-169",
+              "denominator": "200"
+            },
+            "display_usd": "-0.84"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-16900",
+              "denominator": "969"
+            },
+            "display": "-17.44"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "low",
+            "automation_share": "high",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "6",
+              "denominator": "1"
+            },
+            "display_usd": "6.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "231",
+              "denominator": "200"
+            },
+            "display_usd": "1.16"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "7700",
+              "denominator": "323"
+            },
+            "display": "23.84"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "low",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-969",
+              "denominator": "200"
+            },
+            "display_usd": "-4.84"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "low",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-969",
+              "denominator": "200"
+            },
+            "display_usd": "-4.84"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "low",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-969",
+              "denominator": "200"
+            },
+            "display_usd": "-4.84"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "base",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "15",
+              "denominator": "4"
+            },
+            "display_usd": "3.75"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-219",
+              "denominator": "200"
+            },
+            "display_usd": "-1.10"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-7300",
+              "denominator": "323"
+            },
+            "display": "-22.60"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "base",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "15",
+              "denominator": "2"
+            },
+            "display_usd": "7.50"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "531",
+              "denominator": "200"
+            },
+            "display_usd": "2.66"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "17700",
+              "denominator": "323"
+            },
+            "display": "54.80"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "base",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "45",
+              "denominator": "4"
+            },
+            "display_usd": "11.25"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "1281",
+              "denominator": "200"
+            },
+            "display_usd": "6.40"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "42700",
+              "denominator": "323"
+            },
+            "display": "132.20"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "high",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "6",
+              "denominator": "1"
+            },
+            "display_usd": "6.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "231",
+              "denominator": "200"
+            },
+            "display_usd": "1.16"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "7700",
+              "denominator": "323"
+            },
+            "display": "23.84"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "high",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "12",
+              "denominator": "1"
+            },
+            "display_usd": "12.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "1431",
+              "denominator": "200"
+            },
+            "display_usd": "7.16"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "47700",
+              "denominator": "323"
+            },
+            "display": "147.68"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "base",
+            "automation_share": "high",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "18",
+              "denominator": "1"
+            },
+            "display_usd": "18.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "2631",
+              "denominator": "200"
+            },
+            "display_usd": "13.16"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "87700",
+              "denominator": "323"
+            },
+            "display": "271.52"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "low",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-969",
+              "denominator": "200"
+            },
+            "display_usd": "-4.84"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "low",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-969",
+              "denominator": "200"
+            },
+            "display_usd": "-4.84"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "low",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "0",
+              "denominator": "1"
+            },
+            "display_usd": "0.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "-969",
+              "denominator": "200"
+            },
+            "display_usd": "-4.84"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "-100",
+              "denominator": "1"
+            },
+            "display": "-100.00"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "base",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "15",
+              "denominator": "2"
+            },
+            "display_usd": "7.50"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "531",
+              "denominator": "200"
+            },
+            "display_usd": "2.66"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "17700",
+              "denominator": "323"
+            },
+            "display": "54.80"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "base",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "15",
+              "denominator": "1"
+            },
+            "display_usd": "15.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "2031",
+              "denominator": "200"
+            },
+            "display_usd": "10.16"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "67700",
+              "denominator": "323"
+            },
+            "display": "209.60"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "base",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "45",
+              "denominator": "2"
+            },
+            "display_usd": "22.50"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "3531",
+              "denominator": "200"
+            },
+            "display_usd": "17.66"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "117700",
+              "denominator": "323"
+            },
+            "display": "364.40"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "high",
+            "realization_share": "low"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "12",
+              "denominator": "1"
+            },
+            "display_usd": "12.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "1431",
+              "denominator": "200"
+            },
+            "display_usd": "7.16"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "47700",
+              "denominator": "323"
+            },
+            "display": "147.68"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "high",
+            "realization_share": "base"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "24",
+              "denominator": "1"
+            },
+            "display_usd": "24.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "3831",
+              "denominator": "200"
+            },
+            "display_usd": "19.16"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "127700",
+              "denominator": "323"
+            },
+            "display": "395.36"
+          }
+        },
+        {
+          "levels": {
+            "baseline_minutes": "high",
+            "automation_share": "high",
+            "realization_share": "high"
+          },
+          "gross_benefit": {
+            "exact": {
+              "numerator": "36",
+              "denominator": "1"
+            },
+            "display_usd": "36.00"
+          },
+          "net_benefit": {
+            "exact": {
+              "numerator": "6231",
+              "denominator": "200"
+            },
+            "display_usd": "31.16"
+          },
+          "total_cost": {
+            "exact": {
+              "numerator": "969",
+              "denominator": "200"
+            },
+            "display_usd": "4.84"
+          },
+          "roi_percent": {
+            "exact": {
+              "numerator": "207700",
+              "denominator": "323"
+            },
+            "display": "643.03"
+          }
+        }
+      ],
+      "rounding": "Aggregate display only: integer rational half-even cents; ROI percent two places.",
+      "formula": "request_count * baseline_minutes * automation_share * realization_share * hourly_rate / 60; net = gross - cost; ROI_percent = net / cost * 100 when cost > 0",
+      "limitations": [
+        "Usage and rates are fictional fixtures, not provider or customer telemetry.",
+        "Usage-identified requests are distinct request IDs, not completed or successful tasks.",
+        "Benefits and ROI are modeled assumptions, not observed savings or business outcomes.",
+        "Low/base/high ranges are authored sensitivity ranges, not statistical confidence intervals.",
+        "Activity flags are declared count comparisons, not predictive customer health scores.",
+        "Launcher profiles are trusted local policy selection, not authentication.",
+        "Recomputing the selected full-row digest requires preserved ledger receipts; compact references alone are insufficient."
+      ],
+      "runtime": {
+        "python": "3.13.1",
+        "sqlite": "3.48.0"
+      },
+      "source_sha256": {
+        "health/__init__.py": "1cdb16d6f2eebf2ac61bbe4a6c8816cb1ce8d54662fe36307176ec7680d00d10",
+        "health/core.py": "f09eca80ce01f402b83d3d2a4d6c8866a178a91b15a718d8a969e4cc3021790b",
+        "health/view.py": "e1b7ae3f26234da5be9ad36367de0473e84d1c7b3b7cb93f2cccdc9b27e3b144",
+        "health/__main__.py": "4795e2aa0135eb8f641bd5fe5a470f1dd252ab9ba80e30991c61d3c8d949d58d",
+        "costs/__init__.py": "123b2d4ae2717a8f202bd2758ffa402069c7f17e7b03cc7c877450630e56a821",
+        "costs/ledger.py": "75feaf14e958a8f8857f1bd1802e73262d6f199e481df0db16e10ec112bb3143",
+        "costs/contracts.py": "30b4ea679bd12b4a19c1cf03947ca5080d817fbc2dc5de0c81661ea4984a61e1"
+      }
+    }
+  },
+  "artifacts": {
+    "alpha_report_sha256": "63f9d074dfbdb9aca0d164677f38275afd1a26d1d3936218198e6925e75f7869",
+    "alpha_html_sha256": "3588663dad9642da74fae8b72c6f5fe4ce8b8b82ca5f2c45ce1f2a630549148f"
+  },
+  "fixture_sha256": {
+    "events.json": "e8b92e94c307b3f4489fbec446ef23c9c40ae0955abc7ef84045cd1d33727c18",
+    "scenario.json": "1492829ad54ee94e0cd15b2c90cd9d0d590c781b1b98fdc88cc05afea74e20dc"
+  },
+  "source_sha256": {
+    "health/__init__.py": "1cdb16d6f2eebf2ac61bbe4a6c8816cb1ce8d54662fe36307176ec7680d00d10",
+    "health/core.py": "f09eca80ce01f402b83d3d2a4d6c8866a178a91b15a718d8a969e4cc3021790b",
+    "health/view.py": "e1b7ae3f26234da5be9ad36367de0473e84d1c7b3b7cb93f2cccdc9b27e3b144",
+    "health/__main__.py": "4795e2aa0135eb8f641bd5fe5a470f1dd252ab9ba80e30991c61d3c8d949d58d",
+    "costs/__init__.py": "123b2d4ae2717a8f202bd2758ffa402069c7f17e7b03cc7c877450630e56a821",
+    "costs/ledger.py": "75feaf14e958a8f8857f1bd1802e73262d6f199e481df0db16e10ec112bb3143",
+    "costs/contracts.py": "30b4ea679bd12b4a19c1cf03947ca5080d817fbc2dc5de0c81661ea4984a61e1"
+  },
+  "scenario_id": "fictional-window-v1",
+  "script_sha256": "56cbbad2802e6d9bde951e06703e3800210a89934d3425f70b788ac36f91fe08",
+  "limitations": [
+    "All usage, rates and assumptions are fictional; no actual customer, telemetry, savings or ROI.",
+    "Request IDs identify usage, not successful/completed tasks; all benefit is modeled.",
+    "Trusted launcher profiles are not authentication. Exported artifacts are plaintext and inherit no live authorization.",
+    "Socket audit denial is a Python subprocess guard, not an OS network sandbox.",
+    "Process tests and snapshot consistency do not establish production throughput or availability.",
+    "No owner study, human review, registry release or statistical confidence interval is inferred."
+  ]
+}

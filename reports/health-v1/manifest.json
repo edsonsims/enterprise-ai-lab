@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "frozen_at": "2026-10-23T12:36:18.711964+00:00",
+  "data_kind": "authored_fictional_usage_and_explicit_scenario_model",
+  "source_sha256": {
+    "health/__init__.py": "1cdb16d6f2eebf2ac61bbe4a6c8816cb1ce8d54662fe36307176ec7680d00d10",
+    "health/core.py": "f09eca80ce01f402b83d3d2a4d6c8866a178a91b15a718d8a969e4cc3021790b",
+    "health/view.py": "e1b7ae3f26234da5be9ad36367de0473e84d1c7b3b7cb93f2cccdc9b27e3b144",
+    "health/__main__.py": "4795e2aa0135eb8f641bd5fe5a470f1dd252ab9ba80e30991c61d3c8d949d58d",
+    "costs/__init__.py": "123b2d4ae2717a8f202bd2758ffa402069c7f17e7b03cc7c877450630e56a821",
+    "costs/ledger.py": "75feaf14e958a8f8857f1bd1802e73262d6f199e481df0db16e10ec112bb3143",
+    "costs/contracts.py": "30b4ea679bd12b4a19c1cf03947ca5080d817fbc2dc5de0c81661ea4984a61e1"
+  },
+  "fixture_sha256": {
+    "events.json": "e8b92e94c307b3f4489fbec446ef23c9c40ae0955abc7ef84045cd1d33727c18",
+    "scenario.json": "1492829ad54ee94e0cd15b2c90cd9d0d590c781b1b98fdc88cc05afea74e20dc"
+  },
+  "files": {
+    "report.json": "63f9d074dfbdb9aca0d164677f38275afd1a26d1d3936218198e6925e75f7869",
+    "demo.json": "fc869bf1bbc9c2db42ab9c959f2ececa66cc95f1978ad4eb77ced44a70346b43",
+    "beta.json": "5312d0ae30676217b0109e47815355148f8606a81b593849153f600384f785e3",
+    "alpha.html": "3588663dad9642da74fae8b72c6f5fe4ce8b8b82ca5f2c45ce1f2a630549148f",
+    "later.json": "88804a998e94f316d84a3d2247c2b813859678cb0f442a85c86bab0331627c20",
+    "alpha.json": "63f9d074dfbdb9aca0d164677f38275afd1a26d1d3936218198e6925e75f7869"
+  },
+  "artifact_aliases": {
+    "report.json": "Byte-identical alpha.json; preserves the generated alpha.html relative download target."
+  },
+  "limits": "No actual customer, successful-task measurement, observed savings/ROI, statistical confidence, human review/study or package registry release."
+}

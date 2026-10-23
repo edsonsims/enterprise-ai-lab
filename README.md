@@ -23,6 +23,7 @@ separate controlled experiment, with its original reports preserved.
 [SQLite MCP gateway](#give-a-tool-the-rows-it-can-read) ·
 [Read-only failover](#lose-a-connection-without-bypassing-a-refusal) ·
 [Fictional cost ledger](#count-usage-before-rounding-cost) ·
+[Activity and modeled ROI](#separate-activity-from-modeled-benefit) ·
 [Scoped redaction proxy](#redact-before-a-local-tool-and-restore-in-context) ·
 [Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
 
@@ -389,6 +390,34 @@ its receipt. Launcher profiles enforce local tenant/role policy; they are not lo
 
 [Accounting contract and exercises](docs/cost-attribution.md) ·
 [Recorded fictional run](reports/costs-v1)
+
+## Separate activity from modeled benefit
+
+The activity dashboard reads one consistent tenant-local cost snapshot. It shows
+fictional event counts, distinct usage request IDs and exact ledger charges beside
+an explicitly assumed labor-benefit model. A request ID is not a completed task;
+the dashboard does not infer successful work or actual customer health.
+
+```sh
+python scripts/health_demo.py \
+  --work-dir .local/health-demo --out reports/local/health-demo.json
+python -m unittest discover -s tests/health -v
+```
+
+Open `.local/health-demo/alpha/index.html` locally. The self-contained page needs
+no server, model, external assets or network. Its 27 sensitivity combinations use
+exact rational arithmetic and declared low/base/high assumptions; those ranges
+are not statistical confidence intervals. The authored base scenario models
+`5.00` gross benefit against `4.83` total cost, giving `0.17` net and `3.52%` ROI.
+These are fictional scenario calculations, not measured savings or a business result.
+
+The actual CLI story checks tenant isolation, observer denial, identical repeated
+exports, a later ledger append and refusal to overwrite the earlier snapshot.
+Exports are private plaintext files; copying them grants access to their contents.
+Trusted launcher profiles remain separate from authentication.
+
+[Model, provenance and exercises](docs/activity-roi.md) ·
+[Authored inputs](public-data/health-v1) · [Recorded local run](reports/health-v1)
 
 ## Redact before a local tool and restore in context
 

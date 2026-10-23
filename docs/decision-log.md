@@ -441,3 +441,32 @@ creation, with a regression before any child service starts. Actual slow-peer
 checks also established that the 3-second HTTP budget is checked between reads;
 the 2-second I/O timeout can extend elapsed time. The documented bound preserves
 that observation instead of claiming a hard 3-second cutoff.
+
+
+## 2026-10-23: bind modeled benefit to one usage snapshot
+
+**Question.** Can an activity dashboard expose its financial assumptions without
+turning request counts into completed work or hypothetical labor into measured ROI?
+
+**Decision.** Read the existing tenant-authorized cost ledger once, retain its
+watermark, full-receipt selection digest and compact event references, then derive
+both equal-duration activity windows from that in-memory snapshot. Keep all benefit
+parameters explicitly authored. Use exact rational arithmetic for the27 scenarios,
+including divisions by60, with half-even rounding at the display boundary only.
+Zero denominators remain undefined. The self-contained private HTML is an export,
+not a new authenticated service; copied files carry no live access policy.
+
+**Tradeoff.** A few declared activity flags are inspectable but establish neither
+customer health nor prediction. Usage request IDs do not establish successful or
+completed tasks. Scenario extrema bound only the declared inputs, not real outcomes
+or statistical confidence. Compact report references cannot reconstruct the full-row
+digest without the original ledger receipts. Interrupted multi-file exports can
+leave an incomplete new directory; use a fresh path rather than overwriting history.
+
+**Evidence.** The [recorded CLI story](../reports/health-v1) preserves15 real processes:
+fictional tenant collisions, observer refusal, identical repeated snapshots, a later
+append and immutable previous exports. Focused tests check exact arithmetic, hostile
+Decimal contexts, single-read consistency, malformed input/storage and private files.
+Actual Chromium checks render desktop/mobile and keyboard-scrollable tables. A local
+0.11.0 wheel reproduces the scenario outside the checkout. No actual customer outcome,
+owner study, human review, model call or registry release is inferred.

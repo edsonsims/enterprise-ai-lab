@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "data_kind": "authored_fictional_usage",
+  "events": [
+    {
+      "profile": "alpha-operator",
+      "event": {
+        "event_id": "previous-1",
+        "request_id": "previous-one",
+        "metric": "input_tokens",
+        "quantity": 1000,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-02T00:00:00Z"
+      }
+    },
+    {
+      "profile": "alpha-operator",
+      "event": {
+        "event_id": "previous-2",
+        "request_id": "previous-two",
+        "metric": "input_tokens",
+        "quantity": 200,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-03T00:00:00Z"
+      }
+    },
+    {
+      "profile": "alpha-operator",
+      "event": {
+        "event_id": "previous-3",
+        "request_id": "previous-three",
+        "metric": "ocr_pages",
+        "quantity": 1,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-04T00:00:00Z"
+      }
+    },
+    {
+      "profile": "alpha-operator",
+      "event": {
+        "event_id": "current-input",
+        "request_id": "current-one",
+        "metric": "input_tokens",
+        "quantity": 1000,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-09T00:00:00Z"
+      }
+    },
+    {
+      "profile": "alpha-operator",
+      "event": {
+        "event_id": "current-output",
+        "request_id": "current-one",
+        "metric": "output_tokens",
+        "quantity": 200,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-09T00:00:00Z"
+      }
+    },
+    {
+      "profile": "alpha-operator",
+      "event": {
+        "event_id": "current-ocr",
+        "request_id": "current-two",
+        "metric": "ocr_pages",
+        "quantity": 2,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-10T00:00:00Z"
+      }
+    },
+    {
+      "profile": "beta-operator",
+      "event": {
+        "event_id": "current-input",
+        "request_id": "beta-only",
+        "metric": "input_tokens",
+        "quantity": 100000,
+        "rate_version": "fictional-v1",
+        "occurred_at": "2026-10-09T00:00:00Z"
+      }
+    }
+  ],
+  "late_event": {
+    "profile": "alpha-operator",
+    "event": {
+      "event_id": "late-current",
+      "request_id": "current-three",
+      "metric": "ocr_pages",
+      "quantity": 1,
+      "rate_version": "fictional-v1",
+      "occurred_at": "2026-10-11T00:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,1351 @@
+{
+  "schema_version": 1,
+  "data_kind": "fictional_usage_and_modeled_roi",
+  "scenario_id": "fictional-window-v1",
+  "scenario_sha256": "89c5d3091ba992d0ed01b2d3be869aeda6f3eb1bfc0d5a384f3854398d8a72f6",
+  "assumptions": {
+    "schema_version": 1,
+    "data_kind": "fictional_roi_assumptions",
+    "scenario_id": "fictional-window-v1",
+    "previous_start": "2026-10-01T00:00:00Z",
+    "current_start": "2026-10-08T00:00:00Z",
+    "current_end": "2026-10-15T00:00:00Z",
+    "baseline_minutes": {
+      "low": "5",
+      "base": "15",
+      "high": "30"
+    },
+    "automation_share": {
+      "low": "0",
+      "base": "0.5",
+      "high": "0.8"
+    },
+    "realization_share": {
+      "low": "0.25",
+      "base": "0.5",
+      "high": "0.75"
+    },
+    "hourly_rate": "40",
+    "allocated_fixed_cost": "3",
+    "period_operating_cost": "1",
+    "minimum_requests": 3
+  },
+  "snapshot": {
+    "schema_version": 1,
+    "tenant_id": "alpha",
+    "watermark": 6,
+    "rate_card_sha256": "d0c9725a1eae84a7f6dec653586b1343f3099293e36dca398df7da9e9b67be93",
+    "currency": "USD",
+    "start": "2026-10-01T00:00:00Z",
+    "end": "2026-10-15T00:00:00Z",
+    "snapshot_sha256": "c300dc4b219cd9778cc3c8d3ab1bff068019123e40afc6a1eeddde07c83d2083",
+    "events": [
+      {
+        "event_id": "previous-1",
+        "request_id": "previous-one",
+        "metric": "input_tokens",
+        "quantity": 1000,
+        "occurred_at": "2026-10-02T00:00:00Z",
+        "charge": "0.5",
+        "receipt_id": "81f99b4f9b5f4adf9abdbb964478eed9",
+        "event_sha256": "63b252201396ddf6f124a684bdc59f40e5fd8c64c0da050f9e51c69e31c197a8",
+        "ordinal": 1
+      },
+      {
+        "event_id": "previous-2",
+        "request_id": "previous-two",
+        "metric": "input_tokens",
+        "quantity": 200,
+        "occurred_at": "2026-10-03T00:00:00Z",
+        "charge": "0.1",
+        "receipt_id": "4d8c19fb91064fc08209e2d5ef69baad",
+        "event_sha256": "8befbedf70f732afeee4def793cc412037b0a5fd4e011ff20a4c877d5b2932e5",
+        "ordinal": 2
+      },
+      {
+        "event_id": "previous-3",
+        "request_id": "previous-three",
+        "metric": "ocr_pages",
+        "quantity": 1,
+        "occurred_at": "2026-10-04T00:00:00Z",
+        "charge": "0.015",
+        "receipt_id": "3ab7b82724954945ab33f0e5255a118d",
+        "event_sha256": "b07698e969c7a3fa59c71f45c2b4e488d97161c167d348cceede6a0a5f8dc757",
+        "ordinal": 3
+      },
+      {
+        "event_id": "current-input",
+        "request_id": "current-one",
+        "metric": "input_tokens",
+        "quantity": 1000,
+        "occurred_at": "2026-10-09T00:00:00Z",
+        "charge": "0.5",
+        "receipt_id": "f65ca091c6e9450490d08f1d35a4fbdf",
+        "event_sha256": "3aec0ffcff7974a51eb1efe8fe5552d4b1d434f48cbf9c81d326ce4be760e4ee",
+        "ordinal": 4
+      },
+      {
+        "event_id": "current-output",
+        "request_id": "current-one",
+        "metric": "output_tokens",
+        "quantity": 200,
+        "occurred_at": "2026-10-09T00:00:00Z",
+        "charge": "0.3",
+        "receipt_id": "12a413f978774157aac8a59fcd1d7980",
+        "event_sha256": "75c6385399201649b30de8b95768ec0ebd9bdbc731845e09dfb4b8da23741816",
+        "ordinal": 5
+      },
+      {
+        "event_id": "current-ocr",
+        "request_id": "current-two",
+        "metric": "ocr_pages",
+        "quantity": 2,
+        "occurred_at": "2026-10-10T00:00:00Z",
+        "charge": "0.03",
+        "receipt_id": "0638344522c7445cb591e71f78470d27",
+        "event_sha256": "a217b65e7ce411f36799d15465a0177064866eaf4aaab6ec64f0a33eb0c9487f",
+        "ordinal": 6
+      }
+    ]
+  },
+  "period_seconds": 604800,
+  "previous": {
+    "start": "2026-10-01T00:00:00Z",
+    "end": "2026-10-08T00:00:00Z",
+    "event_count": 3,
+    "usage_identified_requests": 3,
+    "metrics": {
+      "input_tokens": {
+        "event_count": 2,
+        "quantity": 1200,
+        "charge": {
+          "exact": {
+            "numerator": "3",
+            "denominator": "5"
+          },
+          "display_usd": "0.60"
+        }
+      },
+      "output_tokens": {
+        "event_count": 0,
+        "quantity": 0,
+        "charge": {
+          "exact": {
+            "numerator": "0",
+            "denominator": "1"
+          },
+          "display_usd": "0.00"
+        }
+      },
+      "embedding_tokens": {
+        "event_count": 0,
+        "quantity": 0,
+        "charge": {
+          "exact": {
+            "numerator": "0",
+            "denominator": "1"
+          },
+          "display_usd": "0.00"
+        }
+      },
+      "ocr_pages": {
+        "event_count": 1,
+        "quantity": 1,
+        "charge": {
+          "exact": {
+            "numerator": "3",
+            "denominator": "200"
+          },
+          "display_usd": "0.02"
+        }
+      }
+    },
+    "ledger_cost": {
+      "exact": {
+        "numerator": "123",
+        "denominator": "200"
+      },
+      "display_usd": "0.62"
+    }
+  },
+  "current": {
+    "start": "2026-10-08T00:00:00Z",
+    "end": "2026-10-15T00:00:00Z",
+    "event_count": 3,
+    "usage_identified_requests": 2,
+    "metrics": {
+      "input_tokens": {
+        "event_count": 1,
+        "quantity": 1000,
+        "charge": {
+          "exact": {
+            "numerator": "1",
+            "denominator": "2"
+          },
+          "display_usd": "0.50"
+        }
+      },
+      "output_tokens": {
+        "event_count": 1,
+        "quantity": 200,
+        "charge": {
+          "exact": {
+            "numerator": "3",
+            "denominator": "10"
+          },
+          "display_usd": "0.30"
+        }
+      },
+      "embedding_tokens": {
+        "event_count": 0,
+        "quantity": 0,
+        "charge": {
+          "exact": {
+            "numerator": "0",
+            "denominator": "1"
+          },
+          "display_usd": "0.00"
+        }
+      },
+      "ocr_pages": {
+        "event_count": 1,
+        "quantity": 2,
+        "charge": {
+          "exact": {
+            "numerator": "3",
+            "denominator": "100"
+          },
+          "display_usd": "0.03"
+        }
+      }
+    },
+    "ledger_cost": {
+      "exact": {
+        "numerator": "83",
+        "denominator": "100"
+      },
+      "display_usd": "0.83"
+    }
+  },
+  "activity": {
+    "request_count_change": -1,
+    "ratio_change": {
+      "numerator": "-1",
+      "denominator": "3"
+    },
+    "percent_change_display": "-33.33",
+    "flags": {
+      "no_current_usage": false,
+      "below_authored_minimum": true,
+      "declining_usage": true
+    }
+  },
+  "modeled_cost": {
+    "ledger": {
+      "exact": {
+        "numerator": "83",
+        "denominator": "100"
+      },
+      "display_usd": "0.83"
+    },
+    "allocated_fixed": {
+      "exact": {
+        "numerator": "3",
+        "denominator": "1"
+      },
+      "display_usd": "3.00"
+    },
+    "period_operating": {
+      "exact": {
+        "numerator": "1",
+        "denominator": "1"
+      },
+      "display_usd": "1.00"
+    },
+    "total": {
+      "exact": {
+        "numerator": "483",
+        "denominator": "100"
+      },
+      "display_usd": "4.83"
+    }
+  },
+  "modeled_base": {
+    "levels": {
+      "baseline_minutes": "base",
+      "automation_share": "base",
+      "realization_share": "base"
+    },
+    "gross_benefit": {
+      "exact": {
+        "numerator": "5",
+        "denominator": "1"
+      },
+      "display_usd": "5.00"
+    },
+    "net_benefit": {
+      "exact": {
+        "numerator": "17",
+        "denominator": "100"
+      },
+      "display_usd": "0.17"
+    },
+    "total_cost": {
+      "exact": {
+        "numerator": "483",
+        "denominator": "100"
+      },
+      "display_usd": "4.83"
+    },
+    "roi_percent": {
+      "exact": {
+        "numerator": "1700",
+        "denominator": "483"
+      },
+      "display": "3.52"
+    }
+  },
+  "modeled_range": {
+    "low": {
+      "levels": {
+        "baseline_minutes": "low",
+        "automation_share": "low",
+        "realization_share": "low"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "display_usd": "0.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-483",
+          "denominator": "100"
+        },
+        "display_usd": "-4.83"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-100",
+          "denominator": "1"
+        },
+        "display": "-100.00"
+      }
+    },
+    "high": {
+      "levels": {
+        "baseline_minutes": "high",
+        "automation_share": "high",
+        "realization_share": "high"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "24",
+          "denominator": "1"
+        },
+        "display_usd": "24.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "1917",
+          "denominator": "100"
+        },
+        "display_usd": "19.17"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "63900",
+          "denominator": "161"
+        },
+        "display": "396.89"
+      }
+    }
+  },
+  "sensitivity": [
+    {
+      "levels": {
+        "baseline_minutes": "low",
+        "automation_share": "low",
+        "realization_share": "low"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "display_usd": "0.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-483",
+          "denominator": "100"
+        },
+        "display_usd": "-4.83"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-100",
+          "denominator": "1"
+        },
+        "display": "-100.00"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "low",
+        "automation_share": "low",
+        "realization_share": "base"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "display_usd": "0.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-483",
+          "denominator": "100"
+        },
+        "display_usd": "-4.83"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-100",
+          "denominator": "1"
+        },
+        "display": "-100.00"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "low",
+        "automation_share": "low",
+        "realization_share": "high"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "display_usd": "0.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-483",
+          "denominator": "100"
+        },
+        "display_usd": "-4.83"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-100",
+          "denominator": "1"
+        },
+        "display": "-100.00"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "low",
+        "automation_share": "base",
+        "realization_share": "low"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "5",
+          "denominator": "6"
+        },
+        "display_usd": "0.83"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-1199",
+          "denominator": "300"
+        },
+        "display_usd": "-4.00"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-119900",
+          "denominator": "1449"
+        },
+        "display": "-82.75"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "low",
+        "automation_share": "base",
+        "realization_share": "base"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "5",
+          "denominator": "3"
+        },
+        "display_usd": "1.67"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-949",
+          "denominator": "300"
+        },
+        "display_usd": "-3.16"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-94900",
+          "denominator": "1449"
+        },
+        "display": "-65.49"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "low",
+        "automation_share": "base",
+        "realization_share": "high"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "5",
+          "denominator": "2"
+        },
+        "display_usd": "2.50"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-233",
+          "denominator": "100"
+        },
+        "display_usd": "-2.33"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-23300",
+          "denominator": "483"
+        },
+        "display": "-48.24"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "low",
+        "automation_share": "high",
+        "realization_share": "low"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "4",
+          "denominator": "3"
+        },
+        "display_usd": "1.33"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-1049",
+          "denominator": "300"
+        },
+        "display_usd": "-3.50"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-104900",
+          "denominator": "1449"
+        },
+        "display": "-72.39"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "low",
+        "automation_share": "high",
+        "realization_share": "base"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "8",
+          "denominator": "3"
+        },
+        "display_usd": "2.67"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-649",
+          "denominator": "300"
+        },
+        "display_usd": "-2.16"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-64900",
+          "denominator": "1449"
+        },
+        "display": "-44.79"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "low",
+        "automation_share": "high",
+        "realization_share": "high"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "display_usd": "4.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-83",
+          "denominator": "100"
+        },
+        "display_usd": "-0.83"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-8300",
+          "denominator": "483"
+        },
+        "display": "-17.18"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "base",
+        "automation_share": "low",
+        "realization_share": "low"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "display_usd": "0.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-483",
+          "denominator": "100"
+        },
+        "display_usd": "-4.83"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-100",
+          "denominator": "1"
+        },
+        "display": "-100.00"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "base",
+        "automation_share": "low",
+        "realization_share": "base"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "display_usd": "0.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-483",
+          "denominator": "100"
+        },
+        "display_usd": "-4.83"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-100",
+          "denominator": "1"
+        },
+        "display": "-100.00"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "base",
+        "automation_share": "low",
+        "realization_share": "high"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "display_usd": "0.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-483",
+          "denominator": "100"
+        },
+        "display_usd": "-4.83"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-100",
+          "denominator": "1"
+        },
+        "display": "-100.00"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "base",
+        "automation_share": "base",
+        "realization_share": "low"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "5",
+          "denominator": "2"
+        },
+        "display_usd": "2.50"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-233",
+          "denominator": "100"
+        },
+        "display_usd": "-2.33"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-23300",
+          "denominator": "483"
+        },
+        "display": "-48.24"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "base",
+        "automation_share": "base",
+        "realization_share": "base"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "5",
+          "denominator": "1"
+        },
+        "display_usd": "5.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "17",
+          "denominator": "100"
+        },
+        "display_usd": "0.17"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "1700",
+          "denominator": "483"
+        },
+        "display": "3.52"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "base",
+        "automation_share": "base",
+        "realization_share": "high"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "15",
+          "denominator": "2"
+        },
+        "display_usd": "7.50"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "267",
+          "denominator": "100"
+        },
+        "display_usd": "2.67"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "8900",
+          "denominator": "161"
+        },
+        "display": "55.28"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "base",
+        "automation_share": "high",
+        "realization_share": "low"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "display_usd": "4.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-83",
+          "denominator": "100"
+        },
+        "display_usd": "-0.83"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-8300",
+          "denominator": "483"
+        },
+        "display": "-17.18"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "base",
+        "automation_share": "high",
+        "realization_share": "base"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "8",
+          "denominator": "1"
+        },
+        "display_usd": "8.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "317",
+          "denominator": "100"
+        },
+        "display_usd": "3.17"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "31700",
+          "denominator": "483"
+        },
+        "display": "65.63"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "base",
+        "automation_share": "high",
+        "realization_share": "high"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "12",
+          "denominator": "1"
+        },
+        "display_usd": "12.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "717",
+          "denominator": "100"
+        },
+        "display_usd": "7.17"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "23900",
+          "denominator": "161"
+        },
+        "display": "148.45"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "high",
+        "automation_share": "low",
+        "realization_share": "low"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "display_usd": "0.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-483",
+          "denominator": "100"
+        },
+        "display_usd": "-4.83"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-100",
+          "denominator": "1"
+        },
+        "display": "-100.00"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "high",
+        "automation_share": "low",
+        "realization_share": "base"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "display_usd": "0.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-483",
+          "denominator": "100"
+        },
+        "display_usd": "-4.83"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-100",
+          "denominator": "1"
+        },
+        "display": "-100.00"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "high",
+        "automation_share": "low",
+        "realization_share": "high"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "display_usd": "0.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "-483",
+          "denominator": "100"
+        },
+        "display_usd": "-4.83"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "-100",
+          "denominator": "1"
+        },
+        "display": "-100.00"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "high",
+        "automation_share": "base",
+        "realization_share": "low"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "5",
+          "denominator": "1"
+        },
+        "display_usd": "5.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "17",
+          "denominator": "100"
+        },
+        "display_usd": "0.17"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "1700",
+          "denominator": "483"
+        },
+        "display": "3.52"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "high",
+        "automation_share": "base",
+        "realization_share": "base"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "10",
+          "denominator": "1"
+        },
+        "display_usd": "10.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "517",
+          "denominator": "100"
+        },
+        "display_usd": "5.17"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "51700",
+          "denominator": "483"
+        },
+        "display": "107.04"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "high",
+        "automation_share": "base",
+        "realization_share": "high"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "15",
+          "denominator": "1"
+        },
+        "display_usd": "15.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "1017",
+          "denominator": "100"
+        },
+        "display_usd": "10.17"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "33900",
+          "denominator": "161"
+        },
+        "display": "210.56"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "high",
+        "automation_share": "high",
+        "realization_share": "low"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "8",
+          "denominator": "1"
+        },
+        "display_usd": "8.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "317",
+          "denominator": "100"
+        },
+        "display_usd": "3.17"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "31700",
+          "denominator": "483"
+        },
+        "display": "65.63"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "high",
+        "automation_share": "high",
+        "realization_share": "base"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "16",
+          "denominator": "1"
+        },
+        "display_usd": "16.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "1117",
+          "denominator": "100"
+        },
+        "display_usd": "11.17"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "111700",
+          "denominator": "483"
+        },
+        "display": "231.26"
+      }
+    },
+    {
+      "levels": {
+        "baseline_minutes": "high",
+        "automation_share": "high",
+        "realization_share": "high"
+      },
+      "gross_benefit": {
+        "exact": {
+          "numerator": "24",
+          "denominator": "1"
+        },
+        "display_usd": "24.00"
+      },
+      "net_benefit": {
+        "exact": {
+          "numerator": "1917",
+          "denominator": "100"
+        },
+        "display_usd": "19.17"
+      },
+      "total_cost": {
+        "exact": {
+          "numerator": "483",
+          "denominator": "100"
+        },
+        "display_usd": "4.83"
+      },
+      "roi_percent": {
+        "exact": {
+          "numerator": "63900",
+          "denominator": "161"
+        },
+        "display": "396.89"
+      }
+    }
+  ],
+  "rounding": "Aggregate display only: integer rational half-even cents; ROI percent two places.",
+  "formula": "request_count * baseline_minutes * automation_share * realization_share * hourly_rate / 60; net = gross - cost; ROI_percent = net / cost * 100 when cost > 0",
+  "limitations": [
+    "Usage and rates are fictional fixtures, not provider or customer telemetry.",
+    "Usage-identified requests are distinct request IDs, not completed or successful tasks.",
+    "Benefits and ROI are modeled assumptions, not observed savings or business outcomes.",
+    "Low/base/high ranges are authored sensitivity ranges, not statistical confidence intervals.",
+    "Activity flags are declared count comparisons, not predictive customer health scores.",
+    "Launcher profiles are trusted local policy selection, not authentication.",
+    "Recomputing the selected full-row digest requires preserved ledger receipts; compact references alone are insufficient."
+  ],
+  "runtime": {
+    "python": "3.13.1",
+    "sqlite": "3.48.0"
+  },
+  "source_sha256": {
+    "health/__init__.py": "1cdb16d6f2eebf2ac61bbe4a6c8816cb1ce8d54662fe36307176ec7680d00d10",
+    "health/core.py": "f09eca80ce01f402b83d3d2a4d6c8866a178a91b15a718d8a969e4cc3021790b",
+    "health/view.py": "e1b7ae3f26234da5be9ad36367de0473e84d1c7b3b7cb93f2cccdc9b27e3b144",
+    "health/__main__.py": "4795e2aa0135eb8f641bd5fe5a470f1dd252ab9ba80e30991c61d3c8d949d58d",
+    "costs/__init__.py": "123b2d4ae2717a8f202bd2758ffa402069c7f17e7b03cc7c877450630e56a821",
+    "costs/ledger.py": "75feaf14e958a8f8857f1bd1802e73262d6f199e481df0db16e10ec112bb3143",
+    "costs/contracts.py": "30b4ea679bd12b4a19c1cf03947ca5080d817fbc2dc5de0c81661ea4984a61e1"
+  }
+}
