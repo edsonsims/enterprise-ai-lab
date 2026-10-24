@@ -24,6 +24,7 @@ separate controlled experiment, with its original reports preserved.
 [Read-only failover](#lose-a-connection-without-bypassing-a-refusal) ·
 [Fictional cost ledger](#count-usage-before-rounding-cost) ·
 [Activity and modeled ROI](#separate-activity-from-modeled-benefit) ·
+[Offline core wheel](docs/offline-bundle.md) ·
 [Scoped redaction proxy](#redact-before-a-local-tool-and-restore-in-context) ·
 [Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
 

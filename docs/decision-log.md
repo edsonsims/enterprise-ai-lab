@@ -1,5 +1,31 @@
 # Decision log
 
+## 2026-10-24: retain a digest before an offline installation
+
+**Question.** Can the original dependency-free evaluator be delivered as a
+verifiable wheel and installed without a package index or network access?
+
+**Decision.** Start with a core wheel and canonical exact-file inventory. Require
+an independently retained manifest digest, trusted verifier source, owned regular
+single-link POSIX files, bounded metadata and explicit empty dependency/model/image
+inventories. Reject missing, extra, altered and linked artifacts. Fixed frozen
+inputs repeat the same inventory; independent wheel-build reproducibility is a
+separate question. A hash is not a publisher signature.
+
+**Evidence.** Before applying a macOS process network-denial policy, deliver TCP
+and UDP controls to owned loopback listeners. Require actual permission errors
+inside the process and a descendant, then install into a fresh virtual environment
+with no index/dependencies/cache. Verify the installed import location and run the
+original synthetic lexical evaluator outside the checkout. Record both the safe
+result and the intentionally unsafe global baseline, without changing prior reports.
+
+**Limit.** The trusted host still supplies Python, ensurepip and the filesystem.
+The wheel is trusted executable input; metadata validation is not a malicious
+package sandbox. Path verification and pip are not an atomic filesystem
+transaction. This bounded core study does not deliver container images, optional
+model/service stacks, an isolated filesystem, a physical air gap or production
+deployment. See [the artifact contract and exercises](offline-bundle.md).
+
 ## 2026-10-22: preserve usage and freeze the reconciliation result
 
 **Question.** Can a local ledger reconcile fractional fictional charges without

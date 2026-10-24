@@ -1,0 +1,21 @@
+{
+  "base_commit": "68927d1aefd9efc1df1bdd4619161a2378aa83b1",
+  "build_runtime": {
+    "pip": "24.3.1",
+    "python": "3.13.1",
+    "setuptools": "84.2.1"
+  },
+  "published_to_registry": false,
+  "report_sha256": "92fc9978494b92b4baadc47cdc2c1a767e2975c3ca4ae48ade567a7d1cd8199b",
+  "schema_version": 1,
+  "source_sha256": {
+    "pyproject.toml": "f2e15bad7abed84b827eb15c4de528c90d099f110f404bcc81f9e2059213cdc4",
+    "scripts/offline_bundle_demo.py": "d7b5a7f5a2a1a7c36b4976a793c550a47a33c4821ace1e5b720c1e1d3f11136b",
+    "src/enterprise_ai_lab/cli.py": "b89830df4d09dbeea665890230b76ddce63b022ebdee20e74dc12e8098ec8647",
+    "src/enterprise_ai_lab/core.py": "98bf08b204c15151a8afb5954433c53abdf730a0af6dd3e0d884f12a810da977",
+    "src/enterprise_ai_lab/offline_bundle.py": "ed8be4a24850e6985ec5afacb3ab6a5fad3c565fda05ed2415fc27de5b75db72",
+    "tests/offline_bundle/test_bundle_core.py": "78e471cbaad0bdd30184fd744828a1dad75efd396b256cd95e93bccf518d3eb4"
+  },
+  "tested_source_kind": "working_tree",
+  "wheel_sha256": "639f2c8e66c7292aeaa1670f59c57e2756772bef280e287ca63c543fd773cfe1"
+}

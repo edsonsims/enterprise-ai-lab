@@ -1,0 +1,101 @@
+{
+  "elapsed_seconds": 2.045464,
+  "manifest": {
+    "artifacts": [
+      {
+        "filename": "enterprise_ai_lab-0.12.0-py3-none-any.whl",
+        "kind": "wheel",
+        "path": "artifacts/639f2c8e66c7292aeaa1670f59c57e2756772bef280e287ca63c543fd773cfe1/enterprise_ai_lab-0.12.0-py3-none-any.whl",
+        "sha256": "639f2c8e66c7292aeaa1670f59c57e2756772bef280e287ca63c543fd773cfe1",
+        "size_bytes": 264829
+      },
+      {
+        "kind": "verifier",
+        "path": "verify_bundle.py",
+        "sha256": "ed8be4a24850e6985ec5afacb3ab6a5fad3c565fda05ed2415fc27de5b75db72",
+        "size_bytes": 17525
+      }
+    ],
+    "bundle_kind": "enterprise_ai_lab_core_wheel",
+    "container_images": [],
+    "dependencies": [],
+    "models": [],
+    "project": {
+      "name": "enterprise-ai-lab",
+      "version": "0.12.0"
+    },
+    "schema_version": 1
+  },
+  "manifest_sha256": "63f7bf968bf77c13caf1f24e01d6d754358f58f61b7f102964d6129c9037f4cf",
+  "network_control": {
+    "TCP": "delivered",
+    "UDP": "delivered"
+  },
+  "network_policy": "(version 1) (allow default) (deny network*)",
+  "no_sandbox_delivery_observed": true,
+  "observations": {
+    "demo": {
+      "safe_query_leakage": 0.0,
+      "unsafe_query_leakage": 0.9
+    },
+    "demo_file_sha256": {
+      "cases.jsonl": "fd0cbef5193d44f06e05692b3fa2ee035746dba4f1d589be5b0975aa27ec82ed",
+      "documents.jsonl": "208b5b6ac4c6105892ea78327c2ae901d1db109d16a0ba422cf0fef98ee2a665",
+      "manifest.json": "5388c7859e6bc69832b47cd03d23b614433dc6dc00e7a2e7c353adef437df6d6",
+      "predictions.jsonl": "d4610fbcd595856feea89924ea1140b97697515eedd8d7ab1fa7778b787c1009",
+      "report.json": "1bcd222e51d4adc612fada9af7ce9a8a7281d152d8fa1f16af137dd3e6b57e2a",
+      "results.jsonl": "9cfe62a22a9550dd67966913ce45104f0bb2d5e24314d6e1f09112a831ee7f51",
+      "unsafe_global_baseline/cases.jsonl": "fd0cbef5193d44f06e05692b3fa2ee035746dba4f1d589be5b0975aa27ec82ed",
+      "unsafe_global_baseline/documents.jsonl": "208b5b6ac4c6105892ea78327c2ae901d1db109d16a0ba422cf0fef98ee2a665",
+      "unsafe_global_baseline/manifest.json": "6af4f7a52506d8118243accfddb7493bb106a39858f30d2a212e3e44ee62a416",
+      "unsafe_global_baseline/predictions.jsonl": "d3489ac2724fd4d02f86a96a1d36f4327a5f7a3f6adf9cef7877e69d2f8e773a",
+      "unsafe_global_baseline/report.json": "fc862444eb47def3e7911600d6d0ebc81e8b7d851fd73b330eaee16532671d66",
+      "unsafe_global_baseline/results.jsonl": "4d0411de026f8c9df1b7be1925992d1b013fc2a01c48f468b97f3ededde2fc61"
+    },
+    "descendant_network_errno": 1,
+    "fresh_runtime": true,
+    "import_inside_fresh_runtime": true,
+    "installed_from_bundle": true,
+    "installed_project_version": "0.12.0",
+    "network_probes": [
+      {
+        "errno": 1,
+        "family": "IPv4",
+        "permission_denied": true,
+        "stage": "connect",
+        "transport": "TCP"
+      },
+      {
+        "errno": 1,
+        "family": "IPv4",
+        "permission_denied": true,
+        "stage": "sendto",
+        "transport": "UDP"
+      }
+    ],
+    "pip_stdout_sha256": "97194088063420d0b75685b5e8b7b668621a93cef2408b7ebf350c38d839be35",
+    "runtime_distributions": [
+      "enterprise-ai-lab",
+      "pip"
+    ],
+    "system_site_packages": false
+  },
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.13.1",
+  "recorded_at": "2026-10-24T12:14:14.525065+00:00",
+  "same_frozen_wheel_repeat_manifest": true,
+  "schema_version": 1,
+  "scope": {
+    "container_image_exercised": false,
+    "core_lexical_demo": true,
+    "filesystem_isolated": false,
+    "human_review_performed": false,
+    "optional_integrations_exercised": false,
+    "physical_air_gap": false
+  },
+  "source_sha256": {
+    "scripts/offline_bundle_demo.py": "d7b5a7f5a2a1a7c36b4976a793c550a47a33c4821ace1e5b720c1e1d3f11136b",
+    "src/enterprise_ai_lab/offline_bundle.py": "ed8be4a24850e6985ec5afacb3ab6a5fad3c565fda05ed2415fc27de5b75db72"
+  },
+  "study": "core-wheel-process-network-denial"
+}
