@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "files": {
+    "cpu-qwen-v1.json": "ba861cb95563230b827dc011d198b6297b9076901e4d4e1271ec89ff970afb47",
+    "execution.json": "210a54dd1f7d0847c8254eb2ef29036d4916ea2bae7e1a9f2c2d3c9d87cdb5a4"
+  }
+}

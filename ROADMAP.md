@@ -25,7 +25,7 @@ these components; separate repositories are useful only when a module stands alo
 | 10 | Multi-tenant cost attribution (14) | Usage ledger, reconciliation, decimal arithmetic, tenant isolation and anomaly cases | [Local fictional milestone](docs/cost-attribution.md) implemented 2026-10-22: exact Decimal charges, tenant-local idempotent usage, immutable statement snapshots and independently authored anomalies; actual SQLite/CLI restart, concurrent duplicate and lost-receipt recovery. Trusted launcher profiles are not authentication. Provider telemetry/pricing, billing, credits/FX/tax and production operations remain planned. |
 | 11 | Customer health and ROI dashboard (9) | Traceable usage/cost, explicit baseline and assumptions, uncertainty and sensitivity | [Local fictional activity and modeled ROI milestone](docs/activity-roi.md) implemented2026-10-23: one tenant-local ledger snapshot, exact request/charge references, declared activity flags and27 rational-arithmetic sensitivity scenarios, private offline HTML/JSON and actual CLI/restart/isolation/export tests. Real task outcomes, measured savings, causal evaluation, customer integrations and authenticated serving remain planned. |
 | 12 | Air-gapped deployment pipeline (2) | Repeatable offline artifact bundle, image inventory and tested egress denial in an isolated environment | [Core wheel milestone](docs/offline-bundle.md) implemented2026-10-24: fixed-input repeatable inventory, independent expected digest, strict verifier and actual fresh installation/lexical demo in a macOS process with network denied. Image/model/dependency inventories are explicitly empty; full optional runtime/container delivery and physical air-gap validation remain planned. |
-| 13 | On-prem edge inference node (8) | Actual supported local model, measured latency/memory and reproducible configuration | Planned; NVIDIA vLLM/TensorRT/MIG require appropriate hardware |
+| 13 | On-prem edge inference node (8) | Actual supported local model, measured latency/memory and reproducible configuration | [CPU local-worker milestone](docs/edge-inference.md) implemented 2026-10-25: pinned Qwen3-0.6B, strict stdio requests, actual first/warm timings and tensor/call counts, whole-process peak RSS and 1/4 intraop-thread comparison from a locally installed wheel under macOS process network denial. Fictional inputs and retained failures; no quality, hardware-superiority or OS-cold-cache claim. NVIDIA vLLM/TensorRT/MIG, fleet operations, authenticated network serving and optional-runtime delivery remain planned. |
 | 14 | Self-service admin and runbook portal (12) | Authenticated admin boundary, safe config updates, audit and recovery exercise | Planned |
 | 15 | Three public deployment case studies (15) | Reproduce and explain the trust boundary, reliability, and measurement workflows below | Planned; lab deployments clearly labeled |
 
@@ -60,8 +60,10 @@ advances study10 with exact local accounting and frozen reconciliation receipts.
 The2026-10-23 [fictional activity/ROI milestone](docs/activity-roi.md) advances
 study11. The2026-10-24 [offline core wheel milestone](docs/offline-bundle.md)
 advances study12 with actual process network denial; it does not complete a
-container/optional AI-runtime deployment. Study13/local edge inference measurement
-remains next. Modeled ROI and observed business outcomes remain separate.
+container/optional AI-runtime deployment. The 2026-10-25
+[CPU inference milestone](docs/edge-inference.md) advances study 13 with actual
+local measurements and explicit process budgets. Study 14, the admin and runbook
+portal, remains next. Modeled ROI and observed business outcomes remain separate.
 
 After each milestone the owner can explain the design, reproduce a result, modify
 one assumption, and write a short reflection. Until that happens, the study remains

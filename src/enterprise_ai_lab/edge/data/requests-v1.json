@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "data_kind": "authored_fictional_inference_measurement",
+  "protocol_id": "cpu-qwen-v1",
+  "threads": [1, 4],
+  "max_new_tokens": 128,
+  "repetitions": 2,
+  "cases": [
+    {
+      "id": "processing-limit",
+      "question": "How many documents may the fictional Alpha team process in one batch?",
+      "chunks": [{"chunk_id": "fictional-alpha:0", "text": "The fictional Alpha team may process 20 documents in one batch. Larger batches require a separate review."}]
+    },
+    {
+      "id": "maintenance-window",
+      "question": "When does the fictional maintenance window begin?",
+      "chunks": [{"chunk_id": "fictional-operations:0", "text": "The fictional maintenance window begins at 02:00 UTC and lasts 30 minutes. No actual production service is represented."}]
+    },
+    {
+      "id": "archive-retention",
+      "question": "How long are fictional test archives retained?",
+      "chunks": [{"chunk_id": "fictional-archive:0", "text": "Fictional test archives are retained for 14 days. These authored study records do not describe a real retention policy."}]
+    }
+  ]
+}

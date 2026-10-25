@@ -496,3 +496,32 @@ Decimal contexts, single-read consistency, malformed input/storage and private f
 Actual Chromium checks render desktop/mobile and keyboard-scrollable tables. A local
 0.11.0 wheel reproduces the scenario outside the checkout. No actual customer outcome,
 owner study, human review, model call or registry release is inferred.
+
+
+## 2026-10-25: measure a bounded CPU inference worker
+
+**Question.** Can the same small local model expose startup, request work and
+whole-process memory without turning a three-case timing study into a quality
+or GPU benchmark?
+
+**Decision.** Wrap the existing hash-pinned Qwen CPU adapter with a strict JSONL
+worker and a separate process owner. Freeze the fictional question/context
+fixture before inference. Run 1 then 4 intraop threads in separate fresh workers;
+retain the first request and every subsequent warm request, output-format error,
+actual model-method invocation and available tensor count. Use integer timing
+units and a twice-median representation. Source-bound verification runs without
+Torch, checks evidence and recomputes denominators rather than replaying a model.
+
+**Tradeoff.** Per-process loading repeats verification/startup but permits bounded
+ownership and termination. Sequential fixed order leaves cache, thermal and
+background-load effects. RSS is a lifetime process highwater; subtracting peaks
+would not measure incremental allocation. A soft decoding budget and the parent's
+separate work/cleanup deadlines do not imply hard real-time scheduling or rollback.
+The local stdio launcher is not an authenticated remote endpoint.
+
+**Evidence.** See the [recorded CPU run](../reports/edge-v1) for actual installed-wheel
+execution, model/runtime/source provenance and platform network-denial observations.
+Model-free tests use explicit controlled generators/processes and do not establish
+Linux neural performance. This advances the CPU study only; NVIDIA execution,
+production edge management and complete offline optional-runtime delivery remain
+planned. No owner study or human review is inferred.

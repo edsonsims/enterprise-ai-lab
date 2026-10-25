@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "data_kind": "actual_local_execution_of_authored_fictional_inputs",
+  "started_at_utc": "2026-10-25T12:24:29.404971+00:00",
+  "ended_at_utc": "2026-10-25T12:24:59.009913+00:00",
+  "host": {
+    "cpu": "Apple M4 Max",
+    "memory_bytes": 68719476736,
+    "macos_version": "26.6.2",
+    "architecture": "arm64",
+    "logical_cpus": 16
+  },
+  "artifact": {
+    "package": "enterprise-ai-lab",
+    "version": "0.13.0",
+    "wheel_filename": "enterprise_ai_lab-0.13.0-py3-none-any.whl",
+    "wheel_sha256": "31729a994f873efd2ca3b744682be1eb211487e6ccee060689bb8edcb00935f7",
+    "wheel_bytes": 279981,
+    "build_setuptools": "84.0.0",
+    "installed_target_outside_checkout": true,
+    "module_paths_verified_in_installed_target": true,
+    "runtime_source_hashes_match_checkout": true,
+    "runtime_source_sha256": {
+      "edge/__init__.py": "426cdfe0a9ccfb80171898c493ac3518a155cb7f7fb1a3796de7d2d88935f403",
+      "edge/contracts.py": "078517547e35ecbcc2a17f62ada639380b5390831d8777a2f9e34d5d2fcc0164",
+      "edge/worker.py": "2cf50588effe3dafc1f158c81a2fe31c92d82ca945eb3de6a029e71bf02d17da",
+      "edge/experiment.py": "20f925355f81323ddfecc53df0cda9989a7c51d41ee6c104a65fec261c622f86",
+      "edge/__main__.py": "ef0d0244d34764795c5c4dde271514825ea39bb570d0c6d08b100eeecbac9968",
+      "rag/neural.py": "ea95e9a52ec1a14b198e3d81b8e6efbd5389d969272d37fb3e1f658ab5f03a4e"
+    }
+  },
+  "existing_runtime_reused": true,
+  "existing_runtime_modified": false,
+  "dependency_downloads": 0,
+  "model_downloads": 0,
+  "neural_calls": 14,
+  "network_control": {
+    "scope": "macOS process sandbox only; no physical-airgap claim",
+    "policy": "(version 1)(allow default)(deny network*)",
+    "tcp_errno": 1,
+    "udp_errno": 1,
+    "observed_deliveries": [],
+    "returncode": 0,
+    "control_source_sha256": "c8cf49c0a04113411e0b84c38388d90d9fb5d049f2a1f700db7bfc438ac0bee6"
+  },
+  "experiment_inherited_same_os_sandbox": true,
+  "parent_cli_exit_code": 0,
+  "parent_cli_stderr_bytes": 0,
+  "parent_cli_stdout_sha256": "2ad5959a504496f53255f8366d529741ca82b50e990fae19edff288fa3a85e64",
+  "parent_cli_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "report_sha256": "ba861cb95563230b827dc011d198b6297b9076901e4d4e1271ec89ff970afb47",
+  "private_original_report_mode": "0600",
+  "limits": [
+    "macOS process sandbox only; not a physical air gap or model-runtime bundle.",
+    "Loopback control observed TCP/UDP EPERM and no delivery to owned listeners; not a packet capture or general network audit.",
+    "The wheel was built and installed locally, not published to a registry.",
+    "One fixed-order sequential run on a shared host with uncontrolled OS caches.",
+    "No answer-quality, semantic-faithfulness, throughput, power or hardware-superiority claim."
+  ]
+}

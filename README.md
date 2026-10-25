@@ -25,6 +25,7 @@ separate controlled experiment, with its original reports preserved.
 [Fictional cost ledger](#count-usage-before-rounding-cost) ·
 [Activity and modeled ROI](#separate-activity-from-modeled-benefit) ·
 [Offline core wheel](docs/offline-bundle.md) ·
+[Local CPU inference](#measure-startup-and-warm-inference) ·
 [Scoped redaction proxy](#redact-before-a-local-tool-and-restore-in-context) ·
 [Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
 
@@ -419,6 +420,38 @@ Trusted launcher profiles remain separate from authentication.
 
 [Model, provenance and exercises](docs/activity-roi.md) ·
 [Authored inputs](public-data/health-v1) · [Recorded local run](reports/health-v1)
+
+## Measure startup and warm inference
+
+The local inference node runs the existing pinned Qwen3-0.6B adapter in a fresh
+CPU worker. A stdio JSONL contract keeps questions/context bounded and returns
+literal evidence, actual token/call counts and finite failures. It is a trusted
+launcher, without an additional HTTP or identity boundary.
+
+```sh
+# Use the existing requirements-generator.lock setup and pinned local assets.
+.venv-generator/bin/python -m enterprise_ai_lab.edge demo \
+  --model-dir /path/to/pinned/snapshot --out reports/local/edge.json
+python -m enterprise_ai_lab.edge verify-report --report reports/local/edge.json
+python -W error::ResourceWarning -m unittest discover -s tests/edge -v
+```
+
+The fixed fictional protocol keeps the first request after each model load and
+six warm requests for each of 1 and 4 PyTorch intraop threads. The recorded run
+uses an installed 0.13.0 wheel outside the checkout under macOS network denial.
+Request timing includes formatting, tokenization, generation and validation;
+whole-process peak RSS is kept separately from latency. Format failures remain
+in the record. These small sequential samples establish neither answer quality,
+tail latency, throughput nor a general hardware advantage. OS caches were not
+cold-controlled; NVIDIA/production serving remains planned.
+
+The 17 model-free tests exercise strict reports, real pipe backpressure, malformed
+frames, startup failures and process cleanup. CI recomputes recorded metrics;
+it does not load or time a neural model. Actual inference needs Python 3.12+ and
+the optional exact generator runtime; contract checks work on Python 3.10+.
+
+[Protocol, tradeoffs and exercises](docs/edge-inference.md) ·
+[Recorded CPU run](reports/edge-v1)
 
 ## Redact before a local tool and restore in context
 
