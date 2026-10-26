@@ -96,6 +96,27 @@ def test_late_success_is_never_accepted_or_failed_over(endpoints, work, cleanup,
     assert len(error.value.driver.calls) == 1
 
 
+@pytest.mark.parametrize('work,cleanup', [(1.1, 0), (.1, 1.0)])
+def test_late_secondary_response_is_terminal_after_primary_timeout(
+    endpoints, work, cleanup,
+):
+    """Controlled work/cleanup clock, not an actual MCP timing observation."""
+    unused_third = (wire(), 0, 0)
+    with pytest.raises(ReadFailure) as error:
+        run(endpoints, [
+            ('transport_timeout', .6, .2),
+            (wire(), work, cleanup),
+            unused_third,
+        ], budget=Budget(4, 1, 2))
+    assert error.value.code == 'attempt_deadline'
+    driver = error.value.driver
+    assert [call['endpoint'] for call in driver.calls] == ['primary', 'secondary']
+    assert [call['deadline'] for call in driver.calls] == [1, 1.8]
+    assert len(error.value.attempts) == len(driver.calls) == 2
+    assert driver.clock.value < 4  # Its own attempt budget, not the total, expired.
+    assert next(driver.actions) is unused_third
+
+
 @pytest.mark.parametrize('category', ['invalid_catalog', 'invalid_payload', 'provenance_mismatch', 'internal_error', 'cleanup_unconfirmed', 'audit_unavailable'])
 def test_non_transport_attempt_failures_are_terminal(endpoints, category):
     with pytest.raises(ReadFailure) as error:

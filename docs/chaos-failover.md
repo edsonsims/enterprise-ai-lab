@@ -149,3 +149,25 @@ network partitions, remote identities or a production failover topology.
 
 These exercises are available to study; no owner completion or human review is
 recorded by automated logins, code execution or tests.
+
+## Process-fixture diagnostics and late secondary responses
+
+The2026-10-26 test follow-up supplies the experiment's existing finite failure
+callback from the real-process pytest fixture, as the CLI already does. A future
+fixture failure can retain the existing strictly allowlisted metadata fields, including the
+attempt count and last attempt outcome, without raw exceptions, identifiers,
+commands, source/audit content or private runtime files. The original exception
+still propagates; diagnostic formatting cannot convert it into a passing result.
+
+A separate controlled-clock regression covers a primary transport timeout followed
+by a secondary response crossing its own attempt deadline through either work or
+cleanup. Both variants remain terminal `attempt_deadline` with exactly two calls;
+they neither accept late data nor try another replica. This is policy coverage,
+not a new real MCP latency measurement or a runtime/deadline change.
+
+The earlier remote run40330618009 failed the stalled-primary fixture's success
+expectation with `attempt_deadline`. Its endpoint/attempt trace was not emitted,
+so that historical phase and cause remain unknown. One later local actual fixture
+pass is recovery evidence, not a root-cause explanation. Existing frozen reports,
+normal budgets, transport classification, permission/audit fences and child
+ownership/cleanup remain unchanged.

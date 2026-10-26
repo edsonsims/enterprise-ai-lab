@@ -4,16 +4,52 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+from types import SimpleNamespace
 
 import anyio
 import pytest
 
 from enterprise_ai_lab.chaos.experiment import run_demo
+from enterprise_ai_lab.chaos.diagnostics import DemoDiagnostics, format_failure
 
 
 @pytest.fixture(scope='module')
 def report(tmp_path_factory):
-    return anyio.run(run_demo, tmp_path_factory.mktemp('chaos-process') / 'fresh')
+    return anyio.run(lambda: run_demo(
+        tmp_path_factory.mktemp('chaos-process') / 'fresh',
+        _on_failure=lambda record: print(format_failure(record), file=sys.stderr),
+    ))
+
+
+def test_process_fixture_failure_emits_only_existing_finite_diagnostic(
+    tmp_path, monkeypatch, capsys,
+):
+    """Controlled fixture failure; no actual protocol/process observation."""
+    failure = AssertionError('PRIVATE exception /private/path and business body')
+    diagnostic = DemoDiagnostics()
+    diagnostic.begin('primary_stalled_after_read', 'outcome_check', expected='success')
+    diagnostic.observe('attempt_deadline')
+    diagnostic.bind([
+        {'outcome': 'transport_timeout', 'pid': 'PRIVATE'},
+        {'outcome': 'response', 'response': 'PRIVATE'},
+    ])
+    record = diagnostic.failure(failure)
+
+    async def fail(work, *, _on_failure=None):
+        if _on_failure is not None:
+            _on_failure(record)
+        raise failure
+
+    monkeypatch.setattr(sys.modules[__name__], 'run_demo', fail)
+    factory = SimpleNamespace(mktemp=lambda name: tmp_path)
+    with pytest.raises(AssertionError) as caught:
+        report.__wrapped__(factory)
+    assert caught.value is failure
+    captured = capsys.readouterr()
+    assert captured.err.splitlines() == [format_failure(record)] and not captured.out
+    assert 'PRIVATE' not in captured.err and '/private/' not in captured.err
+    assert json.loads(captured.err)['attempt_count'] == 2
+    assert json.loads(captured.err)['last_attempt_outcome'] == 'response'
 
 
 def case(report, name):

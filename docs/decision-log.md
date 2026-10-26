@@ -578,3 +578,14 @@ reader, without raw exception text or browser output. The original report stays
 unchanged; [new installed-wheel observations](../reports/admin-recovery-v1) retain
 the follow-up's nine browser checks separately. This maintains study14 and adds no
 second scheduled milestone or owner-study claim.
+
+### 2026-10-26 maintenance: retain failover fixture evidence
+
+An existing Linux chaos process fixture returned terminal `attempt_deadline` where
+its stalled-primary scenario expected success; twelve dependent setup errors share
+that one failure. Keep the normal deadlines and retry classification intact. Supply
+the existing finite diagnostic callback from the pytest fixture so future failures
+retain attempt count/outcome, and cover a late secondary response with a controlled
+clock. A later successful local run does not explain the earlier missing trace.
+This maintains the existing reliability study alongside study14; it is not another
+scheduled milestone, new performance result or owner study.
