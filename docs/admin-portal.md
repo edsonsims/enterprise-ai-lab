@@ -158,9 +158,13 @@ completion before the next inspection. Mutation IDs, authorization and retry rul
 are unchanged.
 
 A failed initial remote browser run did not retain its phase, so its cause remains
-unknown. The new finite diagnostic reports only a fixed browser failure code,
-whitelisted stage and bounded return code from an owned0600/no-follow/single-link
-regular JSON file of at most32KiB. The diagnostic exception never includes raw exception text or driver
+unknown. The finite diagnostic reports only a fixed browser failure code,
+whitelisted stage, bounded return code, three initial-view HTTP statuses and an
+allowlisted API error code from an owned0600/no-follow/single-link
+regular JSON file of at most32KiB. Fixed stages distinguish the administrator,
+auditor and second-tenant login. Request generations keep an earlier login's
+response out of the next login's context. An unknown or absent status remains0;
+these observations do not infer why a request failed. The diagnostic exception never includes raw exception text or driver
 stdout/stderr. There is no new raw-log or private-directory artifact upload. The
 [follow-up evidence](../reports/admin-recovery-v1) preserves both that limitation
 and the separately reproduced readiness gap. Use the matching source checkout

@@ -37,6 +37,60 @@ let phase = 'launch';
 let configReceived = false;
 let initialConfigPending = true;
 let releaseConfig = () => {};
+// Diagnostic metadata is limited to the first initial-view GET per endpoint.
+// Associate requests before responses arrive, so a prior login cannot supply it.
+const viewFields = ['config_status', 'work_orders_status', 'audit_status'];
+const viewEndpoints = new Map([
+  [origin + '/api/config', 'config_status'],
+  [origin + '/api/work-orders', 'work_orders_status'],
+  [origin + '/api/audit', 'audit_status'],
+]);
+const viewErrorCodes = new Set(['unauthenticated', 'forbidden', 'invalid_request',
+  'conflict', 'busy', 'storage_unavailable', 'capacity', 'not_found']);
+const loginViewStages = new Map([
+  ['admin-alpha', 'login_view_admin'],
+  ['auditor-alpha', 'login_view_auditor'],
+  ['admin-beta', 'login_view_beta'],
+]);
+let viewGeneration = 0;
+let viewActive = false;
+let viewContext;
+let viewErrors;
+let viewStarted;
+const viewRequests = new WeakMap();
+function resetViewContext() {
+  viewGeneration += 1;
+  viewActive = true;
+  viewContext = {config_status: 0, work_orders_status: 0, audit_status: 0};
+  viewErrors = {config_status: 'unknown', work_orders_status: 'unknown', audit_status: 'unknown'};
+  viewStarted = new Set();
+}
+function observeViewRequest(request) {
+  const field = viewEndpoints.get(request.url());
+  if (!viewActive || request.method() !== 'GET' || !field || viewStarted.has(field)) return;
+  viewStarted.add(field);
+  viewRequests.set(request, {generation: viewGeneration, field});
+}
+async function observeViewResponse(response) {
+  const observed = viewRequests.get(response.request());
+  if (!observed || !viewActive || observed.generation !== viewGeneration) return;
+  const status = response.status();
+  const field = observed.field;
+  viewContext[field] = Number.isInteger(status) && status >= 100 && status <= 599 ? status : 0;
+  if (status < 400 || status > 599) return;
+  let code = 'unknown';
+  try {
+    const value = await response.json();
+    if (typeof value?.error?.code === 'string' && viewErrorCodes.has(value.error.code)) code = value.error.code;
+  } catch { /* Only a fixed unknown marker is retained. */ }
+  if (viewActive && observed.generation === viewGeneration) viewErrors[field] = code;
+}
+function failureViewContext() {
+  const value = viewContext || {config_status: 0, work_orders_status: 0, audit_status: 0};
+  const failed = viewFields.find((field) => value[field] >= 400);
+  const code = failed ? viewErrors[failed] : viewFields.every((field) => value[field] !== 0) ? 'none' : 'unknown';
+  return {...value, error_code: code};
+}
 const record = (name, detail = {}) => checks.push({name, passed: true, ...detail});
 async function until(operation) {
   const deadline = Date.now() + 15000;
@@ -47,6 +101,8 @@ async function until(operation) {
   throw new Error('Bounded browser condition did not become true.');
 }
 async function login(name) {
+  assert.ok(loginViewStages.has(name));
+  resetViewContext();
   phase = 'login_navigation';
   await page.goto(origin + '/');
   await page.locator('#login').waitFor({state: 'visible'});
@@ -75,8 +131,9 @@ async function login(name) {
       releaseConfig();
     }
   }
-  phase = 'login_view';
+  phase = loginViewStages.get(name);
   await page.locator('#revision').waitFor({state: 'visible'});
+  viewActive = false;
   phase = 'login_session';
   const cookie = (await context.cookies(origin)).find((item) => item.name === 'lab_admin_session');
   assert.ok(cookie?.httpOnly && cookie.sameSite === 'Lax' && !cookie.value.includes('.'));
@@ -97,6 +154,8 @@ try {
   report.browser = {name: 'Chromium', version: browser.version(), playwright: (await import('playwright/package.json', {with: {type: 'json'}})).default.version};
   context = await browser.newContext({viewport: {width: 1280, height: 900}});
   page = await context.newPage();
+  page.on('request', observeViewRequest);
+  page.on('response', (response) => { void observeViewResponse(response); });
   const pageErrors = [];
   page.on('pageerror', () => pageErrors.push('uncaught_application_error'));
   phase = 'alpha_login';
@@ -186,6 +245,8 @@ try {
   report.screenshots = ['admin-desktop.png', 'admin-mobile.png'];
 } catch {
   report.failure_stage = phase;
+  report.failure_context = failureViewContext();
+  viewActive = false;
   report.failure = 'Actual browser assertion failed; raw URLs, credentials and exception text are omitted.';
   process.exitCode = 1;
 } finally {

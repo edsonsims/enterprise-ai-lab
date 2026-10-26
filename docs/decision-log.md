@@ -589,3 +589,14 @@ retain attempt count/outcome, and cover a late secondary response with a control
 clock. A later successful local run does not explain the earlier missing trace.
 This maintains the existing reliability study alongside study14; it is not another
 scheduled milestone, new performance result or owner study.
+
+### 2026-10-26 maintenance: initial-view response context
+
+A subsequent Linux Python3.12 browser failure retained `login_view`, while the
+paired Python3.13 run passed. That stage alone does not identify the failed read
+or establish a cause. Retain only the three initial-view HTTP statuses and one
+allowlisted API error code, with fixed account-profile stages and per-login
+request generations. Keep raw bodies, URLs and exception text private. Controlled
+diagnostic tests and a fresh installed-wheel Chromium pass validate the new
+evidence path; they do not explain the historical failure. No product behavior,
+timeout, request retry or authorization rule changes here.

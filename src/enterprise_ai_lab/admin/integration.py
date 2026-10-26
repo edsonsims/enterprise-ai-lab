@@ -33,6 +33,9 @@ _BROWSER_STAGES = frozenset(
         "login_form",
         "login_redirect",
         "login_view",
+        "login_view_admin",
+        "login_view_auditor",
+        "login_view_beta",
         "login_session",
         "initial_view_guard",
         "keyboard_update",
@@ -45,12 +48,49 @@ _BROWSER_STAGES = frozenset(
     )
 )
 _BROWSER_CODES = frozenset(("browser_nonzero", "browser_timeout", "report_unavailable"))
+_VIEW_FIELDS = ("config_status", "work_orders_status", "audit_status")
+_VIEW_ERRORS = frozenset(
+    (
+        "unauthenticated",
+        "forbidden",
+        "invalid_request",
+        "conflict",
+        "busy",
+        "storage_unavailable",
+        "capacity",
+        "not_found",
+        "unknown",
+        "none",
+    )
+)
+
+
+def _browser_context(value):
+    """Project an exact context schema into finite public diagnostic values."""
+    fields = (*_VIEW_FIELDS, "error_code")
+    safe = {field: 0 for field in _VIEW_FIELDS}
+    safe["error_code"] = "unknown"
+    if (
+        type(value) is not dict
+        or len(value) != len(fields)
+        or any(type(key) is not str for key in value)
+        or set(value) != set(fields)
+    ):
+        return safe
+    for field in _VIEW_FIELDS:
+        status = value[field]
+        if type(status) is int and (status == 0 or 100 <= status <= 599):
+            safe[field] = status
+    code = value["error_code"]
+    if type(code) is str and code in _VIEW_ERRORS:
+        safe["error_code"] = code
+    return safe
 
 
 class BrowserFailure(IntegrationError):
     """Finite diagnostic metadata only; never child output or exception text."""
 
-    def __init__(self, code, stage="unknown", returncode=None):
+    def __init__(self, code, stage="unknown", returncode=None, context=None):
         self.code = (
             code
             if type(code) is str and code in _BROWSER_CODES
@@ -64,8 +104,16 @@ class BrowserFailure(IntegrationError):
             if type(returncode) is int and -255 <= returncode <= 255
             else None
         )
+        safe = _browser_context(context)
+        self.config_status = safe["config_status"]
+        self.work_orders_status = safe["work_orders_status"]
+        self.audit_status = safe["audit_status"]
+        self.error_code = safe["error_code"]
         super().__init__(
-            f"Admin browser verification failed: code={self.code}; stage={self.failure_stage}; returncode={self.returncode}."
+            f"Admin browser verification failed: code={self.code}; stage={self.failure_stage}; "
+            f"returncode={self.returncode}; config_status={self.config_status}; "
+            f"work_orders_status={self.work_orders_status}; audit_status={self.audit_status}; "
+            f"error_code={self.error_code}."
         )
 
 
@@ -117,20 +165,26 @@ def _run_browser(*, node, script, origin, accounts, output, cwd):
     except subprocess.TimeoutExpired:
         report = _private_browser_report(output)
         stage = report.get("failure_stage") if report is not None else None
-        raise BrowserFailure("browser_timeout", stage) from None
+        context = report.get("failure_context") if report is not None else None
+        raise BrowserFailure("browser_timeout", stage, context=context) from None
     except OSError:
         raise BrowserFailure("report_unavailable") from None
     report = _private_browser_report(output)
     stage = report.get("failure_stage") if report is not None else None
+    context = report.get("failure_context") if report is not None else None
     if type(result.returncode) is not int or result.returncode != 0:
-        raise BrowserFailure("browser_nonzero", stage, result.returncode)
+        raise BrowserFailure(
+            "browser_nonzero", stage, result.returncode, context
+        ) from None
     if (
         report is None
         or report.get("passed") is not True
         or type(report.get("schema_version")) is not int
         or report["schema_version"] != 1
     ):
-        raise BrowserFailure("report_unavailable", stage, result.returncode)
+        raise BrowserFailure(
+            "report_unavailable", stage, result.returncode, context
+        ) from None
     return report
 
 

@@ -51,6 +51,9 @@ def result(monkeypatch, code):
         "login_form",
         "login_redirect",
         "login_view",
+        "login_view_admin",
+        "login_view_auditor",
+        "login_view_beta",
         "login_session",
         "initial_view_guard",
         "keyboard_update",
@@ -133,6 +136,7 @@ def test_timeout_exposes_existing_safe_stage_without_raw_exception_output(
         "missing",
         "malformed",
         "duplicate",
+        "duplicate_context",
         "symlink",
         "hardlink",
         "oversize",
@@ -145,7 +149,10 @@ def test_unsafe_or_unavailable_report_cannot_supply_diagnostic_fields(
 ):
     path = tmp_path / "browser.json"
     if kind in ("symlink", "hardlink"):
-        target = report_file(tmp_path / "target.json", {"failure_stage": "mobile"})
+        target = report_file(
+            tmp_path / "target.json",
+            {"failure_stage": "mobile", "failure_context": view_context()},
+        )
         if kind == "symlink":
             path.symlink_to(target)
         else:
@@ -153,11 +160,19 @@ def test_unsafe_or_unavailable_report_cannot_supply_diagnostic_fields(
     elif kind == "fifo":
         os.mkfifo(path, 0o600)
     elif kind != "missing":
-        report_file(path, {"failure_stage": "mobile"})
+        report_file(
+            path, {"failure_stage": "mobile", "failure_context": view_context()}
+        )
         if kind == "malformed":
             path.write_text(PRIVATE)
         elif kind == "duplicate":
             path.write_text('{"failure_stage":"mobile","failure_stage":"beta"}')
+        elif kind == "duplicate_context":
+            path.write_text(
+                '{"failure_stage":"mobile","failure_context":'
+                '{"config_status":200,"config_status":503,"work_orders_status":200,'
+                '"audit_status":200,"error_code":"busy"}}'
+            )
         elif kind == "oversize":
             path.write_bytes(b" " * 32769)
         elif kind == "mode":
@@ -167,6 +182,12 @@ def test_unsafe_or_unavailable_report_cannot_supply_diagnostic_fields(
         invoke(tmp_path)
     assert caught.value.code == "browser_nonzero"
     assert caught.value.failure_stage == "unknown"
+    assert (
+        caught.value.config_status,
+        caught.value.work_orders_status,
+        caught.value.audit_status,
+        caught.value.error_code,
+    ) == (0, 0, 0, "unknown")
     assert PRIVATE not in str(caught.value)
 
 
@@ -218,10 +239,194 @@ def test_diagnostic_constructor_never_converts_hostile_dynamic_values():
             raise AssertionError(PRIVATE)
 
     value = Hostile()
-    error = integration.BrowserFailure(value, value, value)
+    error = integration.BrowserFailure(value, value, value, value)
     assert (error.code, error.failure_stage, error.returncode) == (
         "report_unavailable",
         "unknown",
         None,
     )
     assert PRIVATE not in str(error)
+
+
+def view_context(**changes):
+    value = {
+        "config_status": 200,
+        "work_orders_status": 200,
+        "audit_status": 503,
+        "error_code": "busy",
+    }
+    return value | changes
+
+
+def diagnostic_fields(error):
+    return {
+        key: getattr(error, key)
+        for key in (
+            "code",
+            "failure_stage",
+            "returncode",
+            "config_status",
+            "work_orders_status",
+            "audit_status",
+            "error_code",
+        )
+    }
+
+
+@pytest.mark.parametrize(
+    "code",
+    [
+        "unauthenticated",
+        "forbidden",
+        "invalid_request",
+        "conflict",
+        "busy",
+        "storage_unavailable",
+        "capacity",
+        "not_found",
+        "unknown",
+        "none",
+    ],
+)
+def test_view_context_extracts_only_flat_allowlisted_fields(
+    tmp_path, monkeypatch, code
+):
+    report_file(
+        tmp_path / "browser.json",
+        {
+            "failure_stage": "login_view_auditor",
+            "failure_context": view_context(error_code=code),
+            "raw_body": PRIVATE,
+            "raw_url": PRIVATE,
+        },
+    )
+    result(monkeypatch, 1)
+    with pytest.raises(integration.BrowserFailure) as caught:
+        invoke(tmp_path)
+    error = caught.value
+    assert diagnostic_fields(error) == {
+        "code": "browser_nonzero",
+        "failure_stage": "login_view_auditor",
+        "returncode": 1,
+        **view_context(error_code=code),
+    }
+    assert set(vars(error)) == set(diagnostic_fields(error))
+    assert PRIVATE not in str(error) and PRIVATE not in repr(error)
+    assert all(
+        f"{field}={value}" in str(error)
+        for field, value in view_context(error_code=code).items()
+    )
+
+
+@pytest.mark.parametrize("status", [0, 100, 200, 401, 503, 599])
+def test_view_status_preserves_only_observed_bounded_exact_integers(status):
+    error = integration.BrowserFailure(
+        "browser_nonzero", context=view_context(config_status=status)
+    )
+    assert error.config_status == status
+
+
+@pytest.mark.parametrize(
+    "status", [True, False, None, -1, 99, 600, 200.0, PRIVATE, [], {}]
+)
+def test_view_status_rejects_booleans_unknowns_and_dynamic_values(status):
+    error = integration.BrowserFailure(
+        "browser_nonzero", context=view_context(config_status=status)
+    )
+    assert error.config_status == 0 and error.work_orders_status == 200
+    assert PRIVATE not in str(error) and PRIVATE not in repr(error)
+
+
+@pytest.mark.parametrize("code", [PRIVATE, True, None, 1, [], {"code": PRIVATE}])
+def test_view_error_code_never_reflects_untrusted_value(code):
+    error = integration.BrowserFailure(
+        "browser_nonzero", context=view_context(error_code=code)
+    )
+    assert error.error_code == "unknown"
+    assert PRIVATE not in str(error) and PRIVATE not in repr(error)
+
+
+@pytest.mark.parametrize(
+    "context",
+    [
+        None,
+        [],
+        PRIVATE,
+        {},
+        {"config_status": 200, "work_orders_status": 200, "audit_status": 200},
+        view_context(extra=PRIVATE),
+        {
+            "config_status": 200,
+            "work_orders_status": 200,
+            "audit_status": 200,
+            1: PRIVATE,
+        },
+    ],
+)
+def test_view_context_requires_exact_schema_before_field_projection(context):
+    error = integration.BrowserFailure("browser_nonzero", context=context)
+    assert (
+        error.config_status,
+        error.work_orders_status,
+        error.audit_status,
+        error.error_code,
+    ) == (
+        0,
+        0,
+        0,
+        "unknown",
+    )
+    assert PRIVATE not in str(error) and PRIVATE not in repr(error)
+
+
+def test_view_context_never_invokes_hostile_conversions_or_mapping_methods():
+    class Hostile:
+        def __str__(self):
+            raise AssertionError(PRIVATE)
+
+        def __eq__(self, other):
+            raise AssertionError(PRIVATE)
+
+        def __hash__(self):
+            raise AssertionError(PRIVATE)
+
+    class HostileMapping(dict):
+        def __iter__(self):
+            raise AssertionError(PRIVATE)
+
+    value = Hostile()
+    for context in [
+        value,
+        HostileMapping(),
+        view_context(config_status=value, error_code=value),
+    ]:
+        error = integration.BrowserFailure("browser_nonzero", context=context)
+        assert error.config_status == 0 and error.error_code == "unknown"
+        assert PRIVATE not in str(error) and PRIVATE not in repr(error)
+
+
+def test_view_context_survives_timeout_without_raw_child_output(tmp_path, monkeypatch):
+    report_file(
+        tmp_path / "browser.json",
+        {"failure_stage": "login_view_beta", "failure_context": view_context()},
+    )
+
+    def timeout(*_args, **_kwargs):
+        raise subprocess.TimeoutExpired(PRIVATE, 90, output=PRIVATE, stderr=PRIVATE)
+
+    monkeypatch.setattr(integration.subprocess, "run", timeout)
+    with pytest.raises(integration.BrowserFailure) as caught:
+        invoke(tmp_path)
+    assert diagnostic_fields(caught.value) == {
+        "code": "browser_timeout",
+        "failure_stage": "login_view_beta",
+        "returncode": None,
+        **view_context(),
+    }
+    assert PRIVATE not in str(caught.value)
+
+
+def test_view_error_enum_matches_current_admin_api_contract():
+    from enterprise_ai_lab.admin.api import ERRORS
+
+    assert integration._VIEW_ERRORS == frozenset(ERRORS) | {"unknown", "none"}
