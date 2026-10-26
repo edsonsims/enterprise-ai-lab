@@ -1,0 +1,836 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-26T13:21:04.819840+00:00",
+  "experiment": "Fictional local configuration portal with actual OIDC, HTTP and SQLite",
+  "data": "Packaged authored synthetic18-work-order fixture; no company system or provider calls",
+  "runtime": {
+    "python": "3.12.14",
+    "sqlite": "3.53.1",
+    "package": "0.14.0"
+  },
+  "oidc": {
+    "flow": "authorization_code",
+    "pkce": "S256",
+    "audience": "urn:identity-boundary:admin",
+    "client_id": "admin-portal"
+  },
+  "fixture": {
+    "schema_version": 1,
+    "fixture_sha256": "7f37ae73b4c670f22276e43170517b5c30a6ecaadbb7aba07231d20e271def56",
+    "work_order_count": 18,
+    "diagnostic_count": 6
+  },
+  "source_database_sha256_before_and_after": "4929712b9ea8c3f7f75d45fad6fd1d93572660f6dc826744fe72cc969707ad6a",
+  "source_sha256": {
+    "enterprise_ai_lab/admin/__init__.py": "c9c9164f8076846911424cf99b1a04a358bbadbc676b5edb0576fc2eb8ebb7c5",
+    "enterprise_ai_lab/admin/__main__.py": "8acbc0a3f500ab5dda79f166258b2466f38b28c5318e9058b73309805b635eed",
+    "enterprise_ai_lab/admin/api.py": "7ac524dea8c2c49a5d440b631d8099d4ee2f1b90c7e666363a0d496d08873d12",
+    "enterprise_ai_lab/admin/auth.py": "81a841543997f504f3ad571d5281a20deb95a61809caa5de76a4525be0e368cf",
+    "enterprise_ai_lab/admin/core.py": "cf54ad5eeadfac92f8f3528c048167119d343810cee3f2973570c63ebcfef187",
+    "enterprise_ai_lab/admin/integration.py": "43bd3647e8654746b4cec87aa6c1b9a41ec43e1a07f2523c9b70d858fb2a09b8",
+    "enterprise_ai_lab/admin/static/app.css": "846fc57639778013ec9c6ee1d0bbff2c2a705bb9849e42063f7d68ecc0ebfcce",
+    "enterprise_ai_lab/admin/static/app.js": "1e3916b0601b063963fcb5534222a378e093d0021ab128b531bcf72d99033d1d",
+    "enterprise_ai_lab/admin/static/index.html": "23171a1cd3a681810b0850d0bb3f6f46002672d7fda8c0cd0b90370985af5d34",
+    "enterprise_ai_lab/review/sessions.py": "203b6b6d092fb88a8cb2e0c64a0a24dd7be3fb0a17be5ccd2c2e68cdc5fab43e",
+    "enterprise_ai_lab/rag/auth.py": "4966fa72892272b4cce854da9b0be085c2261502e26d02075b25ae98613fa57e",
+    "enterprise_ai_lab/rag/contracts.py": "9431430e512dfb3df4fc8b18ed568aa3c055b71674671a03c5632fb45fbd559a",
+    "enterprise_ai_lab/rag/integration.py": "1e25ab9b60d19dab048b51f8a1bced694ed3a62bf5d106133bf822dca7b0f6df",
+    "enterprise_ai_lab/mcp_gateway/store.py": "a5668685033f7c2dd22a074e168e8602b37afea2e396baaf1790da58f8ccbc07",
+    "enterprise_ai_lab/mcp_gateway/data/work-orders-v1.json": "7f37ae73b4c670f22276e43170517b5c30a6ecaadbb7aba07231d20e271def56"
+  },
+  "identity_dist_sha256": {
+    "dist/admin-bridge.js": "9fadad1887e8a1486e9952b18ff172a6987e53a8226d300befc9dc7b08734049",
+    "dist/admin-issuer.js": "b0184d2e3a32d2c03cd5b86bc744d740043624f790858ab50aebaafaf6983e08",
+    "dist/http.js": "880e64c68df8da011268e36dd84e3f76eb80b5a065d2686c8262d865f43517e1",
+    "package.json": "90a16617209d288e55127480328e9373b5bee93dcee46e5e0fb5237f0a5227a2",
+    "package-lock.json": "67f954643fb63b140c2aa2659dd75abe65c159ede48f6eb8355397bdb0201684"
+  },
+  "browser_script_sha256": "8a2b345010376db9c8eb5c7e97bfbadc1bdff6184755b0a87dc6c13984e50ae4",
+  "observations": [
+    {
+      "case": "unauthenticated",
+      "http_status": 401,
+      "response": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "Sign in again; this local session is missing or expired."
+        }
+      }
+    },
+    {
+      "case": "login-admin-alpha",
+      "http_status": 200,
+      "response": {
+        "authenticated": true,
+        "user": {
+          "subject": "admin-alpha",
+          "tenant_id": "alpha",
+          "roles": [
+            "config_admin",
+            "reader"
+          ]
+        },
+        "can_read": true,
+        "can_configure": true,
+        "can_audit": true
+      }
+    },
+    {
+      "case": "login-admin-beta",
+      "http_status": 200,
+      "response": {
+        "authenticated": true,
+        "user": {
+          "subject": "admin-beta",
+          "tenant_id": "beta",
+          "roles": [
+            "config_admin",
+            "reader"
+          ]
+        },
+        "can_read": true,
+        "can_configure": true,
+        "can_audit": true
+      }
+    },
+    {
+      "case": "login-auditor-alpha",
+      "http_status": 200,
+      "response": {
+        "authenticated": true,
+        "user": {
+          "subject": "auditor-alpha",
+          "tenant_id": "alpha",
+          "roles": [
+            "config_auditor",
+            "reader"
+          ]
+        },
+        "can_read": true,
+        "can_configure": false,
+        "can_audit": true
+      }
+    },
+    {
+      "case": "login-observer-alpha",
+      "http_status": 200,
+      "response": {
+        "authenticated": true,
+        "user": {
+          "subject": "observer-alpha",
+          "tenant_id": "alpha",
+          "roles": [
+            "observer"
+          ]
+        },
+        "can_read": false,
+        "can_configure": false,
+        "can_audit": false
+      }
+    },
+    {
+      "case": "observer-denied",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "The signed role, scope or browser CSRF check forbids this operation."
+        }
+      }
+    },
+    {
+      "case": "alpha-initial-config",
+      "http_status": 200,
+      "response": {
+        "tenant_id": "alpha",
+        "revision": 0,
+        "config": {
+          "work_order_page_size": 3,
+          "default_status": "open"
+        }
+      }
+    },
+    {
+      "case": "initial-work-orders",
+      "http_status": 200,
+      "response": {
+        "configuration": {
+          "tenant_id": "alpha",
+          "revision": 0,
+          "config": {
+            "work_order_page_size": 3,
+            "default_status": "open"
+          }
+        },
+        "items": [
+          {
+            "tenant_id": "alpha",
+            "work_order_id": "WO-0001",
+            "asset_id": "AS-001",
+            "title": "Alpha synthetic inspection 1",
+            "status": "open",
+            "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data."
+          }
+        ],
+        "next_after": null
+      }
+    },
+    {
+      "case": "auditor-write-denied",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "The signed role, scope or browser CSRF check forbids this operation."
+        }
+      }
+    },
+    {
+      "case": "csrf-denied",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "The signed role, scope or browser CSRF check forbids this operation."
+        }
+      }
+    },
+    {
+      "case": "origin-denied",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "The signed role, scope or browser CSRF check forbids this operation."
+        }
+      }
+    },
+    {
+      "case": "alpha-update",
+      "http_status": 200,
+      "response": {
+        "tenant_id": "alpha",
+        "command_id": "shared-command",
+        "action": "update",
+        "revision": 1,
+        "previous_revision": 0,
+        "configuration_sha256": "86faf6a1ad5119f35db7445ba44e7d710b9f82fdfbc453ad619ac9933662afb7",
+        "audit_sequence": 1,
+        "audit_hash": "09d184feea03167f49d15fcadf2f7ddade9f45e4204cfdc7c6398fc305561a1c"
+      }
+    },
+    {
+      "case": "alpha-exact-replay",
+      "http_status": 200,
+      "response": {
+        "action": "update",
+        "audit_hash": "09d184feea03167f49d15fcadf2f7ddade9f45e4204cfdc7c6398fc305561a1c",
+        "audit_sequence": 1,
+        "command_id": "shared-command",
+        "configuration_sha256": "86faf6a1ad5119f35db7445ba44e7d710b9f82fdfbc453ad619ac9933662afb7",
+        "previous_revision": 0,
+        "revision": 1,
+        "tenant_id": "alpha"
+      }
+    },
+    {
+      "case": "immutable-command-conflict",
+      "http_status": 409,
+      "response": {
+        "error": {
+          "code": "conflict",
+          "message": "Refresh durable state; the revision or immutable command conflicts."
+        }
+      }
+    },
+    {
+      "case": "stale-revision-conflict",
+      "http_status": 409,
+      "response": {
+        "error": {
+          "code": "conflict",
+          "message": "Refresh durable state; the revision or immutable command conflicts."
+        }
+      }
+    },
+    {
+      "case": "configured-read",
+      "http_status": 200,
+      "response": {
+        "configuration": {
+          "tenant_id": "alpha",
+          "revision": 1,
+          "config": {
+            "default_status": "open",
+            "work_order_page_size": 1
+          }
+        },
+        "items": [
+          {
+            "tenant_id": "alpha",
+            "work_order_id": "WO-0001",
+            "asset_id": "AS-001",
+            "title": "Alpha synthetic inspection 1",
+            "status": "open",
+            "summary": "ALPHA_READER_01: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data."
+          }
+        ],
+        "next_after": null
+      }
+    },
+    {
+      "case": "beta-independent-same-id",
+      "http_status": 200,
+      "response": {
+        "tenant_id": "beta",
+        "command_id": "shared-command",
+        "action": "update",
+        "revision": 1,
+        "previous_revision": 0,
+        "configuration_sha256": "661cf324f3e6c1842c44acbfe2f5ce3250e55c7ebf087941407c27696d45a4df",
+        "audit_sequence": 2,
+        "audit_hash": "4b386621031ec8d3774bbad065d049f7f0a6fcc8f2d9f5dc9f69b28bb168c34d"
+      }
+    },
+    {
+      "case": "beta-filtered-read",
+      "http_status": 200,
+      "response": {
+        "configuration": {
+          "tenant_id": "beta",
+          "revision": 1,
+          "config": {
+            "default_status": "closed",
+            "work_order_page_size": 2
+          }
+        },
+        "items": [
+          {
+            "tenant_id": "beta",
+            "work_order_id": "WO-0003",
+            "asset_id": "AS-003",
+            "title": "Beta synthetic inspection 3",
+            "status": "closed",
+            "summary": "BETA_READER_03: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data."
+          },
+          {
+            "tenant_id": "beta",
+            "work_order_id": "WO-0006",
+            "asset_id": "AS-003",
+            "title": "Beta synthetic inspection 6",
+            "status": "closed",
+            "summary": "BETA_READER_06: Authored example work order; inspect the demonstration asset and record a local observation. This is fictional study data."
+          }
+        ],
+        "next_after": "WO-0006"
+      }
+    },
+    {
+      "case": "rollback-new-revision",
+      "http_status": 200,
+      "response": {
+        "tenant_id": "alpha",
+        "command_id": "restore-zero",
+        "action": "rollback",
+        "revision": 2,
+        "previous_revision": 1,
+        "configuration_sha256": "34e64f0caaac75e3a7fa82cfff9c39d05a907c4c7976c5bdf0ff8cc23f5c597b",
+        "audit_sequence": 3,
+        "audit_hash": "d748a270d7cb99522e5907a424eae315b64c13063b43441e1ed10b15b09fe2ef"
+      }
+    },
+    {
+      "case": "rollback-restored-defaults",
+      "http_status": 200,
+      "response": {
+        "tenant_id": "alpha",
+        "revision": 2,
+        "config": {
+          "default_status": "open",
+          "work_order_page_size": 3
+        }
+      }
+    },
+    {
+      "case": "auditor-tenant-history",
+      "http_status": 200,
+      "response": {
+        "tenant_id": "alpha",
+        "events": [
+          {
+            "sequence": 1,
+            "tenant_id": "alpha",
+            "subject": "admin-alpha",
+            "command_id": "shared-command",
+            "action": "update",
+            "command_sha256": "a1efec5587736b0db4b60eefa9adaa9a5cfa1b2d3bb99cf280934ba98bef5154",
+            "revision": 1,
+            "previous_revision": 0,
+            "configuration_sha256": "86faf6a1ad5119f35db7445ba44e7d710b9f82fdfbc453ad619ac9933662afb7",
+            "previous_audit_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+            "audit_hash": "09d184feea03167f49d15fcadf2f7ddade9f45e4204cfdc7c6398fc305561a1c"
+          },
+          {
+            "sequence": 3,
+            "tenant_id": "alpha",
+            "subject": "admin-alpha",
+            "command_id": "restore-zero",
+            "action": "rollback",
+            "command_sha256": "365ef64b5dae51d55dfb7da228271dc61ecd268863ebed6abbde97d00e03768b",
+            "revision": 2,
+            "previous_revision": 1,
+            "configuration_sha256": "34e64f0caaac75e3a7fa82cfff9c39d05a907c4c7976c5bdf0ff8cc23f5c597b",
+            "previous_audit_hash": "4b386621031ec8d3774bbad065d049f7f0a6fcc8f2d9f5dc9f69b28bb168c34d",
+            "audit_hash": "d748a270d7cb99522e5907a424eae315b64c13063b43441e1ed10b15b09fe2ef"
+          }
+        ],
+        "total": 2
+      }
+    },
+    {
+      "case": "restart-requires-login",
+      "http_status": 401,
+      "response": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "Sign in again; this local session is missing or expired."
+        }
+      }
+    },
+    {
+      "case": "login-admin-alpha",
+      "http_status": 200,
+      "response": {
+        "authenticated": true,
+        "user": {
+          "subject": "admin-alpha",
+          "tenant_id": "alpha",
+          "roles": [
+            "config_admin",
+            "reader"
+          ]
+        },
+        "can_read": true,
+        "can_configure": true,
+        "can_audit": true
+      }
+    },
+    {
+      "case": "restart-exact-replay",
+      "http_status": 200,
+      "response": {
+        "action": "rollback",
+        "audit_hash": "d748a270d7cb99522e5907a424eae315b64c13063b43441e1ed10b15b09fe2ef",
+        "audit_sequence": 3,
+        "command_id": "restore-zero",
+        "configuration_sha256": "34e64f0caaac75e3a7fa82cfff9c39d05a907c4c7976c5bdf0ff8cc23f5c597b",
+        "previous_revision": 1,
+        "revision": 2,
+        "tenant_id": "alpha"
+      }
+    },
+    {
+      "case": "restart-audit-preserved",
+      "http_status": 200,
+      "response": {
+        "tenant_id": "alpha",
+        "events": [
+          {
+            "sequence": 1,
+            "tenant_id": "alpha",
+            "subject": "admin-alpha",
+            "command_id": "shared-command",
+            "action": "update",
+            "command_sha256": "a1efec5587736b0db4b60eefa9adaa9a5cfa1b2d3bb99cf280934ba98bef5154",
+            "revision": 1,
+            "previous_revision": 0,
+            "configuration_sha256": "86faf6a1ad5119f35db7445ba44e7d710b9f82fdfbc453ad619ac9933662afb7",
+            "previous_audit_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+            "audit_hash": "09d184feea03167f49d15fcadf2f7ddade9f45e4204cfdc7c6398fc305561a1c"
+          },
+          {
+            "sequence": 3,
+            "tenant_id": "alpha",
+            "subject": "admin-alpha",
+            "command_id": "restore-zero",
+            "action": "rollback",
+            "command_sha256": "365ef64b5dae51d55dfb7da228271dc61ecd268863ebed6abbde97d00e03768b",
+            "revision": 2,
+            "previous_revision": 1,
+            "configuration_sha256": "34e64f0caaac75e3a7fa82cfff9c39d05a907c4c7976c5bdf0ff8cc23f5c597b",
+            "previous_audit_hash": "4b386621031ec8d3774bbad065d049f7f0a6fcc8f2d9f5dc9f69b28bb168c34d",
+            "audit_hash": "d748a270d7cb99522e5907a424eae315b64c13063b43441e1ed10b15b09fe2ef"
+          }
+        ],
+        "total": 2
+      }
+    },
+    {
+      "case": "login-admin-alpha",
+      "http_status": 200,
+      "response": {
+        "authenticated": true,
+        "user": {
+          "subject": "admin-alpha",
+          "tenant_id": "alpha",
+          "roles": [
+            "config_admin",
+            "reader"
+          ]
+        },
+        "can_read": true,
+        "can_configure": true,
+        "can_audit": true
+      }
+    },
+    {
+      "case": "before_commit-old-session-denied",
+      "http_status": 401,
+      "response": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "Sign in again; this local session is missing or expired."
+        }
+      }
+    },
+    {
+      "case": "login-admin-alpha",
+      "http_status": 200,
+      "response": {
+        "authenticated": true,
+        "user": {
+          "subject": "admin-alpha",
+          "tenant_id": "alpha",
+          "roles": [
+            "config_admin",
+            "reader"
+          ]
+        },
+        "can_read": true,
+        "can_configure": true,
+        "can_audit": true
+      }
+    },
+    {
+      "case": "before_commit-durable-before-retry",
+      "http_status": 200,
+      "response": {
+        "tenant_id": "alpha",
+        "revision": 2,
+        "config": {
+          "default_status": "open",
+          "work_order_page_size": 3
+        }
+      }
+    },
+    {
+      "case": "before_commit-exact-retry",
+      "http_status": 200,
+      "response": {
+        "tenant_id": "alpha",
+        "command_id": "fault-before_commit",
+        "action": "update",
+        "revision": 3,
+        "previous_revision": 2,
+        "configuration_sha256": "bcf101b2dc59f2f793c5baf01d0b0cbf5957d7ae938e0b6b0a487a1b69d693db",
+        "audit_sequence": 4,
+        "audit_hash": "351fcf574f937f401bd460a7f42daea61baa64256fd8521c9387ea48d19ba722"
+      }
+    },
+    {
+      "case": "before_commit-second-exact-replay",
+      "http_status": 200,
+      "response": {
+        "action": "update",
+        "audit_hash": "351fcf574f937f401bd460a7f42daea61baa64256fd8521c9387ea48d19ba722",
+        "audit_sequence": 4,
+        "command_id": "fault-before_commit",
+        "configuration_sha256": "bcf101b2dc59f2f793c5baf01d0b0cbf5957d7ae938e0b6b0a487a1b69d693db",
+        "previous_revision": 2,
+        "revision": 3,
+        "tenant_id": "alpha"
+      }
+    },
+    {
+      "case": "login-admin-alpha",
+      "http_status": 200,
+      "response": {
+        "authenticated": true,
+        "user": {
+          "subject": "admin-alpha",
+          "tenant_id": "alpha",
+          "roles": [
+            "config_admin",
+            "reader"
+          ]
+        },
+        "can_read": true,
+        "can_configure": true,
+        "can_audit": true
+      }
+    },
+    {
+      "case": "after_commit-old-session-denied",
+      "http_status": 401,
+      "response": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "Sign in again; this local session is missing or expired."
+        }
+      }
+    },
+    {
+      "case": "login-admin-alpha",
+      "http_status": 200,
+      "response": {
+        "authenticated": true,
+        "user": {
+          "subject": "admin-alpha",
+          "tenant_id": "alpha",
+          "roles": [
+            "config_admin",
+            "reader"
+          ]
+        },
+        "can_read": true,
+        "can_configure": true,
+        "can_audit": true
+      }
+    },
+    {
+      "case": "after_commit-durable-before-retry",
+      "http_status": 200,
+      "response": {
+        "tenant_id": "alpha",
+        "revision": 4,
+        "config": {
+          "default_status": "open",
+          "work_order_page_size": 5
+        }
+      }
+    },
+    {
+      "case": "after_commit-exact-retry",
+      "http_status": 200,
+      "response": {
+        "action": "update",
+        "audit_hash": "3b6ac3959477a4c1c2c0243a3d0555dc3e35e77955c766738fef8347b942ae37",
+        "audit_sequence": 5,
+        "command_id": "fault-after_commit",
+        "configuration_sha256": "a68dc038196a6ab27635cf5e8fa43df37806196f1029dc76501759afafa88d46",
+        "previous_revision": 3,
+        "revision": 4,
+        "tenant_id": "alpha"
+      }
+    },
+    {
+      "case": "after_commit-second-exact-replay",
+      "http_status": 200,
+      "response": {
+        "action": "update",
+        "audit_hash": "3b6ac3959477a4c1c2c0243a3d0555dc3e35e77955c766738fef8347b942ae37",
+        "audit_sequence": 5,
+        "command_id": "fault-after_commit",
+        "configuration_sha256": "a68dc038196a6ab27635cf5e8fa43df37806196f1029dc76501759afafa88d46",
+        "previous_revision": 3,
+        "revision": 4,
+        "tenant_id": "alpha"
+      }
+    },
+    {
+      "case": "final-alpha-audit",
+      "http_status": 200,
+      "response": {
+        "tenant_id": "alpha",
+        "events": [
+          {
+            "sequence": 1,
+            "tenant_id": "alpha",
+            "subject": "admin-alpha",
+            "command_id": "shared-command",
+            "action": "update",
+            "command_sha256": "a1efec5587736b0db4b60eefa9adaa9a5cfa1b2d3bb99cf280934ba98bef5154",
+            "revision": 1,
+            "previous_revision": 0,
+            "configuration_sha256": "86faf6a1ad5119f35db7445ba44e7d710b9f82fdfbc453ad619ac9933662afb7",
+            "previous_audit_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+            "audit_hash": "09d184feea03167f49d15fcadf2f7ddade9f45e4204cfdc7c6398fc305561a1c"
+          },
+          {
+            "sequence": 3,
+            "tenant_id": "alpha",
+            "subject": "admin-alpha",
+            "command_id": "restore-zero",
+            "action": "rollback",
+            "command_sha256": "365ef64b5dae51d55dfb7da228271dc61ecd268863ebed6abbde97d00e03768b",
+            "revision": 2,
+            "previous_revision": 1,
+            "configuration_sha256": "34e64f0caaac75e3a7fa82cfff9c39d05a907c4c7976c5bdf0ff8cc23f5c597b",
+            "previous_audit_hash": "4b386621031ec8d3774bbad065d049f7f0a6fcc8f2d9f5dc9f69b28bb168c34d",
+            "audit_hash": "d748a270d7cb99522e5907a424eae315b64c13063b43441e1ed10b15b09fe2ef"
+          },
+          {
+            "sequence": 4,
+            "tenant_id": "alpha",
+            "subject": "admin-alpha",
+            "command_id": "fault-before_commit",
+            "action": "update",
+            "command_sha256": "78c173e72c8f2cc5d2dfaf62258ae7f9b393b1b0a503859f6a1691a2a9d6ec02",
+            "revision": 3,
+            "previous_revision": 2,
+            "configuration_sha256": "bcf101b2dc59f2f793c5baf01d0b0cbf5957d7ae938e0b6b0a487a1b69d693db",
+            "previous_audit_hash": "d748a270d7cb99522e5907a424eae315b64c13063b43441e1ed10b15b09fe2ef",
+            "audit_hash": "351fcf574f937f401bd460a7f42daea61baa64256fd8521c9387ea48d19ba722"
+          },
+          {
+            "sequence": 5,
+            "tenant_id": "alpha",
+            "subject": "admin-alpha",
+            "command_id": "fault-after_commit",
+            "action": "update",
+            "command_sha256": "7200b021cd4ed3baab61472b3ce311645d001ac78b5eb44eec87c38e1b238619",
+            "revision": 4,
+            "previous_revision": 3,
+            "configuration_sha256": "a68dc038196a6ab27635cf5e8fa43df37806196f1029dc76501759afafa88d46",
+            "previous_audit_hash": "351fcf574f937f401bd460a7f42daea61baa64256fd8521c9387ea48d19ba722",
+            "audit_hash": "3b6ac3959477a4c1c2c0243a3d0555dc3e35e77955c766738fef8347b942ae37"
+          }
+        ],
+        "total": 4
+      }
+    },
+    {
+      "case": "logout",
+      "http_status": 200,
+      "response": {
+        "logged_out": true
+      }
+    },
+    {
+      "case": "logged-out-denied",
+      "http_status": 401,
+      "response": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "Sign in again; this local session is missing or expired."
+        }
+      }
+    }
+  ],
+  "faults": [
+    {
+      "phase": "before_commit",
+      "controlled_fault": true,
+      "response_lost": true,
+      "immutable_command_sha256": "b3a4c5ac4346c6ff99ed775d5e78b0219bfb0cb7b67103bbf325f76170526bd9",
+      "revision_after_reopen_before_retry": 2,
+      "revision_after_explicit_retry": 3,
+      "receipt": {
+        "tenant_id": "alpha",
+        "command_id": "fault-before_commit",
+        "action": "update",
+        "revision": 3,
+        "previous_revision": 2,
+        "configuration_sha256": "bcf101b2dc59f2f793c5baf01d0b0cbf5957d7ae938e0b6b0a487a1b69d693db",
+        "audit_sequence": 4,
+        "audit_hash": "351fcf574f937f401bd460a7f42daea61baa64256fd8521c9387ea48d19ba722"
+      },
+      "same_id_and_body": true,
+      "automatic_retry": false
+    },
+    {
+      "phase": "after_commit",
+      "controlled_fault": true,
+      "response_lost": true,
+      "immutable_command_sha256": "1583a8d1f26ac54cfa2d6815b3dd569f3b4bbfc2417f54c17678e89c6f82586a",
+      "revision_after_reopen_before_retry": 4,
+      "revision_after_explicit_retry": 4,
+      "receipt": {
+        "action": "update",
+        "audit_hash": "3b6ac3959477a4c1c2c0243a3d0555dc3e35e77955c766738fef8347b942ae37",
+        "audit_sequence": 5,
+        "command_id": "fault-after_commit",
+        "configuration_sha256": "a68dc038196a6ab27635cf5e8fa43df37806196f1029dc76501759afafa88d46",
+        "previous_revision": 3,
+        "revision": 4,
+        "tenant_id": "alpha"
+      },
+      "same_id_and_body": true,
+      "automatic_retry": false
+    }
+  ],
+  "browser": {
+    "schema_version": 1,
+    "recorded_at": "2026-10-26T13:21:03.489Z",
+    "passed": true,
+    "experiment": "Actual Chromium local configuration desk",
+    "checks": [
+      {
+        "name": "Initial desk stays hidden until the real configuration response and initial view load complete; controlled response delay",
+        "passed": true
+      },
+      {
+        "name": "Actual Code+PKCE login uses a user account and an HttpOnly opaque cookie",
+        "passed": true
+      },
+      {
+        "name": "Keyboard review and confirmation change the real configured view only after confirmation",
+        "passed": true
+      },
+      {
+        "name": "Rollback appends a revision and the configuration audit remains visible",
+        "passed": true
+      },
+      {
+        "name": "Tab reload preserves only the account-bound immutable command without automatically submitting it",
+        "passed": true
+      },
+      {
+        "name": "Auditor inspects this tenant and audit while mutation controls stay disabled",
+        "passed": true
+      },
+      {
+        "name": "Beta work orders and audit remain tenant-local; a query-string tenant is rejected",
+        "passed": true
+      },
+      {
+        "name": "The rendered desk stays within a 390-pixel viewport",
+        "passed": true,
+        "viewport_width": 390
+      },
+      {
+        "name": "No uncaught application errors in the actual browser",
+        "passed": true
+      }
+    ],
+    "human_review_performed": false,
+    "limitations": [
+      "Automated fixture-account actions are not owner review or an accessibility certification.",
+      "The separate HTTP/process experiment proves actual before/after-commit kill and recovery; this script does not kill a service."
+    ],
+    "browser": {
+      "name": "Chromium",
+      "version": "151.0.7922.34",
+      "playwright": "1.62.1"
+    },
+    "screenshots": [
+      "admin-desktop.png",
+      "admin-mobile.png"
+    ]
+  },
+  "processes": {
+    "count": 7,
+    "all_reaped": true,
+    "scope": "issuer-and-portal-service-children"
+  },
+  "human_review_performed": false,
+  "registry_release": false,
+  "limitations": [
+    "Generated fixture accounts and scripted browser actions do not establish owner study or human review.",
+    "Trusted loopback host/filesystem, startup keys and short-lived sessions are not production identity, MFA, key rotation or live entitlement synchronization.",
+    "Only two fictional view settings change. No IAM, permission, process, service or arbitrary-command operation is exposed.",
+    "Fault hooks deliberately pause before or after the actual SQLite commit; they do not identify a historical failure cause.",
+    "The local mutation chain shares the configuration transaction but has no external anchor against the trusted host.",
+    "A lost HTTP response is not rollback; one explicit identical retry reconciles a durable receipt. No exactly-once network delivery claim."
+  ]
+}

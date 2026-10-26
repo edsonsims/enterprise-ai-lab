@@ -139,10 +139,10 @@ $('logout').addEventListener('click', async () => {
     $('login').hidden = $('signed-out').hidden = true;
     $('logout').hidden = false;
     if (!session.can_read) { tell('This signed account has no configuration-reading role and scope.'); return; }
-    $('desk').hidden = false;
     for (const id of ['page-size', 'status', 'prepare', 'rollback-target', 'prepare-rollback']) $(id).disabled = !session.can_configure;
     $('read-only').hidden = session.can_configure;
     await refresh();
+    $('desk').hidden = false;
     if (session.can_configure) restoreCommand();
   } catch (failure) { if (failure.status !== 401) tell(failure.message); }
 })();

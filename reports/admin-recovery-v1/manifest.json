@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "demo.json",
+      "bytes": 27968,
+      "sha256": "3a5f35cedf92fc31270e3f647a486c7f803841c1b7da8caa405284d1c0c9b179"
+    },
+    {
+      "path": "execution.json",
+      "bytes": 2681,
+      "sha256": "2265ef98f6007ca9297b4501988a197f59d49bab251c4b8e087c2805c9b6474c"
+    }
+  ]
+}

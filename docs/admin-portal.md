@@ -131,7 +131,8 @@ filesystem sandbox, encryption, secure erasure or an externally anchored audit.
 An administrator who rewrites both history and its local metadata is outside
 that proof. Corruption is refused; there is no automatic audit reset or repair.
 
-See [the frozen run](../reports/admin-v1) for actual process, browser and runtime
+See [the current follow-up](../reports/admin-recovery-v1) and the unchanged
+[original frozen run](../reports/admin-v1) for actual process, browser and runtime
 observations. Automated fixture-account actions are not owner review, personal
 study, external SSO, production administration or an accessibility certification.
 No inference, OCR, customer outcome, new quality score or registry release is
@@ -146,3 +147,21 @@ part of this study. Prior reports and their source identities remain unchanged.
   external anchor or independent retained receipt.
 - Run the demo yourself, inspect a command and its receipt, and record your own
   observations separately from the automated report.
+
+## Initial view and failure follow-up
+
+The desk stays hidden until its initial configuration, filtered work-order page
+and tenant audit are loaded. The rendered regression delays a real successful
+configuration response, then releases exactly the original bytes; it uses no fake
+API results. After a confirmed mutation, the browser checks wait for view-refresh
+completion before the next inspection. Mutation IDs, authorization and retry rules
+are unchanged.
+
+A failed initial remote browser run did not retain its phase, so its cause remains
+unknown. The new finite diagnostic reports only a fixed browser failure code,
+whitelisted stage and bounded return code from an owned0600/no-follow/single-link
+regular JSON file of at most32KiB. The diagnostic exception never includes raw exception text or driver
+stdout/stderr. There is no new raw-log or private-directory artifact upload. The
+[follow-up evidence](../reports/admin-recovery-v1) preserves both that limitation
+and the separately reproduced readiness gap. Use the matching source checkout
+when recomputing an older frozen report.

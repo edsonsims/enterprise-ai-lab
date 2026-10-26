@@ -34,6 +34,9 @@ let browser;
 let context;
 let page;
 let phase = 'launch';
+let configReceived = false;
+let initialConfigPending = true;
+let releaseConfig = () => {};
 const record = (name, detail = {}) => checks.push({name, passed: true, ...detail});
 async function until(operation) {
   const deadline = Date.now() + 15000;
@@ -44,13 +47,16 @@ async function until(operation) {
   throw new Error('Bounded browser condition did not become true.');
 }
 async function login(name) {
+  phase = 'login_navigation';
   await page.goto(origin + '/');
   await page.locator('#login').waitFor({state: 'visible'});
   await page.locator('#login').focus();
   await page.keyboard.press('Enter');
+  phase = 'login_form';
   await page.locator('input[name="username"]').waitFor({state: 'visible'});
   await page.locator('input[name="username"]').fill(name);
   await page.locator('input[name="password"]').fill(accounts.get(name));
+  phase = 'login_redirect';
   await page.getByRole('button', {name: 'Sign in', exact: true}).click();
   await until(async () => {
     if (page.url().startsWith(origin + '/') && (await page.locator('#identity').textContent()).includes(name)) return true;
@@ -58,7 +64,20 @@ async function login(name) {
     if (await button.isVisible()) await button.click();
     return false;
   });
+  if (initialConfigPending) {
+    phase = 'initial_view_guard';
+    try {
+      await until(async () => configReceived);
+      assert.equal(await page.locator('#desk').isVisible(), false);
+      assert.equal(await page.locator('#revision').isVisible(), false);
+    } finally {
+      initialConfigPending = false;
+      releaseConfig();
+    }
+  }
+  phase = 'login_view';
   await page.locator('#revision').waitFor({state: 'visible'});
+  phase = 'login_session';
   const cookie = (await context.cookies(origin)).find((item) => item.name === 'lab_admin_session');
   assert.ok(cookie?.httpOnly && cookie.sameSite === 'Lax' && !cookie.value.includes('.'));
   assert.equal(await page.evaluate(() => document.cookie), '');
@@ -81,7 +100,19 @@ try {
   const pageErrors = [];
   page.on('pageerror', () => pageErrors.push('uncaught_application_error'));
   phase = 'alpha_login';
+  // Hold one actual successful response, without replacing its body or status.
+  // Visibility must mean the initial view is coherent, rather than an empty pill.
+  const configGate = new Promise((done) => { releaseConfig = done; });
+  await page.route(origin + '/api/config', async (route) => {
+    const response = await route.fetch();
+    const body = await response.body();
+    assert.equal(response.status(), 200);
+    configReceived = true;
+    await configGate;
+    await route.fulfill({response, body});
+  }, {times: 1});
   await login('admin-alpha');
+  record('Initial desk stays hidden until the real configuration response and initial view load complete; controlled response delay');
   record('Actual Code+PKCE login uses a user account and an HttpOnly opaque cookie');
   phase = 'keyboard_update';
   const before = await (await page.request.get(origin + '/api/config')).json();
@@ -96,7 +127,8 @@ try {
   assert.equal(command.expected_revision, before.revision);
   await page.keyboard.press('Enter');
   await until(async () => !(await page.locator('#receipt').isHidden())
-    && JSON.parse(await page.locator('#receipt').textContent()).revision === before.revision + 1);
+    && JSON.parse(await page.locator('#receipt').textContent()).revision === before.revision + 1
+    && await page.locator('#prepare').isEnabled());
   const after = await (await page.request.get(origin + '/api/config')).json();
   assert.deepEqual(after.config, {work_order_page_size: 2, default_status: 'closed'});
   record('Keyboard review and confirmation change the real configured view only after confirmation');
@@ -104,7 +136,8 @@ try {
   await page.locator('#rollback-target').fill('0');
   await page.locator('#prepare-rollback').click();
   await page.locator('#commit').click();
-  await until(async () => JSON.parse(await page.locator('#receipt').textContent()).revision === before.revision + 2);
+  await until(async () => JSON.parse(await page.locator('#receipt').textContent()).revision === before.revision + 2
+    && await page.locator('#prepare').isEnabled());
   assert.deepEqual((await (await page.request.get(origin + '/api/config')).json()).config,
     {work_order_page_size: 3, default_status: 'open'});
   record('Rollback appends a revision and the configuration audit remains visible');
@@ -124,6 +157,7 @@ try {
   await logout();
   phase = 'auditor';
   const auditor = await login('auditor-alpha');
+  phase = 'auditor';
   assert.equal(auditor.can_configure, false);
   assert.equal(await page.locator('#prepare').isDisabled(), true);
   assert.equal(await page.locator('#read-only').isVisible(), true);
@@ -132,6 +166,7 @@ try {
   await logout();
   phase = 'beta';
   await login('admin-beta');
+  phase = 'beta';
   assert.match(await page.locator('#identity').textContent(), /tenant beta/);
   const beta = await (await page.request.get(origin + '/api/work-orders')).json();
   assert.ok(beta.items.every((row) => row.tenant_id === 'beta'));
@@ -154,6 +189,7 @@ try {
   report.failure = 'Actual browser assertion failed; raw URLs, credentials and exception text are omitted.';
   process.exitCode = 1;
 } finally {
+  releaseConfig();
   accounts.clear();
   await context?.close();
   await browser?.close();

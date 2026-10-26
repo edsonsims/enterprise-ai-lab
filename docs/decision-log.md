@@ -563,3 +563,18 @@ eight flows on desktop and390px mobile, adding two alpha revisions after the cor
 observations. Source bytes and the fictional source database remain unchanged.
 No owner study, human review, inference, registry release or production result is
 inferred. Previous experiments and their original failures remain intact.
+
+### 2026-10-26 follow-up: readiness before editing
+
+The first remote admin browser failed without retaining its phase; that historical
+cause remains unknown. A separate controlled real-response probe reproduced an
+empty visible revision and enabled input before the initial view loaded. Keep the
+desk hidden until that complete initial refresh finishes. The permanent browser
+case releases the actual response unchanged; later receipt inspections also await
+view-refresh completion. No timeout increase or automatic mutation retry follows.
+
+Add finite failure-stage/code/return metadata through a bounded owned private-file
+reader, without raw exception text or browser output. The original report stays
+unchanged; [new installed-wheel observations](../reports/admin-recovery-v1) retain
+the follow-up's nine browser checks separately. This maintains study14 and adds no
+second scheduled milestone or owner-study claim.

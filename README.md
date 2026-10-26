@@ -475,7 +475,7 @@ share one SQLite commit. After a lost response, inspect state and retry only the
 unchanged command and ID. Rollback creates a new revision. The desk cannot execute
 system commands or alter permissions, model settings or a production service.
 
-[Protocol and exercises](docs/admin-portal.md) · [Recorded local run](reports/admin-v1)
+[Protocol and exercises](docs/admin-portal.md) · [Recorded local follow-up](reports/admin-recovery-v1)
 
 ## Redact before a local tool and restore in context
 

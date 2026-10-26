@@ -25,6 +25,114 @@ from ..mcp_gateway.store import initialize_fixture
 from ..rag.auth import local_origin
 from ..rag.integration import IntegrationError, _JsonProcess
 
+_BROWSER_STAGES = frozenset(
+    (
+        "launch",
+        "alpha_login",
+        "login_navigation",
+        "login_form",
+        "login_redirect",
+        "login_view",
+        "login_session",
+        "initial_view_guard",
+        "keyboard_update",
+        "rollback",
+        "saved_command_recovery",
+        "desktop_pixels",
+        "auditor",
+        "beta",
+        "mobile",
+    )
+)
+_BROWSER_CODES = frozenset(("browser_nonzero", "browser_timeout", "report_unavailable"))
+
+
+class BrowserFailure(IntegrationError):
+    """Finite diagnostic metadata only; never child output or exception text."""
+
+    def __init__(self, code, stage="unknown", returncode=None):
+        self.code = (
+            code
+            if type(code) is str and code in _BROWSER_CODES
+            else "report_unavailable"
+        )
+        self.failure_stage = (
+            stage if type(stage) is str and stage in _BROWSER_STAGES else "unknown"
+        )
+        self.returncode = (
+            returncode
+            if type(returncode) is int and -255 <= returncode <= 255
+            else None
+        )
+        super().__init__(
+            f"Admin browser verification failed: code={self.code}; stage={self.failure_stage}; returncode={self.returncode}."
+        )
+
+
+def _private_browser_report(path):
+    """Return bounded private report data or None; errors never reveal paths."""
+    descriptor = None
+    try:
+        descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+        info = os.fstat(descriptor)
+        if (
+            not stat.S_ISREG(info.st_mode)
+            or info.st_nlink != 1
+            or info.st_mode & 0o777 != 0o600
+            or (hasattr(os, "getuid") and info.st_uid != os.getuid())
+            or not 0 < info.st_size <= 32768
+        ):
+            return None
+        raw = bytearray()
+        while len(raw) <= 32768:
+            chunk = os.read(descriptor, min(8192, 32769 - len(raw)))
+            if not chunk:
+                break
+            raw.extend(chunk)
+        if len(raw) > 32768:
+            return None
+        from ..rag.auth import strict_json
+
+        value = strict_json(bytes(raw))
+        return value if type(value) is dict else None
+    except (OSError, ValueError, UnicodeError, RecursionError):
+        return None
+    finally:
+        if descriptor is not None:
+            os.close(descriptor)
+
+
+def _run_browser(*, node, script, origin, accounts, output, cwd):
+    command = [
+        str(node),
+        str(Path(script).resolve()),
+        origin,
+        str(accounts),
+        str(output),
+    ]
+    try:
+        result = subprocess.run(
+            command, cwd=cwd, env=os.environ.copy(), capture_output=True, timeout=90
+        )
+    except subprocess.TimeoutExpired:
+        report = _private_browser_report(output)
+        stage = report.get("failure_stage") if report is not None else None
+        raise BrowserFailure("browser_timeout", stage) from None
+    except OSError:
+        raise BrowserFailure("report_unavailable") from None
+    report = _private_browser_report(output)
+    stage = report.get("failure_stage") if report is not None else None
+    if type(result.returncode) is not int or result.returncode != 0:
+        raise BrowserFailure("browser_nonzero", stage, result.returncode)
+    if (
+        report is None
+        or report.get("passed") is not True
+        or type(report.get("schema_version")) is not int
+        or report["schema_version"] != 1
+    ):
+        raise BrowserFailure("report_unavailable", stage, result.returncode)
+    return report
+
 
 class Form(HTMLParser):
     def __init__(self, text):
@@ -531,22 +639,14 @@ def run_demo(args):
         browser_result = None
         if getattr(args, "browser_test", False):
             browser_out = work / "browser.json"
-            result = subprocess.run(
-                [
-                    str(args.node),
-                    str(Path(browser_script).resolve()),
-                    origin,
-                    str(accounts),
-                    str(browser_out),
-                ],
+            browser_result = _run_browser(
+                node=args.node,
+                script=browser_script,
+                origin=origin,
+                accounts=accounts,
+                output=browser_out,
                 cwd=work,
-                env=os.environ.copy(),
-                capture_output=True,
-                timeout=90,
             )
-            require(result.returncode == 0)
-            browser_result = json.loads(browser_out.read_text())
-            require(browser_result["passed"])
         observe(alpha, "logout", "/logout", body={})
         observe(alpha, "logged-out-denied", "/api/config", expected=401)
         require(hashlib.sha256(source.read_bytes()).hexdigest() == source_hash)
@@ -974,7 +1074,7 @@ def verify_report(report, *, identity_dir):
         )
         require(
             type(report["browser"]["checks"]) is list
-            and len(report["browser"]["checks"]) == 8
+            and len(report["browser"]["checks"]) == 9
             and all(row.get("passed") is True for row in report["browser"]["checks"])
         )
         require(
