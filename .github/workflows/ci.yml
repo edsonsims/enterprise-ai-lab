@@ -3,6 +3,46 @@ on: [push, pull_request]
 permissions:
   contents: read
 jobs:
+  local-admin-portal:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.12', '3.13']
+    env:
+      RUN_ADMIN_INTEGRATION: '1'
+      RUN_ADMIN_BROWSER: '1'
+      IDENTITY_LAB_DIR: ${{ github.workspace }}/.local/identity-boundary-lab
+      NODE_BINARY: node
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: edsonsims/identity-boundary-lab
+          ref: 92a6688e6df862934d53201a6ac39d8fba410a52
+          path: .local/identity-boundary-lab
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: requirements-approval.lock
+      - run: python -m pip install -r requirements-approval.lock
+      - run: python -m pip install --no-deps -e .
+      - run: python -m pip check
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - working-directory: .local/identity-boundary-lab
+        run: |
+          npm ci --ignore-scripts
+          npm run build
+      - name: Signed admin boundary, real SQLite, actual browser and interrupted commit recovery
+        run: python -W error::ResourceWarning -m pytest tests/admin -q
+
   local-cpu-inference-contracts:
     runs-on: ubuntu-latest
     strategy:
@@ -43,7 +83,7 @@ jobs:
       - name: Actual fresh install and lexical demo under macOS network denial
         run: >-
           python scripts/offline_bundle_demo.py
-          --wheel .local/core-wheel/enterprise_ai_lab-0.13.0-py3-none-any.whl
+          --wheel .local/core-wheel/enterprise_ai_lab-0.14.0-py3-none-any.whl
           --work-dir .local/offline-install-demo
           --out reports/local/offline-install-demo.json
 

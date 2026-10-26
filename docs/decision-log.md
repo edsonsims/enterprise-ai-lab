@@ -525,3 +525,41 @@ Model-free tests use explicit controlled generators/processes and do not establi
 Linux neural performance. This advances the CPU study only; NVIDIA execution,
 production edge management and complete offline optional-runtime delivery remain
 planned. No owner study or human review is inferred.
+
+## 2026-10-26: make configuration recovery inspectable
+
+**Question.** Can a local administration desk make an uncertain response and
+safe rollback understandable without granting arbitrary operations or claiming
+that a lost receipt means rollback?
+
+**Decision.** Use a separate real Code+PKCE issuer and dedicated signed user
+namespace. Expose only page size and default status over the existing fictional
+read-only work orders. Reuse tenant AND row-role filtering before LIMIT. Commit
+configuration, metadata audit, complete-command digest and exact receipt in one
+SQLite transaction. Check the command ID and immutable body before revision CAS
+on retry; append a new revision for rollback. Keep bearer tokens in server memory,
+require exact Origin/session CSRF, and require explicit confirmation and retry.
+
+**Tradeoff.** A single trusted host/database provides a small auditable transaction
+boundary, not a distributed transaction or externally anchored administrator-proof
+log. Sessions disappear on restart and require login. The UI retains an account-bound
+immutable pending command in tab storage, without tokens, passwords or CSRF, so a
+person can inspect durable state and explicitly reconcile an uncertain result.
+Only the configured first permitted page is displayed; broader pagination and
+production IAM/operations remain planned.
+
+**Review repairs.** Canonical JSON equality distinguishes stored receipt booleans
+from integers. Existing SQLite files are never manually opened and closed during
+guards: an independent real-process probe showed that doing so can release another
+connection's POSIX lock. Exact native busy errors also remain bounded on older
+Python versions. Duplicate session-cookie whitespace and portal startup cleanup have separate
+regressions; cancellation/receipt messaging was reviewed and corrected. These are
+bounded reliability observations, not a claim about a deployed vulnerability.
+
+**Evidence.** The [recorded installed-wheel run](../reports/admin-v1) retains40 HTTP
+observations, five core committed receipts, seven reaped service children and two
+actual kill/reopen/re-login/exact-body retry exercises. Chromium separately checks
+eight flows on desktop and390px mobile, adding two alpha revisions after the core
+observations. Source bytes and the fictional source database remain unchanged.
+No owner study, human review, inference, registry release or production result is
+inferred. Previous experiments and their original failures remain intact.

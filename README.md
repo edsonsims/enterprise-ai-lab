@@ -26,6 +26,7 @@ separate controlled experiment, with its original reports preserved.
 [Activity and modeled ROI](#separate-activity-from-modeled-benefit) ·
 [Offline core wheel](docs/offline-bundle.md) ·
 [Local CPU inference](#measure-startup-and-warm-inference) ·
+[Local configuration desk](#review-a-configuration-change-and-keep-its-receipt) ·
 [Scoped redaction proxy](#redact-before-a-local-tool-and-restore-in-context) ·
 [Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
 
@@ -452,6 +453,29 @@ the optional exact generator runtime; contract checks work on Python 3.10+.
 
 [Protocol, tradeoffs and exercises](docs/edge-inference.md) ·
 [Recorded CPU run](reports/edge-v1)
+
+## Review a configuration change and keep its receipt
+
+The [local admin study](docs/admin-portal.md) uses a separate real Code + PKCE
+identity, tenant-scoped administrator/auditor permissions and a browser desk for
+two fictional work-order view settings. The actual source query still filters
+the signed tenant AND row roles before applying the configured limit.
+
+```sh
+python -m pip install -r requirements-approval.lock
+python -m enterprise_ai_lab.admin demo \
+  --identity-dir ../identity-boundary-lab --node node \
+  --work-dir .local/admin-demo --out reports/local/admin-demo.json \
+  --browser-test --browser-script tests/admin/browser.mjs
+```
+
+Use Python3.12+, Node24, the built companion identity, and explicit locked
+Chromium setup from the guide. Configuration, audit and exact command receipts
+share one SQLite commit. After a lost response, inspect state and retry only the
+unchanged command and ID. Rollback creates a new revision. The desk cannot execute
+system commands or alter permissions, model settings or a production service.
+
+[Protocol and exercises](docs/admin-portal.md) · [Recorded local run](reports/admin-v1)
 
 ## Redact before a local tool and restore in context
 
