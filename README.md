@@ -28,6 +28,7 @@ separate controlled experiment, with its original reports preserved.
 [Local CPU inference](#measure-startup-and-warm-inference) ·
 [Local configuration desk](#review-a-configuration-change-and-keep-its-receipt) ·
 [Scoped redaction proxy](#redact-before-a-local-tool-and-restore-in-context) ·
+[Historical case-study audit](docs/case-studies/index.md) ·
 [Original retrieval study](docs/study-01.md) · [Roadmap](ROADMAP.md)
 
 ## Run the connected RAG demo

@@ -600,3 +600,24 @@ request generations. Keep raw bodies, URLs and exception text private. Controlle
 diagnostic tests and a fresh installed-wheel Chromium pass validate the new
 evidence path; they do not explain the historical failure. No product behavior,
 timeout, request retry or authorization rule changes here.
+
+### 2026-10-28: distinguish historical bytes from fresh execution
+
+Add a fixed [three-case inventory](case-studies/index.md) and a dependency-free
+auditor. The publication, read-only failover and CPU reports keep their original
+bytes, dates, traces and working-tree fingerprints. The manifest records their
+archive revisions without claiming those commits existed during execution.
+Three bounded narratives connect the trust and measurement boundaries while
+keeping related but unconnected components separate.
+
+Only a length and SHA-256 match earns `byte_verified_historical`. The audit never
+parses a report body, invokes a command, starts a service or imports a model
+runtime. Missing, unsafe and mismatching artifacts remain visible beside valid
+ones. The installed module requires an explicit repository path and refuses
+existing output paths. New contract tests cover finite evidence states, pinned
+metadata, bounded reads and no execution side effects.
+
+This is one incremental runnable milestone for study15. Fresh end-to-end
+reproductions, the complete three-case milestone and broader planned study scopes
+remain pending. No new inference, semantic evaluation, production deployment,
+owner review or personal study is inferred.

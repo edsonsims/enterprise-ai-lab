@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "manifest_id": "historical-v1",
+  "scope": "historical_evidence_only",
+  "cases": [
+    {
+      "id": "permission-aware-knowledge",
+      "title": "Identity to approved, permission-filtered knowledge",
+      "report": "reports/publication-v1/demo.json",
+      "sha256": "f179f02ae728e9f69fbb7f2bcaa48cd70a56ef381b690574e5c25f39eccbf204",
+      "bytes": 179372,
+      "recorded_at": "2026-10-18T14:41:08.761178+00:00",
+      "archive_source_revision": "6094d61dcf09e2a75005f246e89eba00fbaba8eb",
+      "evidence_state": "recorded_historical",
+      "narrative": "docs/case-studies/permission-aware-knowledge.md",
+      "historical_scope": "Actual local identity, durable approval and publication into permission-filtered retrieval.",
+      "limitations": [
+        "Two public English pages and one clean OCR derivative; no general OCR or answer-quality score.",
+        "Scripted service approval does not establish human or owner review; local administration remains trusted.",
+        "This audit does not repeat any identity, model, vector, OCR, approval or recovery experiment."
+      ]
+    },
+    {
+      "id": "reliable-legacy-automation",
+      "title": "Read-only access and explicit retry boundaries",
+      "report": "reports/chaos-v1/demo.json",
+      "sha256": "3f87283d445c2a9d7d4ee0227ea314f5e92d995ffb60b85a8086ce5d42b73a21",
+      "bytes": 81094,
+      "recorded_at": "2026-10-21T12:18:00.081626Z",
+      "archive_source_revision": "f1b419b0f193c58648834133912a5bce3ff8918a",
+      "evidence_state": "recorded_historical",
+      "narrative": "docs/case-studies/reliable-legacy-automation.md",
+      "historical_scope": "Actual local MCP read-only failure injection with finite retries and preserved audit effects.",
+      "limitations": [
+        "Authored fictional work orders and trusted launcher profiles; no remote identity or external database.",
+        "Read retries can add audit effects; no global exactly-once or interruption-of-executing-SQL claim.",
+        "Privacy and durable approval are related separate studies, not a connected privacy-to-MCP action system."
+      ]
+    },
+    {
+      "id": "operable-local-ai",
+      "title": "Local inference measurements and operational limits",
+      "report": "reports/edge-v1/cpu-qwen-v1.json",
+      "sha256": "ba861cb95563230b827dc011d198b6297b9076901e4d4e1271ec89ff970afb47",
+      "bytes": 38488,
+      "recorded_at": "2026-10-25T12:24:59Z",
+      "archive_source_revision": "dd5d6b5a3f47c176e8ed3ec4482a2140307cd1fc",
+      "evidence_state": "recorded_historical",
+      "narrative": "docs/case-studies/operable-local-ai.md",
+      "historical_scope": "One recorded installed-wheel CPU inference experiment with pinned local assets and retained traces.",
+      "limitations": [
+        "Fourteen fixed-order calls on one macOS arm64 host; no quality, p95/p99, capacity or hardware-superiority claim.",
+        "Process peak RSS is whole-process lifetime highwater; it is not weights-only memory.",
+        "Packaging, fictional costs and administration remain separate studies; this audit runs no inference."
+      ]
+    }
+  ]
+}
