@@ -99,11 +99,22 @@ jobs:
           python -m pip wheel --no-index --no-deps --no-build-isolation .
           --wheel-dir .local/core-wheel
       - name: Actual fresh install and lexical demo under macOS network denial
-        run: >-
-          python scripts/offline_bundle_demo.py
-          --wheel .local/core-wheel/enterprise_ai_lab-0.14.0-py3-none-any.whl
-          --work-dir .local/offline-install-demo
-          --out reports/local/offline-install-demo.json
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          wheels = sorted(Path('.local/core-wheel').glob('*.whl'))
+          if len(wheels) != 1:
+              raise SystemExit('Expected exactly one newly built core wheel')
+          subprocess.run([
+              sys.executable, 'scripts/offline_bundle_demo.py',
+              '--wheel', str(wheels[0]),
+              '--work-dir', '.local/offline-install-demo',
+              '--out', 'reports/local/offline-install-demo.json',
+          ], check=True)
+          PY
 
   fictional-activity-roi:
     runs-on: ubuntu-latest

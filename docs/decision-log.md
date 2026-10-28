@@ -621,3 +621,13 @@ This is one incremental runnable milestone for study15. Fresh end-to-end
 reproductions, the complete three-case milestone and broader planned study scopes
 remain pending. No new inference, semantic evaluation, production deployment,
 owner review or personal study is inferred.
+
+### 2026-10-28 maintenance: select the wheel actually built
+
+The first inventory CI run built0.14.1, but the offline-install step still named
+the old0.14.0 wheel and failed before installing it. Select exactly one newly
+built wheel from the fresh build directory and pass its path as an argument.
+An empty or ambiguous directory fails before the experiment. Keep the original
+failure observation, strict bundle verifier and process network-denial controls;
+no rerun or timeout increase substitutes for this correction. The historical
+inventory reports and their original source fingerprints remain unchanged.
