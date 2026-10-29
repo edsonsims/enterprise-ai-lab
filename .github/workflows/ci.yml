@@ -16,10 +16,12 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python -m pip install --no-deps -e .
-      - name: Strict historical byte inventory contracts
+      - name: Historical inventory and recorded knowledge-case contracts
         run: python -W error::ResourceWarning -m unittest discover -s tests/case_studies -v
       - name: Inspect three frozen reports without executing experiments
         run: python -m enterprise_ai_lab.case_studies inspect --repository .
+      - name: Verify recorded knowledge case without starting services
+        run: python scripts/verify_knowledge_case.py --report reports/case-knowledge-v1/demo.json
 
   local-admin-portal:
     runs-on: ubuntu-latest

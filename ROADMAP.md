@@ -27,7 +27,7 @@ these components; separate repositories are useful only when a module stands alo
 | 12 | Air-gapped deployment pipeline (2) | Repeatable offline artifact bundle, image inventory and tested egress denial in an isolated environment | [Core wheel milestone](docs/offline-bundle.md) implemented2026-10-24: fixed-input repeatable inventory, independent expected digest, strict verifier and actual fresh installation/lexical demo in a macOS process with network denied. Image/model/dependency inventories are explicitly empty; full optional runtime/container delivery and physical air-gap validation remain planned. |
 | 13 | On-prem edge inference node (8) | Actual supported local model, measured latency/memory and reproducible configuration | [CPU local-worker milestone](docs/edge-inference.md) implemented 2026-10-25: pinned Qwen3-0.6B, strict stdio requests, actual first/warm timings and tensor/call counts, whole-process peak RSS and 1/4 intraop-thread comparison from a locally installed wheel under macOS process network denial. Fictional inputs and retained failures; no quality, hardware-superiority or OS-cold-cache claim. NVIDIA vLLM/TensorRT/MIG, fleet operations, authenticated network serving and optional-runtime delivery remain planned. |
 | 14 | Self-service admin and runbook portal (12) | Authenticated admin boundary, safe config updates, audit and recovery exercise | [Local configuration desk milestone](docs/admin-portal.md) implemented2026-10-26: dedicated real Code+PKCE user identity, two allowlisted fictional view settings, tenant AND row-role source filtering, atomic SQLite revisions/audit/receipts, exact retry and append-only rollback. Actual browser and before/after-commit process interruption exercises; production operations, external SSO, MFA and live IAM remain planned. |
-| 15 | Three public deployment case studies (15) | Reproduce and explain the trust boundary, reliability, and measurement workflows below | In progress: [historical evidence inventory](docs/case-studies/index.md) implemented 2026-10-28 with three bounded narratives and a dependency-free byte auditor. Fresh end-to-end reproductions and the complete three-case milestone remain pending. |
+| 15 | Three public deployment case studies (15) | Reproduce and explain the trust boundary, reliability, and measurement workflows below | In progress: [historical evidence inventory](docs/case-studies/index.md) implemented 2026-10-28; the [first fresh permission-aware workflow](reports/case-knowledge-v1) ran 2026-10-29 from an installed wheel with actual OAuth/OCR/Temporal/MiniLM/Qdrant and a separate recorded-contract verifier. The other two fresh cases and the complete three-case milestone remain pending. |
 
 ## Three connected case studies
 
@@ -65,8 +65,8 @@ container/optional AI-runtime deployment. The 2026-10-25
 local measurements and explicit process budgets. The2026-10-26
 [local configuration desk milestone](docs/admin-portal.md) advances study14 with
 actual identity, bounded configuration and recovery observations. Study15 now has
-a historical byte-audit milestone; fresh reproductions of the three case workflows
-remain next. Modeled ROI and observed business
+a historical byte-audit milestone and one separately recorded fresh permission
+workflow. The other two fresh case workflows remain next. Modeled ROI and observed business
 outcomes remain separate.
 
 After each milestone the owner can explain the design, reproduce a result, modify

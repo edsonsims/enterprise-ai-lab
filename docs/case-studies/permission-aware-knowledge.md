@@ -24,5 +24,23 @@ derivative. Service-account decisions are scripted fixtures, not human or owner
 review. Literal evidence is not semantic entailment, and the experiment does not
 measure broad OCR or answer quality. Production IAM, entitlement synchronization,
 distributed vector serving and issuer persistence/rotation remain separate work.
-Fresh reproduction follows the [publication guide](../approved-publication.md)
-with new work/report paths; it has not been performed by this inventory audit.
+The inventory audit itself does not repeat these experiments.
+
+## Fresh representative run, 2026-10-29
+
+A [new current-runtime run](../../reports/case-knowledge-v1) uses an installed
+0.14.1 wheel outside its checkout, all three exact runtime locks and the current
+dedicated issuer bridge. It records the actual 48 HTTP observations, three
+publication effects and six raw SDK history replays, including restart while
+pending, an after-commit worker interruption, tenant/role visibility and a
+revision-checked ACL narrowing. Package files, executable/model hashes and source
+revisions bind this run separately from the historical source above.
+
+The standalone recorded-contract verifier checks case completeness, identities,
+literal citation metadata, exact requests/effects and decoded history payloads.
+It does not rerun services or prove a new execution. The public failed-history
+derivative omits four private runtime stack traces; actual replay used the raw
+private histories, as declared in the new provenance file. This advances one
+representative workflow, not the full three-case milestone or the broader
+production, human-review and quality scopes. Reproduction follows the
+[publication guide](../approved-publication.md) with fresh work/report paths.

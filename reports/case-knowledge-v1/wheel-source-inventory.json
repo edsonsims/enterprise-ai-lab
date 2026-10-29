@@ -1,0 +1,458 @@
+{
+  "source_revision": "5768b4498bfbe83d26af69d1a5877b425819c19f",
+  "wheel_sha256": "60fecff4a69d873ac23c4309c229c7e738a6463e7d7fe36cecdfce1aff598aa8",
+  "package_entries": [
+    {
+      "file": "enterprise_ai_lab/__init__.py",
+      "sha256": "12a57268ee85fbb7168c7aca224810ae687425b85ca2bb3aec02ab8f32a6f52a"
+    },
+    {
+      "file": "enterprise_ai_lab/__main__.py",
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d"
+    },
+    {
+      "file": "enterprise_ai_lab/cli.py",
+      "sha256": "b89830df4d09dbeea665890230b76ddce63b022ebdee20e74dc12e8098ec8647"
+    },
+    {
+      "file": "enterprise_ai_lab/core.py",
+      "sha256": "98bf08b204c15151a8afb5954433c53abdf730a0af6dd3e0d884f12a810da977"
+    },
+    {
+      "file": "enterprise_ai_lab/diagnostics.py",
+      "sha256": "a7be1b537338eee5ea87991dbcd76cc659242b89911d7b9765871b611b52bd2f"
+    },
+    {
+      "file": "enterprise_ai_lab/offline_bundle.py",
+      "sha256": "ed8be4a24850e6985ec5afacb3ab6a5fad3c565fda05ed2415fc27de5b75db72"
+    },
+    {
+      "file": "enterprise_ai_lab/admin/__init__.py",
+      "sha256": "c9c9164f8076846911424cf99b1a04a358bbadbc676b5edb0576fc2eb8ebb7c5"
+    },
+    {
+      "file": "enterprise_ai_lab/admin/__main__.py",
+      "sha256": "8acbc0a3f500ab5dda79f166258b2466f38b28c5318e9058b73309805b635eed"
+    },
+    {
+      "file": "enterprise_ai_lab/admin/api.py",
+      "sha256": "7ac524dea8c2c49a5d440b631d8099d4ee2f1b90c7e666363a0d496d08873d12"
+    },
+    {
+      "file": "enterprise_ai_lab/admin/auth.py",
+      "sha256": "81a841543997f504f3ad571d5281a20deb95a61809caa5de76a4525be0e368cf"
+    },
+    {
+      "file": "enterprise_ai_lab/admin/core.py",
+      "sha256": "cf54ad5eeadfac92f8f3528c048167119d343810cee3f2973570c63ebcfef187"
+    },
+    {
+      "file": "enterprise_ai_lab/admin/integration.py",
+      "sha256": "89102ce690720bb2a6c3078c09f550c7bafeb0a0d82c8eb446659a6ffadec9a7"
+    },
+    {
+      "file": "enterprise_ai_lab/admin/static/app.css",
+      "sha256": "846fc57639778013ec9c6ee1d0bbff2c2a705bb9849e42063f7d68ecc0ebfcce"
+    },
+    {
+      "file": "enterprise_ai_lab/admin/static/app.js",
+      "sha256": "1e3916b0601b063963fcb5534222a378e093d0021ab128b531bcf72d99033d1d"
+    },
+    {
+      "file": "enterprise_ai_lab/admin/static/index.html",
+      "sha256": "23171a1cd3a681810b0850d0bb3f6f46002672d7fda8c0cd0b90370985af5d34"
+    },
+    {
+      "file": "enterprise_ai_lab/approval/__init__.py",
+      "sha256": "ad04dab071afc9702ff9f49cba3e0df7d5a722bcc162cf17cd86563f16513db9"
+    },
+    {
+      "file": "enterprise_ai_lab/approval/__main__.py",
+      "sha256": "dd0fc159b4077f431c7f1b1a2e6228f11a0b7a9e67ace203f7444b9cf2beb3c8"
+    },
+    {
+      "file": "enterprise_ai_lab/approval/activities.py",
+      "sha256": "7331dff23a831451d25bd4d93890ee85fbce71791b8dcbaa98247095f285eaf3"
+    },
+    {
+      "file": "enterprise_ai_lab/approval/api.py",
+      "sha256": "921c0ea8b4627d0f271fbd64fd4fe445de36c4f75f1bafa03837bfd2163cd404"
+    },
+    {
+      "file": "enterprise_ai_lab/approval/bootstrap.py",
+      "sha256": "5ec0cf1a4890c0e089a21dd2a775242290ba4be7f19af3efbc89659664d26486"
+    },
+    {
+      "file": "enterprise_ai_lab/approval/contracts.py",
+      "sha256": "c91cac752ab680c25c6a0aa3ddc2d87d6d951cc760f23647c6354dab514e2907"
+    },
+    {
+      "file": "enterprise_ai_lab/approval/gateway.py",
+      "sha256": "e97bc54cf00acb1e3b0ad39f4da35280de2b30b25c00133ef134d94bbc666309"
+    },
+    {
+      "file": "enterprise_ai_lab/approval/integration.py",
+      "sha256": "63c13c1bdd6ca3d9488becc016a1023cbbc4315fe06130a3ddef1fae62a9aa9a"
+    },
+    {
+      "file": "enterprise_ai_lab/approval/temporal-cli-lock.json",
+      "sha256": "6d1f901ad708beec5a633e660a55d32fe7db3be15834f95b506c0e595d7c950a"
+    },
+    {
+      "file": "enterprise_ai_lab/approval/workflow.py",
+      "sha256": "0887d136748c3030505d8131d4a1ef75e5e1f837263bb89a9be8c558a2e84b41"
+    },
+    {
+      "file": "enterprise_ai_lab/case_studies/__init__.py",
+      "sha256": "c823143c0254b1fd003565459c9f7c669081d8dd5dbc451a52961a5f08454b25"
+    },
+    {
+      "file": "enterprise_ai_lab/case_studies/__main__.py",
+      "sha256": "a2fa5928a9818a07cb099404d35650e7aa6da733d76f75132e8c20a42d06a8a6"
+    },
+    {
+      "file": "enterprise_ai_lab/chaos/__init__.py",
+      "sha256": "94d166e1e6adb85386931385b9d61fe5a918aa7f1a0b54a7a34539a70d932aa1"
+    },
+    {
+      "file": "enterprise_ai_lab/chaos/__main__.py",
+      "sha256": "52dfc9ed1c4bece5d4a1b5498d9a294f01a397005dba889492a7b380b20810dc"
+    },
+    {
+      "file": "enterprise_ai_lab/chaos/client.py",
+      "sha256": "632828bebed579583a88c09920fa08ae34129b7110ef9580b4c7afe19ab0427a"
+    },
+    {
+      "file": "enterprise_ai_lab/chaos/contract.py",
+      "sha256": "c3a0b0351d361df6353fc237950974a47f448709797cf1d9e2a1ca2ebbfbdfa9"
+    },
+    {
+      "file": "enterprise_ai_lab/chaos/diagnostics.py",
+      "sha256": "6ae9aab4bb21ad9c1d6b63c8cc4854f7aa4e48ca3a8429e5b5848424fa51743a"
+    },
+    {
+      "file": "enterprise_ai_lab/chaos/experiment.py",
+      "sha256": "deafb516f4a12ca857b90de85a153669b52c2910eae76faf474a3ab76d599466"
+    },
+    {
+      "file": "enterprise_ai_lab/chaos/transport.py",
+      "sha256": "0ddecc031c67a9bb400afd1ede1f0ad2517e3c12712e3b5202a9916e23908ca3"
+    },
+    {
+      "file": "enterprise_ai_lab/costs/__init__.py",
+      "sha256": "123b2d4ae2717a8f202bd2758ffa402069c7f17e7b03cc7c877450630e56a821"
+    },
+    {
+      "file": "enterprise_ai_lab/costs/__main__.py",
+      "sha256": "2fcb52b553ed034957e47a3c05071352491c0984b6b894871289e490d477ea41"
+    },
+    {
+      "file": "enterprise_ai_lab/costs/contracts.py",
+      "sha256": "30b4ea679bd12b4a19c1cf03947ca5080d817fbc2dc5de0c81661ea4984a61e1"
+    },
+    {
+      "file": "enterprise_ai_lab/costs/experiment.py",
+      "sha256": "372f2c14299f35d18c85eda464dd4c1782227c60686da59b960bad928228830b"
+    },
+    {
+      "file": "enterprise_ai_lab/costs/ledger.py",
+      "sha256": "75feaf14e958a8f8857f1bd1802e73262d6f199e481df0db16e10ec112bb3143"
+    },
+    {
+      "file": "enterprise_ai_lab/costs/data/README.md",
+      "sha256": "e842d8ac761f3871da7bcd31b6261f199ebb34ffb7026f12d1f2fbfc3a6a4e82"
+    },
+    {
+      "file": "enterprise_ai_lab/costs/data/rates-v1.json",
+      "sha256": "e57215f6629910ef95e5120e3b19d6e6228f3345e6b5a5c75af7604f55ff8080"
+    },
+    {
+      "file": "enterprise_ai_lab/costs/data/scenario-v1.json",
+      "sha256": "f4437f66975f3e3e167560f2e3d4b5d1934f3d7d483bfbf6f8ff3f54df9312a5"
+    },
+    {
+      "file": "enterprise_ai_lab/edge/__init__.py",
+      "sha256": "426cdfe0a9ccfb80171898c493ac3518a155cb7f7fb1a3796de7d2d88935f403"
+    },
+    {
+      "file": "enterprise_ai_lab/edge/__main__.py",
+      "sha256": "ef0d0244d34764795c5c4dde271514825ea39bb570d0c6d08b100eeecbac9968"
+    },
+    {
+      "file": "enterprise_ai_lab/edge/contracts.py",
+      "sha256": "078517547e35ecbcc2a17f62ada639380b5390831d8777a2f9e34d5d2fcc0164"
+    },
+    {
+      "file": "enterprise_ai_lab/edge/experiment.py",
+      "sha256": "20f925355f81323ddfecc53df0cda9989a7c51d41ee6c104a65fec261c622f86"
+    },
+    {
+      "file": "enterprise_ai_lab/edge/worker.py",
+      "sha256": "2cf50588effe3dafc1f158c81a2fe31c92d82ca945eb3de6a029e71bf02d17da"
+    },
+    {
+      "file": "enterprise_ai_lab/edge/data/README.md",
+      "sha256": "98cb6813257a0a9cd3516b8b57f0fe5d5cbf701dea0bf463c0d689f8f5e64ac9"
+    },
+    {
+      "file": "enterprise_ai_lab/edge/data/requests-v1.json",
+      "sha256": "f1e31ca721496b9c3d4ac0b8feff33d450807309e61ecef200935a76caaad57c"
+    },
+    {
+      "file": "enterprise_ai_lab/health/__init__.py",
+      "sha256": "1cdb16d6f2eebf2ac61bbe4a6c8816cb1ce8d54662fe36307176ec7680d00d10"
+    },
+    {
+      "file": "enterprise_ai_lab/health/__main__.py",
+      "sha256": "4795e2aa0135eb8f641bd5fe5a470f1dd252ab9ba80e30991c61d3c8d949d58d"
+    },
+    {
+      "file": "enterprise_ai_lab/health/core.py",
+      "sha256": "f09eca80ce01f402b83d3d2a4d6c8866a178a91b15a718d8a969e4cc3021790b"
+    },
+    {
+      "file": "enterprise_ai_lab/health/view.py",
+      "sha256": "e1b7ae3f26234da5be9ad36367de0473e84d1c7b3b7cb93f2cccdc9b27e3b144"
+    },
+    {
+      "file": "enterprise_ai_lab/mcp_gateway/__init__.py",
+      "sha256": "c1dd5c99b214d1b5eb798e7bb941a28b587f587e9898ee91d094722b8f5a4b63"
+    },
+    {
+      "file": "enterprise_ai_lab/mcp_gateway/__main__.py",
+      "sha256": "55aaf55db69772811986bc77651ea7eaca51a5101707cc71cd32c2b6088792a5"
+    },
+    {
+      "file": "enterprise_ai_lab/mcp_gateway/audit.py",
+      "sha256": "f05eb1145e6028062f2ddf354cd19fcf87c7138392a349704937dcad63576638"
+    },
+    {
+      "file": "enterprise_ai_lab/mcp_gateway/integration.py",
+      "sha256": "d782286fe4c1f5886d95bfc3eb4b025b04b8fc114767319edd6a1f573734d447"
+    },
+    {
+      "file": "enterprise_ai_lab/mcp_gateway/server.py",
+      "sha256": "fd8586ebb29c9d804a631e0d01f4af337c2b7c5b76eaa16709df8912402cb163"
+    },
+    {
+      "file": "enterprise_ai_lab/mcp_gateway/service.py",
+      "sha256": "660fd0b09f1fc5282220e12819ba8d063ebc185de3677db00c3dd67943fc080a"
+    },
+    {
+      "file": "enterprise_ai_lab/mcp_gateway/store.py",
+      "sha256": "a5668685033f7c2dd22a074e168e8602b37afea2e396baaf1790da58f8ccbc07"
+    },
+    {
+      "file": "enterprise_ai_lab/mcp_gateway/data/README.md",
+      "sha256": "2542993dae3dd9a94fbeb4b81ce11274caf20e5677e5fe38bfecc9dc36dc79dc"
+    },
+    {
+      "file": "enterprise_ai_lab/mcp_gateway/data/work-orders-v1.json",
+      "sha256": "7f37ae73b4c670f22276e43170517b5c30a6ecaadbb7aba07231d20e271def56"
+    },
+    {
+      "file": "enterprise_ai_lab/privacy_proxy/__init__.py",
+      "sha256": "a28bfe1bab55251f7eea02ed8c7798b202262d943cc2987c98548e3f63bff44d"
+    },
+    {
+      "file": "enterprise_ai_lab/privacy_proxy/__main__.py",
+      "sha256": "81cce494a36cd52efeea6b52bb26117e24e9ea0815b8ca8c4250f189d185468f"
+    },
+    {
+      "file": "enterprise_ai_lab/privacy_proxy/api.py",
+      "sha256": "23113e0c25d21b2cae48e07d257adfa55c09b7c3125a7f2901a89dd5347b720d"
+    },
+    {
+      "file": "enterprise_ai_lab/privacy_proxy/contracts.py",
+      "sha256": "b267362ac0bdb18d97adab95bc3f3d695a9c5422fbd73d2bf5f12dca908d722e"
+    },
+    {
+      "file": "enterprise_ai_lab/privacy_proxy/detector.py",
+      "sha256": "63fe43735d015597e65eeee7115e39ce303f3fef127530181794940f22453f3c"
+    },
+    {
+      "file": "enterprise_ai_lab/privacy_proxy/evaluation.py",
+      "sha256": "b687e573b789daffc88ce04a02ba197283b6c33fec3b1175179c2e89b102f512"
+    },
+    {
+      "file": "enterprise_ai_lab/privacy_proxy/integration.py",
+      "sha256": "dbe502df902bd4dac30eb5d47663c709b8907483aebc8b5f884af411dc3d1804"
+    },
+    {
+      "file": "enterprise_ai_lab/privacy_proxy/vault.py",
+      "sha256": "7336b0897fef7d84010c684e0782fb3c0b69cbfe181d20373d0021a0d0e3eef3"
+    },
+    {
+      "file": "enterprise_ai_lab/privacy_proxy/data/README.md",
+      "sha256": "e34e78d716adf28f7b850e2dc6ea9ac71342680796d2d2d931f1694e638b1382"
+    },
+    {
+      "file": "enterprise_ai_lab/privacy_proxy/data/synthetic-v1.json",
+      "sha256": "38974426ef1c84ae6899de815164df51e72cbeface00dc4abc7015e36fbf9279"
+    },
+    {
+      "file": "enterprise_ai_lab/publication/__init__.py",
+      "sha256": "e0289d06795f53fe63b2ec3aa45e08e531b1f7b855cc584b8ae9003139dfb131"
+    },
+    {
+      "file": "enterprise_ai_lab/publication/__main__.py",
+      "sha256": "c59368a936d313e723b3cdaf1719e8c1f6a7c3e7f67110686351704ecdf57069"
+    },
+    {
+      "file": "enterprise_ai_lab/publication/activities.py",
+      "sha256": "1ad3d8a8aaf097da7bbb73293a094c3bc8f75a21dc8eb9b4c2a1cf9ab06d77c5"
+    },
+    {
+      "file": "enterprise_ai_lab/publication/api.py",
+      "sha256": "81e8c180eb9785997407eb6c263b1676a8765f90d1c2622d1da856ff5f14146b"
+    },
+    {
+      "file": "enterprise_ai_lab/publication/contracts.py",
+      "sha256": "9bce1900fd68cad676ef2be4b74972a096d7ca7fa39301fdb1b3043523a6f69d"
+    },
+    {
+      "file": "enterprise_ai_lab/publication/gateway.py",
+      "sha256": "50d966b9376cca2599d86a69928f387403c105ce854ee707e5a73c997fa7aa8a"
+    },
+    {
+      "file": "enterprise_ai_lab/publication/integration.py",
+      "sha256": "a7b03201ebfbf0afb2952e6bd994d3a73b88f20001aca792e5900baba0b6f4e8"
+    },
+    {
+      "file": "enterprise_ai_lab/publication/storage.py",
+      "sha256": "5228333a9d482022ae409888899568d5d7d920e91614bcd29892b880fd3c46ee"
+    },
+    {
+      "file": "enterprise_ai_lab/publication/workflow.py",
+      "sha256": "30754088962e737880cf4d490ebf494f5d0afc8ba4db345c3ece3623b8279af2"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/__init__.py",
+      "sha256": "16076861806cc11898eb2e913efb95178da73e4d6e5cf2b33053ec4f9c3debaa"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/__main__.py",
+      "sha256": "3aee5d353ea776405e09aadd9fbb1c60d055f200c30fa65152f33247cb07aab4"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/api.py",
+      "sha256": "6b05ac40d1eba3263c7d5babbb625d5e852089be2b8f6c75aaccd1a8d7934463"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/auth.py",
+      "sha256": "4966fa72892272b4cce854da9b0be085c2261502e26d02075b25ae98613fa57e"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/contracts.py",
+      "sha256": "9431430e512dfb3df4fc8b18ed568aa3c055b71674671a03c5632fb45fbd559a"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/fixtures.py",
+      "sha256": "4058485afeec6e74ff7a0506fb0bc4092969039779e3a8b915ee50479401bf53"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/ingestion.py",
+      "sha256": "480a8e61ceec612610ed51c14b521bfae26f6061dddd392a6d98908f55efd381"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/integration.py",
+      "sha256": "1e25ab9b60d19dab048b51f8a1bced694ed3a62bf5d106133bf822dca7b0f6df"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/model-lock.json",
+      "sha256": "e425741eea76f6c3e051e69f0fc872ab8f6740976c8b4e6a37f82e89bab4928e"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/models.py",
+      "sha256": "32dc1af1ca1529f635460460a8cd00e44743c7bdadec9ffdf63d4e3756e7b3bd"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/neural.py",
+      "sha256": "ea95e9a52ec1a14b198e3d81b8e6efbd5389d969272d37fb3e1f658ab5f03a4e"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/pdf_corpus.py",
+      "sha256": "0cf60a33cfa5178d175a24959d5e2ad959b8a7c359ec68d0c62fa6318a341938"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/pdf_demo.py",
+      "sha256": "95d65f02e76c18cfb790ff08d9503f42aa5761445869018be88993d9763d6e96"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/pipeline.py",
+      "sha256": "89b293bc4cb6cd92966de651aa5028211384c634e87bed537b2a552878d86a73"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/provenance.py",
+      "sha256": "743a21b285d2bd0f6ae91532a4adb8726b3822a842b563386c3222d55b669cfe"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/store.py",
+      "sha256": "9be141fd046245c53ebdaa11f490f2efc0e979a25dde3164bf5c96c2fdfa33b4"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/data/PROVENANCE.md",
+      "sha256": "7cd0efdd033bba1bb1f46a311eaa60102c8696614417508d9a6ca850cb01cdb2"
+    },
+    {
+      "file": "enterprise_ai_lab/rag/data/documents.jsonl",
+      "sha256": "cd9e9c30cab6a3125ced02a761d130bdbed374a86af44cfe2eaf4e2b0cbceeef"
+    },
+    {
+      "file": "enterprise_ai_lab/review/__init__.py",
+      "sha256": "e1490f1fc81f0ed413801341a0c64257b028eb6a050b9b59ef47dd6776a631f7"
+    },
+    {
+      "file": "enterprise_ai_lab/review/__main__.py",
+      "sha256": "4b72cafe7e1b99965b3c2bf1c6ba45efb6ee45c6fdbc16266e07900ce86b25c4"
+    },
+    {
+      "file": "enterprise_ai_lab/review/api.py",
+      "sha256": "9e9b8b872782c5a0eae3cb1b4bca238cc3a85b65b228dac05136162eecee4524"
+    },
+    {
+      "file": "enterprise_ai_lab/review/assets.py",
+      "sha256": "cd6756cb7dc9c62782968d8959be9314d12cd37a8ef1b7ec3daf4d58e627b9c1"
+    },
+    {
+      "file": "enterprise_ai_lab/review/audit.py",
+      "sha256": "07efde39bb3a29484ff44a559cc529cf9dfe203144c8c0614460ec89ccf2831f"
+    },
+    {
+      "file": "enterprise_ai_lab/review/auth.py",
+      "sha256": "f955496e0db070b50fcae6b5b77e3c3f39255a78108bc4b143e637e8fe12f757"
+    },
+    {
+      "file": "enterprise_ai_lab/review/core.py",
+      "sha256": "19b3c6951c402c007518df11628825e48a44efa25d8a99063ede3b1f0648f41b"
+    },
+    {
+      "file": "enterprise_ai_lab/review/diagnostic_probe.py",
+      "sha256": "3bc417899629de78258b3b23d89e4a5bc4814c099db72f34c6053643014fa37c"
+    },
+    {
+      "file": "enterprise_ai_lab/review/failure.py",
+      "sha256": "d0280db7c91d7391d00d6b20470bd7c2d27e30f35fce936db0720b4fa3022841"
+    },
+    {
+      "file": "enterprise_ai_lab/review/integration.py",
+      "sha256": "74a1483927008e484c812e775773f205b736df0047354327c55368465dcfcb7a"
+    },
+    {
+      "file": "enterprise_ai_lab/review/sessions.py",
+      "sha256": "203b6b6d092fb88a8cb2e0c64a0a24dd7be3fb0a17be5ccd2c2e68cdc5fab43e"
+    },
+    {
+      "file": "enterprise_ai_lab/review/static/app.css",
+      "sha256": "b827aa94183e07c9278036c8237263b5aff9faf9b3cd8e92a4ecac50f91cce42"
+    },
+    {
+      "file": "enterprise_ai_lab/review/static/app.js",
+      "sha256": "2cecfd44d059cfc1484b38658172e5462da870f0b0b911ff624da9d145ab3f98"
+    },
+    {
+      "file": "enterprise_ai_lab/review/static/index.html",
+      "sha256": "cd141acc0e7642b91ca6cc1ea4532d54aa50bda56a55b81a353ff79328d6a5c8"
+    }
+  ]
+}

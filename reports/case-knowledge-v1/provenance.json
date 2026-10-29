@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "case_id": "permission-aware-knowledge",
+  "recorded_at": "2026-10-29T12:18:03.207118+00:00",
+  "evidence_state": "fresh_recorded_local_execution_with_public_history_derivative",
+  "runtime_source_revision": "5768b4498bfbe83d26af69d1a5877b425819c19f",
+  "runtime_source_clean_at_start": true,
+  "runtime_package": "enterprise-ai-lab==0.14.1",
+  "wheel_sha256": "60fecff4a69d873ac23c4309c229c7e738a6463e7d7fe36cecdfce1aff598aa8",
+  "wheel_package_entries_matched_source": 113,
+  "wheel_inventory": "wheel-source-inventory.json",
+  "installed_module_outside_checkout": true,
+  "isolated_main_python": true,
+  "exact_runtime_locks": {
+    "requirements-rag.lock": "d5d7efe222ad4fef0753b6f60223cf49f21ecfafef88d1f9665ed3604bb7552b",
+    "requirements-ingestion.lock": "dc28732351792eee4cea6dd3cbe6b2f8bd1f09cca32e9e7638799c577f4a3752",
+    "requirements-approval.lock": "ac5f71d1fc73e220abbb4e3f826b5b9749555504dbb278f0a54d52ac91c48702"
+  },
+  "identity_source_revision": "92a6688e6df862934d53201a6ac39d8fba410a52",
+  "identity_bridge_sha256": "4ffec7359131e0862a6379dc7a46a41c87d3e82e3c94e6221b66a240828d54f6",
+  "identity_fresh_build_after_run_reproduces_same_bridge": true,
+  "execution_started_at": "2026-10-29T12:17:07.745222+00:00",
+  "execution_finished_at": "2026-10-29T12:18:03.579688+00:00",
+  "execution_elapsed_s": 55.834352957986994,
+  "execution_exit_code": 0,
+  "runtime_asset_downloads_disabled": true,
+  "raw_report_private": {
+    "sha256": "15c79ac79768654f2ca4aed94fd98b421151830d3d0fd929f955b85122be6306",
+    "bytes": 179372
+  },
+  "public_report": {
+    "filename": "demo.json",
+    "sha256": "1a4f2a1ef39a7c12a8e9a6c3cc77c704ad1ec53a68fd794daf2a7ae9b11e5f90",
+    "bytes": 179846,
+    "derivation": "The failed-history SHA is updated for the explicitly sanitized artifact, and a public_artifact scope note is added. Observations, runtime, effects, candidates and all other history metadata are unchanged."
+  },
+  "raw_histories_replayed_by_actual_SDK": [
+    {
+      "filename": "histories/alpha-reject-pages.json",
+      "sha256": "0651e85e2506dab673da76fdec4b9fb89d64ef8d95c85c29e1911c162009eec2",
+      "bytes": 9089
+    },
+    {
+      "filename": "histories/alpha-expire-pages.json",
+      "sha256": "b0ed31de072e1a52384b8d14f2bceca2e366e02d2c4744092d1f17e3111acfb6",
+      "bytes": 7016
+    },
+    {
+      "filename": "histories/alpha-publish-public-pages.json",
+      "sha256": "1adba68fc075e6565ae7cd4d9f68d61c8118780d532939476f23dab2a7117277",
+      "bytes": 14671
+    },
+    {
+      "filename": "histories/beta-publish-public-pages.json",
+      "sha256": "6f40a1e072734a16ee1378b96de8865c649871cae659337808ff8565cfb638da",
+      "bytes": 14598
+    },
+    {
+      "filename": "histories/alpha-narrow-native-role.json",
+      "sha256": "657a87dc434ca2e404fdfef1616beb040b5118da609c30b2690d440d1caefb7b",
+      "bytes": 14602
+    },
+    {
+      "filename": "histories/alpha-stale-publication.json",
+      "sha256": "1181a3fcdb2d92f145bc13172b776376849af5b47a3aa0988586f7574da61e84",
+      "bytes": 19036
+    }
+  ],
+  "public_histories": [
+    {
+      "filename": "histories/alpha-reject-pages.json",
+      "sha256": "0651e85e2506dab673da76fdec4b9fb89d64ef8d95c85c29e1911c162009eec2",
+      "bytes": 9089
+    },
+    {
+      "filename": "histories/alpha-expire-pages.json",
+      "sha256": "b0ed31de072e1a52384b8d14f2bceca2e366e02d2c4744092d1f17e3111acfb6",
+      "bytes": 7016
+    },
+    {
+      "filename": "histories/alpha-publish-public-pages.json",
+      "sha256": "1adba68fc075e6565ae7cd4d9f68d61c8118780d532939476f23dab2a7117277",
+      "bytes": 14671
+    },
+    {
+      "filename": "histories/beta-publish-public-pages.json",
+      "sha256": "6f40a1e072734a16ee1378b96de8865c649871cae659337808ff8565cfb638da",
+      "bytes": 14598
+    },
+    {
+      "filename": "histories/alpha-narrow-native-role.json",
+      "sha256": "657a87dc434ca2e404fdfef1616beb040b5118da609c30b2690d440d1caefb7b",
+      "bytes": 14602
+    },
+    {
+      "filename": "histories/alpha-stale-publication.json",
+      "sha256": "ed3c841c223a521709c4af3a5a1cc0aa52fb54ea1ac93c36343f439d17c1f19f",
+      "bytes": 14140
+    }
+  ],
+  "public_history_derivations": [
+    {
+      "filename": "histories/alpha-stale-publication.json",
+      "raw_private_sha256": "1181a3fcdb2d92f145bc13172b776376849af5b47a3aa0988586f7574da61e84",
+      "public_sha256": "ed3c841c223a521709c4af3a5a1cc0aa52fb54ea1ac93c36343f439d17c1f19f",
+      "redacted_fields": [
+        "/events/13/activityTaskFailedEventAttributes/failure/stackTrace",
+        "/events/13/activityTaskFailedEventAttributes/failure/cause/stackTrace",
+        "/events/17/workflowExecutionFailedEventAttributes/failure/cause/stackTrace",
+        "/events/17/workflowExecutionFailedEventAttributes/failure/cause/cause/stackTrace"
+      ],
+      "replacement": "[private runtime stack omitted]",
+      "all_non_stackTrace_JSON_values_preserved": true
+    }
+  ],
+  "public_history_derivatives_replayed": false,
+  "public_safe_scan": {
+    "files": 7,
+    "raw_and_decoded_history_payloads_checked": true,
+    "absolute_home_path_matches": 0,
+    "bearer_or_JWT_pattern_matches": 0,
+    "scope": "Known owned artifact scan, not general secret detection."
+  },
+  "human_review_performed": false,
+  "complete_three_case_milestone": false,
+  "limitations": [
+    "A fresh current-runtime run; not a byte-identical replay of the 2026-10-18 runtime or evidence of owner study.",
+    "The public failed-history derivative removes four stackTrace fields containing private runtime paths; all original raw bytes remain private. The actual SDK replay ran those original histories, not the derivative.",
+    "The reviewer is a scripted OAuth service fixture, not a person. Local administration and filesystem are trusted.",
+    "Two selected English public pages and one clean raster OCR derivative; no broad OCR, answer-quality, semantic-entailment or production deployment claim."
+  ]
+}

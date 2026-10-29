@@ -1,0 +1,5105 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-29T12:18:03.207118+00:00",
+  "experiment": "Public PDF/OCR staged immutably, actual durable approval, permission-filtered published vectors",
+  "runtime": {
+    "python": "3.13.1",
+    "platform": "Darwin",
+    "pypdf": "6.21.1",
+    "pypdfium2": "5.14.0",
+    "pillow": "12.3.0",
+    "tesseract": "tesseract 5.5.1",
+    "english_traineddata_sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+    "ocr_language": "eng",
+    "ocr_dpi": 180,
+    "ocr_psm": 3,
+    "temporalio": "1.34.0",
+    "cli": {
+      "cli_version": "1.9.1",
+      "server_version": "1.32.0",
+      "platform": "darwin-arm64",
+      "sha256": "33c298d41f6eefebf01a28a3511f444480e939e21d3518cb0c12a4abad467c4b",
+      "bytes": 150806194
+    },
+    "onnxruntime": "1.31.0",
+    "qdrant-client": "1.19.1",
+    "node": "v24.19.0",
+    "identity_bridge_sha256": "4ffec7359131e0862a6379dc7a46a41c87d3e82e3c94e6221b66a240828d54f6"
+  },
+  "embedding": {
+    "repository": "Qdrant/all-MiniLM-L6-v2-onnx",
+    "revision": "d13954661f83248295ba75c1ed411eef3b7b936e",
+    "dimensions": 384,
+    "verified_files": 7,
+    "model_sha256": "bbd7b466f6d58e646fdc2bd5fd67b2f5e93c0b687011bd4548c420f7bd46f0c5"
+  },
+  "candidates": [
+    {
+      "tenant_id": "alpha",
+      "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+      "document_count": 2,
+      "document_ids": [
+        "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+        "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+      ],
+      "documents": [
+        {
+          "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+          "title": "Zero Trust Architecture",
+          "allowed_roles": [
+            "reader"
+          ],
+          "provenance": {
+            "source_id": "nist-zero-trust",
+            "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+            "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+            "source_page": 15,
+            "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+            "artifact_page": 15,
+            "method": "native",
+            "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+          }
+        },
+        {
+          "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+          "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+          "allowed_roles": [
+            "analyst"
+          ],
+          "provenance": {
+            "source_id": "nist-ai-rmf",
+            "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+            "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+            "source_page": 25,
+            "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+            "artifact_page": 1,
+            "method": "ocr",
+            "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+          }
+        }
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "candidate_sha256": "a159de98efb28aeb25946fdbe63fbda10c291c75d906314e291f4a8ef95e5ccf",
+      "document_count": 2,
+      "document_ids": [
+        "pdf-5decd67b275ea4cf01344d43af299a8b4a670ebf",
+        "pdf-f0455e7317d53a2df66dec8cb139cce3eb6dac66"
+      ],
+      "documents": [
+        {
+          "document_id": "pdf-5decd67b275ea4cf01344d43af299a8b4a670ebf",
+          "title": "Zero Trust Architecture",
+          "allowed_roles": [
+            "reader"
+          ],
+          "provenance": {
+            "source_id": "nist-zero-trust",
+            "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+            "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+            "source_page": 15,
+            "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+            "artifact_page": 15,
+            "method": "native",
+            "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+          }
+        },
+        {
+          "document_id": "pdf-f0455e7317d53a2df66dec8cb139cce3eb6dac66",
+          "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+          "allowed_roles": [
+            "reader"
+          ],
+          "provenance": {
+            "source_id": "nist-ai-rmf",
+            "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+            "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+            "source_page": 25,
+            "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+            "artifact_page": 1,
+            "method": "ocr",
+            "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+          }
+        }
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "candidate_sha256": "636f36263f073361dbc8cf5aab8e30a87c08fe3167fa8437068ff8525455cc5c",
+      "document_count": 2,
+      "document_ids": [
+        "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+        "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+      ],
+      "documents": [
+        {
+          "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+          "title": "Zero Trust Architecture",
+          "allowed_roles": [
+            "analyst"
+          ],
+          "provenance": {
+            "source_id": "nist-zero-trust",
+            "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+            "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+            "source_page": 15,
+            "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+            "artifact_page": 15,
+            "method": "native",
+            "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+          }
+        },
+        {
+          "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+          "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+          "allowed_roles": [
+            "analyst"
+          ],
+          "provenance": {
+            "source_id": "nist-ai-rmf",
+            "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+            "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+            "source_page": 25,
+            "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+            "artifact_page": 1,
+            "method": "ocr",
+            "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+          }
+        }
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "case": "staged-not-searchable",
+      "http_status": 200,
+      "query": "How is access to individual enterprise resources granted?",
+      "client": "reader-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "I could not find an authorized passage that answers this question.",
+        "abstained": true,
+        "citations": [],
+        "evidence": [],
+        "generator": "extractive-v1",
+        "generation_performed": false,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "reject-created",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "reject-pages",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:22:14Z",
+          "snapshot_sha256": "58482a2a6f0b494c21bd8cc04297ee9cdd3680978fcf5fcdc3ca31e34b229f31"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null,
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "rejected",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "reject-pages",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:22:14Z",
+          "snapshot_sha256": "58482a2a6f0b494c21bd8cc04297ee9cdd3680978fcf5fcdc3ca31e34b229f31"
+        },
+        "status": "rejected",
+        "publication_status": "not_applicable",
+        "receipt": {
+          "command": {
+            "command_id": "review-1",
+            "tenant_id": "alpha",
+            "snapshot_sha256": "58482a2a6f0b494c21bd8cc04297ee9cdd3680978fcf5fcdc3ca31e34b229f31",
+            "decision": "reject",
+            "actor_id": "approver-alpha",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-29T12:17:14Z"
+        },
+        "effect": null,
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "rejected-not-searchable",
+      "http_status": 200,
+      "query": "How is access to individual enterprise resources granted?",
+      "client": "reader-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "I could not find an authorized passage that answers this question.",
+        "abstained": true,
+        "citations": [],
+        "evidence": [],
+        "generator": "extractive-v1",
+        "generation_performed": false,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "expiry-created",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "expire-pages",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:17:18Z",
+          "snapshot_sha256": "e613b84ee86198a2a2e5cdf219d89504a95e24360ba68825b3feddda038cd3b9"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null,
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "expired-while-worker-absent",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "expire-pages",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:17:18Z",
+          "snapshot_sha256": "e613b84ee86198a2a2e5cdf219d89504a95e24360ba68825b3feddda038cd3b9"
+        },
+        "status": "expired",
+        "publication_status": "not_applicable",
+        "receipt": null,
+        "effect": null,
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "expired-approval-denied",
+      "http_status": 409,
+      "response": {
+        "error": {
+          "code": "publication_conflict",
+          "message": "Request or decision conflicts, is expired, or has a stale snapshot."
+        }
+      }
+    },
+    {
+      "case": "expired-not-searchable",
+      "http_status": 200,
+      "query": "How is access to individual enterprise resources granted?",
+      "client": "reader-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "I could not find an authorized passage that answers this question.",
+        "abstained": true,
+        "citations": [],
+        "evidence": [],
+        "generator": "extractive-v1",
+        "generation_performed": false,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "publication-created",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-public-pages",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:22:13Z",
+          "snapshot_sha256": "4f98b6c649421a699b1cd54562e380ba0aae500cc2f791562fadfc17db6b43ef"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null,
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "exact-create-replay",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-public-pages",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:22:13Z",
+          "snapshot_sha256": "4f98b6c649421a699b1cd54562e380ba0aae500cc2f791562fadfc17db6b43ef"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null,
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "changed-revision-conflict",
+      "http_status": 409,
+      "response": {
+        "error": {
+          "code": "publication_conflict",
+          "message": "Request or decision conflicts, is expired, or has a stale snapshot."
+        }
+      }
+    },
+    {
+      "case": "foreign-candidate-denied",
+      "http_status": 404,
+      "response": {
+        "error": {
+          "code": "not_found",
+          "message": "No publication request or candidate exists in this tenant scope."
+        }
+      }
+    },
+    {
+      "case": "candidate-missing",
+      "http_status": 404,
+      "response": {
+        "error": {
+          "code": "not_found",
+          "message": "No publication request or candidate exists in this tenant scope."
+        }
+      }
+    },
+    {
+      "case": "forged-approval-denied",
+      "http_status": 401,
+      "response": {
+        "error": {
+          "code": "invalid_token",
+          "message": "Token invalid for the publication approval resource."
+        }
+      }
+    },
+    {
+      "case": "rag-audience-denied",
+      "http_status": 401,
+      "response": {
+        "error": {
+          "code": "invalid_token",
+          "message": "Token invalid for the publication approval resource."
+        }
+      }
+    },
+    {
+      "case": "cross-tenant-approval-denied",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "This principal cannot perform that tenant's publication operation."
+        }
+      }
+    },
+    {
+      "case": "wrong-role-denied",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "This principal cannot perform that tenant's publication operation."
+        }
+      }
+    },
+    {
+      "case": "missing-scope-denied",
+      "http_status": 403,
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "This principal cannot perform that tenant's publication operation."
+        }
+      }
+    },
+    {
+      "case": "tampered-snapshot-denied",
+      "http_status": 409,
+      "response": {
+        "error": {
+          "code": "publication_conflict",
+          "message": "Request or decision conflicts, is expired, or has a stale snapshot."
+        }
+      }
+    },
+    {
+      "case": "spoofed-actor-denied",
+      "http_status": 422,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Only the bounded publication request fields are accepted."
+        }
+      }
+    },
+    {
+      "case": "pending-not-searchable",
+      "http_status": 200,
+      "query": "How is access to individual enterprise resources granted?",
+      "client": "reader-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "I could not find an authorized passage that answers this question.",
+        "abstained": true,
+        "citations": [],
+        "evidence": [],
+        "generator": "extractive-v1",
+        "generation_performed": false,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "pending-after-all-services-restart",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-public-pages",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:22:13Z",
+          "snapshot_sha256": "4f98b6c649421a699b1cd54562e380ba0aae500cc2f791562fadfc17db6b43ef"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null,
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "pending-after-restart-not-searchable",
+      "http_status": 200,
+      "query": "How is access to individual enterprise resources granted?",
+      "client": "reader-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "I could not find an authorized passage that answers this question.",
+        "abstained": true,
+        "citations": [],
+        "evidence": [],
+        "generator": "extractive-v1",
+        "generation_performed": false,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "approval-accepted",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-public-pages",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:22:13Z",
+          "snapshot_sha256": "4f98b6c649421a699b1cd54562e380ba0aae500cc2f791562fadfc17db6b43ef"
+        },
+        "status": "approved",
+        "publication_status": "pending",
+        "receipt": {
+          "command": {
+            "command_id": "review-1",
+            "tenant_id": "alpha",
+            "snapshot_sha256": "4f98b6c649421a699b1cd54562e380ba0aae500cc2f791562fadfc17db6b43ef",
+            "decision": "approve",
+            "actor_id": "approver-alpha",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-29T12:17:30Z"
+        },
+        "effect": null,
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "published-once-after-kill-and-server-restart",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-public-pages",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:22:13Z",
+          "snapshot_sha256": "4f98b6c649421a699b1cd54562e380ba0aae500cc2f791562fadfc17db6b43ef"
+        },
+        "status": "approved",
+        "publication_status": "published",
+        "receipt": {
+          "command": {
+            "command_id": "review-1",
+            "tenant_id": "alpha",
+            "snapshot_sha256": "4f98b6c649421a699b1cd54562e380ba0aae500cc2f791562fadfc17db6b43ef",
+            "decision": "approve",
+            "actor_id": "approver-alpha",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-29T12:17:30Z"
+        },
+        "effect": {
+          "effect_key": "publication/alpha/publish-public-pages",
+          "tenant_id": "alpha",
+          "request_id": "publish-public-pages",
+          "snapshot_sha256": "4f98b6c649421a699b1cd54562e380ba0aae500cc2f791562fadfc17db6b43ef",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "revision": 1,
+          "document_count": 2,
+          "chunk_count": 14
+        },
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "approved-native-reader",
+      "http_status": 200,
+      "query": "How is access to individual enterprise resources granted?",
+      "client": "reader-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "Access to individual enterprise resources is granted on a per-session basis.",
+        "abstained": false,
+        "citations": [
+          {
+            "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "chunk_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6:005:736c5c156eae",
+            "text": "All communication should be done in the \nmost secure manner available, protect confidentiality and integrity, and provide source \nauthentication. \n3. Access to individual enterprise resources is granted on a per-session basis. Trust in \nthe requester is evaluated before the access is granted. Access should also be granted with \nthe least privileges needed to complete the task.",
+            "score": 0.6269578888977703,
+            "tenant_id": "alpha",
+            "allowed_roles": [
+              "reader"
+            ],
+            "provenance": {
+              "source_id": "nist-zero-trust",
+              "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+              "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+              "source_page": 15,
+              "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+              "artifact_page": 15,
+              "method": "native",
+              "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c",
+              "start": 1845,
+              "end": 2224,
+              "ocr_words": [],
+              "render_dpi": null,
+              "width_px": null,
+              "height_px": null
+            },
+            "quote": "Access to individual enterprise resources is granted on a per-session basis."
+          }
+        ],
+        "evidence": [
+          {
+            "chunk_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6:005:736c5c156eae",
+            "quote": "Access to individual enterprise resources is granted on a per-session basis."
+          }
+        ],
+        "generator": "extractive-v1",
+        "generation_performed": true,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "approved-ocr-analyst",
+      "http_status": 200,
+      "query": "What functions is the Core composed of?",
+      "client": "analyst-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE.",
+        "abstained": false,
+        "citations": [
+          {
+            "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+            "chunk_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4:000:bf2ee69e0979",
+            "text": "NIST AI 100-1 AI RMF 1.0\nPart 2: Core and Profiles\n5. AIRMF Core\nThe AI RMF Core provides outcomes and actions that enable dialogue, understanding, and\nactivities to manage AI risks and responsibly develop trustworthy AI systems. As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE. Each of these high-level functions is broken down into categories and sub-\ncategories.",
+            "score": 0.4162302183098976,
+            "tenant_id": "alpha",
+            "allowed_roles": [
+              "analyst"
+            ],
+            "provenance": {
+              "source_id": "nist-ai-rmf",
+              "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+              "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+              "source_page": 25,
+              "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+              "artifact_page": 1,
+              "method": "ocr",
+              "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd",
+              "start": 0,
+              "end": 420,
+              "ocr_words": [
+                {
+                  "text": "NIST",
+                  "start": 0,
+                  "end": 4,
+                  "left": 225,
+                  "top": 98,
+                  "width": 55,
+                  "height": 18,
+                  "confidence": 96.183708
+                },
+                {
+                  "text": "AI",
+                  "start": 5,
+                  "end": 7,
+                  "left": 287,
+                  "top": 98,
+                  "width": 25,
+                  "height": 17,
+                  "confidence": 90.766289
+                },
+                {
+                  "text": "100-1",
+                  "start": 8,
+                  "end": 13,
+                  "left": 322,
+                  "top": 98,
+                  "width": 52,
+                  "height": 18,
+                  "confidence": 90.766289
+                },
+                {
+                  "text": "AI",
+                  "start": 14,
+                  "end": 16,
+                  "left": 1158,
+                  "top": 95,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 93.494537
+                },
+                {
+                  "text": "RMF",
+                  "start": 17,
+                  "end": 20,
+                  "left": 1198,
+                  "top": 95,
+                  "width": 62,
+                  "height": 20,
+                  "confidence": 95.481117
+                },
+                {
+                  "text": "1.0",
+                  "start": 21,
+                  "end": 24,
+                  "left": 1271,
+                  "top": 95,
+                  "width": 33,
+                  "height": 21,
+                  "confidence": 96.804146
+                },
+                {
+                  "text": "Part",
+                  "start": 25,
+                  "end": 29,
+                  "left": 226,
+                  "top": 178,
+                  "width": 79,
+                  "height": 30,
+                  "confidence": 96.435951
+                },
+                {
+                  "text": "2:",
+                  "start": 30,
+                  "end": 32,
+                  "left": 316,
+                  "top": 177,
+                  "width": 32,
+                  "height": 31,
+                  "confidence": 96.533226
+                },
+                {
+                  "text": "Core",
+                  "start": 33,
+                  "end": 37,
+                  "left": 367,
+                  "top": 177,
+                  "width": 88,
+                  "height": 31,
+                  "confidence": 96.359772
+                },
+                {
+                  "text": "and",
+                  "start": 38,
+                  "end": 41,
+                  "left": 467,
+                  "top": 178,
+                  "width": 67,
+                  "height": 30,
+                  "confidence": 96.394798
+                },
+                {
+                  "text": "Profiles",
+                  "start": 42,
+                  "end": 50,
+                  "left": 547,
+                  "top": 177,
+                  "width": 136,
+                  "height": 31,
+                  "confidence": 96.68158
+                },
+                {
+                  "text": "5.",
+                  "start": 51,
+                  "end": 53,
+                  "left": 226,
+                  "top": 284,
+                  "width": 24,
+                  "height": 25,
+                  "confidence": 84.871208
+                },
+                {
+                  "text": "AIRMF",
+                  "start": 54,
+                  "end": 59,
+                  "left": 287,
+                  "top": 284,
+                  "width": 130,
+                  "height": 25,
+                  "confidence": 84.871208
+                },
+                {
+                  "text": "Core",
+                  "start": 60,
+                  "end": 64,
+                  "left": 428,
+                  "top": 284,
+                  "width": 73,
+                  "height": 26,
+                  "confidence": 96.487427
+                },
+                {
+                  "text": "The",
+                  "start": 65,
+                  "end": 68,
+                  "left": 225,
+                  "top": 349,
+                  "width": 46,
+                  "height": 20,
+                  "confidence": 96.424179
+                },
+                {
+                  "text": "AI",
+                  "start": 69,
+                  "end": 71,
+                  "left": 279,
+                  "top": 349,
+                  "width": 30,
+                  "height": 20,
+                  "confidence": 96.424179
+                },
+                {
+                  "text": "RMF",
+                  "start": 72,
+                  "end": 75,
+                  "left": 317,
+                  "top": 349,
+                  "width": 63,
+                  "height": 20,
+                  "confidence": 96.6315
+                },
+                {
+                  "text": "Core",
+                  "start": 76,
+                  "end": 80,
+                  "left": 387,
+                  "top": 348,
+                  "width": 57,
+                  "height": 22,
+                  "confidence": 96.193291
+                },
+                {
+                  "text": "provides",
+                  "start": 81,
+                  "end": 89,
+                  "left": 452,
+                  "top": 348,
+                  "width": 101,
+                  "height": 28,
+                  "confidence": 96.906387
+                },
+                {
+                  "text": "outcomes",
+                  "start": 90,
+                  "end": 98,
+                  "left": 561,
+                  "top": 352,
+                  "width": 114,
+                  "height": 17,
+                  "confidence": 96.707855
+                },
+                {
+                  "text": "and",
+                  "start": 99,
+                  "end": 102,
+                  "left": 683,
+                  "top": 349,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 96.934387
+                },
+                {
+                  "text": "actions",
+                  "start": 103,
+                  "end": 110,
+                  "left": 733,
+                  "top": 348,
+                  "width": 83,
+                  "height": 21,
+                  "confidence": 96.408012
+                },
+                {
+                  "text": "that",
+                  "start": 111,
+                  "end": 115,
+                  "left": 825,
+                  "top": 348,
+                  "width": 44,
+                  "height": 21,
+                  "confidence": 96.408012
+                },
+                {
+                  "text": "enable",
+                  "start": 116,
+                  "end": 122,
+                  "left": 876,
+                  "top": 349,
+                  "width": 77,
+                  "height": 20,
+                  "confidence": 96.990234
+                },
+                {
+                  "text": "dialogue,",
+                  "start": 123,
+                  "end": 132,
+                  "left": 961,
+                  "top": 348,
+                  "width": 108,
+                  "height": 28,
+                  "confidence": 96.60247
+                },
+                {
+                  "text": "understanding,",
+                  "start": 133,
+                  "end": 147,
+                  "left": 1079,
+                  "top": 348,
+                  "width": 174,
+                  "height": 28,
+                  "confidence": 97.015495
+                },
+                {
+                  "text": "and",
+                  "start": 148,
+                  "end": 151,
+                  "left": 1263,
+                  "top": 349,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 96.912674
+                },
+                {
+                  "text": "activities",
+                  "start": 152,
+                  "end": 162,
+                  "left": 226,
+                  "top": 385,
+                  "width": 105,
+                  "height": 21,
+                  "confidence": 96.874504
+                },
+                {
+                  "text": "to",
+                  "start": 163,
+                  "end": 165,
+                  "left": 343,
+                  "top": 389,
+                  "width": 22,
+                  "height": 17,
+                  "confidence": 96.895515
+                },
+                {
+                  "text": "manage",
+                  "start": 166,
+                  "end": 172,
+                  "left": 376,
+                  "top": 392,
+                  "width": 92,
+                  "height": 21,
+                  "confidence": 96.101097
+                },
+                {
+                  "text": "AI",
+                  "start": 173,
+                  "end": 175,
+                  "left": 479,
+                  "top": 386,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 89.516129
+                },
+                {
+                  "text": "risks",
+                  "start": 176,
+                  "end": 181,
+                  "left": 520,
+                  "top": 385,
+                  "width": 56,
+                  "height": 21,
+                  "confidence": 95.18219
+                },
+                {
+                  "text": "and",
+                  "start": 182,
+                  "end": 185,
+                  "left": 588,
+                  "top": 386,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 96.914818
+                },
+                {
+                  "text": "responsibly",
+                  "start": 186,
+                  "end": 197,
+                  "left": 640,
+                  "top": 385,
+                  "width": 137,
+                  "height": 28,
+                  "confidence": 96.025536
+                },
+                {
+                  "text": "develop",
+                  "start": 198,
+                  "end": 205,
+                  "left": 789,
+                  "top": 385,
+                  "width": 92,
+                  "height": 28,
+                  "confidence": 96.442383
+                },
+                {
+                  "text": "trustworthy",
+                  "start": 206,
+                  "end": 217,
+                  "left": 892,
+                  "top": 386,
+                  "width": 136,
+                  "height": 27,
+                  "confidence": 96.464409
+                },
+                {
+                  "text": "AI",
+                  "start": 218,
+                  "end": 220,
+                  "left": 1039,
+                  "top": 386,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 95.870033
+                },
+                {
+                  "text": "systems.",
+                  "start": 221,
+                  "end": 229,
+                  "left": 1082,
+                  "top": 389,
+                  "width": 99,
+                  "height": 24,
+                  "confidence": 96.319504
+                },
+                {
+                  "text": "As",
+                  "start": 230,
+                  "end": 232,
+                  "left": 1201,
+                  "top": 386,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 92.795105
+                },
+                {
+                  "text": "illus-",
+                  "start": 233,
+                  "end": 239,
+                  "left": 1244,
+                  "top": 385,
+                  "width": 60,
+                  "height": 21,
+                  "confidence": 92.795105
+                },
+                {
+                  "text": "trated",
+                  "start": 240,
+                  "end": 246,
+                  "left": 226,
+                  "top": 421,
+                  "width": 67,
+                  "height": 21,
+                  "confidence": 96.98922
+                },
+                {
+                  "text": "in",
+                  "start": 247,
+                  "end": 249,
+                  "left": 303,
+                  "top": 421,
+                  "width": 22,
+                  "height": 21,
+                  "confidence": 97.011566
+                },
+                {
+                  "text": "Figure",
+                  "start": 250,
+                  "end": 256,
+                  "left": 336,
+                  "top": 421,
+                  "width": 77,
+                  "height": 28,
+                  "confidence": 97.013145
+                },
+                {
+                  "text": "5,",
+                  "start": 257,
+                  "end": 259,
+                  "left": 424,
+                  "top": 422,
+                  "width": 20,
+                  "height": 24,
+                  "confidence": 96.057472
+                },
+                {
+                  "text": "the",
+                  "start": 260,
+                  "end": 263,
+                  "left": 457,
+                  "top": 421,
+                  "width": 35,
+                  "height": 21,
+                  "confidence": 96.956993
+                },
+                {
+                  "text": "Core",
+                  "start": 264,
+                  "end": 268,
+                  "left": 503,
+                  "top": 421,
+                  "width": 57,
+                  "height": 22,
+                  "confidence": 96.871681
+                },
+                {
+                  "text": "is",
+                  "start": 269,
+                  "end": 271,
+                  "left": 571,
+                  "top": 421,
+                  "width": 18,
+                  "height": 21,
+                  "confidence": 96.123863
+                },
+                {
+                  "text": "composed",
+                  "start": 272,
+                  "end": 280,
+                  "left": 601,
+                  "top": 421,
+                  "width": 120,
+                  "height": 28,
+                  "confidence": 96.465256
+                },
+                {
+                  "text": "of",
+                  "start": 281,
+                  "end": 283,
+                  "left": 731,
+                  "top": 421,
+                  "width": 26,
+                  "height": 21,
+                  "confidence": 96.770096
+                },
+                {
+                  "text": "four",
+                  "start": 284,
+                  "end": 288,
+                  "left": 766,
+                  "top": 421,
+                  "width": 49,
+                  "height": 21,
+                  "confidence": 96.669456
+                },
+                {
+                  "text": "functions:",
+                  "start": 289,
+                  "end": 299,
+                  "left": 826,
+                  "top": 421,
+                  "width": 116,
+                  "height": 21,
+                  "confidence": 95.350555
+                },
+                {
+                  "text": "GOVERN,",
+                  "start": 300,
+                  "end": 307,
+                  "left": 960,
+                  "top": 425,
+                  "width": 119,
+                  "height": 22,
+                  "confidence": 96.122749
+                },
+                {
+                  "text": "MAP,",
+                  "start": 308,
+                  "end": 312,
+                  "left": 1091,
+                  "top": 425,
+                  "width": 63,
+                  "height": 22,
+                  "confidence": 95.803741
+                },
+                {
+                  "text": "MEASURE,",
+                  "start": 313,
+                  "end": 321,
+                  "left": 1167,
+                  "top": 425,
+                  "width": 136,
+                  "height": 22,
+                  "confidence": 95.803741
+                },
+                {
+                  "text": "and",
+                  "start": 322,
+                  "end": 325,
+                  "left": 226,
+                  "top": 458,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 97.013153
+                },
+                {
+                  "text": "MANAGE.",
+                  "start": 326,
+                  "end": 333,
+                  "left": 277,
+                  "top": 461,
+                  "width": 121,
+                  "height": 18,
+                  "confidence": 96.107216
+                },
+                {
+                  "text": "Each",
+                  "start": 334,
+                  "end": 338,
+                  "left": 410,
+                  "top": 457,
+                  "width": 59,
+                  "height": 21,
+                  "confidence": 96.710976
+                },
+                {
+                  "text": "of",
+                  "start": 339,
+                  "end": 341,
+                  "left": 478,
+                  "top": 457,
+                  "width": 26,
+                  "height": 21,
+                  "confidence": 96.477615
+                },
+                {
+                  "text": "these",
+                  "start": 342,
+                  "end": 347,
+                  "left": 511,
+                  "top": 458,
+                  "width": 60,
+                  "height": 20,
+                  "confidence": 96.988579
+                },
+                {
+                  "text": "high-level",
+                  "start": 348,
+                  "end": 358,
+                  "left": 580,
+                  "top": 457,
+                  "width": 119,
+                  "height": 28,
+                  "confidence": 96.596519
+                },
+                {
+                  "text": "functions",
+                  "start": 359,
+                  "end": 368,
+                  "left": 708,
+                  "top": 457,
+                  "width": 110,
+                  "height": 21,
+                  "confidence": 96.993507
+                },
+                {
+                  "text": "is",
+                  "start": 369,
+                  "end": 371,
+                  "left": 828,
+                  "top": 457,
+                  "width": 18,
+                  "height": 21,
+                  "confidence": 96.993507
+                },
+                {
+                  "text": "broken",
+                  "start": 372,
+                  "end": 378,
+                  "left": 855,
+                  "top": 457,
+                  "width": 82,
+                  "height": 21,
+                  "confidence": 96.336182
+                },
+                {
+                  "text": "down",
+                  "start": 379,
+                  "end": 383,
+                  "left": 946,
+                  "top": 457,
+                  "width": 65,
+                  "height": 21,
+                  "confidence": 96.607193
+                },
+                {
+                  "text": "into",
+                  "start": 384,
+                  "end": 388,
+                  "left": 1020,
+                  "top": 457,
+                  "width": 45,
+                  "height": 21,
+                  "confidence": 96.94976
+                },
+                {
+                  "text": "categories",
+                  "start": 389,
+                  "end": 399,
+                  "left": 1074,
+                  "top": 457,
+                  "width": 119,
+                  "height": 28,
+                  "confidence": 96.584755
+                },
+                {
+                  "text": "and",
+                  "start": 400,
+                  "end": 403,
+                  "left": 1203,
+                  "top": 457,
+                  "width": 42,
+                  "height": 21,
+                  "confidence": 93.247475
+                },
+                {
+                  "text": "sub-",
+                  "start": 404,
+                  "end": 408,
+                  "left": 1255,
+                  "top": 458,
+                  "width": 49,
+                  "height": 20,
+                  "confidence": 91.2388
+                },
+                {
+                  "text": "categories.",
+                  "start": 409,
+                  "end": 420,
+                  "left": 226,
+                  "top": 493,
+                  "width": 125,
+                  "height": 28,
+                  "confidence": 96.865349
+                }
+              ],
+              "render_dpi": 180,
+              "width_px": 1530,
+              "height_px": 1980
+            },
+            "quote": "As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE."
+          }
+        ],
+        "evidence": [
+          {
+            "chunk_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4:000:bf2ee69e0979",
+            "quote": "As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE."
+          }
+        ],
+        "generator": "extractive-v1",
+        "generation_performed": true,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "analyst-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "ocr-reader-denied",
+      "http_status": 200,
+      "query": "What functions is the Core composed of?",
+      "client": "reader-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "I could not find an authorized passage that answers this question.",
+        "abstained": true,
+        "citations": [],
+        "evidence": [],
+        "generator": "extractive-v1",
+        "generation_performed": false,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "beta-still-unpublished",
+      "http_status": 200,
+      "query": "What functions is the Core composed of?",
+      "client": "reader-beta",
+      "tenant": "beta",
+      "response": {
+        "answer": "I could not find an authorized passage that answers this question.",
+        "abstained": true,
+        "citations": [],
+        "evidence": [],
+        "generator": "extractive-v1",
+        "generation_performed": false,
+        "identity": {
+          "tenant_id": "beta",
+          "client_id": "reader-beta"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "cross-tenant-query-denied",
+      "http_status": 403,
+      "query": "How is access to individual enterprise resources granted?",
+      "client": "analyst-alpha",
+      "tenant": "beta",
+      "response": {
+        "error": {
+          "code": "forbidden",
+          "message": "This principal cannot query the requested tenant."
+        }
+      }
+    },
+    {
+      "case": "changed-decision-conflict",
+      "http_status": 409,
+      "response": {
+        "error": {
+          "code": "publication_conflict",
+          "message": "Request or decision conflicts, is expired, or has a stale snapshot."
+        }
+      }
+    },
+    {
+      "case": "beta-created",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-public-pages",
+          "tenant_id": "beta",
+          "requested_by": "requester-beta",
+          "candidate_sha256": "a159de98efb28aeb25946fdbe63fbda10c291c75d906314e291f4a8ef95e5ccf",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:23:01Z",
+          "snapshot_sha256": "e69f933e9866d0c6faac1306fb07ac5a69f5f4026cf56f31a096ed594d655999"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null,
+        "candidate": {
+          "tenant_id": "beta",
+          "candidate_sha256": "a159de98efb28aeb25946fdbe63fbda10c291c75d906314e291f4a8ef95e5ccf",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-5decd67b275ea4cf01344d43af299a8b4a670ebf",
+            "pdf-f0455e7317d53a2df66dec8cb139cce3eb6dac66"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-5decd67b275ea4cf01344d43af299a8b4a670ebf",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f0455e7317d53a2df66dec8cb139cce3eb6dac66",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "beta-approved",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-public-pages",
+          "tenant_id": "beta",
+          "requested_by": "requester-beta",
+          "candidate_sha256": "a159de98efb28aeb25946fdbe63fbda10c291c75d906314e291f4a8ef95e5ccf",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:23:01Z",
+          "snapshot_sha256": "e69f933e9866d0c6faac1306fb07ac5a69f5f4026cf56f31a096ed594d655999"
+        },
+        "status": "approved",
+        "publication_status": "pending",
+        "receipt": {
+          "command": {
+            "command_id": "review-1",
+            "tenant_id": "beta",
+            "snapshot_sha256": "e69f933e9866d0c6faac1306fb07ac5a69f5f4026cf56f31a096ed594d655999",
+            "decision": "approve",
+            "actor_id": "approver-beta",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-29T12:18:01Z"
+        },
+        "effect": null,
+        "candidate": {
+          "tenant_id": "beta",
+          "candidate_sha256": "a159de98efb28aeb25946fdbe63fbda10c291c75d906314e291f4a8ef95e5ccf",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-5decd67b275ea4cf01344d43af299a8b4a670ebf",
+            "pdf-f0455e7317d53a2df66dec8cb139cce3eb6dac66"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-5decd67b275ea4cf01344d43af299a8b4a670ebf",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f0455e7317d53a2df66dec8cb139cce3eb6dac66",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "beta-ocr-reader",
+      "http_status": 200,
+      "query": "What functions is the Core composed of?",
+      "client": "reader-beta",
+      "tenant": "beta",
+      "response": {
+        "answer": "As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE.",
+        "abstained": false,
+        "citations": [
+          {
+            "document_id": "pdf-f0455e7317d53a2df66dec8cb139cce3eb6dac66",
+            "chunk_id": "pdf-f0455e7317d53a2df66dec8cb139cce3eb6dac66:000:bf2ee69e0979",
+            "text": "NIST AI 100-1 AI RMF 1.0\nPart 2: Core and Profiles\n5. AIRMF Core\nThe AI RMF Core provides outcomes and actions that enable dialogue, understanding, and\nactivities to manage AI risks and responsibly develop trustworthy AI systems. As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE. Each of these high-level functions is broken down into categories and sub-\ncategories.",
+            "score": 0.4162302183098976,
+            "tenant_id": "beta",
+            "allowed_roles": [
+              "reader"
+            ],
+            "provenance": {
+              "source_id": "nist-ai-rmf",
+              "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+              "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+              "source_page": 25,
+              "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+              "artifact_page": 1,
+              "method": "ocr",
+              "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd",
+              "start": 0,
+              "end": 420,
+              "ocr_words": [
+                {
+                  "text": "NIST",
+                  "start": 0,
+                  "end": 4,
+                  "left": 225,
+                  "top": 98,
+                  "width": 55,
+                  "height": 18,
+                  "confidence": 96.183708
+                },
+                {
+                  "text": "AI",
+                  "start": 5,
+                  "end": 7,
+                  "left": 287,
+                  "top": 98,
+                  "width": 25,
+                  "height": 17,
+                  "confidence": 90.766289
+                },
+                {
+                  "text": "100-1",
+                  "start": 8,
+                  "end": 13,
+                  "left": 322,
+                  "top": 98,
+                  "width": 52,
+                  "height": 18,
+                  "confidence": 90.766289
+                },
+                {
+                  "text": "AI",
+                  "start": 14,
+                  "end": 16,
+                  "left": 1158,
+                  "top": 95,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 93.494537
+                },
+                {
+                  "text": "RMF",
+                  "start": 17,
+                  "end": 20,
+                  "left": 1198,
+                  "top": 95,
+                  "width": 62,
+                  "height": 20,
+                  "confidence": 95.481117
+                },
+                {
+                  "text": "1.0",
+                  "start": 21,
+                  "end": 24,
+                  "left": 1271,
+                  "top": 95,
+                  "width": 33,
+                  "height": 21,
+                  "confidence": 96.804146
+                },
+                {
+                  "text": "Part",
+                  "start": 25,
+                  "end": 29,
+                  "left": 226,
+                  "top": 178,
+                  "width": 79,
+                  "height": 30,
+                  "confidence": 96.435951
+                },
+                {
+                  "text": "2:",
+                  "start": 30,
+                  "end": 32,
+                  "left": 316,
+                  "top": 177,
+                  "width": 32,
+                  "height": 31,
+                  "confidence": 96.533226
+                },
+                {
+                  "text": "Core",
+                  "start": 33,
+                  "end": 37,
+                  "left": 367,
+                  "top": 177,
+                  "width": 88,
+                  "height": 31,
+                  "confidence": 96.359772
+                },
+                {
+                  "text": "and",
+                  "start": 38,
+                  "end": 41,
+                  "left": 467,
+                  "top": 178,
+                  "width": 67,
+                  "height": 30,
+                  "confidence": 96.394798
+                },
+                {
+                  "text": "Profiles",
+                  "start": 42,
+                  "end": 50,
+                  "left": 547,
+                  "top": 177,
+                  "width": 136,
+                  "height": 31,
+                  "confidence": 96.68158
+                },
+                {
+                  "text": "5.",
+                  "start": 51,
+                  "end": 53,
+                  "left": 226,
+                  "top": 284,
+                  "width": 24,
+                  "height": 25,
+                  "confidence": 84.871208
+                },
+                {
+                  "text": "AIRMF",
+                  "start": 54,
+                  "end": 59,
+                  "left": 287,
+                  "top": 284,
+                  "width": 130,
+                  "height": 25,
+                  "confidence": 84.871208
+                },
+                {
+                  "text": "Core",
+                  "start": 60,
+                  "end": 64,
+                  "left": 428,
+                  "top": 284,
+                  "width": 73,
+                  "height": 26,
+                  "confidence": 96.487427
+                },
+                {
+                  "text": "The",
+                  "start": 65,
+                  "end": 68,
+                  "left": 225,
+                  "top": 349,
+                  "width": 46,
+                  "height": 20,
+                  "confidence": 96.424179
+                },
+                {
+                  "text": "AI",
+                  "start": 69,
+                  "end": 71,
+                  "left": 279,
+                  "top": 349,
+                  "width": 30,
+                  "height": 20,
+                  "confidence": 96.424179
+                },
+                {
+                  "text": "RMF",
+                  "start": 72,
+                  "end": 75,
+                  "left": 317,
+                  "top": 349,
+                  "width": 63,
+                  "height": 20,
+                  "confidence": 96.6315
+                },
+                {
+                  "text": "Core",
+                  "start": 76,
+                  "end": 80,
+                  "left": 387,
+                  "top": 348,
+                  "width": 57,
+                  "height": 22,
+                  "confidence": 96.193291
+                },
+                {
+                  "text": "provides",
+                  "start": 81,
+                  "end": 89,
+                  "left": 452,
+                  "top": 348,
+                  "width": 101,
+                  "height": 28,
+                  "confidence": 96.906387
+                },
+                {
+                  "text": "outcomes",
+                  "start": 90,
+                  "end": 98,
+                  "left": 561,
+                  "top": 352,
+                  "width": 114,
+                  "height": 17,
+                  "confidence": 96.707855
+                },
+                {
+                  "text": "and",
+                  "start": 99,
+                  "end": 102,
+                  "left": 683,
+                  "top": 349,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 96.934387
+                },
+                {
+                  "text": "actions",
+                  "start": 103,
+                  "end": 110,
+                  "left": 733,
+                  "top": 348,
+                  "width": 83,
+                  "height": 21,
+                  "confidence": 96.408012
+                },
+                {
+                  "text": "that",
+                  "start": 111,
+                  "end": 115,
+                  "left": 825,
+                  "top": 348,
+                  "width": 44,
+                  "height": 21,
+                  "confidence": 96.408012
+                },
+                {
+                  "text": "enable",
+                  "start": 116,
+                  "end": 122,
+                  "left": 876,
+                  "top": 349,
+                  "width": 77,
+                  "height": 20,
+                  "confidence": 96.990234
+                },
+                {
+                  "text": "dialogue,",
+                  "start": 123,
+                  "end": 132,
+                  "left": 961,
+                  "top": 348,
+                  "width": 108,
+                  "height": 28,
+                  "confidence": 96.60247
+                },
+                {
+                  "text": "understanding,",
+                  "start": 133,
+                  "end": 147,
+                  "left": 1079,
+                  "top": 348,
+                  "width": 174,
+                  "height": 28,
+                  "confidence": 97.015495
+                },
+                {
+                  "text": "and",
+                  "start": 148,
+                  "end": 151,
+                  "left": 1263,
+                  "top": 349,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 96.912674
+                },
+                {
+                  "text": "activities",
+                  "start": 152,
+                  "end": 162,
+                  "left": 226,
+                  "top": 385,
+                  "width": 105,
+                  "height": 21,
+                  "confidence": 96.874504
+                },
+                {
+                  "text": "to",
+                  "start": 163,
+                  "end": 165,
+                  "left": 343,
+                  "top": 389,
+                  "width": 22,
+                  "height": 17,
+                  "confidence": 96.895515
+                },
+                {
+                  "text": "manage",
+                  "start": 166,
+                  "end": 172,
+                  "left": 376,
+                  "top": 392,
+                  "width": 92,
+                  "height": 21,
+                  "confidence": 96.101097
+                },
+                {
+                  "text": "AI",
+                  "start": 173,
+                  "end": 175,
+                  "left": 479,
+                  "top": 386,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 89.516129
+                },
+                {
+                  "text": "risks",
+                  "start": 176,
+                  "end": 181,
+                  "left": 520,
+                  "top": 385,
+                  "width": 56,
+                  "height": 21,
+                  "confidence": 95.18219
+                },
+                {
+                  "text": "and",
+                  "start": 182,
+                  "end": 185,
+                  "left": 588,
+                  "top": 386,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 96.914818
+                },
+                {
+                  "text": "responsibly",
+                  "start": 186,
+                  "end": 197,
+                  "left": 640,
+                  "top": 385,
+                  "width": 137,
+                  "height": 28,
+                  "confidence": 96.025536
+                },
+                {
+                  "text": "develop",
+                  "start": 198,
+                  "end": 205,
+                  "left": 789,
+                  "top": 385,
+                  "width": 92,
+                  "height": 28,
+                  "confidence": 96.442383
+                },
+                {
+                  "text": "trustworthy",
+                  "start": 206,
+                  "end": 217,
+                  "left": 892,
+                  "top": 386,
+                  "width": 136,
+                  "height": 27,
+                  "confidence": 96.464409
+                },
+                {
+                  "text": "AI",
+                  "start": 218,
+                  "end": 220,
+                  "left": 1039,
+                  "top": 386,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 95.870033
+                },
+                {
+                  "text": "systems.",
+                  "start": 221,
+                  "end": 229,
+                  "left": 1082,
+                  "top": 389,
+                  "width": 99,
+                  "height": 24,
+                  "confidence": 96.319504
+                },
+                {
+                  "text": "As",
+                  "start": 230,
+                  "end": 232,
+                  "left": 1201,
+                  "top": 386,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 92.795105
+                },
+                {
+                  "text": "illus-",
+                  "start": 233,
+                  "end": 239,
+                  "left": 1244,
+                  "top": 385,
+                  "width": 60,
+                  "height": 21,
+                  "confidence": 92.795105
+                },
+                {
+                  "text": "trated",
+                  "start": 240,
+                  "end": 246,
+                  "left": 226,
+                  "top": 421,
+                  "width": 67,
+                  "height": 21,
+                  "confidence": 96.98922
+                },
+                {
+                  "text": "in",
+                  "start": 247,
+                  "end": 249,
+                  "left": 303,
+                  "top": 421,
+                  "width": 22,
+                  "height": 21,
+                  "confidence": 97.011566
+                },
+                {
+                  "text": "Figure",
+                  "start": 250,
+                  "end": 256,
+                  "left": 336,
+                  "top": 421,
+                  "width": 77,
+                  "height": 28,
+                  "confidence": 97.013145
+                },
+                {
+                  "text": "5,",
+                  "start": 257,
+                  "end": 259,
+                  "left": 424,
+                  "top": 422,
+                  "width": 20,
+                  "height": 24,
+                  "confidence": 96.057472
+                },
+                {
+                  "text": "the",
+                  "start": 260,
+                  "end": 263,
+                  "left": 457,
+                  "top": 421,
+                  "width": 35,
+                  "height": 21,
+                  "confidence": 96.956993
+                },
+                {
+                  "text": "Core",
+                  "start": 264,
+                  "end": 268,
+                  "left": 503,
+                  "top": 421,
+                  "width": 57,
+                  "height": 22,
+                  "confidence": 96.871681
+                },
+                {
+                  "text": "is",
+                  "start": 269,
+                  "end": 271,
+                  "left": 571,
+                  "top": 421,
+                  "width": 18,
+                  "height": 21,
+                  "confidence": 96.123863
+                },
+                {
+                  "text": "composed",
+                  "start": 272,
+                  "end": 280,
+                  "left": 601,
+                  "top": 421,
+                  "width": 120,
+                  "height": 28,
+                  "confidence": 96.465256
+                },
+                {
+                  "text": "of",
+                  "start": 281,
+                  "end": 283,
+                  "left": 731,
+                  "top": 421,
+                  "width": 26,
+                  "height": 21,
+                  "confidence": 96.770096
+                },
+                {
+                  "text": "four",
+                  "start": 284,
+                  "end": 288,
+                  "left": 766,
+                  "top": 421,
+                  "width": 49,
+                  "height": 21,
+                  "confidence": 96.669456
+                },
+                {
+                  "text": "functions:",
+                  "start": 289,
+                  "end": 299,
+                  "left": 826,
+                  "top": 421,
+                  "width": 116,
+                  "height": 21,
+                  "confidence": 95.350555
+                },
+                {
+                  "text": "GOVERN,",
+                  "start": 300,
+                  "end": 307,
+                  "left": 960,
+                  "top": 425,
+                  "width": 119,
+                  "height": 22,
+                  "confidence": 96.122749
+                },
+                {
+                  "text": "MAP,",
+                  "start": 308,
+                  "end": 312,
+                  "left": 1091,
+                  "top": 425,
+                  "width": 63,
+                  "height": 22,
+                  "confidence": 95.803741
+                },
+                {
+                  "text": "MEASURE,",
+                  "start": 313,
+                  "end": 321,
+                  "left": 1167,
+                  "top": 425,
+                  "width": 136,
+                  "height": 22,
+                  "confidence": 95.803741
+                },
+                {
+                  "text": "and",
+                  "start": 322,
+                  "end": 325,
+                  "left": 226,
+                  "top": 458,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 97.013153
+                },
+                {
+                  "text": "MANAGE.",
+                  "start": 326,
+                  "end": 333,
+                  "left": 277,
+                  "top": 461,
+                  "width": 121,
+                  "height": 18,
+                  "confidence": 96.107216
+                },
+                {
+                  "text": "Each",
+                  "start": 334,
+                  "end": 338,
+                  "left": 410,
+                  "top": 457,
+                  "width": 59,
+                  "height": 21,
+                  "confidence": 96.710976
+                },
+                {
+                  "text": "of",
+                  "start": 339,
+                  "end": 341,
+                  "left": 478,
+                  "top": 457,
+                  "width": 26,
+                  "height": 21,
+                  "confidence": 96.477615
+                },
+                {
+                  "text": "these",
+                  "start": 342,
+                  "end": 347,
+                  "left": 511,
+                  "top": 458,
+                  "width": 60,
+                  "height": 20,
+                  "confidence": 96.988579
+                },
+                {
+                  "text": "high-level",
+                  "start": 348,
+                  "end": 358,
+                  "left": 580,
+                  "top": 457,
+                  "width": 119,
+                  "height": 28,
+                  "confidence": 96.596519
+                },
+                {
+                  "text": "functions",
+                  "start": 359,
+                  "end": 368,
+                  "left": 708,
+                  "top": 457,
+                  "width": 110,
+                  "height": 21,
+                  "confidence": 96.993507
+                },
+                {
+                  "text": "is",
+                  "start": 369,
+                  "end": 371,
+                  "left": 828,
+                  "top": 457,
+                  "width": 18,
+                  "height": 21,
+                  "confidence": 96.993507
+                },
+                {
+                  "text": "broken",
+                  "start": 372,
+                  "end": 378,
+                  "left": 855,
+                  "top": 457,
+                  "width": 82,
+                  "height": 21,
+                  "confidence": 96.336182
+                },
+                {
+                  "text": "down",
+                  "start": 379,
+                  "end": 383,
+                  "left": 946,
+                  "top": 457,
+                  "width": 65,
+                  "height": 21,
+                  "confidence": 96.607193
+                },
+                {
+                  "text": "into",
+                  "start": 384,
+                  "end": 388,
+                  "left": 1020,
+                  "top": 457,
+                  "width": 45,
+                  "height": 21,
+                  "confidence": 96.94976
+                },
+                {
+                  "text": "categories",
+                  "start": 389,
+                  "end": 399,
+                  "left": 1074,
+                  "top": 457,
+                  "width": 119,
+                  "height": 28,
+                  "confidence": 96.584755
+                },
+                {
+                  "text": "and",
+                  "start": 400,
+                  "end": 403,
+                  "left": 1203,
+                  "top": 457,
+                  "width": 42,
+                  "height": 21,
+                  "confidence": 93.247475
+                },
+                {
+                  "text": "sub-",
+                  "start": 404,
+                  "end": 408,
+                  "left": 1255,
+                  "top": 458,
+                  "width": 49,
+                  "height": 20,
+                  "confidence": 91.2388
+                },
+                {
+                  "text": "categories.",
+                  "start": 409,
+                  "end": 420,
+                  "left": 226,
+                  "top": 493,
+                  "width": 125,
+                  "height": 28,
+                  "confidence": 96.865349
+                }
+              ],
+              "render_dpi": 180,
+              "width_px": 1530,
+              "height_px": 1980
+            },
+            "quote": "As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE."
+          }
+        ],
+        "evidence": [
+          {
+            "chunk_id": "pdf-f0455e7317d53a2df66dec8cb139cce3eb6dac66:000:bf2ee69e0979",
+            "quote": "As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE."
+          }
+        ],
+        "generator": "extractive-v1",
+        "generation_performed": true,
+        "identity": {
+          "tenant_id": "beta",
+          "client_id": "reader-beta"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "acl-revision-created",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "narrow-native-role",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "636f36263f073361dbc8cf5aab8e30a87c08fe3167fa8437068ff8525455cc5c",
+          "expected_revision": 1,
+          "expires_at": "2026-10-29T12:23:01Z",
+          "snapshot_sha256": "15ea2be7bc3995e019d662466ddbee0ab3a82c88251d6562d2f9d60cd0a3b0b1"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null,
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "636f36263f073361dbc8cf5aab8e30a87c08fe3167fa8437068ff8525455cc5c",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "pending-acl-keeps-approved-version",
+      "http_status": 200,
+      "query": "How is access to individual enterprise resources granted?",
+      "client": "reader-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "Access to individual enterprise resources is granted on a per-session basis.",
+        "abstained": false,
+        "citations": [
+          {
+            "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "chunk_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6:005:736c5c156eae",
+            "text": "All communication should be done in the \nmost secure manner available, protect confidentiality and integrity, and provide source \nauthentication. \n3. Access to individual enterprise resources is granted on a per-session basis. Trust in \nthe requester is evaluated before the access is granted. Access should also be granted with \nthe least privileges needed to complete the task.",
+            "score": 0.6269578888977703,
+            "tenant_id": "alpha",
+            "allowed_roles": [
+              "reader"
+            ],
+            "provenance": {
+              "source_id": "nist-zero-trust",
+              "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+              "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+              "source_page": 15,
+              "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+              "artifact_page": 15,
+              "method": "native",
+              "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c",
+              "start": 1845,
+              "end": 2224,
+              "ocr_words": [],
+              "render_dpi": null,
+              "width_px": null,
+              "height_px": null
+            },
+            "quote": "Access to individual enterprise resources is granted on a per-session basis."
+          }
+        ],
+        "evidence": [
+          {
+            "chunk_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6:005:736c5c156eae",
+            "quote": "Access to individual enterprise resources is granted on a per-session basis."
+          }
+        ],
+        "generator": "extractive-v1",
+        "generation_performed": true,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "acl-revision-approved",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "narrow-native-role",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "636f36263f073361dbc8cf5aab8e30a87c08fe3167fa8437068ff8525455cc5c",
+          "expected_revision": 1,
+          "expires_at": "2026-10-29T12:23:01Z",
+          "snapshot_sha256": "15ea2be7bc3995e019d662466ddbee0ab3a82c88251d6562d2f9d60cd0a3b0b1"
+        },
+        "status": "approved",
+        "publication_status": "pending",
+        "receipt": {
+          "command": {
+            "command_id": "review-1",
+            "tenant_id": "alpha",
+            "snapshot_sha256": "15ea2be7bc3995e019d662466ddbee0ab3a82c88251d6562d2f9d60cd0a3b0b1",
+            "decision": "approve",
+            "actor_id": "approver-alpha",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-29T12:18:01Z"
+        },
+        "effect": null,
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "636f36263f073361dbc8cf5aab8e30a87c08fe3167fa8437068ff8525455cc5c",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "approved-acl-removes-reader",
+      "http_status": 200,
+      "query": "How is access to individual enterprise resources granted?",
+      "client": "reader-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "I could not find an authorized passage that answers this question.",
+        "abstained": true,
+        "citations": [],
+        "evidence": [],
+        "generator": "extractive-v1",
+        "generation_performed": false,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "approved-acl-preserves-analyst",
+      "http_status": 200,
+      "query": "How is access to individual enterprise resources granted?",
+      "client": "analyst-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "Access to individual enterprise resources is granted on a per-session basis.",
+        "abstained": false,
+        "citations": [
+          {
+            "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "chunk_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6:005:736c5c156eae",
+            "text": "All communication should be done in the \nmost secure manner available, protect confidentiality and integrity, and provide source \nauthentication. \n3. Access to individual enterprise resources is granted on a per-session basis. Trust in \nthe requester is evaluated before the access is granted. Access should also be granted with \nthe least privileges needed to complete the task.",
+            "score": 0.6269578888977703,
+            "tenant_id": "alpha",
+            "allowed_roles": [
+              "analyst"
+            ],
+            "provenance": {
+              "source_id": "nist-zero-trust",
+              "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+              "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+              "source_page": 15,
+              "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+              "artifact_page": 15,
+              "method": "native",
+              "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c",
+              "start": 1845,
+              "end": 2224,
+              "ocr_words": [],
+              "render_dpi": null,
+              "width_px": null,
+              "height_px": null
+            },
+            "quote": "Access to individual enterprise resources is granted on a per-session basis."
+          }
+        ],
+        "evidence": [
+          {
+            "chunk_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6:005:736c5c156eae",
+            "quote": "Access to individual enterprise resources is granted on a per-session basis."
+          }
+        ],
+        "generator": "extractive-v1",
+        "generation_performed": true,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "analyst-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "old-decision-replay",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "publish-public-pages",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:22:13Z",
+          "snapshot_sha256": "4f98b6c649421a699b1cd54562e380ba0aae500cc2f791562fadfc17db6b43ef"
+        },
+        "status": "approved",
+        "publication_status": "published",
+        "receipt": {
+          "command": {
+            "command_id": "review-1",
+            "tenant_id": "alpha",
+            "snapshot_sha256": "4f98b6c649421a699b1cd54562e380ba0aae500cc2f791562fadfc17db6b43ef",
+            "decision": "approve",
+            "actor_id": "approver-alpha",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-29T12:17:30Z"
+        },
+        "effect": {
+          "effect_key": "publication/alpha/publish-public-pages",
+          "tenant_id": "alpha",
+          "request_id": "publish-public-pages",
+          "snapshot_sha256": "4f98b6c649421a699b1cd54562e380ba0aae500cc2f791562fadfc17db6b43ef",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "revision": 1,
+          "document_count": 2,
+          "chunk_count": 14
+        },
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "old-replay-cannot-restore-reader",
+      "http_status": 200,
+      "query": "How is access to individual enterprise resources granted?",
+      "client": "reader-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "I could not find an authorized passage that answers this question.",
+        "abstained": true,
+        "citations": [],
+        "evidence": [],
+        "generator": "extractive-v1",
+        "generation_performed": false,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "stale-revision-created",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "stale-publication",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:23:01Z",
+          "snapshot_sha256": "4903d72ddc1080120e2a87d452a13860ff4d15ed12ec4e6b1c511fa85dc2f853"
+        },
+        "status": "pending",
+        "publication_status": "not_started",
+        "receipt": null,
+        "effect": null,
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "stale-revision-approval",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "stale-publication",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:23:01Z",
+          "snapshot_sha256": "4903d72ddc1080120e2a87d452a13860ff4d15ed12ec4e6b1c511fa85dc2f853"
+        },
+        "status": "approved",
+        "publication_status": "pending",
+        "receipt": {
+          "command": {
+            "command_id": "review-1",
+            "tenant_id": "alpha",
+            "snapshot_sha256": "4903d72ddc1080120e2a87d452a13860ff4d15ed12ec4e6b1c511fa85dc2f853",
+            "decision": "approve",
+            "actor_id": "approver-alpha",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-29T12:18:01Z"
+        },
+        "effect": null,
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "stale-revision-publication-failed",
+      "http_status": 200,
+      "response": {
+        "request": {
+          "request_id": "stale-publication",
+          "tenant_id": "alpha",
+          "requested_by": "requester-alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "expected_revision": 0,
+          "expires_at": "2026-10-29T12:23:01Z",
+          "snapshot_sha256": "4903d72ddc1080120e2a87d452a13860ff4d15ed12ec4e6b1c511fa85dc2f853"
+        },
+        "status": "approved",
+        "publication_status": "failed",
+        "receipt": {
+          "command": {
+            "command_id": "review-1",
+            "tenant_id": "alpha",
+            "snapshot_sha256": "4903d72ddc1080120e2a87d452a13860ff4d15ed12ec4e6b1c511fa85dc2f853",
+            "decision": "approve",
+            "actor_id": "approver-alpha",
+            "actor_roles": [
+              "approver"
+            ]
+          },
+          "accepted_at": "2026-10-29T12:18:01Z"
+        },
+        "effect": null,
+        "candidate": {
+          "tenant_id": "alpha",
+          "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+          "document_count": 2,
+          "document_ids": [
+            "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+            "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4"
+          ],
+          "documents": [
+            {
+              "document_id": "pdf-62ea557b36a89abfac675719e8561eb5c1ff10e6",
+              "title": "Zero Trust Architecture",
+              "allowed_roles": [
+                "reader"
+              ],
+              "provenance": {
+                "source_id": "nist-zero-trust",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+                "source_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "source_page": 15,
+                "artifact_sha256": "0290d6ece24874287316f4bf430fef770aa4ec08a2227c8f2c1e5b2ff975e03d",
+                "artifact_page": 15,
+                "method": "native",
+                "page_text_sha256": "922668ff2fd9dae69e5a2cba315e858b2ce05e06ee4f750b78d5a2b2f3f30a7c"
+              }
+            },
+            {
+              "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+              "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+              "allowed_roles": [
+                "analyst"
+              ],
+              "provenance": {
+                "source_id": "nist-ai-rmf",
+                "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+                "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+                "source_page": 25,
+                "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+                "artifact_page": 1,
+                "method": "ocr",
+                "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "stale-approval-cannot-restore-reader",
+      "http_status": 200,
+      "query": "How is access to individual enterprise resources granted?",
+      "client": "reader-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "I could not find an authorized passage that answers this question.",
+        "abstained": true,
+        "citations": [],
+        "evidence": [],
+        "generator": "extractive-v1",
+        "generation_performed": false,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "ocr-before-resource-restart",
+      "http_status": 200,
+      "query": "What functions is the Core composed of?",
+      "client": "analyst-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE.",
+        "abstained": false,
+        "citations": [
+          {
+            "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+            "chunk_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4:000:bf2ee69e0979",
+            "text": "NIST AI 100-1 AI RMF 1.0\nPart 2: Core and Profiles\n5. AIRMF Core\nThe AI RMF Core provides outcomes and actions that enable dialogue, understanding, and\nactivities to manage AI risks and responsibly develop trustworthy AI systems. As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE. Each of these high-level functions is broken down into categories and sub-\ncategories.",
+            "score": 0.4162302183098976,
+            "tenant_id": "alpha",
+            "allowed_roles": [
+              "analyst"
+            ],
+            "provenance": {
+              "source_id": "nist-ai-rmf",
+              "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+              "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+              "source_page": 25,
+              "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+              "artifact_page": 1,
+              "method": "ocr",
+              "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd",
+              "start": 0,
+              "end": 420,
+              "ocr_words": [
+                {
+                  "text": "NIST",
+                  "start": 0,
+                  "end": 4,
+                  "left": 225,
+                  "top": 98,
+                  "width": 55,
+                  "height": 18,
+                  "confidence": 96.183708
+                },
+                {
+                  "text": "AI",
+                  "start": 5,
+                  "end": 7,
+                  "left": 287,
+                  "top": 98,
+                  "width": 25,
+                  "height": 17,
+                  "confidence": 90.766289
+                },
+                {
+                  "text": "100-1",
+                  "start": 8,
+                  "end": 13,
+                  "left": 322,
+                  "top": 98,
+                  "width": 52,
+                  "height": 18,
+                  "confidence": 90.766289
+                },
+                {
+                  "text": "AI",
+                  "start": 14,
+                  "end": 16,
+                  "left": 1158,
+                  "top": 95,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 93.494537
+                },
+                {
+                  "text": "RMF",
+                  "start": 17,
+                  "end": 20,
+                  "left": 1198,
+                  "top": 95,
+                  "width": 62,
+                  "height": 20,
+                  "confidence": 95.481117
+                },
+                {
+                  "text": "1.0",
+                  "start": 21,
+                  "end": 24,
+                  "left": 1271,
+                  "top": 95,
+                  "width": 33,
+                  "height": 21,
+                  "confidence": 96.804146
+                },
+                {
+                  "text": "Part",
+                  "start": 25,
+                  "end": 29,
+                  "left": 226,
+                  "top": 178,
+                  "width": 79,
+                  "height": 30,
+                  "confidence": 96.435951
+                },
+                {
+                  "text": "2:",
+                  "start": 30,
+                  "end": 32,
+                  "left": 316,
+                  "top": 177,
+                  "width": 32,
+                  "height": 31,
+                  "confidence": 96.533226
+                },
+                {
+                  "text": "Core",
+                  "start": 33,
+                  "end": 37,
+                  "left": 367,
+                  "top": 177,
+                  "width": 88,
+                  "height": 31,
+                  "confidence": 96.359772
+                },
+                {
+                  "text": "and",
+                  "start": 38,
+                  "end": 41,
+                  "left": 467,
+                  "top": 178,
+                  "width": 67,
+                  "height": 30,
+                  "confidence": 96.394798
+                },
+                {
+                  "text": "Profiles",
+                  "start": 42,
+                  "end": 50,
+                  "left": 547,
+                  "top": 177,
+                  "width": 136,
+                  "height": 31,
+                  "confidence": 96.68158
+                },
+                {
+                  "text": "5.",
+                  "start": 51,
+                  "end": 53,
+                  "left": 226,
+                  "top": 284,
+                  "width": 24,
+                  "height": 25,
+                  "confidence": 84.871208
+                },
+                {
+                  "text": "AIRMF",
+                  "start": 54,
+                  "end": 59,
+                  "left": 287,
+                  "top": 284,
+                  "width": 130,
+                  "height": 25,
+                  "confidence": 84.871208
+                },
+                {
+                  "text": "Core",
+                  "start": 60,
+                  "end": 64,
+                  "left": 428,
+                  "top": 284,
+                  "width": 73,
+                  "height": 26,
+                  "confidence": 96.487427
+                },
+                {
+                  "text": "The",
+                  "start": 65,
+                  "end": 68,
+                  "left": 225,
+                  "top": 349,
+                  "width": 46,
+                  "height": 20,
+                  "confidence": 96.424179
+                },
+                {
+                  "text": "AI",
+                  "start": 69,
+                  "end": 71,
+                  "left": 279,
+                  "top": 349,
+                  "width": 30,
+                  "height": 20,
+                  "confidence": 96.424179
+                },
+                {
+                  "text": "RMF",
+                  "start": 72,
+                  "end": 75,
+                  "left": 317,
+                  "top": 349,
+                  "width": 63,
+                  "height": 20,
+                  "confidence": 96.6315
+                },
+                {
+                  "text": "Core",
+                  "start": 76,
+                  "end": 80,
+                  "left": 387,
+                  "top": 348,
+                  "width": 57,
+                  "height": 22,
+                  "confidence": 96.193291
+                },
+                {
+                  "text": "provides",
+                  "start": 81,
+                  "end": 89,
+                  "left": 452,
+                  "top": 348,
+                  "width": 101,
+                  "height": 28,
+                  "confidence": 96.906387
+                },
+                {
+                  "text": "outcomes",
+                  "start": 90,
+                  "end": 98,
+                  "left": 561,
+                  "top": 352,
+                  "width": 114,
+                  "height": 17,
+                  "confidence": 96.707855
+                },
+                {
+                  "text": "and",
+                  "start": 99,
+                  "end": 102,
+                  "left": 683,
+                  "top": 349,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 96.934387
+                },
+                {
+                  "text": "actions",
+                  "start": 103,
+                  "end": 110,
+                  "left": 733,
+                  "top": 348,
+                  "width": 83,
+                  "height": 21,
+                  "confidence": 96.408012
+                },
+                {
+                  "text": "that",
+                  "start": 111,
+                  "end": 115,
+                  "left": 825,
+                  "top": 348,
+                  "width": 44,
+                  "height": 21,
+                  "confidence": 96.408012
+                },
+                {
+                  "text": "enable",
+                  "start": 116,
+                  "end": 122,
+                  "left": 876,
+                  "top": 349,
+                  "width": 77,
+                  "height": 20,
+                  "confidence": 96.990234
+                },
+                {
+                  "text": "dialogue,",
+                  "start": 123,
+                  "end": 132,
+                  "left": 961,
+                  "top": 348,
+                  "width": 108,
+                  "height": 28,
+                  "confidence": 96.60247
+                },
+                {
+                  "text": "understanding,",
+                  "start": 133,
+                  "end": 147,
+                  "left": 1079,
+                  "top": 348,
+                  "width": 174,
+                  "height": 28,
+                  "confidence": 97.015495
+                },
+                {
+                  "text": "and",
+                  "start": 148,
+                  "end": 151,
+                  "left": 1263,
+                  "top": 349,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 96.912674
+                },
+                {
+                  "text": "activities",
+                  "start": 152,
+                  "end": 162,
+                  "left": 226,
+                  "top": 385,
+                  "width": 105,
+                  "height": 21,
+                  "confidence": 96.874504
+                },
+                {
+                  "text": "to",
+                  "start": 163,
+                  "end": 165,
+                  "left": 343,
+                  "top": 389,
+                  "width": 22,
+                  "height": 17,
+                  "confidence": 96.895515
+                },
+                {
+                  "text": "manage",
+                  "start": 166,
+                  "end": 172,
+                  "left": 376,
+                  "top": 392,
+                  "width": 92,
+                  "height": 21,
+                  "confidence": 96.101097
+                },
+                {
+                  "text": "AI",
+                  "start": 173,
+                  "end": 175,
+                  "left": 479,
+                  "top": 386,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 89.516129
+                },
+                {
+                  "text": "risks",
+                  "start": 176,
+                  "end": 181,
+                  "left": 520,
+                  "top": 385,
+                  "width": 56,
+                  "height": 21,
+                  "confidence": 95.18219
+                },
+                {
+                  "text": "and",
+                  "start": 182,
+                  "end": 185,
+                  "left": 588,
+                  "top": 386,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 96.914818
+                },
+                {
+                  "text": "responsibly",
+                  "start": 186,
+                  "end": 197,
+                  "left": 640,
+                  "top": 385,
+                  "width": 137,
+                  "height": 28,
+                  "confidence": 96.025536
+                },
+                {
+                  "text": "develop",
+                  "start": 198,
+                  "end": 205,
+                  "left": 789,
+                  "top": 385,
+                  "width": 92,
+                  "height": 28,
+                  "confidence": 96.442383
+                },
+                {
+                  "text": "trustworthy",
+                  "start": 206,
+                  "end": 217,
+                  "left": 892,
+                  "top": 386,
+                  "width": 136,
+                  "height": 27,
+                  "confidence": 96.464409
+                },
+                {
+                  "text": "AI",
+                  "start": 218,
+                  "end": 220,
+                  "left": 1039,
+                  "top": 386,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 95.870033
+                },
+                {
+                  "text": "systems.",
+                  "start": 221,
+                  "end": 229,
+                  "left": 1082,
+                  "top": 389,
+                  "width": 99,
+                  "height": 24,
+                  "confidence": 96.319504
+                },
+                {
+                  "text": "As",
+                  "start": 230,
+                  "end": 232,
+                  "left": 1201,
+                  "top": 386,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 92.795105
+                },
+                {
+                  "text": "illus-",
+                  "start": 233,
+                  "end": 239,
+                  "left": 1244,
+                  "top": 385,
+                  "width": 60,
+                  "height": 21,
+                  "confidence": 92.795105
+                },
+                {
+                  "text": "trated",
+                  "start": 240,
+                  "end": 246,
+                  "left": 226,
+                  "top": 421,
+                  "width": 67,
+                  "height": 21,
+                  "confidence": 96.98922
+                },
+                {
+                  "text": "in",
+                  "start": 247,
+                  "end": 249,
+                  "left": 303,
+                  "top": 421,
+                  "width": 22,
+                  "height": 21,
+                  "confidence": 97.011566
+                },
+                {
+                  "text": "Figure",
+                  "start": 250,
+                  "end": 256,
+                  "left": 336,
+                  "top": 421,
+                  "width": 77,
+                  "height": 28,
+                  "confidence": 97.013145
+                },
+                {
+                  "text": "5,",
+                  "start": 257,
+                  "end": 259,
+                  "left": 424,
+                  "top": 422,
+                  "width": 20,
+                  "height": 24,
+                  "confidence": 96.057472
+                },
+                {
+                  "text": "the",
+                  "start": 260,
+                  "end": 263,
+                  "left": 457,
+                  "top": 421,
+                  "width": 35,
+                  "height": 21,
+                  "confidence": 96.956993
+                },
+                {
+                  "text": "Core",
+                  "start": 264,
+                  "end": 268,
+                  "left": 503,
+                  "top": 421,
+                  "width": 57,
+                  "height": 22,
+                  "confidence": 96.871681
+                },
+                {
+                  "text": "is",
+                  "start": 269,
+                  "end": 271,
+                  "left": 571,
+                  "top": 421,
+                  "width": 18,
+                  "height": 21,
+                  "confidence": 96.123863
+                },
+                {
+                  "text": "composed",
+                  "start": 272,
+                  "end": 280,
+                  "left": 601,
+                  "top": 421,
+                  "width": 120,
+                  "height": 28,
+                  "confidence": 96.465256
+                },
+                {
+                  "text": "of",
+                  "start": 281,
+                  "end": 283,
+                  "left": 731,
+                  "top": 421,
+                  "width": 26,
+                  "height": 21,
+                  "confidence": 96.770096
+                },
+                {
+                  "text": "four",
+                  "start": 284,
+                  "end": 288,
+                  "left": 766,
+                  "top": 421,
+                  "width": 49,
+                  "height": 21,
+                  "confidence": 96.669456
+                },
+                {
+                  "text": "functions:",
+                  "start": 289,
+                  "end": 299,
+                  "left": 826,
+                  "top": 421,
+                  "width": 116,
+                  "height": 21,
+                  "confidence": 95.350555
+                },
+                {
+                  "text": "GOVERN,",
+                  "start": 300,
+                  "end": 307,
+                  "left": 960,
+                  "top": 425,
+                  "width": 119,
+                  "height": 22,
+                  "confidence": 96.122749
+                },
+                {
+                  "text": "MAP,",
+                  "start": 308,
+                  "end": 312,
+                  "left": 1091,
+                  "top": 425,
+                  "width": 63,
+                  "height": 22,
+                  "confidence": 95.803741
+                },
+                {
+                  "text": "MEASURE,",
+                  "start": 313,
+                  "end": 321,
+                  "left": 1167,
+                  "top": 425,
+                  "width": 136,
+                  "height": 22,
+                  "confidence": 95.803741
+                },
+                {
+                  "text": "and",
+                  "start": 322,
+                  "end": 325,
+                  "left": 226,
+                  "top": 458,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 97.013153
+                },
+                {
+                  "text": "MANAGE.",
+                  "start": 326,
+                  "end": 333,
+                  "left": 277,
+                  "top": 461,
+                  "width": 121,
+                  "height": 18,
+                  "confidence": 96.107216
+                },
+                {
+                  "text": "Each",
+                  "start": 334,
+                  "end": 338,
+                  "left": 410,
+                  "top": 457,
+                  "width": 59,
+                  "height": 21,
+                  "confidence": 96.710976
+                },
+                {
+                  "text": "of",
+                  "start": 339,
+                  "end": 341,
+                  "left": 478,
+                  "top": 457,
+                  "width": 26,
+                  "height": 21,
+                  "confidence": 96.477615
+                },
+                {
+                  "text": "these",
+                  "start": 342,
+                  "end": 347,
+                  "left": 511,
+                  "top": 458,
+                  "width": 60,
+                  "height": 20,
+                  "confidence": 96.988579
+                },
+                {
+                  "text": "high-level",
+                  "start": 348,
+                  "end": 358,
+                  "left": 580,
+                  "top": 457,
+                  "width": 119,
+                  "height": 28,
+                  "confidence": 96.596519
+                },
+                {
+                  "text": "functions",
+                  "start": 359,
+                  "end": 368,
+                  "left": 708,
+                  "top": 457,
+                  "width": 110,
+                  "height": 21,
+                  "confidence": 96.993507
+                },
+                {
+                  "text": "is",
+                  "start": 369,
+                  "end": 371,
+                  "left": 828,
+                  "top": 457,
+                  "width": 18,
+                  "height": 21,
+                  "confidence": 96.993507
+                },
+                {
+                  "text": "broken",
+                  "start": 372,
+                  "end": 378,
+                  "left": 855,
+                  "top": 457,
+                  "width": 82,
+                  "height": 21,
+                  "confidence": 96.336182
+                },
+                {
+                  "text": "down",
+                  "start": 379,
+                  "end": 383,
+                  "left": 946,
+                  "top": 457,
+                  "width": 65,
+                  "height": 21,
+                  "confidence": 96.607193
+                },
+                {
+                  "text": "into",
+                  "start": 384,
+                  "end": 388,
+                  "left": 1020,
+                  "top": 457,
+                  "width": 45,
+                  "height": 21,
+                  "confidence": 96.94976
+                },
+                {
+                  "text": "categories",
+                  "start": 389,
+                  "end": 399,
+                  "left": 1074,
+                  "top": 457,
+                  "width": 119,
+                  "height": 28,
+                  "confidence": 96.584755
+                },
+                {
+                  "text": "and",
+                  "start": 400,
+                  "end": 403,
+                  "left": 1203,
+                  "top": 457,
+                  "width": 42,
+                  "height": 21,
+                  "confidence": 93.247475
+                },
+                {
+                  "text": "sub-",
+                  "start": 404,
+                  "end": 408,
+                  "left": 1255,
+                  "top": 458,
+                  "width": 49,
+                  "height": 20,
+                  "confidence": 91.2388
+                },
+                {
+                  "text": "categories.",
+                  "start": 409,
+                  "end": 420,
+                  "left": 226,
+                  "top": 493,
+                  "width": 125,
+                  "height": 28,
+                  "confidence": 96.865349
+                }
+              ],
+              "render_dpi": 180,
+              "width_px": 1530,
+              "height_px": 1980
+            },
+            "quote": "As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE."
+          }
+        ],
+        "evidence": [
+          {
+            "chunk_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4:000:bf2ee69e0979",
+            "quote": "As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE."
+          }
+        ],
+        "generator": "extractive-v1",
+        "generation_performed": true,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "analyst-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "ocr-after-resource-restart",
+      "http_status": 200,
+      "query": "What functions is the Core composed of?",
+      "client": "analyst-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE.",
+        "abstained": false,
+        "citations": [
+          {
+            "document_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4",
+            "chunk_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4:000:bf2ee69e0979",
+            "text": "NIST AI 100-1 AI RMF 1.0\nPart 2: Core and Profiles\n5. AIRMF Core\nThe AI RMF Core provides outcomes and actions that enable dialogue, understanding, and\nactivities to manage AI risks and responsibly develop trustworthy AI systems. As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE. Each of these high-level functions is broken down into categories and sub-\ncategories.",
+            "score": 0.4162302183098976,
+            "tenant_id": "alpha",
+            "allowed_roles": [
+              "analyst"
+            ],
+            "provenance": {
+              "source_id": "nist-ai-rmf",
+              "source_uri": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+              "source_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+              "source_page": 25,
+              "artifact_sha256": "d3d3c6d13229f9d68e5cefadac414f5ff4247556e536ff83c021496f96b698b2",
+              "artifact_page": 1,
+              "method": "ocr",
+              "page_text_sha256": "e293056ceca4231258d48e2ff90976da19c063a592ac0e3e6ac99c58d53959fd",
+              "start": 0,
+              "end": 420,
+              "ocr_words": [
+                {
+                  "text": "NIST",
+                  "start": 0,
+                  "end": 4,
+                  "left": 225,
+                  "top": 98,
+                  "width": 55,
+                  "height": 18,
+                  "confidence": 96.183708
+                },
+                {
+                  "text": "AI",
+                  "start": 5,
+                  "end": 7,
+                  "left": 287,
+                  "top": 98,
+                  "width": 25,
+                  "height": 17,
+                  "confidence": 90.766289
+                },
+                {
+                  "text": "100-1",
+                  "start": 8,
+                  "end": 13,
+                  "left": 322,
+                  "top": 98,
+                  "width": 52,
+                  "height": 18,
+                  "confidence": 90.766289
+                },
+                {
+                  "text": "AI",
+                  "start": 14,
+                  "end": 16,
+                  "left": 1158,
+                  "top": 95,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 93.494537
+                },
+                {
+                  "text": "RMF",
+                  "start": 17,
+                  "end": 20,
+                  "left": 1198,
+                  "top": 95,
+                  "width": 62,
+                  "height": 20,
+                  "confidence": 95.481117
+                },
+                {
+                  "text": "1.0",
+                  "start": 21,
+                  "end": 24,
+                  "left": 1271,
+                  "top": 95,
+                  "width": 33,
+                  "height": 21,
+                  "confidence": 96.804146
+                },
+                {
+                  "text": "Part",
+                  "start": 25,
+                  "end": 29,
+                  "left": 226,
+                  "top": 178,
+                  "width": 79,
+                  "height": 30,
+                  "confidence": 96.435951
+                },
+                {
+                  "text": "2:",
+                  "start": 30,
+                  "end": 32,
+                  "left": 316,
+                  "top": 177,
+                  "width": 32,
+                  "height": 31,
+                  "confidence": 96.533226
+                },
+                {
+                  "text": "Core",
+                  "start": 33,
+                  "end": 37,
+                  "left": 367,
+                  "top": 177,
+                  "width": 88,
+                  "height": 31,
+                  "confidence": 96.359772
+                },
+                {
+                  "text": "and",
+                  "start": 38,
+                  "end": 41,
+                  "left": 467,
+                  "top": 178,
+                  "width": 67,
+                  "height": 30,
+                  "confidence": 96.394798
+                },
+                {
+                  "text": "Profiles",
+                  "start": 42,
+                  "end": 50,
+                  "left": 547,
+                  "top": 177,
+                  "width": 136,
+                  "height": 31,
+                  "confidence": 96.68158
+                },
+                {
+                  "text": "5.",
+                  "start": 51,
+                  "end": 53,
+                  "left": 226,
+                  "top": 284,
+                  "width": 24,
+                  "height": 25,
+                  "confidence": 84.871208
+                },
+                {
+                  "text": "AIRMF",
+                  "start": 54,
+                  "end": 59,
+                  "left": 287,
+                  "top": 284,
+                  "width": 130,
+                  "height": 25,
+                  "confidence": 84.871208
+                },
+                {
+                  "text": "Core",
+                  "start": 60,
+                  "end": 64,
+                  "left": 428,
+                  "top": 284,
+                  "width": 73,
+                  "height": 26,
+                  "confidence": 96.487427
+                },
+                {
+                  "text": "The",
+                  "start": 65,
+                  "end": 68,
+                  "left": 225,
+                  "top": 349,
+                  "width": 46,
+                  "height": 20,
+                  "confidence": 96.424179
+                },
+                {
+                  "text": "AI",
+                  "start": 69,
+                  "end": 71,
+                  "left": 279,
+                  "top": 349,
+                  "width": 30,
+                  "height": 20,
+                  "confidence": 96.424179
+                },
+                {
+                  "text": "RMF",
+                  "start": 72,
+                  "end": 75,
+                  "left": 317,
+                  "top": 349,
+                  "width": 63,
+                  "height": 20,
+                  "confidence": 96.6315
+                },
+                {
+                  "text": "Core",
+                  "start": 76,
+                  "end": 80,
+                  "left": 387,
+                  "top": 348,
+                  "width": 57,
+                  "height": 22,
+                  "confidence": 96.193291
+                },
+                {
+                  "text": "provides",
+                  "start": 81,
+                  "end": 89,
+                  "left": 452,
+                  "top": 348,
+                  "width": 101,
+                  "height": 28,
+                  "confidence": 96.906387
+                },
+                {
+                  "text": "outcomes",
+                  "start": 90,
+                  "end": 98,
+                  "left": 561,
+                  "top": 352,
+                  "width": 114,
+                  "height": 17,
+                  "confidence": 96.707855
+                },
+                {
+                  "text": "and",
+                  "start": 99,
+                  "end": 102,
+                  "left": 683,
+                  "top": 349,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 96.934387
+                },
+                {
+                  "text": "actions",
+                  "start": 103,
+                  "end": 110,
+                  "left": 733,
+                  "top": 348,
+                  "width": 83,
+                  "height": 21,
+                  "confidence": 96.408012
+                },
+                {
+                  "text": "that",
+                  "start": 111,
+                  "end": 115,
+                  "left": 825,
+                  "top": 348,
+                  "width": 44,
+                  "height": 21,
+                  "confidence": 96.408012
+                },
+                {
+                  "text": "enable",
+                  "start": 116,
+                  "end": 122,
+                  "left": 876,
+                  "top": 349,
+                  "width": 77,
+                  "height": 20,
+                  "confidence": 96.990234
+                },
+                {
+                  "text": "dialogue,",
+                  "start": 123,
+                  "end": 132,
+                  "left": 961,
+                  "top": 348,
+                  "width": 108,
+                  "height": 28,
+                  "confidence": 96.60247
+                },
+                {
+                  "text": "understanding,",
+                  "start": 133,
+                  "end": 147,
+                  "left": 1079,
+                  "top": 348,
+                  "width": 174,
+                  "height": 28,
+                  "confidence": 97.015495
+                },
+                {
+                  "text": "and",
+                  "start": 148,
+                  "end": 151,
+                  "left": 1263,
+                  "top": 349,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 96.912674
+                },
+                {
+                  "text": "activities",
+                  "start": 152,
+                  "end": 162,
+                  "left": 226,
+                  "top": 385,
+                  "width": 105,
+                  "height": 21,
+                  "confidence": 96.874504
+                },
+                {
+                  "text": "to",
+                  "start": 163,
+                  "end": 165,
+                  "left": 343,
+                  "top": 389,
+                  "width": 22,
+                  "height": 17,
+                  "confidence": 96.895515
+                },
+                {
+                  "text": "manage",
+                  "start": 166,
+                  "end": 172,
+                  "left": 376,
+                  "top": 392,
+                  "width": 92,
+                  "height": 21,
+                  "confidence": 96.101097
+                },
+                {
+                  "text": "AI",
+                  "start": 173,
+                  "end": 175,
+                  "left": 479,
+                  "top": 386,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 89.516129
+                },
+                {
+                  "text": "risks",
+                  "start": 176,
+                  "end": 181,
+                  "left": 520,
+                  "top": 385,
+                  "width": 56,
+                  "height": 21,
+                  "confidence": 95.18219
+                },
+                {
+                  "text": "and",
+                  "start": 182,
+                  "end": 185,
+                  "left": 588,
+                  "top": 386,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 96.914818
+                },
+                {
+                  "text": "responsibly",
+                  "start": 186,
+                  "end": 197,
+                  "left": 640,
+                  "top": 385,
+                  "width": 137,
+                  "height": 28,
+                  "confidence": 96.025536
+                },
+                {
+                  "text": "develop",
+                  "start": 198,
+                  "end": 205,
+                  "left": 789,
+                  "top": 385,
+                  "width": 92,
+                  "height": 28,
+                  "confidence": 96.442383
+                },
+                {
+                  "text": "trustworthy",
+                  "start": 206,
+                  "end": 217,
+                  "left": 892,
+                  "top": 386,
+                  "width": 136,
+                  "height": 27,
+                  "confidence": 96.464409
+                },
+                {
+                  "text": "AI",
+                  "start": 218,
+                  "end": 220,
+                  "left": 1039,
+                  "top": 386,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 95.870033
+                },
+                {
+                  "text": "systems.",
+                  "start": 221,
+                  "end": 229,
+                  "left": 1082,
+                  "top": 389,
+                  "width": 99,
+                  "height": 24,
+                  "confidence": 96.319504
+                },
+                {
+                  "text": "As",
+                  "start": 230,
+                  "end": 232,
+                  "left": 1201,
+                  "top": 386,
+                  "width": 31,
+                  "height": 20,
+                  "confidence": 92.795105
+                },
+                {
+                  "text": "illus-",
+                  "start": 233,
+                  "end": 239,
+                  "left": 1244,
+                  "top": 385,
+                  "width": 60,
+                  "height": 21,
+                  "confidence": 92.795105
+                },
+                {
+                  "text": "trated",
+                  "start": 240,
+                  "end": 246,
+                  "left": 226,
+                  "top": 421,
+                  "width": 67,
+                  "height": 21,
+                  "confidence": 96.98922
+                },
+                {
+                  "text": "in",
+                  "start": 247,
+                  "end": 249,
+                  "left": 303,
+                  "top": 421,
+                  "width": 22,
+                  "height": 21,
+                  "confidence": 97.011566
+                },
+                {
+                  "text": "Figure",
+                  "start": 250,
+                  "end": 256,
+                  "left": 336,
+                  "top": 421,
+                  "width": 77,
+                  "height": 28,
+                  "confidence": 97.013145
+                },
+                {
+                  "text": "5,",
+                  "start": 257,
+                  "end": 259,
+                  "left": 424,
+                  "top": 422,
+                  "width": 20,
+                  "height": 24,
+                  "confidence": 96.057472
+                },
+                {
+                  "text": "the",
+                  "start": 260,
+                  "end": 263,
+                  "left": 457,
+                  "top": 421,
+                  "width": 35,
+                  "height": 21,
+                  "confidence": 96.956993
+                },
+                {
+                  "text": "Core",
+                  "start": 264,
+                  "end": 268,
+                  "left": 503,
+                  "top": 421,
+                  "width": 57,
+                  "height": 22,
+                  "confidence": 96.871681
+                },
+                {
+                  "text": "is",
+                  "start": 269,
+                  "end": 271,
+                  "left": 571,
+                  "top": 421,
+                  "width": 18,
+                  "height": 21,
+                  "confidence": 96.123863
+                },
+                {
+                  "text": "composed",
+                  "start": 272,
+                  "end": 280,
+                  "left": 601,
+                  "top": 421,
+                  "width": 120,
+                  "height": 28,
+                  "confidence": 96.465256
+                },
+                {
+                  "text": "of",
+                  "start": 281,
+                  "end": 283,
+                  "left": 731,
+                  "top": 421,
+                  "width": 26,
+                  "height": 21,
+                  "confidence": 96.770096
+                },
+                {
+                  "text": "four",
+                  "start": 284,
+                  "end": 288,
+                  "left": 766,
+                  "top": 421,
+                  "width": 49,
+                  "height": 21,
+                  "confidence": 96.669456
+                },
+                {
+                  "text": "functions:",
+                  "start": 289,
+                  "end": 299,
+                  "left": 826,
+                  "top": 421,
+                  "width": 116,
+                  "height": 21,
+                  "confidence": 95.350555
+                },
+                {
+                  "text": "GOVERN,",
+                  "start": 300,
+                  "end": 307,
+                  "left": 960,
+                  "top": 425,
+                  "width": 119,
+                  "height": 22,
+                  "confidence": 96.122749
+                },
+                {
+                  "text": "MAP,",
+                  "start": 308,
+                  "end": 312,
+                  "left": 1091,
+                  "top": 425,
+                  "width": 63,
+                  "height": 22,
+                  "confidence": 95.803741
+                },
+                {
+                  "text": "MEASURE,",
+                  "start": 313,
+                  "end": 321,
+                  "left": 1167,
+                  "top": 425,
+                  "width": 136,
+                  "height": 22,
+                  "confidence": 95.803741
+                },
+                {
+                  "text": "and",
+                  "start": 322,
+                  "end": 325,
+                  "left": 226,
+                  "top": 458,
+                  "width": 42,
+                  "height": 20,
+                  "confidence": 97.013153
+                },
+                {
+                  "text": "MANAGE.",
+                  "start": 326,
+                  "end": 333,
+                  "left": 277,
+                  "top": 461,
+                  "width": 121,
+                  "height": 18,
+                  "confidence": 96.107216
+                },
+                {
+                  "text": "Each",
+                  "start": 334,
+                  "end": 338,
+                  "left": 410,
+                  "top": 457,
+                  "width": 59,
+                  "height": 21,
+                  "confidence": 96.710976
+                },
+                {
+                  "text": "of",
+                  "start": 339,
+                  "end": 341,
+                  "left": 478,
+                  "top": 457,
+                  "width": 26,
+                  "height": 21,
+                  "confidence": 96.477615
+                },
+                {
+                  "text": "these",
+                  "start": 342,
+                  "end": 347,
+                  "left": 511,
+                  "top": 458,
+                  "width": 60,
+                  "height": 20,
+                  "confidence": 96.988579
+                },
+                {
+                  "text": "high-level",
+                  "start": 348,
+                  "end": 358,
+                  "left": 580,
+                  "top": 457,
+                  "width": 119,
+                  "height": 28,
+                  "confidence": 96.596519
+                },
+                {
+                  "text": "functions",
+                  "start": 359,
+                  "end": 368,
+                  "left": 708,
+                  "top": 457,
+                  "width": 110,
+                  "height": 21,
+                  "confidence": 96.993507
+                },
+                {
+                  "text": "is",
+                  "start": 369,
+                  "end": 371,
+                  "left": 828,
+                  "top": 457,
+                  "width": 18,
+                  "height": 21,
+                  "confidence": 96.993507
+                },
+                {
+                  "text": "broken",
+                  "start": 372,
+                  "end": 378,
+                  "left": 855,
+                  "top": 457,
+                  "width": 82,
+                  "height": 21,
+                  "confidence": 96.336182
+                },
+                {
+                  "text": "down",
+                  "start": 379,
+                  "end": 383,
+                  "left": 946,
+                  "top": 457,
+                  "width": 65,
+                  "height": 21,
+                  "confidence": 96.607193
+                },
+                {
+                  "text": "into",
+                  "start": 384,
+                  "end": 388,
+                  "left": 1020,
+                  "top": 457,
+                  "width": 45,
+                  "height": 21,
+                  "confidence": 96.94976
+                },
+                {
+                  "text": "categories",
+                  "start": 389,
+                  "end": 399,
+                  "left": 1074,
+                  "top": 457,
+                  "width": 119,
+                  "height": 28,
+                  "confidence": 96.584755
+                },
+                {
+                  "text": "and",
+                  "start": 400,
+                  "end": 403,
+                  "left": 1203,
+                  "top": 457,
+                  "width": 42,
+                  "height": 21,
+                  "confidence": 93.247475
+                },
+                {
+                  "text": "sub-",
+                  "start": 404,
+                  "end": 408,
+                  "left": 1255,
+                  "top": 458,
+                  "width": 49,
+                  "height": 20,
+                  "confidence": 91.2388
+                },
+                {
+                  "text": "categories.",
+                  "start": 409,
+                  "end": 420,
+                  "left": 226,
+                  "top": 493,
+                  "width": 125,
+                  "height": 28,
+                  "confidence": 96.865349
+                }
+              ],
+              "render_dpi": 180,
+              "width_px": 1530,
+              "height_px": 1980
+            },
+            "quote": "As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE."
+          }
+        ],
+        "evidence": [
+          {
+            "chunk_id": "pdf-f04cfa9e2ede1a80c3e1181f70ff8c23de26f6e4:000:bf2ee69e0979",
+            "quote": "As illus-\ntrated in Figure 5, the Core is composed of four functions: GOVERN, MAP, MEASURE,\nand MANAGE."
+          }
+        ],
+        "generator": "extractive-v1",
+        "generation_performed": true,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "analyst-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    },
+    {
+      "case": "narrowed-acl-after-restart",
+      "http_status": 200,
+      "query": "How is access to individual enterprise resources granted?",
+      "client": "reader-alpha",
+      "tenant": "alpha",
+      "response": {
+        "answer": "I could not find an authorized passage that answers this question.",
+        "abstained": true,
+        "citations": [],
+        "evidence": [],
+        "generator": "extractive-v1",
+        "generation_performed": false,
+        "identity": {
+          "tenant_id": "alpha",
+          "client_id": "reader-alpha"
+        },
+        "human_review_required": true,
+        "limitations": "Exact quotations establish source support, not semantic entailment or advice."
+      }
+    }
+  ],
+  "effects": [
+    {
+      "candidate_sha256": "636f36263f073361dbc8cf5aab8e30a87c08fe3167fa8437068ff8525455cc5c",
+      "chunk_count": 14,
+      "document_count": 2,
+      "effect_key": "publication/alpha/narrow-native-role",
+      "request_id": "narrow-native-role",
+      "revision": 2,
+      "snapshot_sha256": "15ea2be7bc3995e019d662466ddbee0ab3a82c88251d6562d2f9d60cd0a3b0b1",
+      "tenant_id": "alpha"
+    },
+    {
+      "candidate_sha256": "ebb72b1e2323cfdb8553cb1224cfdcdc0cd19093acf09cfa4b0a8c425b015645",
+      "chunk_count": 14,
+      "document_count": 2,
+      "effect_key": "publication/alpha/publish-public-pages",
+      "request_id": "publish-public-pages",
+      "revision": 1,
+      "snapshot_sha256": "4f98b6c649421a699b1cd54562e380ba0aae500cc2f791562fadfc17db6b43ef",
+      "tenant_id": "alpha"
+    },
+    {
+      "candidate_sha256": "a159de98efb28aeb25946fdbe63fbda10c291c75d906314e291f4a8ef95e5ccf",
+      "chunk_count": 14,
+      "document_count": 2,
+      "effect_key": "publication/beta/publish-public-pages",
+      "request_id": "publish-public-pages",
+      "revision": 1,
+      "snapshot_sha256": "e69f933e9866d0c6faac1306fb07ac5a69f5f4026cf56f31a096ed594d655999",
+      "tenant_id": "beta"
+    }
+  ],
+  "histories": [
+    {
+      "tenant_id": "alpha",
+      "request_id": "reject-pages",
+      "filename": "histories/alpha-reject-pages.json",
+      "sha256": "0651e85e2506dab673da76fdec4b9fb89d64ef8d95c85c29e1911c162009eec2",
+      "event_count": 12,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+        "EVENT_TYPE_TIMER_CANCELED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "request_id": "expire-pages",
+      "filename": "histories/alpha-expire-pages.json",
+      "sha256": "b0ed31de072e1a52384b8d14f2bceca2e366e02d2c4744092d1f17e3111acfb6",
+      "event_count": 12,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_TIMER_FIRED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_TIMED_OUT",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "request_id": "publish-public-pages",
+      "filename": "histories/alpha-publish-public-pages.json",
+      "sha256": "1adba68fc075e6565ae7cd4d9f68d61c8118780d532939476f23dab2a7117277",
+      "event_count": 18,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+        "EVENT_TYPE_TIMER_CANCELED",
+        "EVENT_TYPE_ACTIVITY_TASK_SCHEDULED",
+        "EVENT_TYPE_ACTIVITY_TASK_STARTED",
+        "EVENT_TYPE_ACTIVITY_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    },
+    {
+      "tenant_id": "beta",
+      "request_id": "publish-public-pages",
+      "filename": "histories/beta-publish-public-pages.json",
+      "sha256": "6f40a1e072734a16ee1378b96de8865c649871cae659337808ff8565cfb638da",
+      "event_count": 18,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+        "EVENT_TYPE_TIMER_CANCELED",
+        "EVENT_TYPE_ACTIVITY_TASK_SCHEDULED",
+        "EVENT_TYPE_ACTIVITY_TASK_STARTED",
+        "EVENT_TYPE_ACTIVITY_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "request_id": "narrow-native-role",
+      "filename": "histories/alpha-narrow-native-role.json",
+      "sha256": "657a87dc434ca2e404fdfef1616beb040b5118da609c30b2690d440d1caefb7b",
+      "event_count": 18,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+        "EVENT_TYPE_TIMER_CANCELED",
+        "EVENT_TYPE_ACTIVITY_TASK_SCHEDULED",
+        "EVENT_TYPE_ACTIVITY_TASK_STARTED",
+        "EVENT_TYPE_ACTIVITY_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    },
+    {
+      "tenant_id": "alpha",
+      "request_id": "stale-publication",
+      "filename": "histories/alpha-stale-publication.json",
+      "sha256": "ed3c841c223a521709c4af3a5a1cc0aa52fb54ea1ac93c36343f439d17c1f19f",
+      "event_count": 18,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+        "EVENT_TYPE_TIMER_CANCELED",
+        "EVENT_TYPE_ACTIVITY_TASK_SCHEDULED",
+        "EVENT_TYPE_ACTIVITY_TASK_STARTED",
+        "EVENT_TYPE_ACTIVITY_TASK_FAILED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_FAILED"
+      ]
+    }
+  ],
+  "index": {
+    "before_any_approval": 0,
+    "after_publications": 28
+  },
+  "durability": {
+    "temporal_resource_edge_restarted_while_pending": true,
+    "identity_issuer_kept_running": true,
+    "worker_killed_after_commit": true,
+    "before_crash_activity_completed": false,
+    "temporal_server_restarted": true,
+    "primary_effect_count": 1,
+    "rejected_expired_stale_effect_count": 0,
+    "old_approval_cannot_restore_acl": true,
+    "citations_identical_after_resource_restart": true
+  },
+  "replay": {
+    "histories": 6,
+    "all_passed": true,
+    "no_new_publications": true
+  },
+  "human_review_performed": false,
+  "limitations": [
+    "Reviewer is a scripted client-credentials service fixture, not a person's approval.",
+    "The connected publication resource enforces the gate; trusted standalone rag ingest remains a separate operator tool.",
+    "Local staging, Temporal gRPC and filesystem administration are trusted; no hostile-upload sandbox or production IAM.",
+    "Only two English public NIST pages and authored tenant grants; no OCR/answer-quality benchmark.",
+    "Extractive answers preserve literal evidence, not semantic entailment; no new neural-model evaluation.",
+    "Partial vector writes remain fail-closed and require fresh-store rebuild; preserving the ledger is required for deduplication."
+  ],
+  "public_artifact": {
+    "kind": "public_history_derivative",
+    "original_private_report_sha256": "15c79ac79768654f2ca4aed94fd98b421151830d3d0fd929f955b85122be6306",
+    "SDK_replay_scope": "original_private_raw_histories",
+    "public_history_derivative_replayed": false,
+    "changes": [
+      "One failed history has four stackTrace values replaced; its history SHA is updated here. All observations, effects, candidates and runtime fields are unchanged."
+    ]
+  }
+}

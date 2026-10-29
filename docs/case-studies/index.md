@@ -1,9 +1,11 @@
-# Historical local case studies: evidence inventory
+# Local case studies: historical inventory and fresh evidence
 
 These three notes connect existing studies through their trust, reliability and
-measurement boundaries. Roadmap item 15 is **in progress**. This incremental
-milestone audits a fixed historical inventory; fresh end-to-end reproductions
-and the complete three-case-study milestone remain pending.
+measurement boundaries. Roadmap item 15 is **in progress**. The historical byte
+inventory remains unchanged. A separate [fresh permission-aware knowledge
+run](../../reports/case-knowledge-v1) was recorded on 2026-10-29 from an installed
+wheel with actual identity, native/OCR, approval and vector services. The other
+two fresh cases and the complete three-case milestone remain pending.
 
 - [Permission-aware knowledge](permission-aware-knowledge.md)
 - [Reliable legacy automation](reliable-legacy-automation.md)
@@ -16,7 +18,7 @@ PYTHONPATH=src python -m enterprise_ai_lab.case_studies inspect --repository .
 # Optional new output; its parent directory must already exist:
 PYTHONPATH=src python -m enterprise_ai_lab.case_studies inspect \
   --repository . --out /path/to/new-audit.json
-python -W error::ResourceWarning -m unittest discover -s tests/case_studies -v
+PYTHONPATH=src python -W error::ResourceWarning -m unittest discover -s tests/case_studies -v
 ```
 
 The installed wheel supports the same module command with an explicit repository
@@ -43,7 +45,16 @@ during a read are refused. Existing outputs are never replaced.
 This first implementation uses POSIX directory-handle and no-follow APIs;
 Windows portability has not been established.
 
-Later fresh reproductions must use matching documented runtimes and new private
-work/report paths. They must preserve the old reports and their failures. This
-auditor cannot promote historical evidence into a fresh run or complete any
-larger study scope.
+Fresh reproductions use matching documented runtimes and new private work/report
+paths, preserving the old reports and their failures. The first fresh case has a
+separate standard-library recorded-contract verifier:
+
+```sh
+python scripts/verify_knowledge_case.py --report reports/case-knowledge-v1/demo.json
+```
+
+It checks recorded case results and exported history payloads, not new service
+execution. Its report explicitly labels a failed-history public derivative that
+omits private runtime stack traces; actual SDK replay used the private originals.
+Neither verifier can promote archived bytes into a fresh run or complete a larger
+study scope.
