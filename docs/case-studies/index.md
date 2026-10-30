@@ -4,8 +4,11 @@ These three notes connect existing studies through their trust, reliability and
 measurement boundaries. Roadmap item 15 is **in progress**. The historical byte
 inventory remains unchanged. A separate [fresh permission-aware knowledge
 run](../../reports/case-knowledge-v1) was recorded on 2026-10-29 from an installed
-wheel with actual identity, native/OCR, approval and vector services. The other
-two fresh cases and the complete three-case milestone remain pending.
+wheel with actual identity, native/OCR, approval and vector services. A separate
+[fresh reliability case](../../reports/case-reliability-v1), recorded 2026-10-30,
+compares actual MCP failover, local approval and scoped redaction as three
+separate experiments. The fresh operability case and the complete three-case
+milestone remain pending.
 
 - [Permission-aware knowledge](permission-aware-knowledge.md)
 - [Reliable legacy automation](reliable-legacy-automation.md)
@@ -58,3 +61,13 @@ execution. Its report explicitly labels a failed-history public derivative that
 omits private runtime stack traces; actual SDK replay used the private originals.
 Neither verifier can promote archived bytes into a fresh run or complete a larger
 study scope.
+
+The fresh reliability case also has a separate recorded-contract verifier:
+
+```sh
+python scripts/verify_reliability_case.py --directory reports/case-reliability-v1
+```
+
+It checks the three recorded experiments and five exported approval histories.
+It performs no execution or SDK replay and does not connect their databases or
+promote the local study into a production write/action pipeline.

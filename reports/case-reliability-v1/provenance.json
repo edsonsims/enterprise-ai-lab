@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "case_id": "reliable-legacy-automation",
+  "recorded_at": "2026-10-30T12:15:21.072546+00:00",
+  "evidence_state": "fresh_recorded_three_separate_local_executions_from_installed_wheel",
+  "runtime_source_revision": "d4fa3236e047d63ea7d34f6f26debc31513520e6",
+  "runtime_source_clean_at_start": true,
+  "runtime_package": "enterprise-ai-lab==0.14.1",
+  "wheel_sha256": "85742f15e7ad8fbc965a50d97dc0f5bc506b66da1ebf0aa459d3366433ad3c0e",
+  "wheel_package_entries_matched_source": 113,
+  "wheel_inventory": "wheel-source-inventory.json",
+  "runtime_inventory": "runtime-inventory.json",
+  "installed_module_outside_checkout": true,
+  "isolated_main_python": true,
+  "exact_runtime_locks": {
+    "requirements-mcp.lock": "f4cc23099d77c6eb3cb71f0645f0e6c804231046ceea3fe69a1e53785580ea10",
+    "requirements-approval.lock": "ac5f71d1fc73e220abbb4e3f826b5b9749555504dbb278f0a54d52ac91c48702"
+  },
+  "all_existing_requirement_locks_preserved": {
+    "requirements-approval.lock": "ac5f71d1fc73e220abbb4e3f826b5b9749555504dbb278f0a54d52ac91c48702",
+    "requirements-ingestion.lock": "dc28732351792eee4cea6dd3cbe6b2f8bd1f09cca32e9e7638799c577f4a3752",
+    "requirements-rag.lock": "d5d7efe222ad4fef0753b6f60223cf49f21ecfafef88d1f9665ed3604bb7552b",
+    "requirements-generator.lock": "3073a0b004579f674f1eacc524e47c2499332ebbb9fd3d5b0b3702113f0505fe",
+    "requirements-mcp.lock": "f4cc23099d77c6eb3cb71f0645f0e6c804231046ceea3fe69a1e53785580ea10"
+  },
+  "build_backend": {
+    "setuptools": "84.2.1",
+    "explicit_private_build_setup": true
+  },
+  "identity_source_revision": "92a6688e6df862934d53201a6ac39d8fba410a52",
+  "identity_package_lock_sha256": "67f954643fb63b140c2aa2659dd75abe65c159ede48f6eb8355397bdb0201684",
+  "identity_bridge_sha256": "4ffec7359131e0862a6379dc7a46a41c87d3e82e3c94e6221b66a240828d54f6",
+  "identity_fresh_build_reproduces_same_bridge": true,
+  "identity_issuer_sha256": "863250396513101c19b784ddcc7b8510fadddb0139977234d7847516d44b477e",
+  "node_version": "v24.19.0",
+  "node_binary_sha256": "060b970693b04c9b5664c68014c6ece7c30ec7968d55c8764776d8a07e154056",
+  "temporal_cli": {
+    "cli_version": "1.9.1",
+    "server_version": "1.32.0",
+    "platform": "darwin-arm64",
+    "sha256": "33c298d41f6eefebf01a28a3511f444480e939e21d3518cb0c12a4abad467c4b",
+    "bytes": 150806194
+  },
+  "runtime_asset_downloads_disabled": true,
+  "runtime_network_scope": "Actual local loopback services and stdio; no model/provider calls. No OS-level egress-denial validation is claimed.",
+  "experiments": {
+    "chaos": {
+      "report": "chaos/demo.json",
+      "sha256": "52f1832719e5a00a6445974588d9db3b3c516d865f96e94ba3573965f981ce32",
+      "bytes": 81144,
+      "raw_private_and_candidate_bytes_identical": true,
+      "execution_started_at": "2026-10-30T12:09:59.496388+00:00",
+      "execution_finished_at": "2026-10-30T12:10:08.067943+00:00",
+      "execution_elapsed_s": 8.571589041006519,
+      "execution_exit_code": 0,
+      "experiment_attempts": 1,
+      "separate_new_work_directory": true,
+      "private_exact_command_receipt_sha256": "8c84598118179a216800ea5fd7768c00ea2e76ed7de05c3169ff25958b480a7d",
+      "installed_wheel_and_isolated_main_python": true,
+      "runtime_asset_downloads_disabled": true
+    },
+    "approval": {
+      "report": "approval/demo.json",
+      "sha256": "8b302eda5fe079ad16f8d678f48d8e9d6f2f76e4b5619455d30e77494e3761d6",
+      "bytes": 25887,
+      "raw_private_and_candidate_bytes_identical": true,
+      "execution_started_at": "2026-10-30T12:10:08.068420+00:00",
+      "execution_finished_at": "2026-10-30T12:10:45.879227+00:00",
+      "execution_elapsed_s": 37.81090124999173,
+      "execution_exit_code": 0,
+      "experiment_attempts": 1,
+      "separate_new_work_directory": true,
+      "private_exact_command_receipt_sha256": "98307cbcd3455a09ec997796a5a91b17b9e4210364484f38b62f0b33ae02cbb8",
+      "installed_wheel_and_isolated_main_python": true,
+      "runtime_asset_downloads_disabled": true
+    },
+    "privacy": {
+      "report": "privacy/demo.json",
+      "sha256": "bd20bf75787ce633e969c35c82bfa538c2ad4e7ba6a1f97b136f9823c588a70d",
+      "bytes": 13328,
+      "raw_private_and_candidate_bytes_identical": true,
+      "execution_started_at": "2026-10-30T12:10:45.879761+00:00",
+      "execution_finished_at": "2026-10-30T12:10:48.897897+00:00",
+      "execution_elapsed_s": 3.018160749983508,
+      "execution_exit_code": 0,
+      "experiment_attempts": 1,
+      "separate_new_work_directory": true,
+      "private_exact_command_receipt_sha256": "cbd80f6f5f3bbde6b5e5a639fb41bb67f253bbdd4926dc8e7102d3779ae68e4e",
+      "installed_wheel_and_isolated_main_python": true,
+      "runtime_asset_downloads_disabled": true
+    }
+  },
+  "histories_replayed_by_actual_SDK": [
+    {
+      "request_id": "publish-study-note",
+      "tenant_id": "alpha",
+      "filename": "approval/histories/alpha-publish-study-note.json",
+      "sha256": "96ae3ef84735fd931791b3ff4473981aa49a86adc9085c963b77af82d017634f",
+      "event_count": 18,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+        "EVENT_TYPE_TIMER_CANCELED",
+        "EVENT_TYPE_ACTIVITY_TASK_SCHEDULED",
+        "EVENT_TYPE_ACTIVITY_TASK_STARTED",
+        "EVENT_TYPE_ACTIVITY_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    },
+    {
+      "request_id": "publish-study-note",
+      "tenant_id": "beta",
+      "filename": "approval/histories/beta-publish-study-note.json",
+      "sha256": "91760df18f387eef60ecfe31445096983c597d9b5e175c2ae3ce587ce4c8195b",
+      "event_count": 18,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+        "EVENT_TYPE_TIMER_CANCELED",
+        "EVENT_TYPE_ACTIVITY_TASK_SCHEDULED",
+        "EVENT_TYPE_ACTIVITY_TASK_STARTED",
+        "EVENT_TYPE_ACTIVITY_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    },
+    {
+      "request_id": "reject-study-note",
+      "tenant_id": "alpha",
+      "filename": "approval/histories/alpha-reject-study-note.json",
+      "sha256": "9bab892e5e8516ac3b22c5d05bab95f15ae41182f956e4f80c686fe417e51a0a",
+      "event_count": 12,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+        "EVENT_TYPE_TIMER_CANCELED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    },
+    {
+      "request_id": "self-review",
+      "tenant_id": "alpha",
+      "filename": "approval/histories/alpha-self-review.json",
+      "sha256": "a4ed1a54d2428b0944a578c3362da018822d22bfda09455c426b3658988f7232",
+      "event_count": 12,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_ACCEPTED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_UPDATE_COMPLETED",
+        "EVENT_TYPE_TIMER_CANCELED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    },
+    {
+      "request_id": "expire-study-note",
+      "tenant_id": "alpha",
+      "filename": "approval/histories/alpha-expire-study-note.json",
+      "sha256": "f92884ca5a4b2bcb6ff3f1f9c84f2acf787180580fcbd0ad019fe8cd2faa8970",
+      "event_count": 12,
+      "event_types": [
+        "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_TIMER_STARTED",
+        "EVENT_TYPE_TIMER_FIRED",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_TIMED_OUT",
+        "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+        "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+        "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+        "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED"
+      ]
+    }
+  ],
+  "raw_private_and_candidate_artifacts_byte_identical": true,
+  "command_templates": {
+    "chaos": "<mcp-venv>/bin/python -I -m enterprise_ai_lab.chaos demo --work-dir <new-chaos-work> --out <new-report-directory>/chaos/demo.json",
+    "approval": "<approval-venv>/bin/python -I -m enterprise_ai_lab.approval demo --temporal-cli <verified-local-temporal-cli> --identity-dir <pinned-identity-checkout> --node <node24> --work-dir <new-approval-work> --out <new-report-directory>/approval/demo.json",
+    "privacy": "<approval-venv>/bin/python -I -m enterprise_ai_lab.privacy_proxy demo --identity-dir <pinned-identity-checkout> --node <node24> --work-dir <new-privacy-work> --out <new-report-directory>/privacy/demo.json"
+  },
+  "command_template_scope": "Portable renderings of the actual private commands; placeholders are not claimed to have been run literally. Exact original argv/cwd/timings remain in private hashed receipts.",
+  "public_safe_scan": {
+    "files": 8,
+    "decoded_history_payloads": 22,
+    "raw_and_decoded_history_payloads_checked": true,
+    "matches": {
+      "absolute_home_or_private_path": 0,
+      "bearer_credential": 0,
+      "JWT": 0
+    },
+    "no_artifact_sanitization_required": true,
+    "scope": "Known owned report/history scan for the listed patterns; not a general secret detector. Private issuer IPC, setup logs and operator databases are excluded from this public candidate."
+  },
+  "experiment_summary": {
+    "chaos_observations": 15,
+    "chaos_processes": 20,
+    "chaos_audit_rows": 31,
+    "approval_HTTP_observations": 29,
+    "approval_histories_replayed": 5,
+    "approval_local_effects": 2,
+    "approval_primary_effects": 1,
+    "privacy_HTTP_observations": 25,
+    "privacy_processor_requests": 3,
+    "privacy_audit_rows": 14,
+    "privacy_resource_log_scan": {
+      "resource_processes": 3,
+      "bytes": 156,
+      "matched_supported_values_or_bearer_tokens": 0,
+      "raw_private_issuer_ipc_included": false
+    }
+  },
+  "installed_wheel_lock_metadata_note": "The chaos report retains requirements_mcp_lock_sha256:null because a standalone installed wheel has no checkout-level lock file. The exact unchanged lock install is separately bound by this provenance and private setup receipts; the raw report was not rewritten.",
+  "setup_incident_receipt_sha256": "2521774518fe89ba47abe4f55ee9512939d4f96a3469d980e69ca09a8fa64b43",
+  "setup_incident_scope": "An initial private preflight assumed four lock files; the current source has five. The inventory guard was corrected before any experiment. No runtime source, lock, assertion, budget or fixture was changed, and each demo ran once.",
+  "human_review_performed": false,
+  "owner_personal_study_recorded": false,
+  "three_separate_experiments": true,
+  "connected_privacy_to_MCP_write_pipeline": false,
+  "complete_three_case_milestone": false,
+  "limitations": [
+    "Three separate actual experiments; no new connected privacy/MCP write or action pipeline.",
+    "All inputs are authored synthetic fixtures and local services on one trusted host; no production deployment, external database or provider.",
+    "Read failover permits one additional read and audit attempt; no exactly-once, cross-system transaction, write retry or hard real-time guarantee.",
+    "Approval uses scripted client-credentials identities and a local SQLite note sink. Temporal gRPC is trusted local administration; no actual human approval or owner study.",
+    "Privacy maps are plaintext and expiry is logical. Supported-value/credential resource-log scan is finite, a fictional name passes through, and no generalized detector/compliance result is measured.",
+    "Raw report/source fingerprints and actual prior failure evidence are retained. This run does not explain historical unknown CI failures or rerun a neural model."
+  ]
+}

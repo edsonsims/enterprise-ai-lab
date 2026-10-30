@@ -22,6 +22,8 @@ jobs:
         run: python -m enterprise_ai_lab.case_studies inspect --repository .
       - name: Verify recorded knowledge case without starting services
         run: python scripts/verify_knowledge_case.py --report reports/case-knowledge-v1/demo.json
+      - name: Verify recorded reliability case
+        run: python scripts/verify_reliability_case.py --directory reports/case-reliability-v1
 
   local-admin-portal:
     runs-on: ubuntu-latest

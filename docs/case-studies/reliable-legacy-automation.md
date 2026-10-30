@@ -26,3 +26,21 @@ separate runnable studies: there is no connected privacy-to-MCP write/action
 workflow. No external database or notification is exercised. A fresh run of the
 [chaos guide](../chaos-failover.md) remains a separate execution with new paths;
 matching archived bytes does not perform it.
+
+## Fresh representative run, 2026-10-30
+
+A [new three-part reliability case](../../reports/case-reliability-v1) repeats
+actual MCP failover, durable local approval and scoped redaction from a
+source-bound installed wheel, in separate fresh work directories. It preserves
+15 MCP cases, 29 approval HTTP observations, 25 privacy HTTP observations and
+five raw approval histories actually replayed by the SDK. The installed package,
+exact locks, Identity build and runtime assets are pinned separately from the
+historical sources above.
+
+The comparison makes three uncertainty boundaries explicit: retrying a read
+adds an audit attempt; retrying an immutable accepted command can return the same
+local effect receipt; a processor failure can leave an expiring privacy map.
+These remain separate studies. No connected privacy-to-MCP write/action workflow,
+global transaction or human approval is implemented. A standard-library verifier
+checks recorded consistency without rerunning services. The fresh operability
+case and complete roadmap item 15 remain pending.
