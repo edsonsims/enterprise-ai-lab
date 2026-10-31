@@ -1,14 +1,18 @@
 # Local case studies: historical inventory and fresh evidence
 
 These three notes connect existing studies through their trust, reliability and
-measurement boundaries. Roadmap item 15 is **in progress**. The historical byte
+measurement boundaries. The historical byte
 inventory remains unchanged. A separate [fresh permission-aware knowledge
 run](../../reports/case-knowledge-v1) was recorded on 2026-10-29 from an installed
 wheel with actual identity, native/OCR, approval and vector services. A separate
 [fresh reliability case](../../reports/case-reliability-v1), recorded 2026-10-30,
 compares actual MCP failover, local approval and scoped redaction as three
-separate experiments. The fresh operability case and the complete three-case
-milestone remain pending.
+separate experiments. A [fresh operability case](../../reports/case-operability-v1),
+recorded 2026-10-31, adds actual core installation, CPU inference, fictional
+accounting and configuration recovery as four separate experiments. All three
+representative cases now have fresh records and separate contract verifiers.
+Broader deployment scopes in the individual studies and owner study remain
+incomplete; these local cases do not establish production deployments.
 
 - [Permission-aware knowledge](permission-aware-knowledge.md)
 - [Reliable legacy automation](reliable-legacy-automation.md)
@@ -71,3 +75,14 @@ python scripts/verify_reliability_case.py --directory reports/case-reliability-v
 It checks the three recorded experiments and five exported approval histories.
 It performs no execution or SDK replay and does not connect their databases or
 promote the local study into a production write/action pipeline.
+
+The operability case has its own standard-library recorded-contract verifier:
+
+```sh
+python scripts/verify_operability_case.py --directory reports/case-operability-v1
+```
+
+It checks the four reports and their source/artifact bindings without running a
+model, starting a process or accessing a live ledger. Inference measurements,
+fictional accounting and administration stay separate; the core bundle does not
+deliver the optional runtime or weights.

@@ -24,3 +24,23 @@ system administration. This byte audit loads no model and recomputes no model
 metrics. Model-free semantic verification and any explicit fresh inference use
 the [edge guide](../edge-inference.md) as separate steps, with new evidence paths
 and all limitations retained.
+
+A [fresh four-part operability case](../../reports/case-operability-v1) was recorded
+on 2026-10-31 from a new installed wheel. It preserves all 14 actual model calls,
+864 generated tokens, first/warm timings, whole-process peak RSS and complete
+outputs. Separate experiments exercise actual network-denied core installation,
+fictional ledger concurrency/lost-receipt recovery and the real local OIDC
+configuration desk with Chromium. Each uses new work/report paths. Optional
+dependency environments are reused; the core installation creates a fresh venv.
+
+The case records 31 ledger observations and 33 reaped CLI processes, plus 40
+administration HTTP observations, seven reaped service children and nine actual
+Chromium checks. Before-commit recovery advances revision 2 to 3 after one exact
+retry; after-commit recovery retains revision 4. The accounting fixture remains
+authored data, not usage observed from these model calls. Two view settings do
+not configure the model or production infrastructure.
+
+Its separate standard-library verifier checks recorded contracts and corruption
+controls without executing these systems. This adds the third representative
+case, while the wider planned deployments and the owner's personal study remain
+separate.

@@ -42,5 +42,7 @@ adds an audit attempt; retrying an immutable accepted command can return the sam
 local effect receipt; a processor failure can leave an expiring privacy map.
 These remain separate studies. No connected privacy-to-MCP write/action workflow,
 global transaction or human approval is implemented. A standard-library verifier
-checks recorded consistency without rerunning services. The fresh operability
-case and complete roadmap item 15 remain pending.
+checks recorded consistency without rerunning services. A separate
+[fresh operability case](../../reports/case-operability-v1), recorded 2026-10-31,
+now adds core installation, CPU measurement, fictional accounting and configuration
+recovery. Broader deployment scopes in the individual studies remain planned.
